@@ -1,11 +1,10 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1080, "h": 4100, "title": "Landing — escritorio" },
-    { "file": "Mobile.dc.html", "x": 1180, "y": 0, "w": 390, "h": 5000, "title": "Landing — celular" },
-    { "file": "Alt.dc.html", "x": 1670, "y": 0, "w": 900, "h": 1900, "title": "Dirección alternativa" }
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1200, "h": 5200, "title": "Landing — escritorio" },
+    { "file": "Mobile.dc.html", "x": 1320, "y": 0, "w": 390, "h": 5600, "title": "Landing — celular" }
   ],
   "annotations": [
-    { "id": "nota-direcciones", "x": 0, "y": -170, "w": 520, "text": "MAQUETA v1 — borrador para revisar.\n\nDirección principal (Landing escritorio + celular): editorial cálida. Títulos Source Serif 4, texto IBM Plex Sans, acento verde, fondo papel. Sobria y cercana por la prosa.\n\nDirección alternativa: estilo 'documento técnico'. Sans Archivo, líneas duras, acento terracota. Más seca y estructurada.\n\nCopy real (borrador, falta tu edición de voz). [CORREO] = pendiente. Las cajas del caso son placeholders de capturas reales anonimizadas." }
+    { "id": "nota-v2", "x": 0, "y": -190, "w": 560, "text": "MAQUETA v2 — dirección con más carácter.\n\nOscuro y cálido (near-black + hueso), acento naranja señal. Títulos Bricolage Grotesque grandes, cuerpo Newsreader (serif), datos en mono. Números de sección enormes, columna de texto desplazada.\n\nEl héroe NO es solo texto: es una demo que se arma sola — mensaje de Telegram → fila que entra en la planilla → aviso. Es literalmente lo que hace Carlos.\n\nAl hacer scroll, cada sección aparece con un movimiento. Copy real (borrador). [CORREO] y las capturas del caso siguen pendientes." }
   ],
   "launch": { "view": "focused", "file": "Main.dc.html" }
 }
