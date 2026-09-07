@@ -1,0 +1,11 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1080, "h": 3600, "title": "Landing — escritorio" },
+    { "file": "Mobile.dc.html", "x": 1180, "y": 0, "w": 390, "h": 4400, "title": "Landing — celular" },
+    { "file": "Alt.dc.html", "x": 1670, "y": 0, "w": 900, "h": 1900, "title": "Dirección alternativa" }
+  ],
+  "annotations": [
+    { "id": "nota-direcciones", "x": 0, "y": -170, "w": 520, "text": "MAQUETA v1 — borrador para revisar.\n\nDirección principal (Landing escritorio + celular): editorial cálida. Títulos Source Serif 4, texto IBM Plex Sans, acento verde, fondo papel. Sobria y cercana por la prosa.\n\nDirección alternativa: estilo 'documento técnico'. Sans Archivo, líneas duras, acento terracota. Más seca y estructurada.\n\nCopy real (borrador, falta tu edición de voz). [CORREO] = pendiente. Las cajas del caso son placeholders de capturas reales anonimizadas." }
+  ],
+  "launch": { "view": "focused", "file": "Main.dc.html" }
+}

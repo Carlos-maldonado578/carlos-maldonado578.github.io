@@ -6,3 +6,6 @@ dist/
 !.env.example
 .DS_Store
 *.log
+
+# maqueta: archivos de trabajo de /design se versionan, el payload seed no
+design/sitio-carlos-maldonado.html
