@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <script src="./support.js"></script>
@@ -21,39 +21,69 @@
     .dim { color: #928B7D; }
     .wrap { padding: 0 20px; }
     .btn { display: inline-flex; align-items: center; gap: 9px; background: #FF5A36; color: #131210;
-      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px; padding: 13px 20px; border: none; }
-    .sec { position: relative; padding: 56px 0; border-top: 1px solid #2A2620; }
-    .ghost { position: absolute; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 128px;
-      line-height: 0.7; color: transparent; -webkit-text-stroke: 1.5px #2E2A24; z-index: 0; pointer-events: none;
-      top: 20px; letter-spacing: -0.05em; }
+      font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px;
+      padding: 14px 20px; border: none; cursor: pointer; min-height: 46px; }
+    .btn:hover { background: #FF8A6A; color: #131210; }
+
+    /* enlace del encabezado: subrayado fino, zona de toque de 44px */
+    .navlink { display: inline-flex; align-items: center; height: 44px; }
+    .navlink > span { border-bottom: 2px solid #FF5A36; padding-bottom: 2px; }
+
+    /* padding horizontal incluido: .sec gana sobre .wrap por orden de cascada */
+    .sec { position: relative; padding: 58px 20px; border-top: 1px solid #2A2620; }
+    .ghost { position: absolute; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 132px;
+      line-height: 0.7; color: transparent; -webkit-text-stroke: 2px #4E4638; z-index: 0; pointer-events: none;
+      top: 40px; letter-spacing: -0.05em; user-select: none; }
+    footer a { display: inline-flex; align-items: center; min-height: 44px; margin: -13px 0; }
     .kick { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #FF5A36; text-transform: uppercase; display: block; margin-bottom: 14px; position: relative; z-index: 1; }
-    h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.035em; font-size: 28px; line-height: 1.0; margin: 0 0 18px; position: relative; z-index: 1; }
+    h2 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; letter-spacing: -0.035em; font-size: 29px; line-height: 1.02; margin: 0 0 20px; position: relative; z-index: 1; }
     .z { position: relative; z-index: 1; }
+
+    .rule-list { display: grid; border-top: 1px solid #2E2A24; }
+    .rule-list > div { display: grid; grid-template-columns: 18px 1fr; gap: 12px;
+      padding: 15px 0; border-bottom: 1px solid #2E2A24; }
+    .rule-list .arrow { color: #FF5A36; }
+
+    /* madlib */
+    .madlib { font-family: 'Bricolage Grotesque', 'Arial Narrow', sans-serif; font-weight: 600;
+      font-size: 26px; line-height: 1.9; letter-spacing: -0.02em; color: #ECE6D9; }
+    .madlib input { font: inherit; letter-spacing: inherit; background: transparent; border: none;
+      border-bottom: 2px solid #FF5A36; color: #FF5A36; caret-color: #FF5A36;
+      padding: 6px 5px; max-width: 100%; }
+    .madlib input::placeholder { color: #FF5A36; opacity: 1; }
+    .madlib input:focus-visible { outline: 2px solid #FF8A6A; outline-offset: 3px; }
+    .madlib .slot { white-space: nowrap; }
+
     @keyframes d-msg { to { opacity: 1; transform: none; } }
     @keyframes d-row { 0% { opacity: 0; transform: translateX(-10px); } 55% { background: #4A3220; } 100% { opacity: 1; transform: none; } }
     @keyframes d-toast { to { opacity: 1; transform: none; } }
+    @media (prefers-reduced-motion: reduce) {
+      [style*="animation"] { animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
   </style>
 </helmet>
 
 <header style="position: sticky; top: 0; z-index: 40; background: rgba(19,18,16,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid #2A2620;">
-  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; padding-top: 13px; padding-bottom: 13px;">
-    <span class="disp" style="font-size: 14px; font-weight: 700;">Carlos Maldonado</span>
-    <a href="#contacto" class="mono" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-bottom: 2px solid #FF5A36; padding-bottom: 2px;">Conversemos</a>
+  <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; padding-top: 4px; padding-bottom: 4px;">
+    <span class="disp" style="font-size: 14px; font-weight: 700; line-height: 44px;">Carlos Maldonado</span>
+    <a href="#contacto" class="mono navlink" style="font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;"><span>Conversemos</span></a>
   </div>
 </header>
 
 <main>
-  <section class="wrap" style="padding: 46px 20px 40px;">
-    <h1 class="disp" style="font-size: 44px; margin: 0;">La pega que haces a mano,</h1>
-    <div class="disp" style="font-size: 58px; color: #FF5A36; line-height: 0.85; margin: 2px 0 0 -2px; transform: rotate(-2deg); display: inline-block;">andando sola.</div>
-    <p style="font-size: 17px; margin-top: 28px; color: #D9D3C6;">Alguien manda un mensaje. La planilla se llena. A ti te llega el resumen. Sin cuadernos, sin doble tipeo.</p>
-    <a href="#contacto" class="btn" style="margin-top: 6px;">Conversemos
-      <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h9M9 4l4 4-4 4"/></svg>
-    </a>
+  <section class="wrap" style="padding: 44px 20px 44px;">
+    <h1 class="disp" style="font-size: 42px; margin: 0;">La pega que haces a mano,</h1>
+    <div class="disp" style="font-size: 50px; color: #FF5A36; line-height: 0.86; margin: 4px 0 0 -3px; transform: rotate(-2deg); transform-origin: left center; display: inline-block;">andando sola.</div>
+    <div style="display: grid; justify-items: start; gap: 22px; margin-top: 26px;">
+      <p style="font-size: 17px; margin: 0; color: #D9D3C6;">Alguien manda un mensaje. La planilla se llena. A ti te llega el resumen. Sin cuadernos, sin doble tipeo.</p>
+      <a href="#contacto" class="btn">Conversemos
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4"/></svg>
+      </a>
+    </div>
 
-    <div style="border: 1px solid #3B362E; background: #1B1813; padding: 18px; margin-top: 34px; transform: rotate(-1deg); box-shadow: -12px 18px 40px rgba(0,0,0,0.45);">
-      <div class="mono" style="font-size: 10px; letter-spacing: 0.14em; color: #6E675B; text-transform: uppercase; margin-bottom: 13px;">en vivo</div>
-      <div style="display: flex; gap: 9px; align-items: flex-end; opacity: 0; transform: translateY(6px); animation: d-msg .5s ease .5s forwards;">
+    <div style="border: 1px solid #3B362E; background: #1B1813; padding: 18px; margin-top: 32px; transform: rotate(-1deg); box-shadow: -12px 18px 40px rgba(0,0,0,0.45);">
+      <div class="mono" style="font-size: 10px; letter-spacing: 0.14em; color: #928B7D; text-transform: uppercase; margin-bottom: 13px;">en vivo</div>
+      <div style="display: flex; gap: 9px; align-items: flex-end; opacity: 0; transform: translateY(6px); animation: d-msg .5s ease .4s forwards;">
         <div style="width: 23px; height: 23px; border-radius: 50%; background: #34302A; flex-shrink: 0;"></div>
         <div>
           <div class="mono" style="font-size: 10px; color: #928B7D; margin-bottom: 3px;">Juan · 08:14</div>
@@ -61,111 +91,118 @@
         </div>
       </div>
       <div style="display: flex; justify-content: center; padding: 8px 0;">
-        <svg width="12" height="24" viewBox="0 0 14 30" fill="none" stroke="#FF5A36" stroke-width="1.5"><path d="M7 1v22M2 18l5 6 5-6"/></svg>
+        <svg width="12" height="24" viewBox="0 0 14 30" fill="none" stroke="#FF5A36" stroke-width="1.5" aria-hidden="true"><path d="M7 1v22M2 18l5 6 5-6"/></svg>
       </div>
       <div style="border: 1px solid #332F29;">
-        <div class="mono" style="display: grid; grid-template-columns: 50px 1fr 44px; font-size: 9px; letter-spacing: 0.05em; color: #6E675B; text-transform: uppercase; border-bottom: 1px solid #332F29;">
+        <div class="mono" style="display: grid; grid-template-columns: 50px 1fr 44px; font-size: 9px; letter-spacing: 0.05em; color: #928B7D; text-transform: uppercase; border-bottom: 1px solid #332F29;">
           <span style="padding: 6px 7px;">Hora</span><span style="padding: 6px 7px;">Quién</span><span style="padding: 6px 7px; text-align: right;">Doc</span>
         </div>
         <div class="mono" style="display: grid; grid-template-columns: 50px 1fr 44px; font-size: 11px; color: #928B7D; border-bottom: 1px solid #26231F;">
           <span style="padding: 5px 7px;">08:09</span><span style="padding: 5px 7px;">Pedro</span><span style="padding: 5px 7px; text-align: right;">205</span>
         </div>
-        <div class="mono" style="display: grid; grid-template-columns: 50px 1fr 44px; font-size: 11px; color: #ECE6D9; background: #2A2018; opacity: 0; animation: d-row .6s ease 1.7s forwards;">
+        <div class="mono" style="display: grid; grid-template-columns: 50px 1fr 44px; font-size: 11px; color: #ECE6D9; background: #2A2018; opacity: 0; animation: d-row .6s ease 1.4s forwards;">
           <span style="padding: 5px 7px;">08:14</span><span style="padding: 5px 7px;">Juan</span><span style="padding: 5px 7px; text-align: right;">240</span>
         </div>
       </div>
-      <div style="display: flex; gap: 9px; align-items: center; margin-top: 12px; border: 1px solid #4A2A1E; background: #201811; padding: 10px 11px; opacity: 0; transform: translateY(8px); animation: d-toast .5s ease 2.5s forwards;">
-        <svg width="13" height="13" viewBox="0 0 16 16" fill="#FF5A36"><path d="M8 1a3 3 0 0 1 3 3v1.6c0 .9.4 1.8 1 2.4l.6.7c.6.7.1 1.8-.8 1.8H4.2c-.9 0-1.4-1.1-.8-1.8l.6-.7c.6-.6 1-1.5 1-2.4V4a3 3 0 0 1 3-3ZM6.5 13a1.5 1.5 0 0 0 3 0Z"/></svg>
+      <div style="display: flex; gap: 9px; align-items: center; margin-top: 12px; border: 1px solid #4A2A1E; background: #201811; padding: 10px 11px; opacity: 0; transform: translateY(8px); animation: d-toast .5s ease 2.2s forwards;">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="#FF5A36" aria-hidden="true" style="flex-shrink: 0;"><path d="M8 1a3 3 0 0 1 3 3v1.6c0 .9.4 1.8 1 2.4l.6.7c.6.7.1 1.8-.8 1.8H4.2c-.9 0-1.4-1.1-.8-1.8l.6-.7c.6-.6 1-1.5 1-2.4V4a3 3 0 0 1 3-3ZM6.5 13a1.5 1.5 0 0 0 3 0Z"/></svg>
         <span class="mono" style="font-size: 11px; color: #D9D3C6;">Resumen: <strong style="color: #ECE6D9;">1.240 docenas</strong></span>
       </div>
     </div>
+    <p class="mono" style="font-size: 11px; color: #FF5A36; margin: 14px 0 0;">// esto te llega al teléfono</p>
   </section>
 
-  <section class="sec wrap">
-    <div class="ghost" style="left: -14px;">01</div>
+  <section class="sec">
+    <div class="ghost" style="left: -18px;" aria-hidden="true">01</div>
     <span class="kick">El problema</span>
     <h2>Hay una tarea que se hace a mano todos los días.</h2>
     <p class="z">Anotar la producción en una hoja. Pasar los pedidos del WhatsApp a una planilla. Revisar uno por uno qué falta despachar.</p>
-    <p class="z dim">Se te va el tiempo en eso, los datos se pierden o llegan tarde, y te enteras de los problemas cuando ya no los puedes evitar.</p>
+    <p class="z dim" style="margin-bottom: 0;">Se te va el tiempo en eso, los datos se pierden o llegan tarde, y te enteras de los problemas cuando ya no los puedes evitar.</p>
   </section>
 
-  <section class="sec wrap">
-    <div class="ghost" style="right: -14px;">02</div>
+  <section class="sec">
+    <div class="ghost" style="right: -18px;" aria-hidden="true">02</div>
     <span class="kick">Qué hago</span>
     <h2>Tomo esa parte manual y la dejo andando sola.</h2>
-    <div class="z" style="border-top: 1px solid #2E2A24; margin-top: 4px;">
-      <div style="padding: 14px 0; border-bottom: 1px solid #2E2A24; display: grid; grid-template-columns: 20px 1fr; gap: 12px;"><span class="mono" style="color: #FF5A36;">→</span><span>Un mensaje corto por Telegram y los datos caen solos en una planilla.</span></div>
-      <div style="padding: 14px 0; border-bottom: 1px solid #2E2A24; display: grid; grid-template-columns: 20px 1fr; gap: 12px;"><span class="mono" style="color: #FF5A36;">→</span><span>Pedidos ordenados: pendiente, listo, despachado.</span></div>
-      <div style="padding: 14px 0; border-bottom: 1px solid #2E2A24; display: grid; grid-template-columns: 20px 1fr; gap: 12px;"><span class="mono" style="color: #FF5A36;">→</span><span>Avisos automáticos cuando algo se atrasa o el stock se acaba.</span></div>
-      <div style="padding: 14px 0; border-bottom: 1px solid #2E2A24; display: grid; grid-template-columns: 20px 1fr; gap: 12px;"><span class="mono" style="color: #FF5A36;">→</span><span>Boletas y facturas sin volver a tipear los mismos datos.</span></div>
+    <div class="rule-list z" style="margin-top: 4px;">
+      <div style="margin-left: 0;"><span class="mono arrow">→</span><span>Un mensaje corto por Telegram y los datos caen solos en una planilla.</span></div>
+      <div style="margin-left: 14px;"><span class="mono arrow">→</span><span>Pedidos ordenados: pendiente, listo, despachado.</span></div>
+      <div style="margin-left: 28px;"><span class="mono arrow">→</span><span>Avisos automáticos cuando algo se atrasa o el stock se acaba.</span></div>
+      <div style="margin-left: 42px;"><span class="mono arrow">→</span><span>Boletas y facturas sin volver a tipear los mismos datos.</span></div>
     </div>
-    <p class="z dim" style="margin-top: 16px;">Con las herramientas que ya conoces. Nada nuevo que aprender.</p>
+    <p class="z dim" style="margin: 18px 0 0 42px;">Con las herramientas que ya conoces. Nada nuevo que aprender.</p>
   </section>
 
-  <section class="sec wrap">
-    <div class="ghost" style="left: 30%;">03</div>
+  <section class="sec">
+    <div class="ghost" style="left: 32%;" aria-hidden="true">03</div>
     <span class="kick">Cómo trabajo</span>
     <h2>Por partes. Ves resultados antes de gastar todo.</h2>
-    <div class="z" style="display: flex; flex-direction: column; gap: 18px;">
-      <div style="display: grid; grid-template-columns: 34px 1fr; gap: 13px; margin-left: 0;"><span class="disp" style="font-size: 30px; color: #FF5A36;">1</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Conversamos y miro tu proceso.</strong> Te digo si te sirve o no. Sin costo.</p></div>
-      <div style="display: grid; grid-template-columns: 34px 1fr; gap: 13px; margin-left: 16px;"><span class="disp" style="font-size: 30px; color: #FF5A36;">2</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Te propongo qué automatizar primero.</strong> Lo que más te molesta.</p></div>
-      <div style="display: grid; grid-template-columns: 34px 1fr; gap: 13px; margin-left: 32px;"><span class="disp" style="font-size: 30px; color: #FF5A36;">3</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Lo construyo y lo probamos con tus datos reales.</strong></p></div>
-      <div style="display: grid; grid-template-columns: 34px 1fr; gap: 13px; margin-left: 48px;"><span class="disp" style="font-size: 30px; color: #FF5A36;">4</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Queda funcionando.</strong> Sigo con lo demás si quieres.</p></div>
+    <div class="z" style="display: grid; gap: 20px;">
+      <div style="display: grid; grid-template-columns: 32px 1fr; gap: 13px; margin-left: 0;"><span class="disp" style="font-size: 32px; color: #FF5A36;">1</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Conversamos y miro tu proceso.</strong> Te digo si te sirve o no. Sin costo.</p></div>
+      <div style="display: grid; grid-template-columns: 32px 1fr; gap: 13px; margin-left: 14px;"><span class="disp" style="font-size: 32px; color: #FF5A36;">2</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Te propongo qué automatizar primero.</strong> Lo que más te molesta.</p></div>
+      <div style="display: grid; grid-template-columns: 32px 1fr; gap: 13px; margin-left: 28px;"><span class="disp" style="font-size: 32px; color: #FF5A36;">3</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Lo construyo y lo probamos con tus datos reales.</strong></p></div>
+      <div style="display: grid; grid-template-columns: 32px 1fr; gap: 13px; margin-left: 42px;"><span class="disp" style="font-size: 32px; color: #FF5A36;">4</span><p style="margin: 0;"><strong style="color: #ECE6D9; font-weight: 500;">Queda funcionando.</strong> Sigo con lo demás si quieres.</p></div>
     </div>
-    <p class="z dim" style="margin-top: 16px;">Cada parte toma semanas, no meses.</p>
+    <p class="z dim" style="margin: 18px 0 0 42px;">Cada parte toma semanas, no meses.</p>
   </section>
 
-  <section style="background: #EFE7D6; color: #131210; padding: 56px 20px; position: relative;">
-    <div class="ghost" style="right: -14px; -webkit-text-stroke-color: #D6C9AE;">04</div>
-    <span class="kick" style="color: #B7431F;">Un caso real</span>
-    <h2 style="color: #131210;">De anotar en un cuaderno a tener el número al minuto.</h2>
-    <div class="z" style="border: 1px solid #C9BA9C; background: #E7DDC8; padding: 18px; transform: rotate(-1deg); margin-bottom: 12px;">
-      <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; color: #8A7C5E; text-transform: uppercase; margin-bottom: 8px;">Antes</div>
-      <p style="margin: 0; color: #4A4436; font-size: 15px;">Cada persona anotaba en una hoja. Alguien juntaba todo en la tarde. El dueño sabía el total cuando le llegaba el papel.</p>
+  <section style="background: #EFE7D6; color: #131210; padding: 62px 20px 66px; position: relative; border-top: 8px solid #FF5A36;">
+    <div class="ghost" style="right: -18px; -webkit-text-stroke-color: #C4B48F;" aria-hidden="true">04</div>
+    <span class="kick" style="color: #A63A18;">Un caso real</span>
+    <h2 style="color: #131210; font-size: 31px;">De anotar en un cuaderno a tener el número al minuto.</h2>
+    <div class="z" style="display: grid; gap: 14px;">
+      <div style="border: 1px solid #C9BA9C; background: #E7DDC8; padding: 18px; transform: rotate(-1deg);">
+        <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; color: #6B5F44; text-transform: uppercase; margin-bottom: 8px;">Antes</div>
+        <p style="margin: 0; color: #3F3A2D; font-size: 15px;">Cada persona anotaba en una hoja. Alguien juntaba todo en la tarde. El dueño sabía el total cuando le llegaba el papel.</p>
+      </div>
+      <div style="border: 1px solid #131210; background: #131210; color: #ECE6D9; padding: 18px; transform: rotate(1deg); box-shadow: 0 12px 30px rgba(19,18,16,0.25);">
+        <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; color: #FF5A36; text-transform: uppercase; margin-bottom: 8px;">Ahora</div>
+        <p style="margin: 0; font-size: 15px; color: #ECE6D9;">Cada persona manda un mensaje de Telegram con dos datos. La planilla se llena sola y el resumen llega sin pedirlo.</p>
+      </div>
     </div>
-    <div class="z" style="border: 1px solid #131210; background: #131210; color: #ECE6D9; padding: 18px; transform: rotate(1deg); margin-bottom: 18px;">
-      <div class="mono" style="font-size: 10px; letter-spacing: 0.12em; color: #FF5A36; text-transform: uppercase; margin-bottom: 8px;">Ahora</div>
-      <p style="margin: 0; font-size: 15px; color: #ECE6D9;">Cada persona manda un mensaje de Telegram con dos datos. La planilla se llena sola y el resumen llega sin pedirlo.</p>
+    <div class="z" style="display: grid; gap: 10px; margin-top: 26px;">
+      <div class="mono" style="border: 1px dashed #A99765; height: 130px; display: flex; align-items: center; justify-content: center; color: #6B5F44; font-size: 12px;">[captura: Telegram]</div>
+      <div class="mono" style="border: 1px dashed #A99765; height: 130px; display: flex; align-items: center; justify-content: center; color: #6B5F44; font-size: 12px;">[captura: planilla]</div>
     </div>
-    <div class="z" style="display: flex; flex-direction: column; gap: 10px;">
-      <div style="border: 1px dashed #B3A583; height: 120px; display: flex; align-items: center; justify-content: center; color: #8A7C5E;" class="mono">[captura: Telegram]</div>
-      <div style="border: 1px dashed #B3A583; height: 120px; display: flex; align-items: center; justify-content: center; color: #8A7C5E;" class="mono">[captura: planilla]</div>
-    </div>
+    <p class="mono z" style="font-size: 11px; color: #6B5F44; margin: 12px 0 0;">// capturas reales, con los datos del cliente tapados</p>
   </section>
 
-  <section class="sec wrap">
-    <div class="ghost" style="left: -14px;">05</div>
+  <section class="sec">
+    <div class="ghost" style="left: -18px;" aria-hidden="true">05</div>
     <span class="kick">Qué esperar</span>
-    <div class="disp z" style="font-size: 26px; line-height: 1.12;">
-      <p style="margin: 0 0 22px;"><span style="color: #FF5A36;">Cada proyecto se cotiza aparte.</span> No hay plan cerrado con precio de lista.</p>
-      <p style="margin: 0 0 22px; text-align: right;">Empiezo por lo que te duele hoy, no por un sistema gigante.</p>
-      <p style="margin: 0 0 22px;">Lo dejo simple. Si no lo puedes usar sin mí, algo hice mal.</p>
+    <div class="disp z" style="font-size: 30px; line-height: 1.06; display: grid; gap: 26px;">
+      <p style="margin: 0;"><span style="color: #FF5A36;">Cada proyecto se cotiza aparte.</span> No hay plan cerrado con precio de lista.</p>
+      <p style="margin: 0; text-align: right;">Empiezo por lo que te duele hoy, no por un sistema gigante.</p>
+      <p style="margin: 0;">Lo dejo simple. Si no lo puedes usar sin mí, algo hice mal.</p>
       <p style="margin: 0; text-align: right;">Todo queda en tus cuentas. Si un día no sigues conmigo, te llevas lo tuyo.</p>
     </div>
   </section>
 
-  <section id="contacto" class="wrap" style="border-top: 1px solid #2A2620; background: #17140F; padding: 56px 20px; position: relative;">
-    <div class="ghost" style="right: -14px; bottom: 10px; top: auto; -webkit-text-stroke-color: #2A2620;">06</div>
+  <section id="contacto" style="border-top: 1px solid #2A2620; background: #17140F; padding: 58px 20px 62px; position: relative;">
+    <div class="ghost" style="right: -18px; bottom: 12px; top: auto; -webkit-text-stroke-color: #453E33;" aria-hidden="true">06</div>
     <span class="kick">Conversemos</span>
-    <form onsubmit="return false" class="disp z" style="font-size: 25px; line-height: 1.7; font-weight: 600; color: #ECE6D9;">
-      Hola Carlos, soy
-      <input type="text" aria-label="Tu nombre" placeholder="nombre" style="font: inherit; background: transparent; border: none; border-bottom: 2px solid #FF5A36; color: #FF5A36; width: 8ch; padding: 0 3px;">.
-      Me ubicas en
-      <input type="text" aria-label="Tu correo o teléfono" placeholder="correo/fono" style="font: inherit; background: transparent; border: none; border-bottom: 2px solid #FF5A36; color: #FF5A36; width: 11ch; padding: 0 3px;">.
-      Quiero dejar de hacer a mano
-      <input type="text" aria-label="Qué automatizar" placeholder="qué cosa" style="font: inherit; background: transparent; border: none; border-bottom: 2px solid #FF5A36; color: #FF5A36; width: 9ch; padding: 0 3px;">.
+    <form onsubmit="return false" class="z" style="display: grid; gap: 30px; justify-items: start;">
+      <div class="madlib">
+        Hola Carlos, soy
+        <span class="slot"><input type="text" name="nombre" aria-label="Tu nombre" placeholder="nombre" style="width: 9ch;">.</span>
+        Me ubicas en
+        <span class="slot"><input type="text" name="contacto" aria-label="Tu correo o teléfono" placeholder="correo/fono" style="width: 12ch;">.</span>
+        Quiero dejar de hacer a mano
+        <span class="slot"><input type="text" name="que" aria-label="Qué te gustaría automatizar" placeholder="qué cosa" style="width: 10ch;">.</span>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <button type="submit" class="btn">Enviar
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4"/></svg>
+        </button>
+        <span class="mono dim" style="font-size: 12px;">te respondo en uno o dos días</span>
+      </div>
     </form>
-    <div class="z" style="display: flex; align-items: center; gap: 14px; margin-top: 28px; flex-wrap: wrap;">
-      <button type="submit" class="btn">Enviar
-        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 8h9M9 4l4 4-4 4"/></svg>
-      </button>
-      <span class="mono dim" style="font-size: 12px;">te respondo en uno o dos días</span>
-    </div>
   </section>
 
-  <footer class="wrap" style="padding: 26px 20px 34px; display: flex; flex-direction: column; gap: 5px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #6E675B;">
+  <footer class="wrap" style="padding: 28px 20px 36px; display: flex; flex-direction: column; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #928B7D;">
     <span>CARLOS MALDONADO — AUTOMATIZACIÓN PARA PYMES</span>
-    <span>[CORREO] · HECHO EN CHILE · 2026</span>
+    <a href="mailto:carlos.automatiza.tupyme@gmail.com">carlos.automatiza.tupyme@gmail.com</a>
+    <span>HECHO EN CHILE · 2026</span>
   </footer>
 </main>
 </x-dc>

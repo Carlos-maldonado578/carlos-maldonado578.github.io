@@ -1,10 +1,10 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1320, "h": 5600, "title": "Landing — escritorio" },
-    { "file": "Mobile.dc.html", "x": 1440, "y": 0, "w": 390, "h": 5400, "title": "Landing — celular" }
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1320, "h": 5560, "title": "Landing — escritorio" },
+    { "file": "Mobile.dc.html", "x": 1440, "y": 0, "w": 390, "h": 4660, "title": "Landing — celular" }
   ],
   "annotations": [
-    { "id": "nota-v3", "x": 0, "y": -210, "w": 600, "text": "MAQUETA v3 — experimental, grilla rota.\n\nMisma base que v2 (oscuro cálido + naranja señal, Bricolage Grotesque + Newsreader + mono) pero llevada más lejos:\n\n· Titular del héroe enorme, 'andando sola.' inclinado y sangrando.\n· Números de sección gigantes en contorno, detrás del texto, medio fuera del margen.\n· Cada sección alinea distinto — el texto zigzaguea de un lado a otro. En 'qué hago' y 'cómo trabajo' las líneas se escalonan.\n· Sección 04 (el caso) INVIERTE a fondo claro — corte visual duro. Paneles antes/ahora rotados y superpuestos.\n· Sección 05 (qué esperar) es un manifiesto: frases gigantes, alineación alternada.\n· Contacto = formulario tipo 'llená los espacios': 'Hola Carlos, soy ___. Me ubicas en ___...'\n\nCopy real (borrador). [CORREO] y capturas del caso pendientes." }
+    { "id": "nota-v3", "x": 0, "y": -220, "w": 620, "text": "MAQUETA v3 — experimental, grilla rota (revisada a fondo con Opus).\n\nOscuro cálido + naranja señal. Bricolage Grotesque + Newsreader + mono.\n\n· Titular gigante, 'andando sola.' inclinado; demo animada en la grilla del héroe.\n· Números de sección enormes en contorno, detrás del texto, sangrando del margen.\n· Cada sección alinea distinto (zigzag); 'qué hago' y 'cómo trabajo' escalonan las líneas.\n· Sección 04 (el caso) INVIERTE a fondo claro — corte duro, panel 'ahora' oscuro montado encima.\n· Sección 05 = manifiesto: frases gigantes, alineación alternada.\n· Contacto = formulario 'madlib': 'Hola Carlos, soy ___. Me ubicas en ___...'\n\nCopy real (borrador de voz). Correo ya puesto. Faltan las capturas reales anonimizadas del caso." }
   ],
   "launch": { "view": "focused", "file": "Main.dc.html" }
 }
