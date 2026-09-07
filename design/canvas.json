@@ -1,7 +1,7 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1080, "h": 3600, "title": "Landing — escritorio" },
-    { "file": "Mobile.dc.html", "x": 1180, "y": 0, "w": 390, "h": 4400, "title": "Landing — celular" },
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1080, "h": 4100, "title": "Landing — escritorio" },
+    { "file": "Mobile.dc.html", "x": 1180, "y": 0, "w": 390, "h": 5000, "title": "Landing — celular" },
     { "file": "Alt.dc.html", "x": 1670, "y": 0, "w": 900, "h": 1900, "title": "Dirección alternativa" }
   ],
   "annotations": [
