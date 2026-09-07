@@ -1,10 +1,10 @@
 {
   "artboards": [
-    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1200, "h": 5200, "title": "Landing — escritorio" },
-    { "file": "Mobile.dc.html", "x": 1320, "y": 0, "w": 390, "h": 5600, "title": "Landing — celular" }
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1320, "h": 5600, "title": "Landing — escritorio" },
+    { "file": "Mobile.dc.html", "x": 1440, "y": 0, "w": 390, "h": 5400, "title": "Landing — celular" }
   ],
   "annotations": [
-    { "id": "nota-v2", "x": 0, "y": -190, "w": 560, "text": "MAQUETA v2 — dirección con más carácter.\n\nOscuro y cálido (near-black + hueso), acento naranja señal. Títulos Bricolage Grotesque grandes, cuerpo Newsreader (serif), datos en mono. Números de sección enormes, columna de texto desplazada.\n\nEl héroe NO es solo texto: es una demo que se arma sola — mensaje de Telegram → fila que entra en la planilla → aviso. Es literalmente lo que hace Carlos.\n\nAl hacer scroll, cada sección aparece con un movimiento. Copy real (borrador). [CORREO] y las capturas del caso siguen pendientes." }
+    { "id": "nota-v3", "x": 0, "y": -210, "w": 600, "text": "MAQUETA v3 — experimental, grilla rota.\n\nMisma base que v2 (oscuro cálido + naranja señal, Bricolage Grotesque + Newsreader + mono) pero llevada más lejos:\n\n· Titular del héroe enorme, 'andando sola.' inclinado y sangrando.\n· Números de sección gigantes en contorno, detrás del texto, medio fuera del margen.\n· Cada sección alinea distinto — el texto zigzaguea de un lado a otro. En 'qué hago' y 'cómo trabajo' las líneas se escalonan.\n· Sección 04 (el caso) INVIERTE a fondo claro — corte visual duro. Paneles antes/ahora rotados y superpuestos.\n· Sección 05 (qué esperar) es un manifiesto: frases gigantes, alineación alternada.\n· Contacto = formulario tipo 'llená los espacios': 'Hola Carlos, soy ___. Me ubicas en ___...'\n\nCopy real (borrador). [CORREO] y capturas del caso pendientes." }
   ],
   "launch": { "view": "focused", "file": "Main.dc.html" }
 }
