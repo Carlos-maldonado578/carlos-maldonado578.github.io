@@ -273,7 +273,7 @@ Easing: `ease-out`. Sin rebotes, sin escritura carácter por carácter, sin curs
 
 ### 6.4 Contrato del POST
 
-- Método `POST` a `PUBLIC_FORM_ENDPOINT` (variable de entorno de build de Astro; URL HTTPS pública del webhook de n8n).
+- Método `POST` a `PUBLIC_WEBHOOK_URL` (variable de entorno de build de Astro; URL HTTPS pública del webhook de n8n).
 - Cabecera `Content-Type: application/json`. Sin cookies, sin credenciales.
 - Cuerpo:
 

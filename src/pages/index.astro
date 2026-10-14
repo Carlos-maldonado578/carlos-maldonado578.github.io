@@ -104,9 +104,8 @@ const fuentes = `
 
       <section class="seccion" aria-labelledby="t-problema">
         <div class="contenedor">
-          <div class="casilla"><span class="num">Nº&nbsp;01</span></div>
+          <h2 id="t-problema">El problema</h2>
           <div class="cuerpo">
-            <h2 id="t-problema">El problema</h2>
             <p class="lead">
               En casi toda pyme hay una tarea que se hace a mano todos los días: anotar la producción
               en una hoja, pasar los pedidos del WhatsApp a una planilla, revisar uno por uno qué falta
@@ -122,9 +121,8 @@ const fuentes = `
 
       <section class="seccion" aria-labelledby="t-hago">
         <div class="contenedor">
-          <div class="casilla"><span class="num">Nº&nbsp;02</span></div>
+          <h2 id="t-hago">Qué hago</h2>
           <div class="cuerpo">
-            <h2 id="t-hago">Qué hago</h2>
             {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia a "lo que he armado" */}
             <p class="lead">
               Tomo esa parte manual y la dejo andando sola. Algunos ejemplos de lo que puedo automatizar:
@@ -157,9 +155,8 @@ const fuentes = `
 
       <section class="seccion" aria-labelledby="t-trabajo">
         <div class="contenedor">
-          <div class="casilla"><span class="num">Nº&nbsp;03</span></div>
+          <h2 id="t-trabajo">Cómo trabajo</h2>
           <div class="cuerpo">
-            <h2 id="t-trabajo">Cómo trabajo</h2>
             <ol class="filas pasos">
               <li>
                 <p><span class="fuerte">Conversamos y miro tu proceso.</span>Te digo con honestidad si esto te sirve o no. Sin costo.</p>
@@ -168,7 +165,7 @@ const fuentes = `
                 <p><span class="fuerte">Te propongo qué automatizar primero.</span>Parto por lo que más te molesta, no por lo más vistoso. Vamos por partes.</p>
               </li>
               <li>
-                <p><span class="fuerte">Construyo esa primera parte y la probamos con tus datos reales,</span>no con ejemplos.</p>
+                <p><span class="fuerte">Construyo esa primera parte.</span>La probamos con tus datos reales, no con ejemplos.</p>
               </li>
               <li>
                 <p><span class="fuerte">Queda funcionando.</span>Si quieres, sigo con las siguientes partes y con mantención mensual.</p>
@@ -182,9 +179,8 @@ const fuentes = `
 
       <section class="seccion" aria-labelledby="t-caso">
         <div class="contenedor">
-          <div class="casilla"><span class="num">Nº&nbsp;04</span> <span class="rotulo">Caso anónimo</span></div>
+          <h2 id="t-caso">Un caso real (anónimo)</h2>
           <div class="cuerpo">
-            <h2 id="t-caso">Un caso real</h2>
             <div class="antes-ahora">
               <div>
                 <p class="rotulo">Antes</p>
@@ -202,9 +198,8 @@ const fuentes = `
 
       <section class="seccion" aria-labelledby="t-esperar">
         <div class="contenedor">
-          <div class="casilla"><span class="num">Nº&nbsp;05</span></div>
+          <h2 id="t-esperar">Qué esperar</h2>
           <div class="cuerpo">
-            <h2 id="t-esperar">Qué esperar</h2>
             <ul class="filas">
               <li>
                 <p><span class="fuerte">Cada proyecto se cotiza aparte.</span>Según lo que necesites. No hay un plan cerrado con precio de lista.</p>
@@ -226,9 +221,8 @@ const fuentes = `
 
       <section class="seccion" id="contacto" aria-labelledby="t-contacto" style="scroll-margin-top:24px">
         <div class="contenedor">
-          <div class="casilla"><span class="num">Nº&nbsp;06</span></div>
+          <h2 id="t-contacto">Conversemos</h2>
           <div class="cuerpo">
-            <h2 id="t-contacto">Conversemos</h2>
             <p class="lead">
               Cuéntame qué parte de tu trabajo te gustaría sacarte de encima. Te respondo en uno o dos días.
             </p>
@@ -256,7 +250,7 @@ const fuentes = `
 
                   <div class="campo">
                     <label for="f-contacto"><span class="n" aria-hidden="true">2</span>Correo o teléfono</label>
-                    <input id="f-contacto" name="contacto" type="text" autocomplete="email" inputmode="email" maxlength="120" required aria-describedby="a-contacto e-contacto" />
+                    <input id="f-contacto" name="contacto" type="text" autocomplete="email" maxlength="120" required aria-describedby="a-contacto e-contacto" />
                     <p class="ayuda" id="a-contacto">Donde prefieras que te responda.</p>
                     <p class="err" id="e-contacto" hidden></p>
                   </div>
@@ -280,7 +274,6 @@ const fuentes = `
 
                   <div class="acciones">
                     <button class="btn" type="submit" id="enviar">Enviar</button>
-                    <p class="nota">Te respondo en uno o dos días.</p>
                   </div>
                   {/* TODO(Carlos): confirmar la frase de datos; no hay política de privacidad detrás */}
                   <p class="nota privacidad">Uso tus datos solo para responderte.</p>
