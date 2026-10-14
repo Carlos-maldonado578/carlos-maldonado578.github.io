@@ -130,7 +130,8 @@
           "#a2a5aa",
           "#c6c9ce",
           "#ebeff4"
-        ]
+        ],
+        "note": "Tambien superficie de banda alterna (hero, Que hago, Que esperar). Tinta 13.97:1, tinta-2 6.60:1, azul 8.81:1."
       },
       "linea-campo": {
         "role": "neutral",
@@ -179,6 +180,30 @@
           "#d9c3c7",
           "#ffe8ec"
         ]
+      },
+      "azul-noche": {
+        "role": "primary",
+        "displayName": "Azul Noche",
+        "canonical": "#12255a",
+        "oklch": "oklch(29.5% 0.082 266)",
+        "tonalRamp": [],
+        "note": "Superficie de la banda del Caso real. Texto blanco 14.60:1."
+      },
+      "noche-texto": {
+        "role": "neutral",
+        "displayName": "Texto sobre Noche",
+        "canonical": "#c9d6f5",
+        "oklch": "",
+        "tonalRamp": [],
+        "note": "Rotulos sobre Azul Noche, 10.03:1."
+      },
+      "noche-regla": {
+        "role": "neutral",
+        "displayName": "Regla sobre Noche",
+        "canonical": "#8fa3d6",
+        "oklch": "",
+        "tonalRamp": [],
+        "note": "Reglas sobre Azul Noche, 5.83:1."
       }
     },
     "typographyMeta": {

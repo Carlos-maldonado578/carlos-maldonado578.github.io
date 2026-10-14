@@ -13,6 +13,9 @@ colors:
   linea-campo: "#6b7484"
   regla-suave: "#c5cbd3"
   error-fondo: "#fbe4e7"
+  azul-noche: "#12255a"
+  noche-texto: "#c9d6f5"
+  noche-regla: "#8fa3d6"
 typography:
   display:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
@@ -125,13 +128,18 @@ Paleta de imprenta: blanco, una tinta azul comprometida, un rojo de folio y una 
 - **Papel** (#ffffff): fondo de página y de campos.
 - **Tinta** (#16202e): texto y reglas fuertes.
 - **Tinta Secundaria** (#4a5363): notas, rótulos, texto de cierre.
-- **Azul Pálido** (#e8edf7): encabezado de tabla, burbuja de mensaje, aviso.
+- **Azul Pálido** (#e8edf7): encabezado de tabla, burbuja de mensaje, aviso y superficie de las bandas alternas (hero, Qué hago, Qué esperar). Contraste: tinta 13.97:1, tinta secundaria 6.60:1, azul 8.81:1, rojo 5.96:1.
 - **Línea de Campo** (#6b7484): borde de campos y de la burbuja, perforación del talonario.
 - **Regla Suave** (#c5cbd3): separadores de filas en listas y tablas.
 - **Fondo de Error** (#fbe4e7): caja de fallo de envío.
 
+### Banda de marca
+- **Azul Noche** (#12255a): fondo a sangre completa de UNA sola sección, el Caso real. Texto blanco 14.60:1; rótulos en **Texto sobre Noche** (#c9d6f5, 10.03:1); reglas en **Regla sobre Noche** (#8fa3d6, 5.83:1). Enlaces e inversión de acción: blanco sobre Noche, foco blanco.
+
 ### Named Rules
 **The Una Tinta Rule.** El azul de imprenta es el único color de acción; el rojo solo numera y avisa error. Si un elemento nuevo necesita llamar la atención, usa regla o peso, no un tercer color.
+
+**The Superficie Rule.** El color extra viene de superficies, no de acentos: Azul Pálido como banda alterna, Azul Noche como única banda oscura (60% neutros, 30% azul de marca, 10% acción). Ninguna otra sección se tiñe de oscuro.
 
 **The Folio Rule.** El rojo marca numeración (pasos 1-3 de la demo, lista "Cómo trabajo", números de campo del talonario). No se usa como decoración.
 
@@ -159,7 +167,7 @@ Paleta de imprenta: blanco, una tinta azul comprometida, un rojo de folio y una 
 
 Una columna centrada, máx. 1200px de contenido más margen lateral (20px móvil, 24px desde 768px, 40px desde 1024px). Rejilla de 12 columnas con 24px de gap desde 768px.
 
-Cada sección es una "fila de formulario": regla de 1px arriba, padding vertical 48px (96px desde 1024px), título en columnas 1-3 y cuerpo en 4-12 (4-10 desde 1024px). En móvil se apilan. El hero pasa a dos columnas (texto 1-7, demo 8-12) desde 1024px. Ritmo de espaciado en escala 4/8/12/16/24/32/48/64/96px. Objetivos táctiles mínimos de 44px (botones 52px, campos 48px).
+Cada sección es una "fila de formulario" (fondo papel, Azul Pálido o Azul Noche a sangre completa según ritmo): regla de 1px arriba, padding vertical 48px (96px desde 1024px), título en columnas 1-3 y cuerpo en 4-12 (4-10 desde 1024px). En móvil se apilan. El hero pasa a dos columnas (texto 1-7, demo 8-12) desde 1024px. Ritmo de espaciado en escala 4/8/12/16/24/32/48/64/96px. Objetivos táctiles mínimos de 44px (botones 52px, campos 48px).
 
 ## Elevation & Depth
 
@@ -177,6 +185,7 @@ Recto y de papel: radio de 2px en botones y campos, 0 en hojas, tablas, avisos y
 ### Buttons
 - **Shape:** casi recto (2px), alto 52px, padding horizontal 28px.
 - **Primary:** relleno Azul de Imprenta, texto blanco, Archivo 600 1.125rem; hover Azul Profundo. Ancho completo en móvil, automático desde 768px.
+- **Sobre Azul Noche:** el enlace de texto se invierte a blanco subrayado.
 - **Texto:** enlace-botón azul subrayado (1px, 2px en hover), alto 44px; sirve para "Ver de nuevo" y enlaces de cierre de sección.
 - **Foco:** contorno de 3px azul con 2px de separación en todo elemento interactivo.
 
@@ -199,7 +208,13 @@ Filas separadas por regla suave de 1px, padding vertical 16px. Variante de ejemp
 Dos celdas separadas por regla de 1px (vertical desde 768px); el rótulo "Ahora" va en azul.
 
 ### Navigation
-Cabecera con regla inferior de 2px: nombre a la izquierda, enlace "Conversemos" a la derecha (alto 44px, Archivo 600). Un solo destino (#contacto), repetido en el hero, cierres de sección y formulario. Pie con regla superior de 2px, texto pequeño y separadores "·" desde 1024px. Salto al contenido visible al enfocar.
+Cabecera pegajosa (sticky) con regla inferior de 2px (suave arriba, tinta al hacer scroll): nombre a la izquierda, enlace "Conversemos" a la derecha (alto 44px, Archivo 600). Un solo destino (#contacto), con solo cuatro apariciones: cabecera, botón del hero, un enlace tras el caso real y el formulario. Pie con regla superior de 2px, texto pequeño, separadores "·" desde 1024px y enlace estático "Volver al inicio ↑". Salto al contenido visible al enfocar.
+
+### Volver al inicio
+Botón fijo abajo a la derecha (48x48, azul de imprenta, flecha SVG de trazo 2.5), `aria-label="Volver al inicio"`, ancla a `#inicio`. Aparece con opacidad y 8px de desplazamiento al pasar el primer viewport; en móvil se oculta mientras el botón Enviar está en la franja inferior para no taparlo.
+
+### Movimiento
+Reveal por sección (opacidad y 12px, 400ms, una vez), número de paso que pasa de gris a rojo al entrar. Lo arma el script; sin JS o con `prefers-reduced-motion` todo es visible desde el inicio.
 
 ## Do's and Don'ts
 

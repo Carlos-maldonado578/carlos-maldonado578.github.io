@@ -7,6 +7,9 @@
   --rojo: #b0172b;
   --copia-amarilla: #fff6d5;
   --azul-palido: #e8edf7;
+  --azul-noche: #12255a;
+  --noche-texto: #c9d6f5;
+  --noche-regla: #8fa3d6;
   --linea-campo: #6b7484;
   --regla-suave: #c5cbd3;
   --error-fondo: #fbe4e7;
@@ -28,6 +31,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { font-size: 100%; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+html { scroll-padding-top: 80px; }
 body {
   margin: 0;
   background: var(--papel);
@@ -56,7 +60,8 @@ h2 { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); line-height: 1.15; marg
 .nota { font: 400 0.875rem/1.5 var(--f-titulo); color: var(--tinta-2); }
 
 /* encabezado y pie */
-.cabecera { border-bottom: var(--regla-fuerte); }
+.cabecera { position: sticky; top: 0; z-index: 5; background: var(--papel); border-bottom: 2px solid var(--regla-suave); }
+.cabecera.borde { border-bottom-color: var(--tinta); }
 .cabecera .contenedor { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); min-height: 64px; padding-block: var(--s2); }
 .marca { font: 700 1.125rem/1.3 var(--f-titulo); }
 .marca .rotulo { display: block; }
@@ -101,6 +106,17 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (min-width: 1024px) { .cuerpo { grid-column: 4 / 11; } }
 .cuerpo > p + p { margin-top: 1em; }
 
+/* superficies de marca */
+.banda-tinte { background: var(--azul-palido); }
+.banda-azul { background: var(--azul-noche); color: #fff; border-top-color: var(--azul-noche); }
+.banda-azul .rotulo { color: var(--noche-texto); }
+.banda-azul .antes-ahora, .banda-azul .antes-ahora > div + div { border-color: var(--noche-regla); }
+.banda-azul .antes-ahora .ahora .rotulo { color: #fff; }
+.banda-azul a { color: #fff; }
+.banda-azul a:hover { color: var(--noche-texto); }
+.banda-azul :focus-visible { outline-color: #fff; }
+.banda-tinte .filas, .banda-tinte .filas > li { border-color: var(--linea-campo); }
+
 /* listas regladas */
 .filas { list-style: none; padding: 0; margin: var(--s5) 0; border-top: var(--regla-fila); }
 .filas > li { padding-block: var(--s4); border-bottom: var(--regla-fila); }
@@ -109,7 +125,8 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; }
 @media (min-width: 768px) { .ejemplos > li { grid-template-columns: 160px 1fr; gap: var(--s5); } }
 .pasos { counter-reset: paso; }
 .pasos > li { counter-increment: paso; display: grid; grid-template-columns: 48px 1fr; }
-.pasos > li::before { content: counter(paso); font: 700 1.75rem/1.2 var(--f-titulo); font-variant-numeric: tabular-nums; color: var(--rojo); }
+.pasos > li::before { transition: color 400ms ease-out; content: counter(paso); font: 700 1.75rem/1.2 var(--f-titulo); font-variant-numeric: tabular-nums; color: var(--rojo); }
+.pasos.armada > li:not(.activo)::before { color: var(--linea-campo); }
 .cierre { color: var(--tinta-2); }
 
 /* caso: antes / ahora */
@@ -123,6 +140,16 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; }
   .antes-ahora > div + div { border-top: 0; border-left: var(--regla); padding-left: var(--s5); }
   .antes-ahora > div:first-child { padding-right: var(--s5); }
 }
+
+/* reveal al scroll: lo arma el script; sin JS todo se ve */
+.rv > .contenedor { opacity: 0; transform: translateY(12px); transition: opacity 400ms ease-out, transform 400ms ease-out; }
+.rv.rv-in > .contenedor { opacity: 1; transform: none; }
+
+/* volver al inicio */
+.subir { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 5; width: 48px; height: 48px; display: grid; place-items: center; background: var(--azul); color: #fff; border-radius: 2px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 250ms ease-out, transform 250ms ease-out, visibility 0s 250ms; }
+.subir:hover { background: var(--azul-hover); color: #fff; }
+.subir.visible { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+@media (min-width: 1024px) { .subir { right: 32px; bottom: 32px; } }
 
 /* demo: hoja de registro */
 .hoja { border: var(--regla); padding: var(--s4); font-family: var(--f-titulo); }

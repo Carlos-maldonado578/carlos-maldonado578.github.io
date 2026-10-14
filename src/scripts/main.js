@@ -109,3 +109,34 @@ form.addEventListener('submit', async (ev) => {
     enviando = false;
   }
 });
+
+/* ---- Dinamismo sutil: cabecera, volver arriba, reveal y pasos ---- */
+const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cab = document.querySelector('.cabecera');
+const subir = document.querySelector('.subir');
+const acc = document.querySelector('.acciones');
+const movil = matchMedia('(max-width: 767px)');
+const alScroll = () => {
+  cab.classList.toggle('borde', scrollY > 8);
+  // en movil el boton no tapa el boton de enviar (franja de 96px al pie)
+  const r = acc.getBoundingClientRect();
+  const tapa = movil.matches && r.bottom > innerHeight - 96 && r.top < innerHeight;
+  subir.classList.toggle('visible', scrollY > innerHeight && !tapa);
+};
+addEventListener('scroll', alScroll, { passive: true });
+addEventListener('resize', alScroll);
+alScroll();
+
+if ('IntersectionObserver' in window && !reducido) {
+  const rv = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('rv-in'); rv.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.seccion').forEach((s) => { s.classList.add('rv'); rv.observe(s); });
+
+  const pasos = document.querySelector('.pasos');
+  pasos.classList.add('armada');
+  const po = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('activo'); po.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -30% 0px' });
+  pasos.querySelectorAll('li').forEach((li) => po.observe(li));
+}

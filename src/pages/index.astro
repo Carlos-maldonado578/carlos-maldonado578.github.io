@@ -32,7 +32,7 @@ const fuentes = `
     <link rel="preload" href={bitterUrl} as="font" type="font/woff2" crossorigin />
     <style set:html={fuentes}></style>
   </head>
-  <body>
+  <body id="inicio">
     <a class="salto" href="#contacto">Ir al formulario de contacto</a>
 
     <header class="cabecera">
@@ -43,7 +43,7 @@ const fuentes = `
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="t-hero">
+      <section class="hero banda-tinte" aria-labelledby="t-hero">
         <div class="contenedor hero-grid">
           <div class="hero-texto">
             <h1 id="t-hero">Automatizo la pega repetitiva de tu pyme.</h1>
@@ -108,46 +108,45 @@ const fuentes = `
           <div class="cuerpo">
             <p class="lead">
               En casi toda pyme hay una tarea que se hace a mano todos los días: anotar la producción
-              en una hoja, pasar los pedidos del WhatsApp a una planilla, revisar uno por uno qué falta
-              despachar.
+              en una hoja, pasar los pedidos del WhatsApp a una planilla, revisar qué falta despachar.
             </p>
             <p>
-              Funciona. Pero se te va el tiempo en eso, los datos se pierden o llegan tarde, y terminas
-              enterándote de los problemas cuando ya no los puedes evitar.
+              Funciona, pero se te va el tiempo, los datos llegan tarde o se pierden, y te enteras de los
+              problemas cuando ya no hay cómo evitarlos.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="seccion" aria-labelledby="t-hago">
+      <section class="seccion banda-tinte" aria-labelledby="t-hago">
         <div class="contenedor">
           <h2 id="t-hago">Qué hago</h2>
           <div class="cuerpo">
             {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia a "lo que he armado" */}
             <p class="lead">
-              Tomo esa parte manual y la dejo andando sola. Algunos ejemplos de lo que puedo automatizar:
+              Tomo esa parte manual y la dejo andando sola. Esto es lo que puedo automatizar:
             </p>
             <ul class="filas ejemplos">
               <li>
                 <span class="sub">Registros</span>
-                <p>Trabajadores que mandan un mensaje corto por Telegram y los datos caen solos en una planilla.</p>
+                <p>Tu equipo manda un mensaje corto por Telegram y los datos caen solos en una planilla.</p>
               </li>
               <li>
                 <span class="sub">Pedidos</span>
-                <p>Pedidos que entran por formulario o WhatsApp y quedan ordenados con su estado: pendiente, listo, despachado.</p>
+                <p>Pedidos que entran por formulario o WhatsApp y quedan ordenados por estado: pendiente, listo, despachado.</p>
               </li>
               <li>
                 <span class="sub">Avisos</span>
-                <p>Avisos automáticos cuando algo se atrasa o el stock se está acabando.</p>
+                <p>Un aviso cuando algo se atrasa o el stock se está acabando.</p>
               </li>
               <li>
                 <span class="sub">Boletas y facturas</span>
-                <p>Boletas y facturas que se emiten sin volver a tipear los mismos datos.</p>
+                <p>Boletas y facturas que se emiten sin tipear dos veces los mismos datos.</p>
               </li>
             </ul>
             <p class="cierre">
-              Trabajo con n8n y con las herramientas que ya conoces: Telegram, planillas, correo. Nada
-              de sistemas nuevos que aprender.
+              Uso n8n y herramientas que ya conoces: Telegram, planillas, correo. Nada de sistemas nuevos
+              que aprender.
             </p>
           </div>
         </div>
@@ -159,72 +158,70 @@ const fuentes = `
           <div class="cuerpo">
             <ol class="filas pasos">
               <li>
-                <p><span class="fuerte">Conversamos y miro tu proceso.</span>Te digo con honestidad si esto te sirve o no. Sin costo.</p>
+                <p><span class="fuerte">Conversamos y miro tu proceso.</span>Te digo con honestidad si te sirve o no. Sin costo.</p>
               </li>
               <li>
-                <p><span class="fuerte">Te propongo qué automatizar primero.</span>Parto por lo que más te molesta, no por lo más vistoso. Vamos por partes.</p>
+                <p><span class="fuerte">Te propongo qué automatizar primero.</span>Parto por lo que más te molesta, no por lo más vistoso.</p>
               </li>
               <li>
-                <p><span class="fuerte">Construyo esa primera parte.</span>La probamos con tus datos reales, no con ejemplos.</p>
+                <p><span class="fuerte">Construyo esa primera parte.</span>La probamos con tus datos reales.</p>
               </li>
               <li>
-                <p><span class="fuerte">Queda funcionando.</span>Si quieres, sigo con las siguientes partes y con mantención mensual.</p>
+                <p><span class="fuerte">Queda funcionando.</span>Si quieres, sigo con las demás partes y con mantención mensual.</p>
               </li>
             </ol>
-            <p class="lead">Cada parte toma semanas, no meses. Vas viendo resultados antes de gastar todo.</p>
-            <p><a class="enlace-texto" href="#contacto">El paso 1 es conversar. Escríbeme aquí.</a></p>
+            <p class="lead">Cada parte toma semanas, no meses: ves resultados antes de gastar todo.</p>
           </div>
         </div>
       </section>
 
-      <section class="seccion" aria-labelledby="t-caso">
+      <section class="seccion banda-azul" aria-labelledby="t-caso">
         <div class="contenedor">
           <h2 id="t-caso">Un caso real (anónimo)</h2>
           <div class="cuerpo">
             <div class="antes-ahora">
               <div>
                 <p class="rotulo">Antes</p>
-                <p>Cada persona anotaba en una hoja, alguien juntaba todo en la tarde, y recién ahí el dueño sabía el total del día, cuando le llegaba el papel.</p>
+                <p>Cada persona anotaba en una hoja, alguien juntaba todo en la tarde y el dueño recién sabía el total del día cuando le llegaba el papel.</p>
               </div>
               <div class="ahora">
                 <p class="rotulo">Ahora</p>
                 <p>Cada persona manda un mensaje de Telegram con dos datos. La planilla se llena sola y el dueño recibe el resumen del día sin pedirlo.</p>
               </div>
             </div>
-            <p class="lead">Cero cuadernos, cero doble tipeo, el número está al minuto.</p>
+            <p><a class="enlace-texto" href="#contacto">¿Te suena? Cuéntame tu caso.</a></p>
           </div>
         </div>
       </section>
 
-      <section class="seccion" aria-labelledby="t-esperar">
+      <section class="seccion banda-tinte" aria-labelledby="t-esperar">
         <div class="contenedor">
           <h2 id="t-esperar">Qué esperar</h2>
           <div class="cuerpo">
             <ul class="filas">
               <li>
-                <p><span class="fuerte">Cada proyecto se cotiza aparte.</span>Según lo que necesites. No hay un plan cerrado con precio de lista.</p>
+                <p><span class="fuerte">Cada proyecto se cotiza aparte.</span>Según lo que necesites; no hay plan cerrado ni precio de lista.</p>
               </li>
               <li>
-                <p><span class="fuerte">Empiezo por lo que te duele hoy.</span>No por armarte un sistema gigante que no pediste.</p>
+                <p><span class="fuerte">Empiezo por lo que te duele hoy.</span>No te armo un sistema gigante que no pediste.</p>
               </li>
               <li>
                 <p><span class="fuerte">Lo dejo simple.</span>Si no lo puedes usar sin mí, algo hice mal.</p>
               </li>
               <li>
-                <p><span class="fuerte">Todo queda en tus cuentas.</span>Tu planilla, tu bot, tu correo. Si un día no quieres seguir conmigo, te llevas lo tuyo sin quedar pegado.</p>
+                <p><span class="fuerte">Todo queda en tus cuentas.</span>Tu planilla, tu bot, tu correo. Si un día no quieres seguir conmigo, te llevas lo tuyo.</p>
               </li>
             </ul>
-            <p><a class="enlace-texto" href="#contacto">¿Te hace sentido? Conversemos.</a></p>
           </div>
         </div>
       </section>
 
-      <section class="seccion" id="contacto" aria-labelledby="t-contacto" style="scroll-margin-top:24px">
+      <section class="seccion" id="contacto" aria-labelledby="t-contacto">
         <div class="contenedor">
           <h2 id="t-contacto">Conversemos</h2>
           <div class="cuerpo">
             <p class="lead">
-              Cuéntame qué parte de tu trabajo te gustaría sacarte de encima. Te respondo en uno o dos días.
+              Cuéntame qué parte de tu trabajo te gustaría sacarte de encima.
             </p>
 
             <div class="talonario" style="margin-top:24px" id="talonario">
@@ -296,8 +293,13 @@ const fuentes = `
         <span>Carlos Maldonado · Automatización para pymes</span>
         <a href={mailto}>{correo}</a>
         <span>Hecho en Chile · 2026</span>
+        <a href="#inicio">Volver al inicio ↑</a>
       </div>
     </footer>
+
+    <a class="subir" href="#inicio" aria-label="Volver al inicio">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M12 20V5M5 11l7-7 7 7" /></svg>
+    </a>
 
     <script>
       import '../scripts/main.js';
