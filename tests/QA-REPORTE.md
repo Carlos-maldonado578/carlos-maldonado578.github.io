@@ -1,46 +1,39 @@
 # QA-REPORTE: landing (rama `rediseno-talonario`)
 
-Fecha: 2026-10-14. Navegador: Microsoft Edge (`channel: 'msedge'`), Playwright en Windows 11. Build de producción servido en :4173.
+Fecha: 2026-10-15 (segunda ronda, tras aplicar P0 y P1 de la crítica `critique-opus-2.md`). Navegador: Microsoft Edge (`channel: 'msedge'`), Playwright en Windows 11. Build de producción servido en :4173.
 
 ## Resultado
 
-**94 pasaron, 0 fallaron, 6 omitidos** (100 casos = 50 por proyecto desktop/móvil; los omitidos son tests que solo aplican a un proyecto, por ejemplo hover solo en desktop, 44px solo en móvil). Segunda corrida completa idéntica (sin tests inestables; las capturas se compararon contra las líneas base de la primera).
-Dentro de los 94 está 1 test `test.fail()` (B1): confirma que el bug sigue presente.
+**119 pasaron, 0 fallaron, 9 omitidos** (128 casos: desktop y móvil; los omitidos aplican a un solo proyecto, por ejemplo eje horizontal solo en desktop, eje vertical solo en móvil, 44px solo en móvil). Dos corridas completas seguidas idénticas, sin tests inestables, con las capturas base nuevas. Ya no hay ningún `test.fail()`.
 
-Detalle por área (todo en verde salvo lo señalado):
+Primera ronda (antes de los cambios): 94 pasaron, 0 fallaron, 6 omitidos, con 1 `test.fail()` (B1).
 
-- Carga/SEO: un h1, `lang="es-CL"`, title/description, consola limpia, solo localhost, fuentes cargadas.
+Detalle por área (todo en verde):
+
+- Carga/SEO: un solo h1, `lang="es-CL"`, title/description, consola limpia, solo localhost, fuentes cargadas.
 - Sin scroll horizontal a 390, 768, 1024, 1280 y 1440.
 - axe wcag2a/2aa/21aa: 0 violaciones en estado inicial, con errores de formulario y en cada pestaña (estado final).
-- Teclado: "saltar" funciona, Tab alcanza todo lo interactivo, outline ≥2px en todo lo enfocable, honeypot fuera del Tab.
-- Elige tu pega: roles ARIA, flechas/Inicio/Fin, clic, hover, Pausar/Reanudar, una sola vuelta (0,1,2,3,0) y queda quieto, se corta con interacción, alto estable (≤2px), nombre en una línea a 1024/1100/1280.
-- Demo: Pausar/Reanudar alterna y congela; con movimiento reducido todo completo y sin animaciones propias; sin JS todo visible, 4 escenas apiladas, `<noscript>` con correo.
-- Formulario: validación, JSON exacto `{nombre, contacto, mensaje, hp, t}`, XSS neutralizado (`textContent`), 500 y timeout (10 s) muestran respaldo y conservan lo escrito, variable vacía falla sin POST y sin éxito.
-- Volver arriba: aparece tras el primer viewport, ancla a `#inicio`, 48x48, nunca tapa Enviar (barrido de scroll).
-- Objetivos táctiles móvil: todos ≥44px.
-- Regresión visual: 14 capturas base (7 por proyecto) en `tests/__snapshots__/`.
+- Teclado: "saltar" funciona, Tab alcanza todo lo interactivo (incluidas las 4 preguntas), outline ≥2px.
+- Elige tu pega: roles ARIA, flechas/Inicio/Fin, clic, **el hover ya no cambia de pestaña**, **Pausar queda bajo la lista (≤24px de la última regla)**, herramientas reales bajo cada pega, Pausar/Reanudar, una sola vuelta, alto estable, nombre en una línea.
+- Nuevo (`mejoras.spec.ts`): FAQ con `<details>` (Enter/Espacio abren y cierran, sin cifras de precio); bloque "Quién soy" (3 líneas, sin `<img>` en la página); eje del caso (posiciones proporcionales a ±2px, orden de lectura, Antes vacío hasta ~79%, Ahora desde ≤3%, sin textos superpuestos; vertical y sin scroll horizontal en móvil); las 5 horas en orden para lector de pantalla; "Qué pasa después de enviar" (3 pasos bajo el botón, `mailto`, precio última promesa); carriles Yo hago/Tú haces y 4 límites en "Qué no hago"; 3 cortes de fondo; la tabla de la demo nunca carga vacía; volver arriba sin transición con `prefers-reduced-motion`.
+- Formulario: validación, JSON exacto `{nombre, contacto, mensaje, hp, t}`, XSS neutralizado, 500 y timeout con respaldo, variable vacía falla sin POST y sin éxito (contrato intacto).
+- Regresión visual: 20 capturas base (10 por proyecto), regeneradas tras revisar cada cambio visual. Nuevas: Cómo trabajo, preguntas y Quién soy.
 
-## Bugs reales encontrados
+## Bugs cerrados
 
-### B1 (media): el hover residual pisa al teclado en "Elige tu pega" (desktop)
-- Archivo: `src/scripts/main.js:256` (`pointerenter` → `elegir(i)` tras 200 ms).
-- Evidencia: clic en la pestaña 1 (el mouse queda sobre la lista) y luego ArrowDown, ArrowRight, End. Resultado observado: pestañas activas `[0, 1, 3]` en vez de `[1, 2, 3]`. Al cambiar la pestaña activa el layout de la lista cambia ("se estira"), el cursor quieto queda sobre otra pestaña, dispara `pointerenter` y 200 ms después la selección vuelve atrás. Con el mouse apartado todo funciona.
-- Test: `pegas.spec.ts` → "el teclado no es pisado por un hover residual del mouse" (marcado `test.fail()`).
-- Sugerencia: no elegir por hover si la última interacción fue por teclado (p. ej. ignorar `pointerenter` sin movimiento real del puntero: escuchar `pointermove` en vez de `pointerenter`, o desactivar el hover tras un `keydown`).
+- **B1 (media), cerrado.** El hover pisaba al teclado en "Elige tu pega". Se quitó la selección por hover (solo clic o teclado). El test `test.fail()` pasó a dos tests normales: el hover no cambia la pestaña y el teclado ya no es pisado.
+- **B2 (baja), cerrado.** Volver arriba se desvanecía 250 ms con movimiento reducido: ahora `transition: none` bajo `prefers-reduced-motion: reduce`, con test.
+- Hallazgo nuevo corregido en el sitio: con "Pausar" bajo la lista, en móvil la sección "Elige tu pega" (≈1650px) quedaba por debajo del 40% de visibilidad al pulsar el botón y la animación no se reanudaba (`pausado` pegado). El observador ahora acepta "al menos un tercio de la pantalla" cuando la sección es más alta que la pantalla.
 
-### Observaciones menores (no rompen tests)
-- B2 (baja): con `prefers-reduced-motion: reduce` el botón volver arriba aún se desvanece 250 ms (`src/styles/global.css:214`, la regla de reducido en `:254` no lo incluye). Es un fundido de opacidad, pero el criterio "sin animación" se cumple solo para demo y escenas.
-- B3 (info, falso positivo de axe): en plena animación de "Pedidos" y "Registros" axe marca `color-contrast` en textos a medio desvanecer (`.fantasma.p214`, `.mensaje.on`/`.dato`). En estado final (movimiento reducido) hay 0 violaciones, así que se consideró transitorio. Si se quiere estricto, revisar que los textos fantasma no queden por debajo de 4.5:1 mientras son visibles.
+## Pendiente / observaciones
 
-## Problemas del entorno / de los tests (corregidos, no del sitio)
-- El Chromium descargado por Playwright no arranca aquí (`spawn UNKNOWN`): se usó Edge.
-- `astro preview` solo admite un servidor por proyecto (ya había otro en :4399): se sirve el build con un servidor estático propio (`tests/servir.mjs`).
-- Umbrales de test demasiado estrictos (cantidad de elementos tabulables, animaciones del botón de subir) y axe en mitad de animaciones: ajustados.
+- B3 (info, falso positivo de axe en plena animación de "Pedidos" y "Registros"): sin cambios; en estado final hay 0 violaciones.
+- Contraste: no se añadieron colores nuevos. Los pares usados son los medidos: tinta sobre blanco, azul (#1f3a8a) sobre azul pálido 8.81:1, blanco 14.60:1 y texto sobre noche 10.03:1, regla sobre noche 5.83:1.
+- Los textos nuevos (quién soy, plazos, duraciones, respuestas de la FAQ, límites de "Qué no hago", herramientas) son redacción provisional con `TODO(Carlos)`: los tests solo verifican estructura, no la verdad del texto.
+- No cubierto: otros navegadores, dispositivos reales, lector de pantalla real (conviene probar las preguntas y las pestañas con NVDA/VoiceOver), webhook real de n8n, rendimiento.
 
 ## Recomendaciones
-1. Corregir B1 y quitar `test.fail()`.
-2. Considerar B2 (`.subir { transition: none }` bajo `reduce`).
-3. Correr `npm run test:e2e` antes de cada merge; regenerar capturas con `npm run test:e2e:update` solo tras cambios visuales aprobados.
-4. Prueba manual con lector de pantalla (NVDA/VoiceOver) en las pestañas y el formulario: la suite no la sustituye.
-5. Probar el webhook real de n8n en staging (aquí siempre simulado), incluida la validación de `hp` y `t` del lado servidor.
-6. Si se añade CI, instalar el navegador con `npx playwright install --with-deps chromium` y regenerar las capturas en ese mismo entorno (las actuales son de Edge/Windows).
+1. Que Carlos confirme o ajuste los `TODO(Carlos)` antes de publicar.
+2. Correr `npm run test:e2e` antes de cada merge; regenerar capturas con `npm run test:e2e:update` solo tras revisar los cambios visuales. Tarda ~2 minutos.
+3. Probar el webhook real de n8n en staging (hp y t del lado servidor).
+4. En CI, instalar el navegador con `npx playwright install --with-deps chromium` y regenerar las capturas en ese mismo entorno (las actuales son de Edge/Windows).

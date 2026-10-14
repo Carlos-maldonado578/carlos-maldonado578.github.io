@@ -50,23 +50,21 @@ test.describe('Elige tu pega', () => {
     await expect(page.locator('#pega-registros')).toBeHidden();
   });
 
-  test('el hover (>200ms) cambia la pestana; pasar rapido no', async ({ page }, info) => {
+  // Antes (B1) el hover elegia pestanas y pisaba al teclado. Ahora solo cuentan clic y teclado.
+  test('el hover NO cambia la pestana (solo clic o teclado)', async ({ page }, info) => {
     test.skip(info.project.name !== 'desktop', 'hover solo con puntero fino');
     await abrir(page);
-    await tab(page, 1).hover();
-    await page.waitForTimeout(450);
-    expect(await indiceActivo(page)).toBe(1);
+    await tab(page, 0).click();
+    await tab(page, 2).hover();
+    await page.waitForTimeout(600);
+    expect(await indiceActivo(page)).toBe(0);
     await tab(page, 3).hover();
-    await page.mouse.move(5, 5);
-    await page.waitForTimeout(450);
-    expect(await indiceActivo(page)).toBe(1);
+    await page.waitForTimeout(600);
+    expect(await indiceActivo(page)).toBe(0);
   });
 
-  // BUG conocido (ver QA-REPORTE.md, B1): con el mouse quieto sobre la lista, el hover vuelve a elegir
-  // pestanas y pisa al teclado. test.fail() = se espera que falle; cuando se corrija, avisara para quitarlo.
-  test('el teclado no es pisado por un hover residual del mouse', async ({ page }, info) => {
+  test('el teclado no es pisado por el mouse quieto sobre la lista (B1 cerrado)', async ({ page }, info) => {
     test.skip(info.project.name !== 'desktop', 'hover solo con puntero fino');
-    test.fail();
     await abrir(page);
     await tab(page, 0).click(); // el mouse queda sobre la lista
     const seq: number[] = [];
@@ -76,6 +74,32 @@ test.describe('Elige tu pega', () => {
       seq.push(await indiceActivo(page));
     }
     expect(seq).toEqual([1, 2, 3]);
+  });
+
+  test('Pausar queda bajo la lista, pegado a su ultima regla (desktop)', async ({ page }, info) => {
+    test.skip(info.project.name !== 'desktop');
+    await abrir(page);
+    await verPegas(page);
+    await expect(page.locator('#pegas-pausa')).toBeVisible({ timeout: 5000 });
+    const r = await page.evaluate(() => {
+      const l = document.querySelector('.pegas-lista')!.getBoundingClientRect();
+      const b = document.getElementById('pegas-pausa')!.getBoundingClientRect();
+      const p = document.querySelector('.pegas-paneles')!.getBoundingClientRect();
+      return { gap: b.top - l.bottom, bajoLista: b.left >= l.left - 13 && b.right <= l.right + 1, izqDelPanel: b.right <= p.left };
+    });
+    expect(r.gap).toBeGreaterThanOrEqual(0);
+    expect(r.gap).toBeLessThanOrEqual(24);
+    expect(r.bajoLista).toBe(true);
+    expect(r.izqDelPanel).toBe(true);
+  });
+
+  test('"Lo puedo armar" nombra herramientas reales en las 3 pegas por construir', async ({ page }) => {
+    await abrir(page);
+    for (const id of ['pedidos', 'avisos', 'boletas']) {
+      const t = await page.locator(`#pega-${id} .pega-arma`).textContent();
+      expect(t, id).toMatch(/n8n/);
+    }
+    await expect(page.locator('#pega-registros .pega-arma')).toContainText('Telegram');
   });
 
   test('el alto de la seccion no cambia entre pestanas (2px)', async ({ page }) => {
