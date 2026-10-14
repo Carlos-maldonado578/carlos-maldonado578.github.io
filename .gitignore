@@ -9,3 +9,6 @@ dist/
 
 # maqueta: archivos de trabajo de /design se versionan, el payload seed no
 design/sitio-carlos-maldonado.html
+
+# resultados de revision locales
+.impeccable/review/

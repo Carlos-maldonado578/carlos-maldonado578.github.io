@@ -1,0 +1,313 @@
+---
+import '../styles/global.css';
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import bitterUrl from '@fontsource-variable/bitter/files/bitter-latin-wght-normal.woff2?url';
+
+const titulo = 'Carlos Maldonado · Automatización para pymes';
+const descripcion =
+  'Automatizo la pega repetitiva de tu pyme. Registros que se llenan solos y avisos que llegan sin que los pidas, con herramientas simples y sin que cambies cómo trabajas.';
+const correo = 'carlos.automatiza.tupyme@gmail.com';
+const mailto = `mailto:${correo}?subject=${encodeURIComponent('Contacto desde la web')}`;
+const fuentes = `
+@font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(${archivoUrl}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Bitter';font-style:normal;font-weight:100 900;font-display:swap;src:url(${bitterUrl}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Archivo Fallback';src:local('Arial');size-adjust:100%;ascent-override:88%;descent-override:22%;line-gap-override:0%}
+@font-face{font-family:'Bitter Fallback';src:local('Georgia');size-adjust:97%;ascent-override:94%;descent-override:25%;line-gap-override:0%}`;
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href="https://carlos-maldonado578.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content="https://carlos-maldonado578.github.io/" />
+    <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bitterUrl} as="font" type="font/woff2" crossorigin />
+    <style set:html={fuentes}></style>
+  </head>
+  <body>
+    <a class="salto" href="#contacto">Ir al formulario de contacto</a>
+
+    <header class="cabecera">
+      <div class="contenedor">
+        <p class="marca">Carlos Maldonado<span class="rotulo">Automatización para pymes</span></p>
+        <a class="enlace" href="#contacto">Conversemos</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="t-hero">
+        <div class="contenedor hero-grid">
+          <div class="hero-texto">
+            <h1 id="t-hero">Automatizo la pega repetitiva de tu pyme.</h1>
+            <p class="lead">
+              Registros que se llenan solos y avisos que llegan sin que los pidas. Con herramientas
+              simples y sin que cambies cómo trabajas.
+            </p>
+            <div class="hero-cta">
+              <a class="btn" href="#contacto">Conversemos</a>
+              {/* TODO(Carlos): confirmar que respondes en uno o dos días */}
+              <p class="nota">Te respondo en uno o dos días.</p>
+            </div>
+          </div>
+
+          <div class="hero-demo">
+            <figure class="hoja" id="demo">
+              <div class="hoja-cab">
+                <span class="rotulo">Hoja de registro · Producción</span>
+                <span class="ejemplo">EJEMPLO</span>
+              </div>
+
+              <div class="paso">
+                <span class="rotulo"><span class="num">1</span> Llega el mensaje</span>
+                <div class="m">
+                  <p class="meta">Telegram · Juan · 08:14</p>
+                  <p class="mensaje">Producción: 120&nbsp;cajas</p>
+                </div>
+              </div>
+
+              <div class="paso">
+                <span class="rotulo"><span class="num">2</span> Se anota en la planilla</span>
+                <table>
+                  <thead>
+                    <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Cajas</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>07:52</td><td>Pedro</td><td>95</td></tr>
+                    <tr><td>08:03</td><td>Ana</td><td>110</td></tr>
+                    <tr class="fila-nueva"><td>08:14</td><td>Juan</td><td>120</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="paso">
+                <span class="rotulo"><span class="num">3</span> Te llega el aviso</span>
+                <p class="aviso">Aviso · 18:00: Total del día: <b>1.240&nbsp;cajas</b></p>
+              </div>
+
+              <figcaption>
+                Ejemplo ilustrativo con datos inventados: un trabajador manda un mensaje, la planilla
+                se llena sola y al final del día te llega el total.
+              </figcaption>
+              <button type="button" class="btn-texto" id="demo-repetir" hidden>Ver de nuevo</button>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="t-problema">
+        <div class="contenedor">
+          <div class="casilla"><span class="num">Nº&nbsp;01</span></div>
+          <div class="cuerpo">
+            <h2 id="t-problema">El problema</h2>
+            <p class="lead">
+              En casi toda pyme hay una tarea que se hace a mano todos los días: anotar la producción
+              en una hoja, pasar los pedidos del WhatsApp a una planilla, revisar uno por uno qué falta
+              despachar.
+            </p>
+            <p>
+              Funciona. Pero se te va el tiempo en eso, los datos se pierden o llegan tarde, y terminas
+              enterándote de los problemas cuando ya no los puedes evitar.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="t-hago">
+        <div class="contenedor">
+          <div class="casilla"><span class="num">Nº&nbsp;02</span></div>
+          <div class="cuerpo">
+            <h2 id="t-hago">Qué hago</h2>
+            {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia a "lo que he armado" */}
+            <p class="lead">
+              Tomo esa parte manual y la dejo andando sola. Algunos ejemplos de lo que puedo automatizar:
+            </p>
+            <ul class="filas ejemplos">
+              <li>
+                <span class="sub">Registros</span>
+                <p>Trabajadores que mandan un mensaje corto por Telegram y los datos caen solos en una planilla.</p>
+              </li>
+              <li>
+                <span class="sub">Pedidos</span>
+                <p>Pedidos que entran por formulario o WhatsApp y quedan ordenados con su estado: pendiente, listo, despachado.</p>
+              </li>
+              <li>
+                <span class="sub">Avisos</span>
+                <p>Avisos automáticos cuando algo se atrasa o el stock se está acabando.</p>
+              </li>
+              <li>
+                <span class="sub">Boletas y facturas</span>
+                <p>Boletas y facturas que se emiten sin volver a tipear los mismos datos.</p>
+              </li>
+            </ul>
+            <p class="cierre">
+              Trabajo con n8n y con las herramientas que ya conoces: Telegram, planillas, correo. Nada
+              de sistemas nuevos que aprender.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="t-trabajo">
+        <div class="contenedor">
+          <div class="casilla"><span class="num">Nº&nbsp;03</span></div>
+          <div class="cuerpo">
+            <h2 id="t-trabajo">Cómo trabajo</h2>
+            <ol class="filas pasos">
+              <li>
+                <p><span class="fuerte">Conversamos y miro tu proceso.</span>Te digo con honestidad si esto te sirve o no. Sin costo.</p>
+              </li>
+              <li>
+                <p><span class="fuerte">Te propongo qué automatizar primero.</span>Parto por lo que más te molesta, no por lo más vistoso. Vamos por partes.</p>
+              </li>
+              <li>
+                <p><span class="fuerte">Construyo esa primera parte y la probamos con tus datos reales,</span>no con ejemplos.</p>
+              </li>
+              <li>
+                <p><span class="fuerte">Queda funcionando.</span>Si quieres, sigo con las siguientes partes y con mantención mensual.</p>
+              </li>
+            </ol>
+            <p class="lead">Cada parte toma semanas, no meses. Vas viendo resultados antes de gastar todo.</p>
+            <p><a class="enlace-texto" href="#contacto">El paso 1 es conversar. Escríbeme aquí.</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="t-caso">
+        <div class="contenedor">
+          <div class="casilla"><span class="num">Nº&nbsp;04</span> <span class="rotulo">Caso anónimo</span></div>
+          <div class="cuerpo">
+            <h2 id="t-caso">Un caso real</h2>
+            <div class="antes-ahora">
+              <div>
+                <p class="rotulo">Antes</p>
+                <p>Cada persona anotaba en una hoja, alguien juntaba todo en la tarde, y recién ahí el dueño sabía el total del día, cuando le llegaba el papel.</p>
+              </div>
+              <div class="ahora">
+                <p class="rotulo">Ahora</p>
+                <p>Cada persona manda un mensaje de Telegram con dos datos. La planilla se llena sola y el dueño recibe el resumen del día sin pedirlo.</p>
+              </div>
+            </div>
+            <p class="lead">Cero cuadernos, cero doble tipeo, el número está al minuto.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" aria-labelledby="t-esperar">
+        <div class="contenedor">
+          <div class="casilla"><span class="num">Nº&nbsp;05</span></div>
+          <div class="cuerpo">
+            <h2 id="t-esperar">Qué esperar</h2>
+            <ul class="filas">
+              <li>
+                <p><span class="fuerte">Cada proyecto se cotiza aparte.</span>Según lo que necesites. No hay un plan cerrado con precio de lista.</p>
+              </li>
+              <li>
+                <p><span class="fuerte">Empiezo por lo que te duele hoy.</span>No por armarte un sistema gigante que no pediste.</p>
+              </li>
+              <li>
+                <p><span class="fuerte">Lo dejo simple.</span>Si no lo puedes usar sin mí, algo hice mal.</p>
+              </li>
+              <li>
+                <p><span class="fuerte">Todo queda en tus cuentas.</span>Tu planilla, tu bot, tu correo. Si un día no quieres seguir conmigo, te llevas lo tuyo sin quedar pegado.</p>
+              </li>
+            </ul>
+            <p><a class="enlace-texto" href="#contacto">¿Te hace sentido? Conversemos.</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion" id="contacto" aria-labelledby="t-contacto" style="scroll-margin-top:24px">
+        <div class="contenedor">
+          <div class="casilla"><span class="num">Nº&nbsp;06</span></div>
+          <div class="cuerpo">
+            <h2 id="t-contacto">Conversemos</h2>
+            <p class="lead">
+              Cuéntame qué parte de tu trabajo te gustaría sacarte de encima. Te respondo en uno o dos días.
+            </p>
+
+            <div class="talonario" style="margin-top:24px" id="talonario">
+              <div id="tal-form">
+                <div class="tal-cab">
+                  <span class="rotulo">Solicitud de contacto</span>
+                  <span class="rotulo">Para: Carlos Maldonado</span>
+                </div>
+
+                <noscript>
+                  <p class="sin-js">
+                    Este formulario necesita JavaScript. Escríbeme directo a
+                    <a href={mailto}>{correo}</a>.
+                  </p>
+                </noscript>
+
+                <form id="form" method="post" action="#contacto" novalidate>
+                  <div class="campo">
+                    <label for="f-nombre"><span class="n" aria-hidden="true">1</span>Nombre</label>
+                    <input id="f-nombre" name="nombre" type="text" autocomplete="name" maxlength="100" required aria-describedby="e-nombre" />
+                    <p class="err" id="e-nombre" hidden></p>
+                  </div>
+
+                  <div class="campo">
+                    <label for="f-contacto"><span class="n" aria-hidden="true">2</span>Correo o teléfono</label>
+                    <input id="f-contacto" name="contacto" type="text" autocomplete="email" inputmode="email" maxlength="120" required aria-describedby="a-contacto e-contacto" />
+                    <p class="ayuda" id="a-contacto">Donde prefieras que te responda.</p>
+                    <p class="err" id="e-contacto" hidden></p>
+                  </div>
+
+                  <div class="campo">
+                    <label for="f-mensaje"><span class="n" aria-hidden="true">3</span>¿Qué te gustaría automatizar?</label>
+                    <textarea id="f-mensaje" name="mensaje" rows="5" maxlength="2000" required aria-describedby="a-mensaje e-mensaje"></textarea>
+                    <p class="ayuda" id="a-mensaje">Ej.: anotamos los pedidos a mano y después los paso a una planilla.</p>
+                    <p class="err" id="e-mensaje" hidden></p>
+                  </div>
+
+                  <div class="hp" aria-hidden="true">
+                    <label for="f-hp">No llenar</label>
+                    <input id="f-hp" name="sitio_web" type="text" tabindex="-1" autocomplete="off" />
+                  </div>
+
+                  <div class="fallo" id="fallo" role="alert" hidden>
+                    <strong>No se pudo enviar.</strong>
+                    Escríbeme directo a <a href={mailto}>{correo}</a>
+                  </div>
+
+                  <div class="acciones">
+                    <button class="btn" type="submit" id="enviar">Enviar</button>
+                    <p class="nota">Te respondo en uno o dos días.</p>
+                  </div>
+                  {/* TODO(Carlos): confirmar la frase de datos; no hay política de privacidad detrás */}
+                  <p class="nota privacidad">Uso tus datos solo para responderte.</p>
+                </form>
+              </div>
+
+              <div class="tal-exito" id="exito" role="status" hidden>
+                <div class="sello" aria-hidden="true">RECIBIDO</div>
+                <h3 id="exito-t" tabindex="-1">Listo. Te escribo pronto.</h3>
+                <p class="nota" id="exito-fecha"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="contenedor">
+        <span>Carlos Maldonado · Automatización para pymes</span>
+        <a href={mailto}>{correo}</a>
+        <span>Hecho en Chile · 2026</span>
+      </div>
+    </footer>
+
+    <script>
+      import '../scripts/main.js';
+    </script>
+  </body>
+</html>
