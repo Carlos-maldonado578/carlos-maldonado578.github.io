@@ -61,14 +61,14 @@ if (demo && pausa && !reducido) {
   };
   const fila = (i) => () => filas[i].classList.add('on');
   const pasos = [
-    [0, () => { filas.forEach((f) => f.classList.remove('on')); aviso.classList.remove('on'); mostrarMsg(0); }],
+    [0, () => {}], // arranca en el estado final del HTML: la tabla nunca carga vacia
+    [5000, () => { filas.forEach((f) => f.classList.remove('on')); aviso.classList.remove('on'); mostrarMsg(0); }],
     [1400, fila(0)],
     [1500, () => mostrarMsg(1)],
     [1400, fila(1)],
     [1500, () => mostrarMsg(2)],
     [1400, fila(2)],
     [1500, () => aviso.classList.add('on')],
-    [6000, () => {}],
   ];
   demo.classList.add('armada');
   pausa.hidden = false;
@@ -250,14 +250,6 @@ if (pegas) {
     elegir(j, true);
   });
 
-  if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    let espera = 0;
-    tabs.forEach((t, i) => {
-      t.addEventListener('pointerenter', () => { espera = setTimeout(() => i !== actual && elegir(i), 200); });
-      t.addEventListener('pointerleave', () => clearTimeout(espera));
-    });
-  }
-
   pausaP.addEventListener('click', () => {
     manual = !manual;
     pausaP.textContent = manual ? 'Reanudar' : 'Pausar';
@@ -266,7 +258,8 @@ if (pegas) {
 
   activar(0, { jugar: false });
   if (!reducido) {
-    new IntersectionObserver(([e]) => { visible = e.intersectionRatio >= 0.4; sincronizar(); }, { threshold: [0, 0.4] }).observe(pegas);
+    // visible = 40% de la seccion o, si es mas alta que la pantalla (movil), al menos un tercio de la pantalla
+    new IntersectionObserver(([e]) => { visible = e.intersectionRect.height >= Math.min(e.boundingClientRect.height * 0.4, innerHeight / 3); sincronizar(); }, { threshold: Array.from({ length: 21 }, (_, i) => i / 20) }).observe(pegas);
     document.addEventListener('visibilitychange', sincronizar);
   }
 }

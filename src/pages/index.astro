@@ -119,7 +119,7 @@ const fuentes = `
         </div>
       </section>
 
-      <section class="seccion banda-tinte" aria-labelledby="t-hago">
+      <section class="seccion pegas-sec" aria-labelledby="t-hago">
         <div class="contenedor">
           <h2 id="t-hago">Qué puedo dejar andando solo</h2>
           {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia el estado y la nota de honestidad de esa pega */}
@@ -156,6 +156,11 @@ const fuentes = `
               </button>
             </div>
 
+            <div class="hoja-pie pegas-pie">
+              <button type="button" class="btn-texto" id="pegas-pausa" hidden>Pausar</button>
+              <p class="nota">Ejemplos ilustrativos con datos inventados.</p>
+            </div>
+
             <div class="pegas-paneles">
               <article class="pega hoja" id="pega-registros" aria-labelledby="tab-registros">
                 <div class="hoja-cab"><h3 class="rotulo">Registros</h3><span class="ejemplo">EJEMPLO</span></div>
@@ -183,6 +188,7 @@ const fuentes = `
                   </div>
                   <p class="pega-resultado on">Anotado, sin que nadie tipee nada.</p>
                 </div>
+                <p class="pega-arma"><b>Cómo está armado:</b> un bot de Telegram, n8n y una planilla de Google.</p>
                 <p class="pega-honesto">Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.</p>
               </article>
 
@@ -216,6 +222,7 @@ const fuentes = `
                   </div>
                   <p class="aviso on">Aviso al cliente: "Tu pedido #214 va en camino."</p>
                 </div>
+                <p class="pega-arma"><b>Con qué lo armaría:</b> formulario o WhatsApp (si se puede conectar) para recibir el pedido, una planilla de Google para ordenarlo y n8n para moverlo y avisar por correo.</p>
                 <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
               </article>
 
@@ -234,6 +241,7 @@ const fuentes = `
                     <p class="aviso on">Aviso · 11:20: Quedan <b>180</b> tapas de 38 mm. El mínimo que fijaste es 200.</p>
                   </div>
                 </div>
+                <p class="pega-arma"><b>Con qué lo armaría:</b> tu stock en una planilla de Google, n8n que la revisa y un aviso por Telegram o correo cuando baja del mínimo.</p>
                 <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
               </article>
 
@@ -266,67 +274,129 @@ const fuentes = `
                   </div>
                   <p class="pega-resultado on">Lista para emitir. Tú la revisas y apruebas.</p>
                 </div>
+                <p class="pega-arma"><b>Con qué lo armaría:</b> n8n pasa los datos de tu planilla a un borrador de boleta; tú lo revisas y lo emites desde tu sistema de facturación.</p>
                 <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
               </article>
             </div>
 
-            <div class="hoja-pie pegas-pie">
-              <p class="nota">Ejemplos ilustrativos con datos inventados.</p>
-              <button type="button" class="btn-texto" id="pegas-pausa" hidden>Pausar</button>
-            </div>
+            <a class="enlace-texto pegas-cierre" href="#contacto">¿Tienes otra pega repetitiva? Cuéntamela.</a>
           </div>
-          <a class="enlace-texto pegas-cierre" href="#contacto">¿Tienes otra pega repetitiva? Cuéntamela.</a>
         </div>
       </section>
 
       <section class="seccion trabajo" aria-labelledby="t-trabajo">
         <div class="contenedor">
           <h2 id="t-trabajo">Cómo trabajo</h2>
+          {/* TODO(Carlos): confirmar duraciones aproximadas (30 a 45 min, 10 min) y que la primera conversación puede ser por llamada o en el local del cliente */}
           <ol class="pasos">
             <li>
               <h3>Conversamos y miro tu proceso</h3>
-              <p>Te digo con honestidad si te sirve o no. Sin costo.</p>
+              <div class="yo"><p class="lado">Yo hago</p><p>Te digo con honestidad si te sirve o no. Sin costo.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo lo hacen hoy (30 a 45 minutos, por llamada o en tu local).</p></div>
             </li>
             <li>
               <h3>Te propongo qué automatizar primero</h3>
-              <p>Parto por lo que más te molesta, no por lo más vistoso.</p>
+              <div class="yo"><p class="lado">Yo hago</p><p>Parto por lo que más te molesta, no por lo más vistoso.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Me dices si esa es la parte que quieres probar primero.</p></div>
             </li>
             <li>
               <h3>Construyo esa primera parte</h3>
-              <p>La probamos con tus datos reales.</p>
+              <div class="yo"><p class="lado">Yo hago</p><p>La armo en tus propias cuentas.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Me prestas unos 10 minutos para probarla con tus datos reales.</p></div>
             </li>
             <li>
               <h3>Queda funcionando</h3>
-              <p>Si quieres, sigo con las demás partes y con mantención mensual.</p>
+              <div class="yo"><p class="lado">Yo hago</p><p>Si quieres, sigo con las demás partes y con mantención mensual.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>La usas, y me avisas si algo no calza.</p></div>
             </li>
           </ol>
           <p class="frase-chica">Cada parte toma semanas, no meses: ves resultados antes de gastar todo.</p>
+
+          {/* TODO(Carlos): confirmar que estos límites son verdad para ti */}
+          <div class="no-hago">
+            <h3>Qué no hago</h3>
+            <ul>
+              <li>Vender software ni licencias.</li>
+              <li>Amarrarte a un plan mensual: la mantención es solo si tú la quieres.</li>
+              <li>Tocar tu contabilidad ni tus claves del banco.</li>
+              <li>Pedirte que cambies cómo trabajas.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
       <section class="seccion banda-azul" aria-labelledby="t-caso">
         <div class="contenedor">
           <h2 id="t-caso">Un caso real: el mismo día, antes y ahora</h2>
-          <div class="dias">
-            <div class="dia antes">
+          <div class="eje">
+            <ol class="escala" aria-hidden="true">
+              <li style="--h:8">08:00</li>
+              <li style="--h:10">10:00</li>
+              <li style="--h:12">12:00</li>
+              <li style="--h:14">14:00</li>
+              <li style="--h:16">16:00</li>
+              <li style="--h:18">18:00</li>
+              <li style="--h:20">20:00</li>
+            </ol>
+            <div class="carril antes">
               <h3>Antes</h3>
-              <ol class="linea">
-                <li><span class="hora">08:00</span><p>Cada persona anota en su hoja.</p></li>
-                <li><span class="hora">17:30</span><p>Alguien junta todas las hojas.</p></li>
-                <li><span class="hora">20:00</span><p>El dueño recién sabe el total del día.</p></li>
+              <ol class="pista">
+                <li class="hito" style="--h:8"><span class="hora">08:00</span><p>Cada persona anota en su hoja.</p></li>
+                <li class="tramo vacio" style="--a:8;--b:17.5"><span>Sin saber cuánto se produjo.</span></li>
+                <li class="hito der" style="--h:17.5"><span class="hora">17:30</span><p>Alguien junta todas las hojas.</p></li>
+                <li class="hito der t2" style="--h:20"><span class="hora">20:00</span><p>El dueño recién sabe el total del día.</p></li>
               </ol>
             </div>
-            <div class="dia ahora">
+            <div class="carril ahora">
               <h3>Ahora</h3>
-              <ol class="linea">
-                <li><span class="hora">08:14</span><p>Juan manda un mensaje de Telegram: "120 cajas".</p></li>
-                <li><span class="hora">08:14</span><p>La planilla se llena sola.</p></li>
-                <li><span class="hora">18:00</span><p>El dueño recibe el resumen del día sin pedirlo.</p></li>
+              <ol class="pista">
+                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda "120 cajas" por Telegram y la planilla se llena sola.</p></li>
+                <li class="tramo lleno" style="--a:8.233;--b:18"><span>Ya está en la planilla.</span></li>
+                <li class="hito der" style="--h:18"><span class="hora">18:00</span><p>El dueño recibe el resumen del día sin pedirlo.</p></li>
               </ol>
             </div>
           </div>
+          {/* TODO(Carlos): confirmar herramientas reales del caso (bot de Telegram, planilla de Google, n8n) */}
+          <p class="armado">Lo que hubo que armar: un bot de Telegram y una planilla de Google, unidos con n8n.</p>
           <p class="aprox nota">Cliente anónimo. Las horas son aproximadas y los nombres, de ejemplo.</p>
           <a class="enlace-texto" href="#contacto">¿Te suena? Cuéntame tu caso.</a>
+        </div>
+      </section>
+
+      <section class="seccion banda-tinte" aria-labelledby="t-faq">
+        <div class="contenedor">
+          <h2 id="t-faq">Antes de escribirme</h2>
+          {/* TODO(Carlos): confirmar cada respuesta (qué pasa si algo se cae, qué explicas al entregar) */}
+          <div class="faq">
+            <details>
+              <summary>¿Tengo que saber de computación?</summary>
+              <p>No. Si sabes mandar un mensaje desde el celular, basta. Yo armo todo y te explico cómo usarlo, en palabras simples.</p>
+            </details>
+            <details>
+              <summary>¿Qué pasa si algo se cae?</summary>
+              <p>Me escribes y lo reviso. Tu planilla y tus datos siguen siendo tuyos, así que puedes seguir anotando a mano mientras tanto. Cómo lo resolvemos y en cuánto tiempo lo dejamos claro antes de empezar.</p>
+            </details>
+            <details>
+              <summary>¿Mis datos, de quién son?</summary>
+              <p>Tuyos. Todo queda en tus cuentas: tu planilla, tu bot, tu correo. Si un día no quieres seguir conmigo, te llevas lo tuyo.</p>
+            </details>
+            <details>
+              <summary>¿Y si ya uso Excel o WhatsApp?</summary>
+              <p>Parto de lo que ya usas y no te pido cambiar cómo trabajas. Si tu Excel o tu WhatsApp se pueden conectar, lo hago; si no, te lo digo desde el principio.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="seccion banda-tinte quien" aria-labelledby="t-quien">
+        <div class="contenedor">
+          <h2 id="t-quien">Quién soy</h2>
+          {/* TODO(Carlos): confirmar/ajustar quién soy (dónde estás, de dónde viene tu experiencia) */}
+          <div class="quien-texto">
+            <p>Soy Carlos Maldonado. Automatizo procesos de pymes con n8n, Telegram y planillas.</p>
+            <p>Trabajo solo, sin agencia: hablas directo conmigo, de la primera conversación a que quede andando.</p>
+            <p>Todo lo que armo queda en tus cuentas.</p>
+          </div>
         </div>
       </section>
 
@@ -335,10 +405,10 @@ const fuentes = `
           <div class="contacto-texto">
             <h2 id="t-contacto">Cuéntame qué te quita tiempo</h2>
             <ul class="promesas">
-              <li><strong>Cada proyecto se cotiza aparte.</strong><p>Según lo que necesites; no hay plan cerrado ni precio de lista.</p></li>
               <li><strong>Empiezo por lo que te duele hoy.</strong><p>No te armo un sistema gigante que no pediste.</p></li>
               <li><strong>Lo dejo simple.</strong><p>Si no lo puedes usar sin mí, algo hice mal.</p></li>
               <li><strong>Todo queda en tus cuentas.</strong><p>Tu planilla, tu bot, tu correo. Si un día no quieres seguir conmigo, te llevas lo tuyo.</p></li>
+              <li><strong>Cada proyecto se cotiza aparte.</strong><p>Según lo que necesites; no hay plan cerrado ni precio de lista.</p></li>
             </ul>
           </div>
 
@@ -387,8 +457,16 @@ const fuentes = `
                 </div>
 
                 <button class="btn btn-ancho" type="submit" id="enviar">Enviar mensaje</button>
-                {/* TODO(Carlos): confirmar plazo de respuesta y la frase de datos; no hay política de privacidad detrás */}
-                <p class="nota privacidad">Te respondo en uno o dos días, por el medio que me dejes. Uso tus datos solo para eso.</p>
+                {/* TODO(Carlos): confirmar plazos (uno o dos días, 30 minutos) y la frase de datos; no hay política de privacidad detrás */}
+                <div class="despues">
+                  <p class="despues-t">Qué pasa después de enviar</p>
+                  <ol>
+                    <li>Leo tu mensaje.</li>
+                    <li>Te escribo con dos o tres preguntas, en uno o dos días.</li>
+                    <li>Si tiene sentido, conversamos 30 minutos, sin costo.</li>
+                  </ol>
+                  <p class="nota">Uso tus datos solo para eso. ¿Prefieres correo? Escríbeme a <a href={mailto}>{correo}</a>.</p>
+                </div>
               </form>
             </div>
 

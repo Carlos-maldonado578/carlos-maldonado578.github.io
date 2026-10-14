@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-14T22:27:58.199Z",
+  "generatedAt": "2026-10-15T00:00:00.000Z",
   "title": "Design System: Carlos Maldonado · Automatización para pymes",
   "extensions": {
     "colorMeta": {
@@ -115,7 +115,7 @@
           "#c6c9ce",
           "#ebeff4"
         ],
-        "note": "Superficie de bandas alternas (hero, Qué puedo, Conversemos). Tinta 13.97:1, tinta-2 6.60:1, azul 8.81:1."
+        "note": "Superficie de bandas (hero y bloque final: preguntas, quién soy, Conversemos), carril \"Tú haces\", encabezado de tabla, aviso. Tinta 13.97:1, tinta-2 6.60:1, azul 8.81:1."
       },
       "linea-campo": {
         "role": "neutral",
@@ -211,11 +211,11 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Solo el h1 del hero, Archivo 87% de ancho."
+        "purpose": "Solo el h1 del hero, Archivo 87% de ancho; clamp 2.5-4.25rem (68px a 1440)."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "h2 arriba y a ancho completo, máx. 22ch."
+        "purpose": "h2 arriba y a ancho completo, máx. 22ch; clamp 1.875-2.5rem (40px a 1440), por debajo de los nombres de pega."
       },
       "title": {
         "displayName": "Title",
@@ -235,14 +235,14 @@
       },
       "frase": {
         "displayName": "Frase",
-        "purpose": "Bitter 700 en la frase del problema y la de cierre de Cómo trabajo."
+        "purpose": "Bitter 700; la frase del problema es la única pausa grande fuera del h1. También la frase de cierre de Cómo trabajo (más chica)."
       }
     },
     "shadows": [],
     "motion": [
       {
         "name": "bucle-demo",
-        "value": "opacity 250ms ease-out; 3 mensajes y pausa de 6s; botón Pausar/Reanudar",
+        "value": "opacity 250ms ease-out; arranca en el estado final, espera 5 s, luego 3 mensajes; botón Pausar/Reanudar",
         "purpose": "Solo la demo; estática y completa con prefers-reduced-motion o sin JS."
       },
       {
@@ -264,6 +264,10 @@
       {
         "name": "lg",
         "value": "1024px"
+      },
+      {
+        "name": "caso-vertical",
+        "value": "900px (el eje del caso pasa a vertical)"
       }
     ]
   },
@@ -323,13 +327,21 @@
       "description": "Demo: burbuja, tabla con fila nueva y aviso.",
       "html": "<figure class=\"ds-hoja\"><p class=\"ds-msg\">Producción: 120 cajas</p><table><thead><tr><th>Hora</th><th>Quién</th><th>Estado</th></tr></thead><tbody><tr class=\"nueva\"><td>08:14</td><td>Juan</td><td>Anotado</td></tr></tbody></table><p class=\"ds-aviso\">Aviso · 18:00: Total del día: <b>1.240 cajas</b></p></figure>",
       "css": ".ds-hoja{margin:0;border:1px solid #c5cbd3;border-radius:12px;padding:24px;background:#fff;font-family:Archivo,Arial,sans-serif;color:#16202e}.ds-msg{margin:0 0 16px;background:#e8edf7;border-radius:10px;padding:12px 16px;font:500 1.25rem/1.3 Archivo,Arial,sans-serif}.ds-hoja table{width:100%;border-collapse:collapse;font:500 1rem/1.4 Archivo,Arial,sans-serif;font-variant-numeric:tabular-nums}.ds-hoja th{background:#e8edf7;text-align:left;padding:8px 12px;font-weight:600}.ds-hoja td{padding:8px 12px;border-bottom:1px solid #c5cbd3}.ds-hoja .nueva td{background:#fff6d5}.ds-aviso{margin:16px 0 0;background:#e8edf7;border:1px solid #1f3a8a;border-radius:10px;padding:12px 16px;font:400 1.0625rem/1.4 Archivo,Arial,sans-serif}"
+    },
+    {
+      "name": "Pregunta desplegable",
+      "kind": "other",
+      "refersTo": "faq-detalle",
+      "description": "details nativo: fila blanca de 56px, borde 1px, radio 10px, \"+\" azul que pasa a \"−\".",
+      "html": "<details class=\"ds-faq\"><summary>¿Tengo que saber de computación?</summary><p>No. Si sabes mandar un mensaje desde el celular, basta.</p></details>",
+      "css": ".ds-faq{background:#fff;border:1px solid #c5cbd3;border-radius:10px}.ds-faq summary{display:flex;align-items:center;min-height:56px;padding:12px 16px;font:600 1.125rem Archivo,Arial,sans-serif;cursor:pointer}.ds-faq summary::after{content:\"+\";margin-left:auto;color:#1f3a8a;font-size:1.5rem}.ds-faq[open] summary::after{content:\"\\2212\"}.ds-faq p{padding:0 16px 16px}"
     }
   ],
   "narrative": {
     "northStar": "La planilla que se llena sola",
-    "overview": "La página muestra la planilla funcionando en vez de parecerse a un documento. La demo es la pieza central y cada sección muestra un objeto distinto (frase, lista de pegas con escenas, línea de tiempo, dos días comparados, formulario). Rechaza la plantilla SaaS y el aire de CV.\n\nUna sola tinta comprometida (azul de imprenta) para acción; rojo solo para numeración, EJEMPLO y errores; amarillo solo como destello de la fila nueva.",
+    "overview": "La página muestra la planilla funcionando en vez de parecerse a un documento. La demo es la pieza central y cada sección muestra un objeto distinto (frase, lista de pegas con escenas, pasos con dos carriles Yo hago / Tú haces, un eje horario del día, preguntas desplegables, formulario). Rechaza la plantilla SaaS y el aire de CV.\n\nUna sola tinta comprometida (azul de imprenta) para acción; rojo solo para numeración, EJEMPLO y errores; amarillo solo como destello de la fila nueva.",
     "keyCharacteristics": [
-      "Papel blanco, azul pálido y una sola banda azul noche; sin degradados ni sombras.",
+      "Papel blanco, azul pálido y una sola banda azul noche; solo 3 cortes de color; sin degradados ni sombras.",
       "Títulos arriba y a ancho completo; una composición distinta por sección.",
       "Archivo para cuerpo y UI; Bitter solo en frases grandes.",
       "Radios 10px (campos, botones) y 12px (tarjetas); tablas rectas.",
@@ -364,6 +376,16 @@
       {
         "name": "The Rótulo Rule",
         "body": "Mayúsculas comprimidas solo dentro de la demo.",
+        "section": "typography"
+      },
+      {
+        "name": "The Eje Rule",
+        "body": "En el caso, la posición de cada hito es proporcional a su hora: left = (hora - 8) / 12. La diferencia entre Antes y Ahora se ve (línea vacía frente a pista llena), no se lee restando horas.",
+        "section": "layout"
+      },
+      {
+        "name": "The Un Titular Rule",
+        "body": "El h1 (68px) manda; la frase del problema (52px) es la única otra pausa grande; los h2 (40px) quedan bajo los nombres de pega (48px).",
         "section": "typography"
       }
     ],

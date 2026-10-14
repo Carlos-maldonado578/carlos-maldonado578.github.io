@@ -19,13 +19,13 @@ colors:
 typography:
   display:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(2.25rem, 1.5rem + 2.8vw, 3.5rem)"
+    fontSize: "clamp(2.5rem, 1.5rem + 3.4vw, 4.25rem)"
     fontWeight: 700
     lineHeight: 1.05
     letterSpacing: "-0.01em"
   headline:
     fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
-    fontSize: "clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)"
+    fontSize: "clamp(1.875rem, 1.3rem + 1.8vw, 2.5rem)"
     fontWeight: 700
     lineHeight: 1.15
   frase:
@@ -39,12 +39,12 @@ typography:
     fontWeight: 600
     lineHeight: 1.3
   body:
-    fontFamily: "Bitter, Bitter Fallback, Georgia, serif"
-    fontSize: "1.125rem"
+    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
+    fontSize: "1.0625rem"
     fontWeight: 400
     lineHeight: 1.6
   lead:
-    fontFamily: "Bitter, Bitter Fallback, Georgia, serif"
+    fontFamily: "Archivo, Archivo Fallback, Arial, sans-serif"
     fontSize: "clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem)"
     fontWeight: 400
     lineHeight: 1.5
@@ -55,8 +55,8 @@ typography:
     lineHeight: 1.3
     letterSpacing: "0.06em"
 rounded:
-  campo: "2px"
-  sello: "50%"
+  campo: "10px"
+  tarjeta: "12px"
 spacing:
   s1: "4px"
   s2: "8px"
@@ -83,12 +83,8 @@ components:
     backgroundColor: "{colors.papel}"
     textColor: "{colors.tinta}"
     rounded: "{rounded.campo}"
-    padding: "12px"
-    height: "48px"
-  talonario:
-    backgroundColor: "{colors.copia-amarilla}"
-    textColor: "{colors.tinta}"
-    padding: "32px"
+    padding: "12px 16px"
+    height: "52px"
   hoja-registro:
     backgroundColor: "{colors.papel}"
     textColor: "{colors.tinta}"
@@ -97,6 +93,11 @@ components:
     backgroundColor: "{colors.azul-palido}"
     textColor: "{colors.tinta}"
     padding: "12px"
+  faq-detalle:
+    backgroundColor: "{colors.papel}"
+    textColor: "{colors.tinta}"
+    rounded: "{rounded.campo}"
+    height: "56px"
 ---
 
 # Design System: Carlos Maldonado · Automatización para pymes
@@ -105,12 +106,12 @@ components:
 
 **Creative North Star: "La planilla que se llena sola"**
 
-La página muestra la planilla funcionando en vez de parecerse a un documento. La demo (mensaje, fila nueva, aviso) es la pieza central y cada sección muestra un objeto distinto (frase, tarjetas con miniatura, línea de tiempo, dos días comparados, formulario) en vez de repetir una lista con reglas. Rechaza la plantilla SaaS (degradados, sombras, íconos, números gigantes) y también el aire de CV (rótulo a la izquierda, texto a la derecha).
+La página muestra la planilla funcionando en vez de parecerse a un documento. La demo (mensaje, fila nueva, aviso) es la pieza central y cada sección muestra un objeto distinto (frase, lista de pegas con escenas, pasos con dos carriles, un eje horario del día, preguntas desplegables, formulario) en vez de repetir una lista con reglas. Rechaza la plantilla SaaS (degradados, sombras, íconos, números gigantes) y también el aire de CV (rótulo a la izquierda, texto a la derecha).
 
 Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo para numeración, sello EJEMPLO y errores; amarillo solo como destello de la fila nueva. El carácter viene de la escala, los radios de 10-12px y la planilla real, no de efectos.
 
 **Key Characteristics:**
-- Papel blanco, azul pálido y UNA banda azul noche; sin degradados, sombras ni blur.
+- Papel blanco, azul pálido y UNA banda azul noche; solo 3 cortes de color de arriba a abajo (tinte, blanco, noche, tinte); sin degradados, sombras ni blur.
 - Títulos arriba y a ancho completo; cada sección con una composición propia.
 - Archivo para todo el cuerpo y la UI; Bitter solo en frases grandes.
 - Radios 10px (campos, botones, burbujas) y 12px (tarjetas); las tablas siguen rectas.
@@ -129,7 +130,7 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 
 ### Neutral
 - **Papel** (#ffffff), **Tinta** (#16202e), **Tinta Secundaria** (#4a5363; 7.75:1 sobre blanco, 6.60:1 sobre azul pálido).
-- **Azul Pálido** (#e8edf7): bandas alternas (hero, Qué puedo, Conversemos), encabezado de tabla, burbuja, aviso, miniaturas. Tinta 13.97:1, azul 8.81:1.
+- **Azul Pálido** (#e8edf7): bandas (hero y el bloque final: preguntas, quién soy, Conversemos), carril "Tú haces", encabezado de tabla, burbuja, aviso, miniaturas. Tinta 13.97:1, azul 8.81:1.
 - **Línea de Campo** (#6b7484): borde de campos (1.5px; 4.71:1 sobre blanco) y de chips.
 - **Regla Suave** (#c5cbd3): borde 1px de tarjetas, filas de tablas, cabecera y pie (decorativo).
 - **Fondo de Error** (#fbe4e7): caja de fallo (rojo sobre él 5.78:1).
@@ -147,10 +148,10 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 **Cuerpo y UI:** Archivo variable (con Arial). **Frases grandes:** Bitter variable (con Georgia), solo en la frase del problema y la frase de cierre de Cómo trabajo.
 
 ### Hierarchy
-- **Display** (700, clamp 2.25-3.5rem, 1.05, ancho 87%): solo el h1, máx. 16ch.
-- **Headline** (700, clamp 2-3.25rem, 1.1, ancho 87%): h2 arriba y a ancho completo, máx. 22ch.
-- **Frase** (Bitter 700, clamp 2-3.25rem, 1.15): el h2 del problema, máx. 24ch. Frase chica: clamp 1.5-2rem.
-- **Title** (600, 1.25rem): h3 de tarjetas y pasos.
+- **Display** (700, clamp 2.5-4.25rem, 1.05, ancho 87%): solo el h1, máx. 16ch (68px a 1440).
+- **Headline** (700, clamp 1.875-2.5rem, 1.15, ancho 87%): h2 arriba y a ancho completo, máx. 22ch (40px a 1440). Queda por debajo de los nombres de pega (48px).
+- **Frase** (Bitter 700, clamp 2-3.25rem, 1.15): el h2 del problema, máx. 24ch; es la única pausa grande fuera del h1. Frase chica: clamp 1.5-2rem.
+- **Title** (600, 1.25rem): h3 de pasos y bloques. Texto de hitos del eje del caso: 1.25rem.
 - **Body** (400, 1.0625rem, 1.6) y **Lead** (clamp 1.1875-1.375rem).
 - **Label** (600, 0.875rem, mayúsculas, ancho 75%): solo dentro de la demo (rótulos de paso, EJEMPLO). Notas y ayudas: 0.9375rem en tinta secundaria.
 
@@ -165,11 +166,10 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 
 Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Sin retícula título-izquierda/texto-derecha. Composición por sección:
 - **Hero** (azul pálido): texto en columnas 1-5, demo en 6-12 (~690px a 1440) desde 1024px.
-- **Problema** (blanco): una frase grande y dos párrafos.
-- **Qué puedo dejar andando solo** (azul pálido): "Elige tu pega". Desde 1024px, lista de 4 nombres grandes en columnas 1-6 y panel con la hoja en 7-12; en móvil, lista arriba y panel debajo. Sin JS, los 4 paneles apilados.
-- **Cómo trabajo** (blanco): línea de tiempo de 4 hitos en fila desde 1024px; vertical con línea de 2px a la izquierda en móvil.
-- **Caso real** (azul noche): dos líneas de tiempo del mismo día, Antes y Ahora, con horas aproximadas.
-- **Conversemos** (azul pálido): promesas en columnas 1-5, formulario en tarjeta en 6-12.
+- **Problema + Qué puedo dejar andando solo** (blanco, sin corte entre ambos): la frase grande plantea y "Elige tu pega" responde. Desde 1024px, lista de 4 nombres grandes en columnas 1-6, con Pausar y el enlace de cierre justo bajo la lista, y panel con la hoja en 7-12; en móvil, lista, Pausar y panel apilados. Sin JS, los 4 paneles apilados. Bajo cada pega, "Cómo está armado / Con qué lo armaría" con herramientas reales.
+- **Cómo trabajo + Qué no hago** (blanco, separado solo por espacio): 4 pasos en fila desde 1024px, cada uno con dos carriles alineados por subgrid, "Yo hago" y "Tú haces" (este en recuadro azul pálido), y una lista de 4 límites con regla de 1px.
+- **Caso real** (azul noche): UN eje horario 08:00 a 20:00 con dos carriles, Antes (línea fina y vacía hasta las 17:30) y Ahora (pista blanca gruesa desde las 08:14 hasta las 18:00). Cada hito se ubica en `left: (hora - 8) / 12 * 100%` con una variable `--h`; los de la derecha se anclan por su borde derecho. Bajo 900px el eje se vuelve vertical con Antes y Ahora lado a lado.
+- **Preguntas, Quién soy y Conversemos** (azul pálido, una sola banda): cuatro `<details>` nativos, tres líneas en primera persona sin foto y el formulario en tarjeta (promesas en 1-5, tarjeta en 6-12).
 
 Padding vertical 48px (96px desde 1024px). Sin reglas entre secciones: cambian las superficies.
 
@@ -186,22 +186,23 @@ Radio 10px en botones, campos, burbuja, aviso, chips y miniaturas; 12px en tarje
 ### Buttons
 - **Primario:** azul de imprenta, texto blanco, 52px (56px el de enviar, ancho completo; 44px el de la cabecera "Conversemos"), radio 10px, Archivo 600. Hover profundo, active `translateY(1px)`.
 - **Texto:** azul subrayado, 44px ("Pausar/Reanudar", enlaces de cierre).
+- **Pregunta (details):** fila blanca de 56px con borde 1px y radio 10px; "+" azul a la derecha que pasa a "−" al abrir. Nativo: teclado y sin JS.
 - **Foco:** contorno 3px azul con 2px de separación en todo.
 
 ### Formulario (tarjeta blanca)
-Tarjeta blanca, borde 1px regla suave, radio 12px, padding 32px (20px móvil), sobre azul pálido. Orden: mensaje (textarea que crece sola con `field-sizing`, sin tirador), nombre y contacto en dos columnas desde 768px, botón "Enviar mensaje" a ancho completo y plazo de respuesta debajo. Etiquetas arriba (Archivo 600, 1rem, sin números), ayuda entre etiqueta y campo. Campos de 52px, borde 1.5px Línea de Campo, radio 10px, texto 1.0625rem. Hover: borde tinta. Foco: borde azul + contorno 3px. Inválido: borde rojo y mensaje "Falta:/Revisa:" debajo. Fallo: caja de error con correo de respaldo; el botón pasa a "Reintentar". Éxito: título personalizado y mini-planilla (Hora, Quién, Estado "Recibido") con la fila del propio mensaje y destello; valores insertados con `textContent`.
+Tarjeta blanca, borde 1px regla suave, radio 12px, padding 32px (20px móvil), sobre azul pálido. Orden: mensaje (textarea que crece sola con `field-sizing`, sin tirador), nombre y contacto en dos columnas desde 768px, botón "Enviar mensaje" a ancho completo, "Qué pasa después de enviar" en 3 pasos numerados en rojo y la línea "¿Prefieres correo?". El precio ("se cotiza aparte") va al final de las promesas. Etiquetas arriba (Archivo 600, 1rem, sin números), ayuda entre etiqueta y campo. Campos de 52px, borde 1.5px Línea de Campo, radio 10px, texto 1.0625rem. Hover: borde tinta. Foco: borde azul + contorno 3px. Inválido: borde rojo y mensaje "Falta:/Revisa:" debajo. Fallo: caja de error con correo de respaldo; el botón pasa a "Reintentar". Éxito: título personalizado y mini-planilla (Hora, Quién, Estado "Recibido") con la fila del propio mensaje y destello; valores insertados con `textContent`.
 
 ### Demo (hoja de la planilla)
 Figura blanca, radio 12px, con sello EJEMPLO. Tres pasos numerados en rojo unidos por un trazo fino: burbuja de mensaje (1.25rem), tabla de 5 filas con columna Estado, aviso. En bucle de tres mensajes (cada uno suma su fila con destello de 1s y al final aparece el aviso), con botón visible Pausar/Reanudar. Con `prefers-reduced-motion` o sin JS se ve el estado final completo y estático.
 
 ### Elige tu pega
-Lista de 4 pestañas verticales (Archivo 700, clamp 1.75-3rem) con número rojo y estado escrito debajo ("Ya funcionando en un cliente" en azul 600; "Lo puedo armar" en tinta secundaria). El nombre activo se estira de ancho 75% a 100% y pasa a tinta; debajo, barra azul de 3px. A la derecha, un panel `.hoja` con sello EJEMPLO, frase, escena hecha con los componentes de la demo (burbuja, tabla con fila nueva, tablero de pedidos, nivel de stock, boleta, aviso) y nota de honestidad. Los 4 paneles comparten celda: el alto no cambia al elegir. Solo Registros dice "Ya funcionando en un cliente".
+Lista de 4 pestañas verticales (Archivo 700, clamp 1.75-3rem) con número rojo y estado escrito debajo ("Ya funcionando en un cliente" en azul 600; "Lo puedo armar" en tinta secundaria). El nombre activo se estira de ancho 75% a 100% y pasa a tinta; debajo, barra azul de 3px. Se elige solo con clic o teclado (no con hover). A la derecha, un panel `.hoja` con sello EJEMPLO, frase, escena hecha con los componentes de la demo (burbuja, tabla con fila nueva, tablero de pedidos, nivel de stock, boleta, aviso) y nota de honestidad. Los 4 paneles comparten celda: el alto no cambia al elegir. Solo Registros dice "Ya funcionando en un cliente".
 
 ### Navigation
 Cabecera sticky con borde inferior 1px: nombre a la izquierda y botón pequeño "Conversemos". Pie de una línea: nombre, correo, Volver al inicio. Botón fijo volver arriba (48px, radio 10px).
 
 ### Movimiento
-La demo del hero en bucle (opacidad 250ms y destello 1s), el botón volver arriba y "Elige tu pega": cada escena se arma paso a paso con el mismo motor `bucle` del hero, da una sola vuelta (Registros, Pedidos, Avisos, Boletas) solo con la sección visible y luego queda quieta en Registros; cualquier interacción la corta. La barra de 3px marca el avance y la transición de `font-stretch` dura 300ms. Pausar/Reanudar visible; con `prefers-reduced-motion` cada panel muestra su estado final. No hay aparición por sección.
+La demo del hero en bucle (arranca desde el estado final y espera 5 s antes del primer ciclo; opacidad 250ms y destello 1s), el botón volver arriba (sin transición con `prefers-reduced-motion`) y "Elige tu pega": cada escena se arma paso a paso con el mismo motor `bucle` del hero, da una sola vuelta (Registros, Pedidos, Avisos, Boletas) solo con la sección visible y luego queda quieta en Registros; cualquier interacción la corta. La barra de 3px marca el avance y la transición de `font-stretch` dura 300ms. Pausar/Reanudar visible; con `prefers-reduced-motion` cada panel muestra su estado final. No hay aparición por sección.
 
 ## Do's and Don'ts
 
