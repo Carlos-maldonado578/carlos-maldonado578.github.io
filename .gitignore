@@ -12,3 +12,9 @@ design/sitio-carlos-maldonado.html
 
 # resultados de revision locales
 .impeccable/review/
+
+# tests e2e
+dist-test/
+dist-test-vacio/
+test-results/
+playwright-report/
