@@ -1,0 +1,357 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T21:59:23.808Z",
+  "title": "Design System: Carlos Maldonado · Automatización para pymes",
+  "extensions": {
+    "colorMeta": {
+      "papel": {
+        "role": "neutral",
+        "displayName": "Papel",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 270)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Tinta",
+        "canonical": "#16202e",
+        "oklch": "oklch(24.1% 0.018 246)",
+        "tonalRamp": [
+          "#060c12",
+          "#1e262d",
+          "#3b434b",
+          "#59626b",
+          "#7a848d",
+          "#9da6b0",
+          "#c0cbd4",
+          "#e5f0fa"
+        ]
+      },
+      "tinta-2": {
+        "role": "neutral",
+        "displayName": "Tinta Secundaria",
+        "canonical": "#4a5363",
+        "oklch": "oklch(44.1% 0.016 255)",
+        "tonalRamp": [
+          "#070b12",
+          "#20262d",
+          "#3c434b",
+          "#5b626a",
+          "#7c838c",
+          "#9fa6af",
+          "#c2cad4",
+          "#e8eff9"
+        ]
+      },
+      "azul-imprenta": {
+        "role": "primary",
+        "displayName": "Azul de Imprenta",
+        "canonical": "#1f3a8a",
+        "oklch": "oklch(37.9% 0.075 262)",
+        "tonalRamp": [
+          "#00062a",
+          "#102349",
+          "#2c416a",
+          "#4a618c",
+          "#6a83b0",
+          "#8ca6d5",
+          "#afcafb",
+          "#d4efff"
+        ]
+      },
+      "azul-imprenta-hover": {
+        "role": "primary",
+        "displayName": "Azul de Imprenta Profundo",
+        "canonical": "#152b66",
+        "oklch": "oklch(31.1% 0.059 261)",
+        "tonalRamp": [
+          "#010923",
+          "#142441",
+          "#304261",
+          "#4e6283",
+          "#6f83a6",
+          "#91a6cb",
+          "#b4caf0",
+          "#d9f0ff"
+        ]
+      },
+      "rojo-folio": {
+        "role": "secondary",
+        "displayName": "Rojo de Folio",
+        "canonical": "#b0172b",
+        "oklch": "oklch(48.7% 0.174 12)",
+        "tonalRamp": [
+          "#380000",
+          "#5f000b",
+          "#860027",
+          "#ad2145",
+          "#d54a65",
+          "#fe6f86",
+          "#ff94a9",
+          "#ffbace"
+        ]
+      },
+      "copia-amarilla": {
+        "role": "tertiary",
+        "displayName": "Copia Amarilla",
+        "canonical": "#fff6d5",
+        "oklch": "oklch(97.2% 0.024 98)",
+        "tonalRamp": [
+          "#0e0b02",
+          "#282518",
+          "#454234",
+          "#656252",
+          "#868373",
+          "#a9a695",
+          "#cdcab8",
+          "#f2efdd"
+        ]
+      },
+      "azul-palido": {
+        "role": "neutral",
+        "displayName": "Azul Pálido",
+        "canonical": "#e8edf7",
+        "oklch": "oklch(94.5% 0.008 259)",
+        "tonalRamp": [
+          "#090b0f",
+          "#232529",
+          "#3f4246",
+          "#5f6166",
+          "#7f8287",
+          "#a2a5aa",
+          "#c6c9ce",
+          "#ebeff4"
+        ]
+      },
+      "linea-campo": {
+        "role": "neutral",
+        "displayName": "Línea de Campo",
+        "canonical": "#6b7484",
+        "oklch": "oklch(55.7% 0.015 255)",
+        "tonalRamp": [
+          "#070b11",
+          "#20252c",
+          "#3d424a",
+          "#5c626a",
+          "#7c838b",
+          "#9fa6af",
+          "#c3cad3",
+          "#e8eff9"
+        ]
+      },
+      "regla-suave": {
+        "role": "neutral",
+        "displayName": "Regla Suave",
+        "canonical": "#c5cbd3",
+        "oklch": "oklch(84.0% 0.008 244)",
+        "tonalRamp": [
+          "#090c0e",
+          "#222529",
+          "#3f4246",
+          "#5e6265",
+          "#7f8387",
+          "#a1a6a9",
+          "#c5cace",
+          "#eaeff3"
+        ]
+      },
+      "error-fondo": {
+        "role": "neutral",
+        "displayName": "Fondo de Error",
+        "canonical": "#fbe4e7",
+        "oklch": "oklch(93.8% 0.025 4)",
+        "tonalRamp": [
+          "#14070a",
+          "#302023",
+          "#4e3d40",
+          "#6e5b5f",
+          "#907c80",
+          "#b49fa3",
+          "#d9c3c7",
+          "#ffe8ec"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Solo el h1 del hero, Archivo 87% de ancho."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "h2 de sección en la columna izquierda de la fila."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Frase fuerte al inicio de cada fila de lista."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido en Bitter, máx. 64ch."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Bajada y párrafo de apertura, máx. 52ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Rótulos de campo y de paso dentro de hoja y talonario."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "aparicion-demo",
+        "value": "opacity 250ms ease-out (filas 200ms, retardo 200/400ms)",
+        "purpose": "Demo armada por script; omitida con prefers-reduced-motion."
+      },
+      {
+        "name": "copia",
+        "value": "background-color #fff6d5 -> #fff, 1.5s ease-out",
+        "purpose": "Destello de la fila nueva en la demo."
+      },
+      {
+        "name": "scroll-suave",
+        "value": "scroll-behavior: smooth",
+        "purpose": "Solo con prefers-reduced-motion: no-preference."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Única acción sólida; azul de imprenta.",
+      "html": "<button class=\"ds-btn\">Conversemos</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:#1f3a8a;color:#fff;border:0;border-radius:2px;font:600 1.125rem Archivo,Arial,sans-serif;cursor:pointer}.ds-btn:hover{background:#152b66}.ds-btn:focus-visible{outline:3px solid #1f3a8a;outline-offset:2px}"
+    },
+    {
+      "name": "Botón de texto",
+      "kind": "button",
+      "refersTo": "button-text",
+      "description": "Acción secundaria como enlace subrayado.",
+      "html": "<button class=\"ds-btn-texto\">Ver de nuevo</button>",
+      "css": ".ds-btn-texto{background:none;border:0;min-height:44px;padding:0 8px;color:#1f3a8a;font:600 1rem Archivo,Arial,sans-serif;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;cursor:pointer}.ds-btn-texto:hover{color:#152b66;text-decoration-thickness:2px}.ds-btn-texto:focus-visible{outline:3px solid #1f3a8a;outline-offset:2px}"
+    },
+    {
+      "name": "Campo de talonario",
+      "kind": "input",
+      "refersTo": "input-campo",
+      "description": "Campo con línea de escribir inferior de 2px.",
+      "html": "<div class=\"ds-campo\"><label for=\"ds-n\"><span class=\"ds-n\">1</span>Nombre</label><input id=\"ds-n\" type=\"text\"></div>",
+      "css": ".ds-campo label{display:block;font:600 1rem/1.3 Archivo,Arial,sans-serif;margin-bottom:8px;color:#16202e}.ds-n{color:#b0172b;margin-right:8px}.ds-campo input{display:block;width:100%;min-height:48px;padding:12px;background:#fff;color:#16202e;font:400 1.125rem/1.4 Bitter,Georgia,serif;border:1px solid #6b7484;border-bottom:2px solid #16202e;border-radius:2px}.ds-campo input:focus{border-bottom-color:#1f3a8a;outline:3px solid #1f3a8a;outline-offset:2px}"
+    },
+    {
+      "name": "Cabecera",
+      "kind": "nav",
+      "refersTo": "button-text",
+      "description": "Cabecera con regla de 2px; nombre y un único destino.",
+      "html": "<header class=\"ds-cab\"><p class=\"ds-marca\">Carlos Maldonado</p><a class=\"ds-enl\" href=\"#\">Conversemos</a></header>",
+      "css": ".ds-cab{display:flex;justify-content:space-between;align-items:center;min-height:64px;padding:8px 20px;border-bottom:2px solid #16202e;background:#fff}.ds-marca{margin:0;font:700 1.125rem/1.3 Archivo,Arial,sans-serif;color:#16202e}.ds-enl{display:inline-flex;align-items:center;min-height:44px;font:600 1rem Archivo,Arial,sans-serif;color:#1f3a8a;text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}.ds-enl:hover{color:#152b66;text-decoration-thickness:2px}.ds-enl:focus-visible{outline:3px solid #1f3a8a;outline-offset:2px}"
+    },
+    {
+      "name": "Sello EJEMPLO",
+      "kind": "chip",
+      "refersTo": "hoja-registro",
+      "description": "Rótulo rojo con borde que marca contenido ilustrativo.",
+      "html": "<span class=\"ds-ej\">EJEMPLO</span>",
+      "css": ".ds-ej{display:inline-block;font:600 .875rem/1.3 Archivo,Arial,sans-serif;font-stretch:75%;letter-spacing:.06em;color:#b0172b;border:1px solid #b0172b;padding:2px 8px}"
+    },
+    {
+      "name": "Talonario de contacto",
+      "kind": "card",
+      "refersTo": "talonario",
+      "description": "Superficie de copia amarilla con borde superior perforado.",
+      "html": "<div class=\"ds-tal\"><div class=\"ds-tal-cab\"><span>Solicitud de contacto</span><span>Para: Carlos Maldonado</span></div><p class=\"ds-tal-p\">Nombre, contacto y mensaje se rellenan aquí.</p></div>",
+      "css": ".ds-tal{background:#fff6d5;border:1px solid #16202e;border-top:2px dashed #6b7484;padding:32px;max-width:570px;color:#16202e}.ds-tal-cab{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px;padding-bottom:12px;border-bottom:1px solid #16202e;margin-bottom:24px;font:600 .875rem/1.3 Archivo,Arial,sans-serif;font-stretch:75%;text-transform:uppercase;letter-spacing:.06em;color:#4a5363}.ds-tal-p{margin:0;font:400 1.125rem/1.6 Bitter,Georgia,serif}"
+    },
+    {
+      "name": "Hoja de registro",
+      "kind": "custom",
+      "refersTo": "hoja-registro",
+      "description": "Demo: tabla con fila nueva y aviso.",
+      "html": "<figure class=\"ds-hoja\"><table><thead><tr><th>Hora</th><th>Quién</th><th>Cajas</th></tr></thead><tbody><tr><td>08:03</td><td>Ana</td><td>110</td></tr><tr class=\"nueva\"><td>08:14</td><td>Juan</td><td>120</td></tr></tbody></table><p class=\"ds-aviso\">Aviso · 18:00: Total del día: <b>1.240 cajas</b></p></figure>",
+      "css": ".ds-hoja{margin:0;border:1px solid #16202e;padding:24px;background:#fff;font-family:Archivo,Arial,sans-serif;color:#16202e}.ds-hoja table{width:100%;border-collapse:collapse;font:500 .9375rem/1.4 Archivo,Arial,sans-serif;font-variant-numeric:tabular-nums}.ds-hoja th{background:#e8edf7;text-align:left;padding:8px;font-weight:600}.ds-hoja td{padding:8px;border-bottom:1px solid #c5cbd3}.ds-hoja th:last-child,.ds-hoja td:last-child{text-align:right}.ds-hoja .nueva td{background:#fff6d5}.ds-aviso{margin:16px 0 0;background:#e8edf7;border:1px solid #1f3a8a;padding:12px;font:400 1rem/1.4 Archivo,Arial,sans-serif}"
+    },
+    {
+      "name": "Sello RECIBIDO",
+      "kind": "custom",
+      "refersTo": "rounded.sello",
+      "description": "Único círculo del sistema; confirma el envío.",
+      "html": "<div class=\"ds-sello\">RECIBIDO</div>",
+      "css": ".ds-sello{width:96px;height:96px;border:3px solid #1f3a8a;border-radius:50%;display:grid;place-items:center;color:#1f3a8a;font:700 .875rem Archivo,Arial,sans-serif;font-stretch:75%;letter-spacing:.08em}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Talonario",
+    "overview": "La página es un formulario de despacho impreso que el visitante rellena: papel blanco, tinta de imprenta, reglas finas y una copia amarilla donde se escribe. El orden y la numeración hacen el trabajo que otras webs le dejan a los efectos. Rechaza la plantilla SaaS y el arreglo por defecto de la categoría (héroe oscuro, números gigantes, zigzag).\n\nEl sistema es plano y de alto contraste. Una sola tinta comprometida (azul de imprenta) para acción y foco, un solo acento caliente (rojo de folio) reservado a la numeración y a los errores. Las secciones se leen como filas de formulario: título a la izquierda, cuerpo a la derecha, separadas por una regla.",
+    "keyCharacteristics": [
+      "Papel blanco puro, texto en tinta azul-negra, sin degradados ni sombras.",
+      "Reglas (1px y 2px) en lugar de tarjetas y sombras para separar.",
+      "Grotesca de ancho variable para rótulos y títulos, serif robusta para texto corrido.",
+      "Números siempre tabulares; la numeración en rojo.",
+      "Esquinas casi rectas (2px); el único círculo es el sello RECIBIDO."
+    ],
+    "rules": [
+      {
+        "name": "The Una Tinta Rule",
+        "body": "El azul de imprenta es el único color de acción; el rojo solo numera y avisa error. Si un elemento nuevo necesita llamar la atención, usa regla o peso, no un tercer color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Folio Rule",
+        "body": "El rojo marca numeración (pasos 1-3 de la demo, lista \"Cómo trabajo\", números de campo del talonario). No se usa como decoración.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Todo número que se lee como dato (tabla, aviso, pasos, folio) usa `font-variant-numeric: tabular-nums`.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rótulo Rule",
+        "body": "El rótulo en mayúsculas es un rótulo de campo dentro de un contenedor de formulario (hoja, talonario, antes/ahora). No va suelto encima de un título.",
+        "section": "typography"
+      },
+      {
+        "name": "The Sin Sombra Rule",
+        "body": "Ningún `box-shadow`, degradado ni blur. Separar con regla o con cambio de superficie.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** separar con reglas (1px tinta, 2px en cabecera/pie, 1px suave entre filas) y con cambios de superficie.",
+      "**Do** reservar el azul (#1f3a8a) para acción, enlace y foco, y el rojo (#b0172b) para numeración y error.",
+      "**Do** usar Archivo para todo lo que se rellena o se rotula y Bitter para lo que se lee.",
+      "**Do** mantener objetivos de 44px o más y el contorno de foco de 3px azul.",
+      "**Do** rotular como ejemplo todo contenido ilustrativo (sello EJEMPLO) y respetar `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "**Don't** usar sombras, degradados, blur, íconos genéricos, fotos de stock ni emoji.",
+      "**Don't** redondear más de 2px, salvo el sello circular.",
+      "**Don't** usar el rojo como relleno, botón o decoración.",
+      "**Don't** poner un rótulo en mayúsculas suelto sobre un título como antetítulo.",
+      "**Don't** mostrar números sin cifras tabulares."
+    ]
+  }
+}
