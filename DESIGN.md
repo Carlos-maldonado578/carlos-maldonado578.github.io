@@ -157,6 +157,8 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 ### Named Rules
 **The Tabular Rule.** Todo número que se lee como dato usa cifras tabulares.
 
+**The Ancho Rule.** El eje `wdth` de Archivo marca el ítem activo: 75% inactivo, 100% activo. Se usa solo en la lista de "Elige tu pega"; no se simula con `transform: scaleX` ni se atenúa con `opacity` (el contraste se baja con color).
+
 **The Rótulo Rule.** Mayúsculas comprimidas solo dentro de la demo; en el resto, etiquetas y títulos en mayúscula normal.
 
 ## Layout
@@ -164,7 +166,7 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Sin retícula título-izquierda/texto-derecha. Composición por sección:
 - **Hero** (azul pálido): texto en columnas 1-5, demo en 6-12 (~690px a 1440) desde 1024px.
 - **Problema** (blanco): una frase grande y dos párrafos.
-- **Qué puedo dejar andando solo** (azul pálido): 4 tarjetas planas en 2x2 (1 columna en móvil).
+- **Qué puedo dejar andando solo** (azul pálido): "Elige tu pega". Desde 1024px, lista de 4 nombres grandes en columnas 1-6 y panel con la hoja en 7-12; en móvil, lista arriba y panel debajo. Sin JS, los 4 paneles apilados.
 - **Cómo trabajo** (blanco): línea de tiempo de 4 hitos en fila desde 1024px; vertical con línea de 2px a la izquierda en móvil.
 - **Caso real** (azul noche): dos líneas de tiempo del mismo día, Antes y Ahora, con horas aproximadas.
 - **Conversemos** (azul pálido): promesas en columnas 1-5, formulario en tarjeta en 6-12.
@@ -192,14 +194,14 @@ Tarjeta blanca, borde 1px regla suave, radio 12px, padding 32px (20px móvil), s
 ### Demo (hoja de la planilla)
 Figura blanca, radio 12px, con sello EJEMPLO. Tres pasos numerados en rojo unidos por un trazo fino: burbuja de mensaje (1.25rem), tabla de 5 filas con columna Estado, aviso. En bucle de tres mensajes (cada uno suma su fila con destello de 1s y al final aparece el aviso), con botón visible Pausar/Reanudar. Con `prefers-reduced-motion` o sin JS se ve el estado final completo y estático.
 
-### Tarjetas de "Qué puedo"
-Borde 1px, radio 12px, miniatura hecha con los componentes de la demo (fila, chips, aviso, línea de detalle; todas con EJEMPLO), marca de estado, nombre y frase. Solo Registros dice "Ya funcionando en un cliente"; las otras "Lo puedo armar".
+### Elige tu pega
+Lista de 4 pestañas verticales (Archivo 700, clamp 1.75-3rem) con número rojo y estado escrito debajo ("Ya funcionando en un cliente" en azul 600; "Lo puedo armar" en tinta secundaria). El nombre activo se estira de ancho 75% a 100% y pasa a tinta; debajo, barra azul de 3px. A la derecha, un panel `.hoja` con sello EJEMPLO, frase, escena hecha con los componentes de la demo (burbuja, tabla con fila nueva, tablero de pedidos, nivel de stock, boleta, aviso) y nota de honestidad. Los 4 paneles comparten celda: el alto no cambia al elegir. Solo Registros dice "Ya funcionando en un cliente".
 
 ### Navigation
 Cabecera sticky con borde inferior 1px: nombre a la izquierda y botón pequeño "Conversemos". Pie de una línea: nombre, correo, Volver al inicio. Botón fijo volver arriba (48px, radio 10px).
 
 ### Movimiento
-Solo la demo en bucle (opacidad 250ms y destello 1s) y el botón volver arriba. No hay aparición por sección.
+La demo del hero en bucle (opacidad 250ms y destello 1s), el botón volver arriba y "Elige tu pega": cada escena se arma paso a paso con el mismo motor `bucle` del hero, da una sola vuelta (Registros, Pedidos, Avisos, Boletas) solo con la sección visible y luego queda quieta en Registros; cualquier interacción la corta. La barra de 3px marca el avance y la transición de `font-stretch` dura 300ms. Pausar/Reanudar visible; con `prefers-reduced-motion` cada panel muestra su estado final. No hay aparición por sección.
 
 ## Do's and Don'ts
 

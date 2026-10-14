@@ -327,7 +327,7 @@
   ],
   "narrative": {
     "northStar": "La planilla que se llena sola",
-    "overview": "La página muestra la planilla funcionando en vez de parecerse a un documento. La demo es la pieza central y cada sección muestra un objeto distinto (frase, tarjetas con miniatura, línea de tiempo, dos días comparados, formulario). Rechaza la plantilla SaaS y el aire de CV.\n\nUna sola tinta comprometida (azul de imprenta) para acción; rojo solo para numeración, EJEMPLO y errores; amarillo solo como destello de la fila nueva.",
+    "overview": "La página muestra la planilla funcionando en vez de parecerse a un documento. La demo es la pieza central y cada sección muestra un objeto distinto (frase, lista de pegas con escenas, línea de tiempo, dos días comparados, formulario). Rechaza la plantilla SaaS y el aire de CV.\n\nUna sola tinta comprometida (azul de imprenta) para acción; rojo solo para numeración, EJEMPLO y errores; amarillo solo como destello de la fila nueva.",
     "keyCharacteristics": [
       "Papel blanco, azul pálido y una sola banda azul noche; sin degradados ni sombras.",
       "Títulos arriba y a ancho completo; una composición distinta por sección.",
@@ -355,6 +355,11 @@
         "name": "The Folio Rule",
         "body": "El rojo marca numeración (pasos de la demo, Cómo trabajo), el sello EJEMPLO y los errores. No es decoración.",
         "section": "colors"
+      },
+      {
+        "name": "The Ancho Rule",
+        "body": "El eje wdth de Archivo marca el ítem activo: 75% inactivo, 100% activo, solo en la lista de Elige tu pega. No se simula con scaleX ni se atenúa con opacity.",
+        "section": "typography"
       },
       {
         "name": "The Rótulo Rule",

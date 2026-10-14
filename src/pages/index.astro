@@ -122,49 +122,160 @@ const fuentes = `
       <section class="seccion banda-tinte" aria-labelledby="t-hago">
         <div class="contenedor">
           <h2 id="t-hago">Qué puedo dejar andando solo</h2>
-          {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia la marca de esa tarjeta a "Ya funcionando en un cliente" */}
+          {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia el estado y la nota de honestidad de esa pega */}
           <p class="lead">
             Tomo esa parte manual y la dejo andando sola, con herramientas que ya conoces: Telegram,
             planillas, correo.
           </p>
-          <ul class="piezas">
-            <li class="pieza">
-              <div class="mini" aria-hidden="true">
-                <span class="ejemplo">EJEMPLO</span>
-                <div class="mini-fila"><span>08:14</span><span>Juan</span><span>120</span></div>
-              </div>
-              <span class="sello-estado activo">Ya funcionando en un cliente</span>
-              <h3>Registros</h3>
-              <p>Tu equipo manda un mensaje corto por Telegram y los datos caen solos en una planilla.</p>
-            </li>
-            <li class="pieza">
-              <div class="mini" aria-hidden="true">
-                <span class="ejemplo">EJEMPLO</span>
-                <div class="chips"><span class="chip">pendiente</span><span class="chip">listo</span><span class="chip">despachado</span></div>
-              </div>
-              <span class="sello-estado">Lo puedo armar</span>
-              <h3>Pedidos</h3>
-              <p>Pedidos que entran por formulario o WhatsApp y quedan ordenados por estado.</p>
-            </li>
-            <li class="pieza">
-              <div class="mini" aria-hidden="true">
-                <span class="ejemplo">EJEMPLO</span>
-                <p class="aviso">Aviso: quedan pocas tapas</p>
-              </div>
-              <span class="sello-estado">Lo puedo armar</span>
-              <h3>Avisos</h3>
-              <p>Un aviso cuando algo se atrasa o el stock se está acabando.</p>
-            </li>
-            <li class="pieza">
-              <div class="mini" aria-hidden="true">
-                <span class="ejemplo">EJEMPLO</span>
-                <div class="mini-fila"><span>Boleta</span><span>3 cajas</span><span>$15.000</span></div>
-              </div>
-              <span class="sello-estado">Lo puedo armar</span>
-              <h3>Boletas y facturas</h3>
-              <p>Boletas y facturas que se emiten sin tipear dos veces los mismos datos.</p>
-            </li>
-          </ul>
+          <div class="pegas" id="pegas">
+            <p class="pegas-guia" hidden>Elige una pega y mira cómo quedaría andando.</p>
+            <div class="pegas-lista" hidden>
+              <button type="button" class="pega-tab" id="tab-registros" aria-controls="pega-registros">
+                <span class="num">1</span>
+                <span class="pega-nombre">Registros</span>
+                <span class="pega-estado activo">Ya funcionando en un cliente</span>
+                <span class="pega-barra" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="pega-tab" id="tab-pedidos" aria-controls="pega-pedidos">
+                <span class="num">2</span>
+                <span class="pega-nombre">Pedidos</span>
+                <span class="pega-estado">Lo puedo armar</span>
+                <span class="pega-barra" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="pega-tab" id="tab-avisos" aria-controls="pega-avisos">
+                <span class="num">3</span>
+                <span class="pega-nombre">Avisos</span>
+                <span class="pega-estado">Lo puedo armar</span>
+                <span class="pega-barra" aria-hidden="true"></span>
+              </button>
+              <button type="button" class="pega-tab" id="tab-boletas" aria-controls="pega-boletas">
+                <span class="num">4</span>
+                <span class="pega-nombre">Boletas y facturas</span>
+                <span class="pega-estado">Lo puedo armar</span>
+                <span class="pega-barra" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <div class="pegas-paneles">
+              <article class="pega hoja" id="pega-registros" aria-labelledby="tab-registros">
+                <div class="hoja-cab"><h3 class="rotulo">Registros</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-frase">Tu equipo manda un mensaje corto por Telegram y los datos caen solos en la planilla.</p>
+                <div class="pega-escena escena-registros">
+                  <div class="paso">
+                    <span class="rotulo"><span class="num">1</span> Llega el mensaje</span>
+                    <div class="m">
+                      <p class="meta">Telegram · Rosa · 16:05</p>
+                      <p class="mensaje on">Turno tarde: <b class="dato marcado">86</b> cajas, <b class="dato marcado">2</b> rechazadas</p>
+                    </div>
+                  </div>
+                  <div class="paso">
+                    <span class="rotulo"><span class="num">2</span> Cada dato a su columna</span>
+                    <table>
+                      <thead>
+                        <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Cajas</th><th scope="col">Rechazo</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>15:40</td><td>Pedro</td><td>92</td><td>1</td></tr>
+                        <tr><td>15:52</td><td>Ana</td><td>104</td><td>0</td></tr>
+                        <tr class="fila-nueva on"><td>16:05</td><td>Rosa</td><td>86</td><td>2</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="pega-resultado on">Anotado, sin que nadie tipee nada.</p>
+                </div>
+                <p class="pega-honesto">Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.</p>
+              </article>
+
+              <article class="pega hoja" id="pega-pedidos" aria-labelledby="tab-pedidos">
+                <div class="hoja-cab"><h3 class="rotulo">Pedidos</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-frase">Los pedidos que entran por formulario o WhatsApp quedan ordenados por estado, y tú ves en qué va cada uno.</p>
+                <div class="pega-escena escena-pedidos">
+                  <div class="tablero">
+                    <div class="carril">
+                      <p class="carril-t">Pendiente</p>
+                      <div class="carril-lista">
+                        <div class="pedido"><p>#215 · 8 bandejas</p><p class="nota">entró 09:20</p></div>
+                        <div class="pedido fantasma p214"><p>#214 · 12 bandejas</p><p class="nota">entró 09:12 por formulario</p></div>
+                      </div>
+                    </div>
+                    <div class="carril">
+                      <p class="carril-t">Listo</p>
+                      <div class="carril-lista">
+                        <div class="pedido"><p>#211 · 20 bandejas</p></div>
+                        <div class="pedido fantasma p214"><p>#214 · 12 bandejas</p><p class="nota">entró 09:12 por formulario</p></div>
+                      </div>
+                    </div>
+                    <div class="carril">
+                      <p class="carril-t">Despachado</p>
+                      <div class="carril-lista">
+                        <div class="pedido"><p>#209 · 6 bandejas</p></div>
+                        <div class="pedido"><p>#210 · 15 bandejas</p></div>
+                        <div class="pedido p214 on"><p>#214 · 12 bandejas</p><p class="nota">entró 09:12 por formulario</p></div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="aviso on">Aviso al cliente: "Tu pedido #214 va en camino."</p>
+                </div>
+                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
+              </article>
+
+              <article class="pega hoja" id="pega-avisos" aria-labelledby="tab-avisos">
+                <div class="hoja-cab"><h3 class="rotulo">Avisos</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-frase">Te llega un aviso cuando el stock se está acabando o algo se atrasa, antes de que sea tarde.</p>
+                <div class="pega-escena escena-avisos">
+                  <div class="paso">
+                    <span class="rotulo"><span class="num">1</span> Va bajando el stock</span>
+                    <div class="nivel"><span>Tapas 38 mm</span><span class="nivel-cifra">180</span></div>
+                    <div class="nivel-barra" style="--nivel: 180"><span class="nivel-relleno"></span><span class="nivel-min"></span></div>
+                    <p class="nota nivel-nota">mínimo 200</p>
+                  </div>
+                  <div class="paso">
+                    <span class="rotulo"><span class="num">2</span> Te llega el aviso</span>
+                    <p class="aviso on">Aviso · 11:20: Quedan <b>180</b> tapas de 38 mm. El mínimo que fijaste es 200.</p>
+                  </div>
+                </div>
+                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
+              </article>
+
+              <article class="pega hoja" id="pega-boletas" aria-labelledby="tab-boletas">
+                <div class="hoja-cab"><h3 class="rotulo">Boletas y facturas</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-frase">Los datos del pedido pasan solos a la boleta o factura, sin tipear dos veces lo mismo.</p>
+                <div class="pega-escena escena-boletas">
+                  <div class="paso">
+                    <span class="rotulo"><span class="num">1</span> Ya está en tu planilla</span>
+                    <table>
+                      <thead>
+                        <tr><th scope="col">Pedido</th><th scope="col">Cliente</th><th scope="col">Cant.</th><th scope="col">Precio</th></tr>
+                      </thead>
+                      <tbody>
+                        <tr><td>#214</td><td>Almacén Las Rosas</td><td>12</td><td>$3.500</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="paso">
+                    <span class="rotulo"><span class="num">2</span> Se arma la boleta</span>
+                    <div class="boleta">
+                      <dl>
+                        <div class="par"><dt>Cliente</dt><dd class="on">Almacén Las Rosas</dd></div>
+                        <div class="par"><dt>Detalle</dt><dd class="on">Bandejas</dd></div>
+                        <div class="par"><dt>Cantidad</dt><dd class="on">12</dd></div>
+                        <div class="par"><dt>Precio unitario</dt><dd class="on">$3.500</dd></div>
+                        <div class="par total"><dt>Total</dt><dd class="on">$42.000</dd></div>
+                      </dl>
+                    </div>
+                  </div>
+                  <p class="pega-resultado on">Lista para emitir. Tú la revisas y apruebas.</p>
+                </div>
+                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
+              </article>
+            </div>
+
+            <div class="hoja-pie pegas-pie">
+              <p class="nota">Ejemplos ilustrativos con datos inventados.</p>
+              <button type="button" class="btn-texto" id="pegas-pausa" hidden>Pausar</button>
+            </div>
+          </div>
+          <a class="enlace-texto pegas-cierre" href="#contacto">¿Tienes otra pega repetitiva? Cuéntamela.</a>
         </div>
       </section>
 
