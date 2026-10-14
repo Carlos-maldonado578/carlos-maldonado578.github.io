@@ -1,38 +1,68 @@
 const $ = (id) => document.getElementById(id);
 const t0 = Date.now();
+const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---- Demo: solo animacion de presentacion; el contenido final esta en el HTML ---- */
+/* ---- Demo: bucle de presentacion con pausa (WCAG 2.2.2); el estado final completo esta en el HTML ---- */
 const demo = $('demo');
-const repetir = $('demo-repetir');
-if (demo && !matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-  let timers = [];
-  const correr = () => {
-    timers.forEach(clearTimeout);
-    repetir.hidden = true;
-    demo.classList.remove('p1', 'p2', 'p3');
-    void demo.offsetWidth;
-    demo.classList.add('armada', 'p1');
-    timers = [
-      setTimeout(() => demo.classList.add('p2'), 800),
-      setTimeout(() => demo.classList.add('p3'), 2400),
-      setTimeout(() => (repetir.hidden = false), 3000),
-    ];
+const pausa = $('demo-pausa');
+if (demo && pausa && !reducido) {
+  const filas = demo.querySelectorAll('.fila-nueva');
+  const aviso = demo.querySelector('.aviso');
+  const msg = $('demo-msg');
+  const meta = $('demo-meta');
+  const mensajes = [
+    ['Telegram · Juan · 08:14', 'Producción: 120 cajas'],
+    ['Telegram · Marta · 08:31', 'Producción: 98 cajas'],
+    ['Telegram · Luis · 08:47', 'Producción: 134 cajas'],
+  ];
+  const mostrarMsg = (i) => {
+    meta.textContent = mensajes[i][0];
+    msg.textContent = mensajes[i][1];
+    msg.classList.remove('on');
+    void msg.offsetWidth;
+    msg.classList.add('on');
+  };
+  const fila = (i) => () => filas[i].classList.add('on');
+  // [espera antes del paso en ms, paso]
+  const pasos = [
+    [0, () => { filas.forEach((f) => f.classList.remove('on')); aviso.classList.remove('on'); mostrarMsg(0); }],
+    [1400, fila(0)],
+    [1500, () => mostrarMsg(1)],
+    [1400, fila(1)],
+    [1500, () => mostrarMsg(2)],
+    [1400, fila(2)],
+    [1500, () => aviso.classList.add('on')],
+    [6000, () => {}],
+  ];
+  let i = 0;
+  let timer;
+  const tick = () => {
+    pasos[i][1]();
+    i = (i + 1) % pasos.length;
+    timer = setTimeout(tick, pasos[i][0]);
   };
   demo.classList.add('armada');
-  const io = new IntersectionObserver((e) => {
-    if (e[0].isIntersecting) { io.disconnect(); correr(); }
-  }, { threshold: 0.5 });
-  io.observe(demo);
-  repetir.addEventListener('click', correr);
+  pausa.hidden = false;
+  tick();
+  pausa.addEventListener('click', () => {
+    if (timer) {
+      clearTimeout(timer);
+      timer = 0;
+      pausa.textContent = 'Reanudar';
+    } else {
+      pausa.textContent = 'Pausar';
+      timer = setTimeout(tick, pasos[i][0]);
+    }
+  });
 }
 
 /* ---- Formulario ---- */
 const URL_WEBHOOK = import.meta.env.PUBLIC_WEBHOOK_URL;
 const form = $('form');
 const campos = {
+  mensaje: $('f-mensaje'),
   nombre: $('f-nombre'),
   contacto: $('f-contacto'),
-  mensaje: $('f-mensaje'),
 };
 const boton = $('enviar');
 const fallo = $('fallo');
@@ -43,7 +73,7 @@ function validar(v) {
   if (!v.contacto) e.contacto = 'Falta un correo o teléfono para responderte.';
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.contacto) && v.contacto.replace(/\D/g, '').length < 8)
     e.contacto = 'Revisa el correo o teléfono: no parece completo.';
-  if (v.mensaje.length < 10) e.mensaje = 'Cuéntame un poco más (al menos una frase).';
+  if (v.mensaje.length < 10) e.mensaje = 'Falta contarme un poco más (al menos una frase).';
   return e;
 }
 
@@ -95,8 +125,11 @@ form.addEventListener('submit', async (ev) => {
     if (!r.ok) throw new Error('http ' + r.status);
     const d = new Date();
     const p = (n) => String(n).padStart(2, '0');
-    $('exito-fecha').textContent =
-      `Solicitud recibida el ${p(d.getDate())}-${p(d.getMonth() + 1)}-${d.getFullYear()} a las ${p(d.getHours())}:${p(d.getMinutes())}.`;
+    // solo textContent: nunca innerHTML con lo que escribe el visitante
+    $('x-nombre').textContent = v.nombre;
+    $('x-contacto').textContent = v.contacto;
+    $('x-quien').textContent = v.nombre;
+    $('x-hora').textContent = `${p(d.getHours())}:${p(d.getMinutes())}`;
     $('tal-form').hidden = true;
     $('exito').hidden = false;
     $('exito-t').focus();
@@ -110,33 +143,15 @@ form.addEventListener('submit', async (ev) => {
   }
 });
 
-/* ---- Dinamismo sutil: cabecera, volver arriba, reveal y pasos ---- */
-const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const cab = document.querySelector('.cabecera');
+/* ---- Cabecera y volver arriba ---- */
 const subir = document.querySelector('.subir');
-const acc = document.querySelector('.acciones');
 const movil = matchMedia('(max-width: 767px)');
 const alScroll = () => {
-  cab.classList.toggle('borde', scrollY > 8);
   // en movil el boton no tapa el boton de enviar (franja de 96px al pie)
-  const r = acc.getBoundingClientRect();
+  const r = boton.getBoundingClientRect();
   const tapa = movil.matches && r.bottom > innerHeight - 96 && r.top < innerHeight;
   subir.classList.toggle('visible', scrollY > innerHeight && !tapa);
 };
 addEventListener('scroll', alScroll, { passive: true });
 addEventListener('resize', alScroll);
 alScroll();
-
-if ('IntersectionObserver' in window && !reducido) {
-  const rv = new IntersectionObserver((es) => es.forEach((e) => {
-    if (e.isIntersecting) { e.target.classList.add('rv-in'); rv.unobserve(e.target); }
-  }), { rootMargin: '0px 0px -10% 0px' });
-  document.querySelectorAll('.seccion').forEach((s) => { s.classList.add('rv'); rv.observe(s); });
-
-  const pasos = document.querySelector('.pasos');
-  pasos.classList.add('armada');
-  const po = new IntersectionObserver((es) => es.forEach((e) => {
-    if (e.isIntersecting) { e.target.classList.add('activo'); po.unobserve(e.target); }
-  }), { rootMargin: '0px 0px -30% 0px' });
-  pasos.querySelectorAll('li').forEach((li) => po.observe(li));
-}
