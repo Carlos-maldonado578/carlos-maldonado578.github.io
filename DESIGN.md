@@ -106,7 +106,7 @@ components:
 
 **Creative North Star: "La planilla que se llena sola"**
 
-La página muestra la planilla funcionando en vez de parecerse a un documento. La demo (mensaje, fila nueva, aviso) es la pieza central y cada sección muestra un objeto distinto (frase, lista de pegas con escenas, pasos con dos carriles, un eje horario del día, preguntas desplegables, formulario) en vez de repetir una lista con reglas. Rechaza la plantilla SaaS (degradados, sombras, íconos, números gigantes) y también el aire de CV (rótulo a la izquierda, texto a la derecha).
+La página muestra la planilla funcionando en vez de parecerse a un documento. La demo (mensaje, fila nueva, aviso) es la pieza central y cada sección muestra un objeto distinto (frase, lista de pegas con escenas, pasos con dos carriles, un eje horario del día, preguntas desplegables, formulario) en vez de repetir una lista con reglas. Rechaza la plantilla SaaS (degradados, sombras, íconos genéricos de librería, números gigantes) y también el aire de CV (rótulo a la izquierda, texto a la derecha).
 
 Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo para numeración, sello EJEMPLO y errores; amarillo solo como destello de la fila nueva. El carácter viene de la escala, los radios de 10-12px y la planilla real, no de efectos.
 
@@ -114,6 +114,7 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 - Papel blanco, azul pálido y UNA banda azul noche; solo 3 cortes de color de arriba a abajo (tinte, blanco, noche, tinte); sin degradados, sombras ni blur.
 - Títulos arriba y a ancho completo; cada sección con una composición propia.
 - Archivo para todo el cuerpo y la UI; Bitter solo en frases grandes.
+- Íconos propios y sobrios: SVG en línea, trazo 1.75px, esquinas rectas, solo azul de imprenta, sin relleno ni círculo de fondo; solo en Cómo trabajo y Qué no hago.
 - Radios 10px (campos, botones, burbujas) y 12px (tarjetas); las tablas siguen rectas.
 - Números siempre tabulares; la numeración en rojo.
 
@@ -167,7 +168,7 @@ Una sola tinta comprometida (azul de imprenta) para acción y foco; rojo solo pa
 Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Sin retícula título-izquierda/texto-derecha. Composición por sección:
 - **Hero** (azul pálido): texto en columnas 1-5, demo en 6-12 (~690px a 1440) desde 1024px.
 - **Problema + Qué puedo dejar andando solo** (blanco, sin corte entre ambos): la frase grande plantea y "Elige tu pega" responde. Desde 1024px, lista de 4 nombres grandes en columnas 1-6, con Pausar y el enlace de cierre justo bajo la lista, y panel con la hoja en 7-12; en móvil, lista, Pausar y panel apilados. Sin JS, los 4 paneles apilados. Bajo cada pega, "Cómo está armado / Con qué lo armaría" con herramientas reales.
-- **Cómo trabajo + Qué no hago** (blanco, separado solo por espacio): 4 pasos en fila desde 1024px, cada uno con dos carriles alineados por subgrid, "Yo hago" y "Tú haces" (este en recuadro azul pálido), y una lista de 4 límites con regla de 1px.
+- **Cómo trabajo + Qué no hago** (blanco, separado solo por espacio): 4 pasos en fila desde 1024px, cada uno con dos carriles alineados por subgrid, "Yo hago" y "Tú haces" (este en recuadro azul pálido), y una lista de 4 límites con regla de 1px. El h3 "Qué no hago" sube a 700, 1.5-1.875rem, `font-stretch` 87%. Al final de Cómo trabajo hay un botón primario "Cuéntame qué te quita tiempo".
 - **Caso real** (azul noche): UN eje horario 08:00 a 20:00 con dos carriles, Antes (línea fina y vacía hasta las 17:30) y Ahora (pista blanca gruesa desde las 08:14 hasta las 18:00). Cada hito se ubica en `left: (hora - 8) / 12 * 100%` con una variable `--h`; los de la derecha se anclan por su borde derecho. Bajo 900px el eje se vuelve vertical con Antes y Ahora lado a lado.
 - **Preguntas, Quién soy y Conversemos** (azul pálido, una sola banda): cuatro `<details>` nativos, tres líneas en primera persona sin foto y el formulario en tarjeta (promesas en 1-5, tarjeta en 6-12).
 
@@ -185,12 +186,13 @@ Radio 10px en botones, campos, burbuja, aviso, chips y miniaturas; 12px en tarje
 
 ### Buttons
 - **Primario:** azul de imprenta, texto blanco, 52px (56px el de enviar, ancho completo; 44px el de la cabecera "Conversemos"), radio 10px, Archivo 600. Hover profundo, active `translateY(1px)`.
+- **Primario claro:** blanco con texto azul noche, solo sobre la banda noche (hover: texto de noche). Foco: contorno blanco.
 - **Texto:** azul subrayado, 44px ("Pausar/Reanudar", enlaces de cierre).
 - **Pregunta (details):** fila blanca de 56px con borde 1px y radio 10px; "+" azul a la derecha que pasa a "−" al abrir. Nativo: teclado y sin JS.
 - **Foco:** contorno 3px azul con 2px de separación en todo.
 
 ### Formulario (tarjeta blanca)
-Tarjeta blanca, borde 1px regla suave, radio 12px, padding 32px (20px móvil), sobre azul pálido. Orden: mensaje (textarea que crece sola con `field-sizing`, sin tirador), nombre y contacto en dos columnas desde 768px, botón "Enviar mensaje" a ancho completo, "Qué pasa después de enviar" en 3 pasos numerados en rojo y la línea "¿Prefieres correo?". El precio ("se cotiza aparte") va al final de las promesas. Etiquetas arriba (Archivo 600, 1rem, sin números), ayuda entre etiqueta y campo. Campos de 52px, borde 1.5px Línea de Campo, radio 10px, texto 1.0625rem. Hover: borde tinta. Foco: borde azul + contorno 3px. Inválido: borde rojo y mensaje "Falta:/Revisa:" debajo. Fallo: caja de error con correo de respaldo; el botón pasa a "Reintentar". Éxito: título personalizado y mini-planilla (Hora, Quién, Estado "Recibido") con la fila del propio mensaje y destello; valores insertados con `textContent`.
+En móvil (bajo 1024px) el orden es título, línea de prueba ("Mira el caso"), tarjeta y después las promesas. Tarjeta blanca, borde 1px regla suave, radio 12px, padding 32px (20px móvil), sobre azul pálido. Orden: mensaje (textarea que crece sola con `field-sizing`, sin tirador), nombre y contacto en dos columnas desde 768px, botón "Enviar mensaje" a ancho completo, "Qué pasa después de enviar" en 3 pasos numerados en rojo y la línea "¿Prefieres correo?". El precio ("se cotiza aparte") va al final de las promesas. Etiquetas arriba (Archivo 600, 1rem, sin números), ayuda entre etiqueta y campo. Campos de 52px, borde 1.5px Línea de Campo, radio 10px, texto 1.0625rem. Hover: borde tinta. Foco: borde azul + contorno 3px. Inválido: borde rojo y mensaje "Falta:/Revisa:" debajo. Fallo: caja de error con correo de respaldo; el botón pasa a "Reintentar". Éxito: título personalizado y mini-planilla (Hora, Quién, Estado "Recibido") con la fila del propio mensaje y destello; valores insertados con `textContent`.
 
 ### Demo (hoja de la planilla)
 Figura blanca, radio 12px, con sello EJEMPLO. Tres pasos numerados en rojo unidos por un trazo fino: burbuja de mensaje (1.25rem), tabla de 5 filas con columna Estado, aviso. En bucle de tres mensajes (cada uno suma su fila con destello de 1s y al final aparece el aviso), con botón visible Pausar/Reanudar. Con `prefers-reduced-motion` o sin JS se ve el estado final completo y estático.
@@ -198,8 +200,11 @@ Figura blanca, radio 12px, con sello EJEMPLO. Tres pasos numerados en rojo unido
 ### Elige tu pega
 Lista de 4 pestañas verticales (Archivo 700, clamp 1.75-3rem) con número rojo y estado escrito debajo ("Ya funcionando en un cliente" en azul 600; "Lo puedo armar" en tinta secundaria). El nombre activo se estira de ancho 75% a 100% y pasa a tinta; debajo, barra azul de 3px. Se elige solo con clic o teclado (no con hover). A la derecha, un panel `.hoja` con sello EJEMPLO, frase, escena hecha con los componentes de la demo (burbuja, tabla con fila nueva, tablero de pedidos, nivel de stock, boleta, aviso) y nota de honestidad. Los 4 paneles comparten celda: el alto no cambia al elegir. Solo Registros dice "Ya funcionando en un cliente".
 
+### Íconos
+SVG en línea de 28px (viewBox 24), `fill: none`, trazo 1.75px en azul de imprenta, `linecap` square y `linejoin` miter, `aria-hidden`. Dibujados a mano con la lógica de la planilla (globos, lista, tabla con fila nueva, hoja con check; caja, calendario, candado, cambio). En los pasos van arriba a la derecha, alineados con el número; en Qué no hago, a la izquierda del texto.
+
 ### Navigation
-Cabecera sticky con borde inferior 1px: nombre a la izquierda y botón pequeño "Conversemos". Pie de una línea: nombre, correo, Volver al inicio. Botón fijo volver arriba (48px, radio 10px).
+Cabecera sticky con borde inferior 1px: nombre a la izquierda y botón pequeño "Conversemos". Pie de una línea: nombre, correo, Volver al inicio. Botón fijo volver arriba (48px, radio 10px), oculto bajo 768px porque tapa texto.
 
 ### Movimiento
 La demo del hero en bucle (arranca desde el estado final y espera 5 s antes del primer ciclo; opacidad 250ms y destello 1s), el botón volver arriba (sin transición con `prefers-reduced-motion`) y "Elige tu pega": cada escena se arma paso a paso con el mismo motor `bucle` del hero, da una sola vuelta (Registros, Pedidos, Avisos, Boletas) solo con la sección visible y luego queda quieta en Registros; cualquier interacción la corta. La barra de 3px marca el avance y la transición de `font-stretch` dura 300ms. Pausar/Reanudar visible; con `prefers-reduced-motion` cada panel muestra su estado final. No hay aparición por sección.
@@ -210,10 +215,11 @@ La demo del hero en bucle (arranca desde el estado final y espera 5 s antes del 
 - **Do** dar a cada sección una composición propia y títulos arriba a ancho completo.
 - **Do** reservar azul para acción y foco, rojo para numeración, EJEMPLO y error.
 - **Do** rotular como EJEMPLO todo lo ilustrativo y no inventar cifras, logos ni clientes.
+- **Do** usar íconos solo si son propios, de trazo y en azul de imprenta.
 - **Do** mantener objetivos de 44px o más y contorno de foco de 3px; bordes de campo ≥3:1.
 
 ### Don't:
-- **Don't** usar sombras, degradados, blur, íconos genéricos, emoji ni glassmorphism.
+- **Don't** usar sombras, degradados, blur, íconos de librería o con círculo de fondo, emoji ni glassmorphism.
 - **Don't** volver a la retícula rótulo izquierda/texto derecha ni al papel calco (copia amarilla, sello RECIBIDO, etiquetas numeradas).
 - **Don't** usar rojo como relleno o acción, ni amarillo como superficie.
 - **Don't** mostrar números sin cifras tabulares.

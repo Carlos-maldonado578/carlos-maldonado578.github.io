@@ -51,9 +51,9 @@ const fuentes = `
               simples y sin que cambies cómo trabajas.
             </p>
             <div class="hero-cta">
-              <a class="btn" href="#contacto">Conversemos</a>
+              <a class="btn" href="#contacto">Cuéntame tu caso</a>
               {/* TODO(Carlos): confirmar que respondes en uno o dos días */}
-              <p class="nota">Te respondo en uno o dos días.</p>
+              <p class="nota">La primera conversación es sin costo. Te respondo en uno o dos días.</p>
             </div>
           </div>
 
@@ -188,7 +188,7 @@ const fuentes = `
                   </div>
                   <p class="pega-resultado on">Anotado, sin que nadie tipee nada.</p>
                 </div>
-                <p class="pega-arma"><b>Cómo está armado:</b> un bot de Telegram, n8n y una planilla de Google.</p>
+                <p class="pega-arma"><b>Cómo está armado:</b> un bot de Telegram, n8n (un programa que conecta tus apps) y una planilla de Google.</p>
                 <p class="pega-honesto">Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.</p>
               </article>
 
@@ -289,22 +289,22 @@ const fuentes = `
           <h2 id="t-trabajo">Cómo trabajo</h2>
           {/* TODO(Carlos): confirmar duraciones aproximadas (30 a 45 min, 10 min) y que la primera conversación puede ser por llamada o en el local del cliente */}
           <ol class="pasos">
-            <li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h12v8H8l-3 3v-3H3z"/><path d="M18 9h3v8h-2v3l-3-3h-5v-2"/></svg>
               <h3>Conversamos y miro tu proceso</h3>
               <div class="yo"><p class="lado">Yo hago</p><p>Te digo con honestidad si te sirve o no. Sin costo.</p></div>
               <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo lo hacen hoy (30 a 45 minutos, por llamada o en tu local).</p></div>
             </li>
-            <li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 5h4v4H3zM10 7h11M3 15h4M10 15h11M3 20h4M10 20h11"/><path d="m3.8 7 1 1 1.6-2"/></svg>
               <h3>Te propongo qué automatizar primero</h3>
               <div class="yo"><p class="lado">Yo hago</p><p>Parto por lo que más te molesta, no por lo más vistoso.</p></div>
               <div class="tu"><p class="lado">Tú haces</p><p>Me dices si esa es la parte que quieres probar primero.</p></div>
             </li>
-            <li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 4h18v16H3zM3 9h18M3 14h18M9 9v11"/><path d="M12 17h6" stroke-width="2.5"/></svg>
               <h3>Construyo esa primera parte</h3>
               <div class="yo"><p class="lado">Yo hago</p><p>La armo en tus propias cuentas.</p></div>
               <div class="tu"><p class="lado">Tú haces</p><p>Me prestas unos 10 minutos para probarla con tus datos reales.</p></div>
             </li>
-            <li>
+            <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 3h10l4 4v14H5z"/><path d="M15 3v4h4M8.5 14l2.5 2.5 4.5-5"/></svg>
               <h3>Queda funcionando</h3>
               <div class="yo"><p class="lado">Yo hago</p><p>Si quieres, sigo con las demás partes y con mantención mensual.</p></div>
               <div class="tu"><p class="lado">Tú haces</p><p>La usas, y me avisas si algo no calza.</p></div>
@@ -316,12 +316,13 @@ const fuentes = `
           <div class="no-hago">
             <h3>Qué no hago</h3>
             <ul>
-              <li>Vender software ni licencias.</li>
-              <li>Amarrarte a un plan mensual: la mantención es solo si tú la quieres.</li>
-              <li>Tocar tu contabilidad ni tus claves del banco.</li>
-              <li>Pedirte que cambies cómo trabajas.</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 7l8-4 8 4v10l-8 4-8-4zM4 7l8 4 8-4M12 11v10"/></svg>Vender software ni licencias.</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v15H4zM4 10h16M8 3v4M16 3v4M9 15h6"/></svg>Amarrarte a un plan mensual: la mantención es solo si tú la quieres.</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4M12 15v2"/></svg>Tocar tu contabilidad ni tus claves del banco.</li>
+              <li><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8h14l-3-3M20 16H6l3 3"/></svg>Pedirte que cambies cómo trabajas.</li>
             </ul>
           </div>
+          <p class="trabajo-cta"><a class="btn" href="#contacto">Cuéntame qué te quita tiempo</a></p>
         </div>
       </section>
 
@@ -359,7 +360,7 @@ const fuentes = `
           {/* TODO(Carlos): confirmar herramientas reales del caso (bot de Telegram, planilla de Google, n8n) */}
           <p class="armado">Lo que hubo que armar: un bot de Telegram y una planilla de Google, unidos con n8n.</p>
           <p class="aprox nota">Cliente anónimo. Las horas son aproximadas y los nombres, de ejemplo.</p>
-          <a class="enlace-texto" href="#contacto">¿Te suena? Cuéntame tu caso.</a>
+          <a class="btn btn-claro" href="#contacto">Cuéntame tu caso</a>
         </div>
       </section>
 
@@ -404,6 +405,7 @@ const fuentes = `
         <div class="contenedor contacto-grid">
           <div class="contacto-texto">
             <h2 id="t-contacto">Cuéntame qué te quita tiempo</h2>
+            <p class="prueba">Ya tengo funcionando el registro por Telegram a planilla en una pyme. <a href="#t-caso">Mira el caso</a>.</p>
             <ul class="promesas">
               <li><strong>Empiezo por lo que te duele hoy.</strong><p>No te armo un sistema gigante que no pediste.</p></li>
               <li><strong>Lo dejo simple.</strong><p>Si no lo puedes usar sin mí, algo hice mal.</p></li>

@@ -16,7 +16,8 @@ Registros que se llenan solos, avisos que llegan sin que los pidas, datos que de
 de vivir en cuadernos y grupos de WhatsApp. Con herramientas simples y sin que
 cambies cómo trabajas.
 
-[Conversemos →]  *(baja al formulario)*
+[Cuéntame tu caso →]  *(baja al formulario)*
+La primera conversación es sin costo. Te respondo en uno o dos días.
 
 ---
 
@@ -40,7 +41,7 @@ Tomo esa parte manual y la dejo andando sola. Algunos ejemplos de lo que he arma
 - Avisos automáticos cuando algo se atrasa o el stock se está acabando.
 - Boletas y facturas que se emiten sin volver a tipear los mismos datos.
 
-Trabajo con n8n y con las herramientas que ya conoces —Telegram, planillas, correo—.
+Trabajo con n8n (un programa que conecta tus apps) y con las herramientas que ya conoces —Telegram, planillas, correo—.
 Nada de sistemas nuevos que aprender.
 
 ---
