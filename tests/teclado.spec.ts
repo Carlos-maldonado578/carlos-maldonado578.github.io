@@ -48,7 +48,7 @@ test.describe('Teclado', () => {
         .map((e) => e.tagName + (e.id ? '#' + e.id : '') + '.' + e.className), visitados);
     expect(faltan, 'interactivos que el Tab no alcanzo').toEqual([]);
     expect(sinOutline, 'elementos sin outline visible al enfocar').toEqual([]);
-    expect(visitados.length).toBeGreaterThanOrEqual(10);
+    expect(visitados.length).toBeGreaterThanOrEqual(8);
   });
 
   test('el honeypot esta fuera de pantalla y fuera del orden de tab', async ({ page }) => {

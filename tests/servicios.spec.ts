@@ -1,59 +1,70 @@
 import { test, expect } from '@playwright/test';
 import { abrir } from './comun';
 
-test.describe('Servicios y orden de la pagina', () => {
-  test('tres filas sin demos, cada una "Lo construyo para ti", y el caso va antes', async ({ page }) => {
+test.describe('Estructura y texto de la pagina', () => {
+  test('secciones en orden; servicios son tres filas sin demos, sin numeros ni estado', async ({ page }) => {
     await abrir(page);
-    await expect(page.locator('#t-hago')).toHaveText('Lo mismo, para tus pedidos, avisos y boletas');
+    const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
+    expect(ids).toEqual(['t-hero', 't-caso', 't-hago', 't-trabajo', 't-quien', 't-faq', 't-contacto']);
+    await expect(page.locator('#t-hago')).toHaveText('También para');
+    await expect(page.locator('.servicios .lead')).toHaveText('Lo construyo a la medida de tu pyme.');
     const filas = page.locator('.sv-fila');
     await expect(filas).toHaveCount(3);
-    expect(await filas.locator('h3').allTextContents()).toEqual(['Pedidos', 'Avisos', 'Boletas y facturas']);
-    for (const e of await filas.locator('.sv-estado').allTextContents()) expect(e).toBe('Lo construyo para ti');
-    await expect(page.locator('.servicios')).not.toContainText('Aún no los tengo andando');
-    await expect(page.locator('.servicios')).toContainText('SII');
-    await expect(page.locator('.servicios table, .hoja, .pega')).toHaveCount(0);
-    const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
-    expect(ids).toEqual(['t-hero', 't-problema', 't-caso', 't-hago', 't-trabajo', 't-quien', 't-faq', 't-contacto']);
+    await expect(filas.locator('h3')).toHaveText(['Pedidos', 'Stock', 'Boletas']);
+    await expect(filas.nth(2)).toContainText('Tú lo emites en el SII.');
+    await expect(page.locator('.servicios')).not.toContainText('Lo construyo para ti');
+    await expect(page.locator('.servicios table, .servicios .num')).toHaveCount(0);
   });
 
-  test('caso real: chip de cliente real, n8n traducido y fondo claro', async ({ page }) => {
+  test('problema y caso son una sola seccion: titulo, chip, linea de tiempo y un boton', async ({ page }) => {
     await abrir(page);
+    await expect(page.locator('#t-caso')).toHaveText('Hoy se anota a mano. Podría anotarse solo.');
     await expect(page.locator('.chip-real')).toHaveText('Cliente real, datos anonimizados');
-    await expect(page.locator('.caso-arma')).toContainText('n8n, un programa que las conecta');
-    const bg = await page.locator('.banda-caso').evaluate((e) => getComputedStyle(e).backgroundColor);
-    expect(bg).toBe('rgb(227, 234, 208)');
+    await expect(page.locator('.caso-sec .btn')).toHaveText('Cuéntame tu caso');
+    await expect(page.locator('#t-problema')).toHaveCount(0);
+    expect(await page.locator('body').textContent()).not.toMatch(/n8n/i);
   });
 
-  test('texto aprobado: sin Tres principios, mensualidad en el paso 4, quien soy sin caja', async ({ page }) => {
+  test('textos aprobados: quien soy, FAQ y contacto', async ({ page }) => {
     await abrir(page);
-    await expect(page.locator('.principios')).toHaveCount(0);
-    await expect(page.locator('.pasos > li').nth(2)).toContainText('apruebas lo importante, como las boletas');
-    await expect(page.locator('.pasos > li').nth(3)).toContainText('servicio en internet que yo mantengo');
-    await expect(page.locator('.pasos > li').nth(3)).toContainText('mensualidad cuyo valor conoces antes de empezar');
-    await expect(page.locator('.quien')).toContainText('bancos y empresas de pagos');
-    await expect(page.locator('.quien')).toContainText('Trabajo solo, sin agencia: hablas directo conmigo');
-    await expect(page.locator('.quien .datos')).toHaveCount(0);
     expect(await page.locator('.quien').textContent()).not.toMatch(/fintech/i);
-    await expect(page.locator('.faq')).toContainText('Un pago por armar el proyecto y una mensualidad por mantenerlo andando');
+    await expect(page.locator('.faq > div h3')).toHaveText(['¿Necesito saber de computación?', '¿Cuánto cuesta?', '¿Y si algo falla?', '¿De quién son los datos?', '¿Sirve si uso Excel o WhatsApp?']);
+    await expect(page.locator('.faq > div').nth(1)).toContainText('Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.');
+    await expect(page.locator('#t-contacto')).toHaveText('Cuéntame qué te quita tiempo');
+    await expect(page.locator('.contacto-texto .lead')).toHaveText('Dos líneas bastan. Te respondo en 1 día hábil.');
+    await expect(page.locator('.nota-datos')).toHaveText('Uso tus datos solo para responderte.');
+    await expect(page.locator('.promesas')).toHaveCount(0);
   });
 
-  test('hero: Formulario en la ilustracion, WhatsApp solo en el Problema', async ({ page }) => {
+  test('hero: Formulario en la ilustracion; WhatsApp solo aparece en el FAQ', async ({ page }) => {
     await abrir(page);
     const nombres = await page.locator('.hero-ilus .ilus:visible text').allTextContents();
     expect(nombres).toEqual(['Telegram', 'Formulario', 'Correo', 'Planilla de Google', 'Resumen', 'Aviso']);
-    await expect(page.locator('#t-problema ~ .lead')).toContainText('WhatsApp');
     expect(await page.locator('.hero').textContent()).not.toMatch(/WhatsApp/);
+    await expect(page.locator('.faq')).toContainText('WhatsApp');
   });
-});
 
-test.describe('Separacion entre secciones y pie', () => {
-  test('una sola regla: linea de 1px entre secciones; el pie no repite Volver al inicio', async ({ page }) => {
-    await abrir(page);
-    const reglas = await page.locator('main > section').evaluateAll((s) => s.map((e, i) => i === 0 ? null : getComputedStyle(e).borderTopWidth + ' ' + getComputedStyle(e).borderTopStyle));
-    expect(reglas.slice(1).every((r) => r === '1px solid')).toBe(true);
-    await expect(page.locator('footer')).not.toContainText('Volver al inicio');
-    await expect(page.locator('.subir')).toHaveCount(1);
-    await expect(page.locator('footer .pie-nombre')).toHaveText('Carlos Maldonado');
-    await expect(page.locator('footer a')).toHaveAttribute('href', /^mailto:carlos\.automatiza\.tupyme@gmail\.com/);
+  test.describe('Separacion entre secciones y pie', () => {
+    test('una sola regla: linea de 1px entre secciones; contacto y pie en crema; un solo volver arriba', async ({ page }) => {
+      await abrir(page);
+      const reglas = await page.locator('main > section').evaluateAll((s) => s.map((e, i) => (i === 0 ? null : getComputedStyle(e).borderTopWidth + ' ' + getComputedStyle(e).borderTopStyle)));
+      expect(reglas.slice(1).every((r) => r === '1px solid')).toBe(true);
+      const bg = await page.evaluate(() => ['#contacto', 'footer'].map((q) => getComputedStyle(document.querySelector(q)!).backgroundColor));
+      expect(bg[0]).toBe('rgba(0, 0, 0, 0)');
+      expect(bg[1]).toBe('rgb(244, 238, 220)');
+      expect(await page.evaluate(() => getComputedStyle(document.querySelector('footer')!).borderTopWidth)).toBe('1px');
+      await expect(page.locator('footer')).not.toContainText('Volver al inicio');
+      await expect(page.locator('.subir')).toHaveCount(1);
+      await expect(page.locator('footer .pie-nombre')).toHaveText('Carlos Maldonado');
+    });
+
+    test('la cabecera oculta su boton sobre el hero y sobre el formulario', async ({ page }) => {
+      await abrir(page);
+      await expect(page.locator('.cabecera .btn')).toBeHidden();
+      await page.locator('#caso-eje').scrollIntoViewIfNeeded();
+      await expect(page.locator('.cabecera .btn')).toBeVisible();
+      await page.locator('#contacto').evaluate((e) => e.scrollIntoView());
+      await expect(page.locator('.cabecera .btn')).toBeHidden();
+    });
   });
 });

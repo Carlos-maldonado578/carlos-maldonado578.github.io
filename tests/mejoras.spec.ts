@@ -13,11 +13,12 @@ test.describe('Segunda ronda de mejoras', () => {
     expect(await page.locator('.faq').textContent()).not.toMatch(/\$|CLP|UF/);
   });
 
-  test('Quien soy: primera persona, sin foto; contacto dice como es la primera conversacion', async ({ page }) => {
+  test('Quien soy: primera persona, sin foto, en dos frases', async ({ page }) => {
     await abrir(page);
-    await expect(page.locator('.quien')).toContainText('Llevo 5 años como desarrollador');
-    await expect(page.locator('.quien')).toContainText('Santiago');
-    await expect(page.locator('.promesas')).toContainText('llamada o videollamada');
+    const q = page.locator('.quien');
+    await expect(q).toContainText('desarrollador en Santiago');
+    await expect(q).toContainText('5 años en sistemas de bancos y empresas de pagos');
+    await expect(q).toContainText('Trabajo solo: hablas directo conmigo');
     await expect(page.locator('img')).toHaveCount(0);
   });
 
@@ -95,34 +96,41 @@ test.describe('Segunda ronda de mejoras', () => {
     });
     expect(r.apilado).toBe(true);
     expect(r.sinScroll).toBe(true);
-    expect(r.anchoTexto).toBeGreaterThan(r.anchoPagina * 0.6);
+    expect(r.anchoTexto).toBeGreaterThan(r.anchoPagina * 0.5);
     await expect(page.locator('.reloj')).toBeHidden();
   });
 
-  test('Exito: dice que pasa ahora; el contacto aclara que la primera conversacion no tiene costo', async ({ page }) => {
+  test('Exito: confirma, dice cuando y como sigue; el sitio dice "sin costo" en el paso 1', async ({ page }) => {
     await page.route('**/__webhook', (r) => r.fulfill({ status: 200, body: 'ok' }));
     await abrir(page);
+    await expect(page.locator('.pasos > li').first()).toContainText('Sin costo.');
     await llenar(page);
     await page.locator('#enviar').click();
     await expect(page.locator('#exito')).toBeVisible();
+    await expect(page.locator('#exito-t')).toHaveText('Listo, Ana Prueba. Recibí tu mensaje.');
     await expect(page.locator('.exito-sigue')).toContainText('llamada o videollamada');
-    await expect(page.locator('.promesas')).toContainText('sin costo');
+    await expect(page.locator('.exito-sigue a')).toHaveAttribute('href', /^mailto:/);
   });
 
-  test('Como trabajo: 4 pasos con titulo y una frase; Que no hago tiene 3 limites', async ({ page }) => {
+  test('Como trabajo: 4 pasos con numero, titulo y una linea; Que no hago tiene 3 limites', async ({ page }) => {
     await abrir(page);
     await expect(page.locator('.pasos > li')).toHaveCount(4);
-    await expect(page.locator('.pasos h3')).toHaveText(['Conversamos', 'Definimos por dónde partir', 'Construyo la primera parte', 'Queda funcionando']);
+    await expect(page.locator('.pasos h3')).toHaveText(['Conversamos', 'Elegimos qué automatizar', 'Lo construyo', 'Queda andando']);
     await expect(page.locator('.pasos p')).toHaveCount(4);
-    await expect(page.locator('.pasos .lado')).toHaveCount(0);
-    await expect(page.locator('.no-hago li')).toHaveCount(3);
+    await expect(page.locator('.pasos p').nth(3)).toHaveText('Yo lo mantengo, por una mensualidad que conoces antes de empezar.');
+    await expect(page.locator('.trabajo-cierre')).toHaveCount(0);
+    await expect(page.locator('.no-hago li')).toHaveText(['No vendo software ni licencias.', 'No te pido las claves de tu banco.', 'No uso sistemas que te dejen sin acceso a tus datos.']);
   });
 
-  test('bandas de fondo: 4 cortes de color (hero, noche, contacto)', async ({ page }) => {
+  test('fondos: solo el hero tiene tono propio; el caso es una tarjeta salvia contenida', async ({ page }) => {
     await abrir(page);
     const fondos = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => getComputedStyle(s).backgroundColor));
     const cortes = fondos.filter((c, i) => i > 0 && c !== fondos[i - 1]).length;
-    expect(cortes, fondos.join(' | ')).toBe(4);
+    expect(cortes, fondos.join(' | ')).toBe(1);
+    const c = await page.locator('.banda-caso').evaluate((e) => ({ bg: getComputedStyle(e).backgroundColor, r: getComputedStyle(e).borderTopLeftRadius, w: e.getBoundingClientRect().width, W: innerWidth }));
+    expect(c.bg).toBe('rgb(227, 234, 208)');
+    expect(c.r).toBe('8px');
+    expect(c.w).toBeLessThan(c.W);
   });
 
   test('hero: ilustracion con 6 cajas con nombre, sin n8n; "Mira cómo funciona" visible', async ({ page }) => {
@@ -150,6 +158,8 @@ test.describe('Segunda ronda de mejoras', () => {
       const t = await page.locator('.subir').evaluate((e) => getComputedStyle(e).transitionDuration);
       expect(t.split(',').every((x) => parseFloat(x) === 0), t).toBe(true);
       await page.evaluate(() => scrollTo(0, innerHeight * 1.5));
+      await page.waitForTimeout(100);
+      await page.evaluate(() => scrollTo(0, innerHeight * 1.2));
       await expect(page.locator('.subir')).toHaveClass(/visible/);
       const anim = await page.evaluate(() => document.getAnimations().filter((a) => (a.effect as KeyframeEffect)?.target?.classList?.contains('subir')).length);
       expect(anim).toBe(0);

@@ -155,10 +155,11 @@ form.addEventListener('submit', async (ev) => {
     // solo textContent: nunca innerHTML con lo que escribe el visitante
     $('x-nombre').textContent = v.nombre;
     $('x-contacto').textContent = v.contacto;
-    $('x-quien').textContent = v.nombre;
     $('x-hora').textContent = `${p(d.getHours())}:${p(d.getMinutes())}`;
     $('tal-form').hidden = true;
     $('exito').hidden = false;
+    document.getElementById('contacto').classList.add('enviado');
+    document.querySelector('.cabecera').classList.add('cta-envio');
     $('exito-t').focus();
   } catch {
     fallo.hidden = false;
@@ -170,21 +171,30 @@ form.addEventListener('submit', async (ev) => {
   }
 });
 
-/* ---- Cabecera: el boton aparece cuando el CTA del hero sale de pantalla ---- */
+/* ---- Cabecera: el boton aparece solo cuando ni el CTA del hero ni el formulario estan en pantalla ---- */
 const cabecera = document.querySelector('.cabecera');
-const ctaHero = document.querySelector('.hero-cta .btn');
-if (cabecera && ctaHero) {
-  new IntersectionObserver(([e]) => cabecera.classList.toggle('cta-oculto', e.isIntersecting)).observe(ctaHero);
+if (cabecera) {
+  const sobre = new Set();
+  const io = new IntersectionObserver((es) => {
+    es.forEach((e) => (e.isIntersecting ? sobre.add(e.target) : sobre.delete(e.target)));
+    cabecera.classList.toggle('cta-oculto', sobre.size > 0);
+  });
+  [document.querySelector('.hero-cta .btn'), document.getElementById('contacto')].forEach((el) => el && io.observe(el));
 }
 
 /* ---- Cabecera y volver arriba ---- */
 const subir = document.querySelector('.subir');
 const movil = matchMedia('(max-width: 767px)');
+let sube = false; // el boton aparece al subir, no mientras se baja leyendo
+let ultimo = scrollY;
 const alScroll = () => {
+  const dy = scrollY - ultimo;
+  if (Math.abs(dy) > 4) sube = dy < 0;
+  ultimo = scrollY;
   // en movil el boton no tapa el boton de enviar (franja de 96px al pie)
   const r = boton.getBoundingClientRect();
   const tapa = movil.matches && r.bottom > innerHeight - 96 && r.top < innerHeight;
-  subir.classList.toggle('visible', scrollY > innerHeight && !tapa);
+  subir.classList.toggle('visible', scrollY > innerHeight && sube && !tapa);
 };
 addEventListener('scroll', alScroll, { passive: true });
 addEventListener('resize', alScroll);

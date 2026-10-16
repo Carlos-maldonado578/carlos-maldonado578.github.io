@@ -10,6 +10,9 @@ test.describe('Boton volver arriba', () => {
     await page.evaluate(() => scrollTo(0, innerHeight * 0.5));
     await expect(subir).not.toHaveClass(/visible/);
     await page.evaluate(() => scrollTo(0, innerHeight * 1.5));
+    await page.waitForTimeout(100);
+    await expect(subir).not.toHaveClass(/visible/); // mientras se baja leyendo no aparece
+    await page.evaluate(() => scrollTo(0, innerHeight * 1.2)); // al subir, si
     await expect(subir).toHaveClass(/visible/);
     await expect(subir).toBeVisible();
     const b = (await subir.boundingBox())!;

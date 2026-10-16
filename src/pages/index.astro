@@ -68,18 +68,10 @@ const fuentes = `
           </div>
         </div>
       </section>
-      <section class="seccion problema" aria-labelledby="t-problema">
+      <section class="seccion caso-sec" aria-labelledby="t-caso">
         <div class="contenedor">
-          <h2 class="frase" id="t-problema">Hay una tarea que en tu pyme se hace a mano todos los días.</h2>
-          <p class="lead">
-            Anotar la producción en una hoja, pasar pedidos del WhatsApp a una planilla, revisar qué
-            falta despachar.
-          </p>
-        </div>
-      </section>
-      <section class="seccion banda-caso" aria-labelledby="t-caso">
-        <div class="contenedor">
-          <h2 id="t-caso">Un caso real: el mismo día, antes y ahora</h2>
+          <div class="banda-caso">
+          <h2 id="t-caso">Hoy se anota a mano. Podría anotarse solo.</h2>
           <p class="chip-real">Cliente real, datos anonimizados</p>
           {/* TODO(Carlos): agregar un dato real del caso (cuántas personas registran y cuánto tomaba juntar las hojas): un <li> dentro de .caso-datos; la lista se muestra sola cuando tiene contenido */}
           <ul class="caso-datos"></ul>
@@ -113,20 +105,20 @@ const fuentes = `
               </ol>
             </div>
           </div>
-          <p class="caso-arma">Armado con un bot de Telegram, una planilla de Google y n8n, un programa que las conecta.</p>
           <div class="caso-ctl"><button type="button" class="btn-icono" id="caso-pausa" aria-label="Pausar" title="Pausar" hidden></button></div>
           <a class="btn" href="#contacto">Cuéntame tu caso</a>
+          </div>
         </div>
       </section>
       <section class="seccion servicios" aria-labelledby="t-hago">
         <div class="contenedor">
-          <h2 id="t-hago">Lo mismo, para tus pedidos, avisos y boletas</h2>
-          <ol class="sv-filas">
-            <li class="sv-fila"><span class="num">01</span><div><h3>Pedidos</h3><p>Entra el pedido. Ves en qué va cada uno.</p></div><span class="sv-estado">Lo construyo para ti</span></li>
-            <li class="sv-fila"><span class="num">02</span><div><h3>Avisos</h3><p>Baja el stock. Te avisan antes de quedarte sin.</p></div><span class="sv-estado">Lo construyo para ti</span></li>
-            <li class="sv-fila"><span class="num">03</span><div><h3>Boletas y facturas</h3><p>Está en tu planilla. El borrador se arma solo; tú lo revisas y lo emites en el SII.</p></div><span class="sv-estado">Lo construyo para ti</span></li>
-          </ol>
-          <a class="btn sv-cta" href="#contacto">Cuéntame tu caso</a>
+          <h2 id="t-hago">También para</h2>
+          <p class="lead">Lo construyo a la medida de tu pyme.</p>
+          <ul class="sv-filas">
+            <li class="sv-fila"><h3>Pedidos</h3><p>Ves en qué va cada uno.</p></li>
+            <li class="sv-fila"><h3>Stock</h3><p>Te avisa antes de quedarte sin.</p></li>
+            <li class="sv-fila"><h3>Boletas</h3><p>El borrador se arma solo. Tú lo emites en el SII.</p></li>
+          </ul>
         </div>
       </section>
       <section class="seccion trabajo" aria-labelledby="t-trabajo">
@@ -135,28 +127,27 @@ const fuentes = `
           <ol class="pasos">
             <li>
               <h3>Conversamos</h3>
-              <p>Me cuentas cómo trabajas hoy y te digo con honestidad si esto te sirve.</p>
+              <p>Sin costo.</p>
             </li>
             <li>
-              <h3>Definimos por dónde partir</h3>
-              <p>Te propongo empezar por lo que más tiempo te quita, y tú decides si lo probamos.</p>
+              <h3>Elegimos qué automatizar</h3>
+              <p>Partimos por lo que más tiempo te quita.</p>
             </li>
             <li>
-              <h3>Construyo la primera parte</h3>
-              <p>La armo y la pruebas con tus datos reales. Tú apruebas lo importante, como las boletas.</p>
+              <h3>Lo construyo</h3>
+              <p>Lo pruebas con tus datos reales y apruebas lo importante.</p>
             </li>
             <li>
-              <h3>Queda funcionando</h3>
-              <p>La dejo andando en un servicio en internet que yo mantengo, por una mensualidad cuyo valor conoces antes de empezar.</p>
+              <h3>Queda andando</h3>
+              <p>Yo lo mantengo, por una mensualidad que conoces antes de empezar.</p>
             </li>
           </ol>
-          <p class="lead trabajo-cierre">El plazo depende de lo que necesites; parto por una parte chica para que veas resultados pronto.</p>
           <div class="no-hago">
             <h3>Qué no hago</h3>
             <ul>
-              <li>Vender software ni licencias.</li>
-              <li>Pedirte las claves de tu banco.</li>
-              <li>Conectarme a sistemas que no te dejan sacar tus datos.</li>
+              <li>No vendo software ni licencias.</li>
+              <li>No te pido las claves de tu banco.</li>
+              <li>No uso sistemas que te dejen sin acceso a tus datos.</li>
             </ul>
           </div>
         </div>
@@ -166,10 +157,8 @@ const fuentes = `
           <h2 id="t-quien">Quién soy</h2>
           {/* TODO(Carlos): agregar "datos con respaldo y avisos cuando algo falla" solo cuando el respaldo nocturno de Railway esté funcionando */}
           <p class="lead">
-            Soy Carlos Maldonado, desarrollador en Santiago. Llevo 5 años como desarrollador, con
-            experiencia en bancos y empresas de pagos, donde un dato mal guardado es un problema
-            serio. Esa misma forma de trabajar es la que llevo a tu pyme. Trabajo solo, sin agencia:
-            hablas directo conmigo.
+            Soy Carlos Maldonado, desarrollador en Santiago. 5 años en sistemas de bancos y empresas de
+            pagos. Trabajo solo: hablas directo conmigo.
           </p>
         </div>
       </section>
@@ -178,34 +167,33 @@ const fuentes = `
           <h2 id="t-faq">Antes de escribirme</h2>
           <div class="faq">
             <div>
-              <h3>¿Tengo que saber de computación?</h3>
-              <p>No. Si sabes mandar un mensaje por el celular, basta. Al entregar te explico cómo usarlo y te dejo documentación escrita.</p>
+              <h3>¿Necesito saber de computación?</h3>
+              <p>No. Si mandas un mensaje por el celular, basta.</p>
             </div>
             <div>
               <h3>¿Cuánto cuesta?</h3>
-              <p>Un pago por armar el proyecto y una mensualidad por mantenerlo andando. Los valores te los doy en la primera conversación, sin costo, antes de empezar.</p>
+              <p>Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.</p>
             </div>
             <div>
-              <h3>¿Qué pasa si algo se cae?</h3>
-              <p>Lo reviso apenas me avisas. Mientras, tus datos siguen en tu planilla y puedes anotar a mano.</p>
+              <h3>¿Y si algo falla?</h3>
+              <p>Lo reviso apenas me avisas. Tus datos siguen en tu planilla.</p>
             </div>
             <div>
-              <h3>¿Mis datos, de quién son?</h3>
-              <p>La planilla es tuya. Si dejamos de trabajar juntos, te la quedas con todos tus datos.</p>
+              <h3>¿De quién son los datos?</h3>
+              <p>Tuyos. La planilla es tuya, sigamos trabajando juntos o no.</p>
             </div>
             <div>
-              <h3>¿Y si ya uso Excel o WhatsApp?</h3>
-              <p>Parto de lo que ya usas. Si se puede conectar, lo hago; si no, te lo digo desde el principio.</p>
+              <h3>¿Sirve si uso Excel o WhatsApp?</h3>
+              <p>Parto de lo que usas. Si no se puede conectar, te lo digo al tiro.</p>
             </div>
           </div>
         </div>
       </section>
-      <section class="seccion banda-tinte" id="contacto" aria-labelledby="t-contacto">
+      <section class="seccion" id="contacto" aria-labelledby="t-contacto">
         <div class="contenedor contacto-grid">
           <div class="contacto-texto">
             <h2 id="t-contacto">Cuéntame qué te quita tiempo</h2>
-            <p class="lead">Escríbeme en dos líneas qué haces hoy a mano y te digo si te sirve.</p>
-            <div class="promesas"><p>La primera conversación es por llamada o videollamada, sin costo.</p></div>
+            <p class="lead">Dos líneas bastan. Te respondo en 1&nbsp;día&nbsp;hábil.</p>
           </div>
 
           <div class="contacto-form tarjeta" id="tarjeta">
@@ -250,17 +238,17 @@ const fuentes = `
                 </div>
 
                 <button class="btn btn-ancho" type="submit" id="enviar">Cuéntame tu caso</button>
-                <p class="nota nota-datos">Respondo dentro de 1&nbsp;día&nbsp;hábil. Uso tus datos solo para responderte.</p>
+                <p class="nota nota-datos">Uso tus datos solo para responderte.</p>
               </form>
             </div>
 
             <div class="exito" id="exito" role="status" hidden>
-              <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Recibí tu mensaje. Te escribo a <span id="x-contacto"></span> dentro de 1&nbsp;día&nbsp;hábil.</h3>
+              <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Recibí tu mensaje.</h3>
               <table class="mini-planilla">
-                <thead><tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Estado</th></tr></thead>
-                <tbody><tr class="destello"><td id="x-hora"></td><td id="x-quien"></td><td>Recibido</td></tr></tbody>
+                <thead><tr><th scope="col">Hora</th><th scope="col">Estado</th></tr></thead>
+                <tbody><tr class="destello"><td id="x-hora"></td><td>Recibido</td></tr></tbody>
               </table>
-              <p class="exito-sigue"><strong>Qué pasa ahora:</strong> leo tu mensaje, te respondo y, si te sirve, agendamos una llamada o videollamada.</p>
+              <p class="exito-sigue">Te escribo a <strong id="x-contacto"></strong> dentro de 1&nbsp;día&nbsp;hábil y, si te sirve, agendamos una llamada o videollamada. ¿Te equivocaste? Escríbeme a <a href={mailto}>{correo}</a>.</p>
             </div>
           </div>
         </div>

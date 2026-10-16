@@ -143,15 +143,17 @@ La prueba es una sola: el caso real, con su eje horario Antes / Ahora. El resto 
 
 ## Layout
 
-Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Orden de la página:
-1. **Hero** (crema 2, hero partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
-2. **Problema**: la frase y una línea de ejemplos, sin tarjetas.
-3. **Caso real** (salvia, con el chip "Cliente real, datos anonimizados"): eje horario 08:00-20:00 con Antes (línea gris delgada) y Ahora (barra oliva gruesa); en móvil, dos listas apiladas con la hora a la izquierda. Bajo el eje, la línea "Armado con…" que traduce n8n. Espacio reservado para un dato real (`.caso-datos`).
-4. **Servicios**: "Lo mismo, para tus pedidos, avisos y boletas": tres filas (Pedidos, Avisos, Boletas y facturas) con estado "Lo construyo para ti" y una nota de honestidad. Sin demos.
-5. **Cómo trabajo + Qué no hago**: cuatro pasos Yo hago / Tú haces (paso 3 incluye "Tú decides: apruebas lo importante, como las boletas"; paso 4, la mensualidad).
-6. **Quién soy**: párrafo, sin foto ni cajas.
-7. **Preguntas**: cinco, siempre visibles.
-8. **Contacto** (crema 2): texto y formulario en tarjeta.
+Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Regla única de separación: **línea de 1px en color `linea` a todo el ancho entre una sección y la siguiente** (`main > section + section`). Fondo crema en todas las secciones; solo el hero conserva su tono (crema 2). Contacto y pie sin bandas propias. Regla general de contenido: cada sección lleva título y como máximo una línea; lo visual explica el resto.
+
+Orden de la página:
+1. **Hero** (crema 2, partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
+2. **Caso real** (problema y caso fundidos): título "Hoy se anota a mano. Podría anotarse solo.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
+3. **También para**: tres filas (Pedidos, Stock, Boletas), nombre y una línea, sin números ni estado.
+4. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
+5. **Quién soy**: dos frases, sin foto ni cajas.
+6. **Preguntas**: cinco, respuestas de una línea.
+7. **Contacto**: texto corto y formulario en tarjeta hoja. Tras enviar, el texto de invitación y el botón de la cabecera se ocultan y la confirmación ocupa el centro.
+8. **Pie**: nombre, línea de contexto y correo, separado por la misma línea de 1px.
 
 Padding vertical 40px arriba y 48px abajo (80px y 96px desde 1024px).
 
@@ -170,13 +172,14 @@ Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculo
 - **Sin variante clara: el botón del caso es el primario.
 - **Texto:** oliva subrayado, 44px ("Mira cómo funciona", "Pausar/Reanudar").
 - **Foco:** contorno 3px oliva con 2px de separación en todo.
-- **Cabecera:** el botón aparece solo cuando el CTA del hero sale de pantalla.
+- **Cabecera:** el botón aparece solo cuando ni el CTA del hero ni el formulario están en pantalla, y se oculta tras enviar.
+- **Volver arriba:** botón flotante único (el pie ya no lo repite); aparece al subir, no mientras se baja leyendo.
 
 ### Filas de servicio
-Lista con regla superior e inferior de 1px por fila: número mono, nombre (Archivo 700), una línea de resultado y el estado en mono ("Lo construyo para ti"). En 375, una columna; desde 768px, cuatro columnas alineadas por la línea base.
+Lista con regla de 1px por fila: nombre (Archivo 700) y una línea. En 375, una columna; desde 768px, nombre a la izquierda (12rem) y línea a la derecha, alineados por la línea base. Sin números ni estado: los números solo van donde la secuencia importa (Cómo trabajo).
 
 ### Formulario
-Tarjeta hoja (`#FFFDF6`), borde 1px línea, radio 8px, sobre crema 2. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título personalizado, mini-planilla con la fila "Recibido" y los tres pasos siguientes. Valores insertados siempre con `textContent`.
+Tarjeta hoja (`#FFFDF6`), borde 1px línea, radio 8px, sobre crema 2. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título corto ("Listo, {nombre}. Recibí tu mensaje."), mini-planilla con la hora y "Recibido", y una línea con el contacto, el plazo, la llamada y la forma de corregirse por correo. Valores insertados siempre con `textContent`.
 
 ### Ilustración del hero
 SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones punteadas): Telegram, Formulario y Correo (cajas salvia, arena y rosa, con el nombre debajo) llegan a la planilla de Google (hoja, borde 2.25px, una celda resaltada) y de ahí a Resumen y Aviso. Íconos genéricos de trazo, no logos de marca a color; n8n no aparece en el hero. Horizontal desde 768px, vertical en móvil. Los nombres llevan un contorno del color del fondo para no chocar con los puntos.

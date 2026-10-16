@@ -52,7 +52,11 @@ test.describe('Formulario', () => {
     await expect(page.locator('#exito')).toBeVisible();
     await expect(page.locator('#tal-form')).toBeHidden();
     await expect(page.locator('#exito-t')).toBeFocused();
-    await expect(page.locator('#x-quien')).toHaveText('Ana Prueba');
+    await expect(page.locator('#x-nombre')).toHaveText('Ana Prueba');
+    await expect(page.locator('#x-contacto')).toHaveText('ana@ejemplo.cl');
+    await expect(page.locator('#contacto')).toHaveClass(/enviado/);
+    await expect(page.locator('.cabecera .btn')).toBeHidden();
+    await expect(page.locator('.contacto-texto')).toBeHidden();
     await expect(page.locator('#x-hora')).toHaveText(/^\d\d:\d\d$/);
   });
 
