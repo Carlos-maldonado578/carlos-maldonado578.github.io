@@ -144,19 +144,16 @@ if (pegas) {
       };
     },
     (p) => {
-      const origen = qa(p, 'tbody td'), dd = qa(p, '.boleta dd'), res = q(p, '.pega-resultado');
-      const poner = (si) => { dd.forEach((x) => on(x, si)); on(res, si); };
-      const campo = (i, td) => () => { on(dd[i]); if (td) flash(td); };
+      const origen = qa(p, 'tbody td'), dd = qa(p, '.boleta dd');
+      const poner = (si) => dd.forEach((x) => on(x, si));
+      const campo = (i, ...tds) => () => { on(dd[i]); tds.forEach(flash); };
       return {
         fin: () => { poner(true); origen.forEach((t) => t.classList.remove('celda-flash')); },
         pasos: [
           [0, () => poner(false)],
           [500, campo(0, origen[1])],
-          [700, campo(1)],
-          [700, campo(2, origen[2])],
-          [700, campo(3, origen[3])],
-          [900, campo(4)],
-          [1000, () => on(res)],
+          [700, campo(1, origen[2], origen[3])],
+          [900, campo(2)],
           [2500, () => {}],
         ],
       };
@@ -295,10 +292,10 @@ function estadoC(nombre) {
   pausaC.title = nombre;
   pausaC.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">' + ICONOS_C[nombre] + '</svg>';
 }
-if (eje && pausaC && !reducido) {
+// en pantallas angostas el caso son dos listas apiladas: queda el estado final, sin reloj
+if (eje && pausaC && !reducido && matchMedia('(min-width: 900px)').matches) {
   const lectura = $('caso-hora');
-  const vertical = matchMedia('(max-width: 899px)');
-  const lleno = eje.querySelector('.tramo.lleno');
+    const lleno = eje.querySelector('.tramo.lleno');
   const num = (el, k) => parseFloat(el.style.getPropertyValue(k));
   const [ia, ib] = [num(lleno, '--a'), num(lleno, '--b')];
   const hitos = [...eje.querySelectorAll('.hito, .tramo.lleno')].map((el) => [el, num(el, '--h') || num(el, '--a')]);
@@ -312,7 +309,7 @@ if (eje && pausaC && !reducido) {
     const h = 8 + 12 * p;
     const min = Math.floor(h * 60 + 1e-6);
     lectura.textContent = `${dos(Math.floor(min / 60))}:${dos(min % 60)}`;
-    const pista = vertical.matches ? eje.querySelector('.reloj').clientHeight : eje.querySelector('.reloj').clientWidth;
+    const pista = eje.querySelector('.reloj').clientWidth;
     eje.style.setProperty('--c', p * pista + 'px');
     lleno.style.setProperty('--r', Math.min(1, Math.max(0, (h - ia) / (ib - ia))));
     hitos.forEach(([el, x]) => el.classList.toggle('on', h >= x));

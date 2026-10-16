@@ -94,13 +94,14 @@ test.describe('Elige tu pega', () => {
     expect(r.izqDelPanel).toBe(true);
   });
 
-  test('"Lo puedo armar" nombra herramientas reales en las 3 pegas por construir', async ({ page }) => {
+  test('los 3 servicios por construir dicen "Lo construyo para ti" y que aun no estan en un cliente', async ({ page }) => {
     await abrir(page);
     for (const id of ['pedidos', 'avisos', 'boletas']) {
-      const t = await page.locator(`#pega-${id} .pega-arma`).textContent();
-      expect(t, id).toMatch(/n8n/);
+      await expect(page.locator(`#tab-${id} .pega-estado`), id).toHaveText('Lo construyo para ti');
+      await expect(page.locator(`#pega-${id} .pega-honesto`), id).toContainText('Aún no lo tengo andando en un cliente');
     }
-    await expect(page.locator('#pega-registros .pega-arma')).toContainText('Telegram');
+    await expect(page.locator('#pega-registros .pega-arma')).toContainText('n8n, un programa que las conecta');
+    await expect(page.locator('#pega-boletas .pega-arma')).toContainText('SII');
   });
 
   test('el alto de la seccion no cambia entre pestanas (2px)', async ({ page }) => {

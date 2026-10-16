@@ -31,6 +31,7 @@ const fuentes = `
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content="https://carlos-maldonado578.github.io/" />
     <meta name="theme-color" content="#F4EEDC" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={bitterUrl} as="font" type="font/woff2" crossorigin />
     <style set:html={fuentes}></style>
@@ -52,8 +53,8 @@ const fuentes = `
             <p class="etiqueta">Automatización para pymes · Santiago</p>
             <h1 id="t-hero">Tu planilla se llena <em>sola</em>.</h1>
             <p class="lead">
-              Tu equipo manda un mensaje por Telegram, los datos caen en una planilla de Google y al
-              final del día te llega el resumen. Lo armo yo, con herramientas que ya conoces.
+              Tu equipo manda un mensaje por Telegram y el dato queda en la planilla. Al final del día te
+              llega el resumen. Yo lo armo todo.
             </p>
             <div class="hero-cta">
               <a class="btn" href="#contacto">Cuéntame tu caso</a>
@@ -81,14 +82,12 @@ const fuentes = `
                 <span class="rotulo"><span class="num">2</span> Se anota en la planilla</span>
                 <table>
                   <thead>
-                    <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Estado</th><th scope="col">Cajas</th></tr>
+                    <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Cajas</th></tr>
                   </thead>
                   <tbody>
-                    <tr><td>07:52</td><td>Pedro</td><td>Anotado</td><td>95</td></tr>
-                    <tr><td>08:03</td><td>Ana</td><td>Anotado</td><td>110</td></tr>
-                    <tr class="fila-nueva on"><td>08:14</td><td>Juan</td><td>Anotado</td><td>120</td></tr>
-                    <tr class="fila-nueva on"><td>08:31</td><td>Marta</td><td>Anotado</td><td>98</td></tr>
-                    <tr class="fila-nueva on"><td>08:47</td><td>Luis</td><td>Anotado</td><td>134</td></tr>
+                    <tr class="fila-nueva on"><td>08:14</td><td>Juan</td><td>120</td></tr>
+                    <tr class="fila-nueva on"><td>08:31</td><td>Marta</td><td>98</td></tr>
+                    <tr class="fila-nueva on"><td>08:47</td><td>Luis</td><td>134</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -99,10 +98,7 @@ const fuentes = `
               </div>
 
               <div class="hoja-pie">
-                <figcaption>
-                  Ejemplo ilustrativo con datos inventados: los trabajadores mandan un mensaje, la
-                  planilla se llena sola y al final del día te llega el total.
-                </figcaption>
+                <figcaption>Ejemplo con datos inventados.</figcaption>
                 <button type="button" class="btn-texto" id="demo-pausa" hidden>Pausar</button>
               </div>
             </figure>
@@ -113,16 +109,12 @@ const fuentes = `
         <div class="contenedor">
           <h2 class="frase" id="t-problema">Hay una tarea que en tu pyme se hace a mano todos los días.</h2>
           <p class="lead">
-            Anotar la producción en una hoja, pasar los pedidos del WhatsApp a una planilla, revisar
-            qué falta despachar.
-          </p>
-          <p>
-            Funciona, pero cuesta tiempo. Los datos llegan tarde o se pierden, y te enteras de los
-            problemas cuando ya no hay cómo evitarlos.
+            Anotar la producción en una hoja, pasar pedidos del WhatsApp a una planilla, revisar qué
+            falta despachar.
           </p>
           <ul class="tarjetas">
-            <li class="tarj t-salvia">Se anota en papel o en WhatsApp</li>
-            <li class="tarj t-arena">Se pasa a mano a una planilla</li>
+            <li class="tarj t-salvia">Se anota a mano</li>
+            <li class="tarj t-arena">Se tipea dos veces</li>
             <li class="tarj t-rosa">Te enteras tarde</li>
           </ul>
         </div>
@@ -130,9 +122,6 @@ const fuentes = `
       <section class="seccion pegas-sec" aria-labelledby="t-hago">
         <div class="contenedor">
           <h2 id="t-hago">Qué dejo andando solo</h2>
-          <p class="lead">
-            Tomo la parte manual y la dejo funcionando con Telegram, planillas de Google y correo.
-          </p>
           <div class="flujo" role="img" aria-label="Un mensaje por Telegram, correo o formulario llega a una planilla, y de la planilla sale un aviso.">
             <svg viewBox="0 0 760 130" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
               <rect x="8" y="15" width="204" height="100" rx="8" />
@@ -179,7 +168,7 @@ const fuentes = `
 
             <div class="hoja-pie pegas-pie">
               <button type="button" class="btn-texto" id="pegas-pausa" hidden>Pausar</button>
-              <p class="nota">Ejemplos ilustrativos con datos inventados.</p>
+              <p class="nota">Ejemplos con datos inventados.</p>
             </div>
 
             <div class="pegas-paneles">
@@ -192,61 +181,58 @@ const fuentes = `
                     <span class="rotulo"><span class="num">1</span> Llega el mensaje</span>
                     <div class="m">
                       <p class="meta">Telegram · Rosa · 16:05</p>
-                      <p class="mensaje on">Turno tarde: <b class="dato marcado">86</b> cajas, <b class="dato marcado">2</b> rechazadas</p>
+                      <p class="mensaje on">Turno tarde: <b class="dato marcado">86</b> cajas</p>
                     </div>
                   </div>
                   <div class="paso">
                     <span class="rotulo"><span class="num">2</span> Cada dato a su columna</span>
                     <table>
                       <thead>
-                        <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Cajas</th><th scope="col">Rechazo</th></tr>
+                        <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Cajas</th></tr>
                       </thead>
                       <tbody>
-                        <tr><td>15:40</td><td>Pedro</td><td>92</td><td>1</td></tr>
-                        <tr><td>15:52</td><td>Ana</td><td>104</td><td>0</td></tr>
-                        <tr class="fila-nueva on"><td>16:05</td><td>Rosa</td><td>86</td><td>2</td></tr>
+                        <tr><td>15:40</td><td>Pedro</td><td>92</td></tr>
+                        <tr><td>15:52</td><td>Ana</td><td>104</td></tr>
+                        <tr class="fila-nueva on"><td>16:05</td><td>Rosa</td><td>86</td></tr>
                       </tbody>
                     </table>
                   </div>
-                  <p class="pega-resultado on">Anotado, sin que nadie tipee nada.</p>
+                  <p class="pega-resultado on">Sin que nadie lo tipee.</p>
                 </div>
-                <p class="pega-arma"><b>Cómo está armado:</b> un bot de Telegram, una planilla de Google y un programa que las conecta (se llama n8n).</p>
-                <p class="pega-honesto">Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.</p>
+                <p class="pega-arma">Armado con un bot de Telegram, una planilla de Google y n8n, un programa que las conecta.</p>
               </article>
 
               <article class="pega hoja" id="pega-pedidos" aria-labelledby="tab-pedidos">
                 <div class="hoja-cab"><h3 class="rotulo">02 · Pedidos</h3><span class="ejemplo">EJEMPLO</span></div>
                 <p class="pega-titular">Entra el pedido. Ves en qué va cada uno.</p>
-                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Formulario (WhatsApp si se puede conectar)</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Planilla ordenada por estado</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Correo al cliente</dd></div></dl>
+                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Formulario</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Planilla ordenada por estado</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Correo al cliente</dd></div></dl>
                 <div class="pega-escena escena-pedidos">
                   <div class="tablero">
                     <div class="carril">
                       <p class="carril-t">Pendiente</p>
                       <div class="carril-lista">
-                        <div class="pedido"><p>#215 · 8 bandejas</p><p class="nota">entró 09:20</p></div>
-                        <div class="pedido fantasma p214"><p>#214 · 12 bandejas</p><p class="nota">entró 09:12 por formulario</p></div>
+                        <div class="pedido"><p>#215 · 8 bandejas</p></div>
+                        <div class="pedido fantasma p214"><p>#214 · 12 bandejas</p></div>
                       </div>
                     </div>
                     <div class="carril">
                       <p class="carril-t">Listo</p>
                       <div class="carril-lista">
                         <div class="pedido"><p>#211 · 20 bandejas</p></div>
-                        <div class="pedido fantasma p214"><p>#214 · 12 bandejas</p><p class="nota">entró 09:12 por formulario</p></div>
+                        <div class="pedido fantasma p214"><p>#214 · 12 bandejas</p></div>
                       </div>
                     </div>
                     <div class="carril">
                       <p class="carril-t">Despachado</p>
                       <div class="carril-lista">
                         <div class="pedido"><p>#209 · 6 bandejas</p></div>
-                        <div class="pedido"><p>#210 · 15 bandejas</p></div>
-                        <div class="pedido p214 on"><p>#214 · 12 bandejas</p><p class="nota">entró 09:12 por formulario</p></div>
+                        <div class="pedido p214 on"><p>#214 · 12 bandejas</p></div>
                       </div>
                     </div>
                   </div>
-                  <p class="aviso on">Aviso al cliente: “Tu pedido #214 va en camino.”</p>
+                  <p class="aviso on">Aviso: “Tu pedido #214 va en camino.”</p>
                 </div>
-                <p class="pega-arma"><b>Con qué lo armaría:</b> formulario o WhatsApp (si se puede conectar) para recibir el pedido, una planilla de Google para ordenarlo y un programa de conexión (n8n) para moverlo y avisar por correo.</p>
-                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo construiría para ti.</p>
+                <p class="pega-honesto">Aún no lo tengo andando en un cliente.</p>
               </article>
 
               <article class="pega hoja" id="pega-avisos" aria-labelledby="tab-avisos">
@@ -262,17 +248,16 @@ const fuentes = `
                   </div>
                   <div class="paso">
                     <span class="rotulo"><span class="num">2</span> Te llega el aviso</span>
-                    <p class="aviso on">Aviso · 11:20: Quedan <b>180</b> tapas de 38 mm. El mínimo que fijaste es 200.</p>
+                    <p class="aviso on">Aviso: quedan 180 tapas de 38 mm.</p>
                   </div>
                 </div>
-                <p class="pega-arma"><b>Con qué lo armaría:</b> tu stock en una planilla de Google, un programa de conexión (n8n) que la revisa y un aviso por Telegram o correo cuando baja del mínimo.</p>
-                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo construiría para ti.</p>
+                <p class="pega-honesto">Aún no lo tengo andando en un cliente.</p>
               </article>
 
               <article class="pega hoja" id="pega-boletas" aria-labelledby="tab-boletas">
                 <div class="hoja-cab"><h3 class="rotulo">04 · Boletas y facturas</h3><span class="ejemplo">EJEMPLO</span></div>
                 <p class="pega-titular">Está en tu planilla. El borrador se arma solo.</p>
-                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Tu planilla</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Un borrador listo</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Tú lo revisas y lo emites</dd></div></dl>
+                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Tu planilla</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Un borrador listo</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Que está lista</dd></div></dl>
                 <div class="pega-escena escena-boletas">
                   <div class="paso">
                     <span class="rotulo"><span class="num">1</span> Ya está en tu planilla</span>
@@ -290,17 +275,14 @@ const fuentes = `
                     <div class="boleta">
                       <dl>
                         <div class="par"><dt>Cliente</dt><dd class="on">Cliente de ejemplo</dd></div>
-                        <div class="par"><dt>Detalle</dt><dd class="on">Bandejas</dd></div>
-                        <div class="par"><dt>Cantidad</dt><dd class="on">12</dd></div>
-                        <div class="par"><dt>Precio unitario</dt><dd class="on">$3.500</dd></div>
+                        <div class="par"><dt>12 bandejas</dt><dd class="on">12 × $3.500</dd></div>
                         <div class="par total"><dt>Total</dt><dd class="on">$42.000</dd></div>
                       </dl>
                     </div>
                   </div>
-                  <p class="pega-resultado on">Lista para emitir. Tú la revisas y apruebas.</p>
                 </div>
-                <p class="pega-arma"><b>Con qué lo armaría:</b> un programa de conexión (n8n) pasa los datos de tu planilla a un borrador de boleta; tú lo revisas y lo emites en el SII. No me integro con el SII.</p>
-                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo construiría para ti.</p>
+                <p class="pega-arma">Tú la revisas y la emites en el SII.</p>
+                <p class="pega-honesto">Aún no lo tengo andando en un cliente.</p>
               </article>
             </div>
 
@@ -328,18 +310,18 @@ const fuentes = `
             <div class="carril antes">
               <h3>Antes</h3>
               <ol class="pista">
-                <li class="hito" style="--h:8"><span class="hora">08:00</span><p>Cada persona anota en su hoja.</p></li>
+                <li class="hito" style="--h:8"><span class="hora">08:00</span><p>Cada uno anota en su hoja.</p></li>
                 <li class="tramo vacio" style="--a:8;--b:17.5"><span>Sin saber cuánto se produjo.</span></li>
-                <li class="hito der" style="--h:17.5"><span class="hora">17:30</span><p>Alguien junta todas las hojas.</p></li>
-                <li class="hito der t2" style="--h:20"><span class="hora">20:00</span><p>El dueño recién sabe el total del día.</p></li>
+                <li class="hito der" style="--h:17.5"><span class="hora">17:30</span><p>Alguien junta las hojas.</p></li>
+                <li class="hito der t2" style="--h:20"><span class="hora">20:00</span><p>Recién ahí sabes el total.</p></li>
               </ol>
             </div>
             <div class="carril ahora">
               <h3>Ahora</h3>
               <ol class="pista">
-                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda “120 cajas” por Telegram y la planilla se llena sola.</p></li>
+                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda “120 cajas” y la planilla se llena.</p></li>
                 <li class="tramo lleno" style="--a:8.233;--b:18"><span>Ya está en la planilla.</span></li>
-                <li class="hito der" style="--h:18"><span class="hora">18:00</span><p>El dueño recibe el resumen del día automáticamente.</p></li>
+                <li class="hito der" style="--h:18"><span class="hora">18:00</span><p>Te llega el resumen del día.</p></li>
               </ol>
             </div>
           </div>
@@ -353,7 +335,7 @@ const fuentes = `
           <ul class="principios-lista">
             <li>
               <h3>Conectado a lo que ya usas</h3>
-              <p>Parto de tu planilla, tu Telegram y tu correo. No tienes que aprender un sistema nuevo.</p>
+              <p>Parto de tu planilla, tu Telegram y tu correo.</p>
             </li>
             <li>
               <h3>Hecho a tu forma de trabajar</h3>
@@ -361,7 +343,7 @@ const fuentes = `
             </li>
             <li>
               <h3>Tú decides</h3>
-              <p>Tú eliges qué se automatiza y qué revisas tú antes de que salga. Las boletas, por ejemplo, las apruebas tú.</p>
+              <p>Tú eliges qué se automatiza y apruebas lo importante, como las boletas.</p>
             </li>
           </ul>
         </div>
@@ -372,13 +354,13 @@ const fuentes = `
           <ol class="pasos">
             <li>
               <h3>Conversamos</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve, por llamada o videollamada. Sin costo.</p></div>
+              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve.</p></div>
               <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo trabajas hoy.</p></div>
             </li>
             <li>
               <h3>Te propongo por dónde partir</h3>
               <div class="yo"><p class="lado">Yo hago</p><p>Parto por lo que más te molesta.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Me dices si esa es la parte que quieres probar.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Eliges si la probamos.</p></div>
             </li>
             <li>
               <h3>Construyo la primera parte</h3>
@@ -387,11 +369,11 @@ const fuentes = `
             </li>
             <li>
               <h3>Queda funcionando</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Lo dejo andando en un servidor en la nube y lo cuido.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Lo usas y me avisas si algo no calza. Pagas una mensualidad; el valor te lo digo antes de empezar.</p></div>
+              <div class="yo"><p class="lado">Yo hago</p><p>Lo dejo en un servidor en la nube y lo cuido.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Lo usas y me avisas si algo no calza.</p></div>
             </li>
           </ol>
-          <p class="lead trabajo-cierre">El plazo depende de lo que necesites. Parto por una parte chica para que veas resultados pronto, antes de seguir con lo demás.</p>
+          <p class="lead trabajo-cierre">El plazo depende de lo que necesites; parto por una parte chica para que veas resultados pronto.</p>
           <div class="no-hago">
             <h3>Qué no hago</h3>
             <ul>
@@ -407,15 +389,12 @@ const fuentes = `
           <h2 id="t-quien">Quién soy</h2>
           {/* TODO(Carlos): agregar "datos con respaldo y avisos cuando algo falla" solo cuando el respaldo nocturno de Railway esté funcionando */}
           <p class="lead">
-            Soy Carlos Maldonado, desarrollador en Santiago. Llevo 5 años como desarrollador backend, con
-            experiencia en sistemas bancarios y fintech, donde un dato mal guardado o un aviso que no
-            llega es un problema serio. Esa forma de trabajar la llevo a tu pyme.
+            Soy Carlos Maldonado, desarrollador en Santiago. Llevo 5 años como desarrollador, con
+            experiencia en sistemas bancarios y fintech, donde un dato mal guardado es un problema
+            serio. Esa misma forma de trabajar es la que llevo a tu pyme.
           </p>
           <ul class="datos">
-            <li>5 años como desarrollador backend</li>
-            <li>Sistemas bancarios y fintech</li>
             <li>Trabajo solo, sin agencia: hablas directo conmigo</li>
-            <li>Respondo en 1&nbsp;día&nbsp;hábil</li>
           </ul>
         </div>
       </section>
@@ -425,27 +404,23 @@ const fuentes = `
           <div class="faq">
             <div>
               <h3>¿Tengo que saber de computación?</h3>
-              <p>No. Si sabes mandar un mensaje desde el celular, basta. Yo armo todo y, al entregar, te explico cómo usarlo y te dejo la documentación por escrito.</p>
+              <p>No. Si sabes mandar un mensaje por el celular, basta. Al entregar te explico cómo usarlo y te dejo documentación escrita.</p>
             </div>
             <div>
               <h3>¿Cuánto cuesta?</h3>
-              <p>Depende de lo que necesites automatizar. En la primera conversación, que es sin costo, vemos tu caso y te doy el valor del proyecto y de la mensualidad antes de empezar. Sin sorpresas.</p>
+              <p>Depende de lo que automatices. En la primera conversación, sin costo, te doy el valor del proyecto y de la mensualidad antes de empezar.</p>
             </div>
             <div>
               <h3>¿Qué pasa si algo se cae?</h3>
-              <p>Lo reviso apenas me avisas. Tus datos siguen en tu planilla, así que mientras tanto puedes anotar a mano.</p>
+              <p>Lo reviso apenas me avisas. Mientras, tus datos siguen en tu planilla y puedes anotar a mano.</p>
             </div>
             <div>
               <h3>¿Mis datos, de quién son?</h3>
-              <p>La planilla es tuya. Si un día dejamos de trabajar juntos, te la quedas con todos tus datos. Las automatizaciones corren en mi servidor en la nube.</p>
-            </div>
-            <div>
-              <h3>¿Cuánto demoras en responder?</h3>
-              <p>Te respondo dentro de 1&nbsp;día&nbsp;hábil.</p>
+              <p>La planilla es tuya. Si dejamos de trabajar juntos, te la quedas con todos tus datos.</p>
             </div>
             <div>
               <h3>¿Y si ya uso Excel o WhatsApp?</h3>
-              <p>Parto de lo que ya usas, sin pedirte cambiar cómo trabajas. Si se puede conectar, lo hago; si no, te lo digo desde el principio.</p>
+              <p>Parto de lo que ya usas. Si se puede conectar, lo hago; si no, te lo digo desde el principio.</p>
             </div>
           </div>
         </div>
@@ -454,8 +429,8 @@ const fuentes = `
         <div class="contenedor contacto-grid">
           <div class="contacto-texto">
             <h2 id="t-contacto">Cuéntame qué te quita tiempo</h2>
-            <p class="lead">Escríbeme en dos líneas qué haces hoy a mano. Te respondo dentro de 1&nbsp;día&nbsp;hábil, con una idea de si te sirve.</p>
-            <div class="promesas"><p>La primera conversación es por llamada o videollamada, sin costo. Ahí vemos tu caso y te doy el valor del proyecto y de la mensualidad antes de empezar.</p></div>
+            <p class="lead">Escríbeme en dos líneas qué haces hoy a mano y te digo si te sirve.</p>
+            <div class="promesas"><p>La primera conversación es por llamada o videollamada, sin costo.</p></div>
           </div>
 
           <div class="contacto-form tarjeta" id="tarjeta">
@@ -506,12 +481,11 @@ const fuentes = `
 
             <div class="exito" id="exito" role="status" hidden>
               <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Recibí tu mensaje. Te escribo a <span id="x-contacto"></span> dentro de 1&nbsp;día&nbsp;hábil.</h3>
-              <p>Así quedó tu mensaje en mi planilla:</p>
               <table class="mini-planilla">
                 <thead><tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Estado</th></tr></thead>
                 <tbody><tr class="destello"><td id="x-hora"></td><td id="x-quien"></td><td>Recibido</td></tr></tbody>
               </table>
-              <p class="exito-sigue"><strong>Qué pasa ahora:</strong> leo tu mensaje, te respondo con preguntas o ideas y, si te sirve, agendamos una llamada o videollamada.</p>
+              <p class="exito-sigue"><strong>Qué pasa ahora:</strong> leo tu mensaje, te respondo y, si te sirve, agendamos una llamada o videollamada.</p>
             </div>
           </div>
         </div>

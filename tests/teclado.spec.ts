@@ -15,6 +15,15 @@ test.describe('Teclado', () => {
 
   test('el Tab llega a todo lo interactivo y el foco es visible', async ({ page }) => {
     await abrir(page);
+    // recorre la pagina para que los controles que aparecen al entrar en pantalla (Pausar, etc.) ya existan
+    await page.evaluate(async () => {
+      for (let y = 0; y < document.body.scrollHeight; y += 500) {
+        window.scrollTo({ top: y, behavior: 'instant' });
+        await new Promise((r) => setTimeout(r, 120));
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      await new Promise((r) => setTimeout(r, 400));
+    });
     const visitados: string[] = [];
     const sinOutline: string[] = [];
     for (let i = 0; i < 80; i++) {
@@ -34,6 +43,7 @@ test.describe('Teclado', () => {
     const faltan = await page.evaluate((v) =>
       [...document.querySelectorAll<HTMLElement>('a[href], button, input, textarea, select, [tabindex]')]
         .filter((e) => e.tabIndex >= 0 && !(e as HTMLButtonElement).disabled && e.checkVisibility({ visibilityProperty: true }))
+        .filter((e) => !e.closest('.cabecera, .subir')) // aparecen segun el scroll (subir.spec.ts cubre el boton de volver arriba): no dependen del Tab
         .filter((e) => !v.includes(e.dataset.qa || ''))
         .map((e) => e.tagName + (e.id ? '#' + e.id : '') + '.' + e.className), visitados);
     expect(faltan, 'interactivos que el Tab no alcanzo').toEqual([]);

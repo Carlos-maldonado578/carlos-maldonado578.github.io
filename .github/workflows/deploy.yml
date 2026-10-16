@@ -1,8 +1,8 @@
 name: Deploy a GitHub Pages
 
+# Solo manual: no se publica nada al hacer push. Se ejecuta desde Actions > Deploy > Run workflow,
+# una vez que el webhook de Railway exista y se haya probado con un envio real.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

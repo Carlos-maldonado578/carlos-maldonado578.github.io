@@ -1,30 +1,21 @@
 import { test, expect } from '@playwright/test';
-import { abrir } from './comun';
+import { abrir, llenar } from './comun';
 
 test.describe('Segunda ronda de mejoras', () => {
-  test('FAQ: 4 details nativos que abren y cierran con el teclado', async ({ page }) => {
+  test('FAQ: 5 preguntas siempre visibles, respuestas cortas y sin cifras de precio', async ({ page }) => {
     await abrir(page);
-    const d = page.locator('.faq details');
-    await expect(d).toHaveCount(4);
-    await expect(page.locator('.faq details[open]')).toHaveCount(0);
-    const s0 = d.nth(0).locator('summary');
-    await s0.focus();
-    await page.keyboard.press('Enter');
-    await expect(d.nth(0)).toHaveAttribute('open', '');
-    await expect(d.nth(0).locator('p')).toBeVisible();
-    await page.keyboard.press('Enter');
-    await expect(d.nth(0)).not.toHaveAttribute('open', '');
-    await page.keyboard.press('Tab'); // siguiente pregunta
-    await expect(d.nth(1).locator('summary')).toBeFocused();
-    await page.keyboard.press('Space');
-    await expect(d.nth(1)).toHaveAttribute('open', '');
-    // sin cifras de precio en las respuestas
-    expect(await page.locator('.faq').textContent()).not.toMatch(/\$|\bCLP\b|\bUF\b/);
+    const q = page.locator('.faq > div');
+    await expect(q).toHaveCount(5);
+    for (const t of await q.all()) {
+      await expect(t.locator('h3')).toBeVisible();
+      await expect(t.locator('p')).toBeVisible();
+    }
+    expect(await page.locator('.faq').textContent()).not.toMatch(/\$|CLP|UF/);
   });
 
   test('Quien soy: primera persona, sin foto; contacto dice como es la primera conversacion', async ({ page }) => {
     await abrir(page);
-    await expect(page.locator('.quien')).toContainText('5 años como desarrollador backend');
+    await expect(page.locator('.quien')).toContainText('Llevo 5 años como desarrollador');
     await expect(page.locator('.quien')).toContainText('Santiago');
     await expect(page.locator('.promesas')).toContainText('llamada o videollamada');
     await expect(page.locator('img')).toHaveCount(0);
@@ -93,30 +84,29 @@ test.describe('Segunda ronda de mejoras', () => {
     await expect(page.locator('.escala')).toHaveAttribute('aria-hidden', 'true');
   });
 
-  test('Caso en movil: eje vertical, antes y ahora lado a lado y sin scroll horizontal', async ({ page }, info) => {
+  test('Caso en movil: Antes y Ahora apilados, evento a ancho completo y sin scroll horizontal', async ({ page }, info) => {
     test.skip(info.project.name !== 'movil');
     await abrir(page);
     const r = await page.evaluate(() => {
-      const a = document.querySelector('.antes .pista')!.getBoundingClientRect();
-      const b = document.querySelector('.ahora .pista')!.getBoundingClientRect();
-      const hs = [...document.querySelectorAll('.antes .hito')].map((e) => e.getBoundingClientRect().top - a.top);
-      return { lado: b.left > a.left && Math.abs(a.top - b.top) < 2, hs, alto: a.height, sinScroll: document.documentElement.scrollWidth <= innerWidth };
+      const a = document.querySelector('.antes')!.getBoundingClientRect();
+      const b = document.querySelector('.ahora')!.getBoundingClientRect();
+      const p = document.querySelector('.antes .hito p')!.getBoundingClientRect();
+      return { apilado: b.top >= a.bottom - 1, anchoTexto: p.width, anchoPagina: innerWidth, sinScroll: document.documentElement.scrollWidth <= innerWidth };
     });
-    expect(r.lado).toBe(true);
+    expect(r.apilado).toBe(true);
     expect(r.sinScroll).toBe(true);
-    // 08:00, 17:30, 20:00 en vertical, proporcionales al alto de la pista
-    [0, 9.5 / 12, 1].forEach((f, i) => expect(Math.abs(r.hs[i] - f * r.alto)).toBeLessThan(2));
+    expect(r.anchoTexto).toBeGreaterThan(r.anchoPagina * 0.6);
+    await expect(page.locator('.reloj')).toBeHidden();
   });
 
-  test('Que pasa despues de enviar: 3 pasos bajo el boton; el precio va en el texto de contacto', async ({ page }) => {
+  test('Exito: dice que pasa ahora; el contacto aclara que la primera conversacion no tiene costo', async ({ page }) => {
+    await page.route('**/__webhook', (r) => r.fulfill({ status: 200, body: 'ok' }));
     await abrir(page);
-    await expect(page.locator('.despues li')).toHaveCount(3);
-    const y = await page.evaluate(() => ({
-      boton: document.getElementById('enviar')!.getBoundingClientRect().bottom,
-      pasos: document.querySelector('.despues')!.getBoundingClientRect().top,
-    }));
-    expect(y.pasos).toBeGreaterThan(y.boton);
-    await expect(page.locator('.promesas p').last()).toContainText('se cotiza aparte');
+    await llenar(page);
+    await page.locator('#enviar').click();
+    await expect(page.locator('#exito')).toBeVisible();
+    await expect(page.locator('.exito-sigue')).toContainText('llamada o videollamada');
+    await expect(page.locator('.promesas')).toContainText('sin costo');
   });
 
   test('Como trabajo: carriles Yo hago / Tu haces; Que no hago tiene 3 limites', async ({ page }) => {
@@ -127,18 +117,18 @@ test.describe('Segunda ronda de mejoras', () => {
     await expect(page.locator('.no-hago li')).toHaveCount(3);
   });
 
-  test('bandas de fondo: solo 3 cortes de color de arriba a abajo', async ({ page }) => {
+  test('bandas de fondo: 4 cortes de color (hero, noche, contacto)', async ({ page }) => {
     await abrir(page);
     const fondos = await page.evaluate(() => [...document.querySelectorAll('main > section')].map((s) => getComputedStyle(s).backgroundColor));
     const cortes = fondos.filter((c, i) => i > 0 && c !== fondos[i - 1]).length;
-    expect(cortes, fondos.join(' | ')).toBe(3);
+    expect(cortes, fondos.join(' | ')).toBe(4);
   });
 
   test('la tabla de la demo del hero nunca carga vacia (primeros 3 segundos)', async ({ page }) => {
     await abrir(page);
     for (let i = 0; i < 6; i++) {
       const visibles = await page.locator('#demo tbody tr').evaluateAll((trs) => trs.filter((t) => getComputedStyle(t.querySelector('td')!).opacity === '1').length);
-      expect(visibles).toBe(5);
+      expect(visibles).toBe(3);
       await page.waitForTimeout(500);
     }
   });
