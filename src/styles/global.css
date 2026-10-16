@@ -68,7 +68,7 @@ h3 { font: 600 1.25rem/1.3 var(--f-titulo); }
 
 /* encabezado y pie */
 .cabecera { position: sticky; top: 0; z-index: 5; background: var(--crema); border-bottom: 1px solid var(--linea); }
-.cabecera .contenedor { display: flex; justify-content: space-between; align-items: center; gap: var(--s4); min-height: 64px; padding-block: var(--s2); }
+.cabecera .contenedor { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--s1) var(--s4); min-height: 64px; padding-block: var(--s2); }
 .marca { font: 700 1.0625rem/1.3 var(--f-titulo); white-space: nowrap; }
 .enlace-texto { display: inline-flex; align-items: center; min-height: 44px; }
 
@@ -78,8 +78,9 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 
 /* botones */
 .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 28px; background: var(--oliva); color: var(--crema); border: 0; border-radius: var(--r); font: 600 1.125rem var(--f-titulo); text-decoration: none; cursor: pointer; }
-.btn:hover { background: var(--oliva-h); color: var(--crema); }
-.btn:active { transform: translateY(1px); }
+.btn { transition: background-color 150ms ease-out, transform 150ms ease-out; }
+@media (hover: hover) and (pointer: fine) { .btn:hover { background: var(--oliva-h); color: var(--crema); } }
+.btn:active { transform: scale(0.98); }
 .btn-chico { min-height: 44px; padding: 0 16px; font-size: 1rem; white-space: nowrap; }
 @media (min-width: 768px) { .btn-chico { padding: 0 20px; } }
 .btn-texto { background: none; border: 0; border-radius: var(--r); padding: 0 var(--s3); min-height: 44px; color: var(--oliva); font: 600 1rem var(--f-titulo); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; cursor: pointer; }
@@ -104,8 +105,9 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 .hero-grid { display: grid; gap: var(--s7); }
 .hero .lead { margin-top: var(--s5); }
 .hero-cta { margin-top: var(--s5); display: flex; flex-direction: column; gap: var(--s3); }
-.hero-cta .btn { width: 100%; white-space: nowrap; }
-@media (min-width: 768px) { .hero-cta { flex-direction: row; align-items: center; gap: var(--s5); } .hero-cta .btn { width: auto; } }
+.hero-cta .btn { width: 100%; text-align: center; }
+.hero-grid > * { min-width: 0; }
+@media (min-width: 768px) { .hero-cta { flex-direction: row; align-items: center; gap: var(--s5); } .hero-cta .btn { width: auto; white-space: nowrap; } }
 @media (min-width: 1024px) {
   .hero { padding-block: var(--s8) var(--s9); }
   .hero-grid { grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: center; }
@@ -125,7 +127,7 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 .problema .lead + p { margin-top: var(--s4); }
 
 /* que hago: elige tu pega. Sin JS: cuatro paneles apilados; con JS (.tabs): lista + paneles en una celda */
-.pegas { display: grid; gap: var(--s5); margin-top: var(--s7); }
+.pegas { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s5); margin-top: var(--s7); }
 .pegas-paneles { display: grid; gap: var(--s5); }
 .pega { max-width: 690px; width: 100%; }
 .pega-frase { font: 500 1.0625rem/1.45 var(--f-titulo); margin-top: var(--s4); }
@@ -333,6 +335,7 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 .hoja { background: var(--hoja); border: 1px solid var(--linea); border-radius: var(--r-tarjeta); padding: var(--s4); font-family: var(--f-titulo); }
 @media (min-width: 768px) { .hoja { padding: var(--s6); } }
 .hoja p { max-width: none; }
+.hoja { overflow-x: auto; }
 .hoja-cab { display: flex; justify-content: space-between; align-items: center; gap: var(--s3); padding-bottom: var(--s3); border-bottom: 1px solid var(--linea); }
 .ejemplo { font: 500 0.75rem/1.3 var(--f-mono); letter-spacing: 0.04em; color: var(--tinta-2); border: 1px solid var(--tinta-2); border-radius: var(--r-chico); padding: 2px var(--s2); }
 .paso { margin-top: var(--s5); position: relative; }
@@ -401,7 +404,8 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 .campo .ayuda { margin: 0 0 var(--s2); }
 .campo input, .campo textarea { display: block; width: 100%; min-height: 52px; padding: 12px 16px; background: var(--hoja); color: var(--tinta); font: 400 1.0625rem/1.5 var(--f-titulo); border: 1.5px solid var(--linea-campo); border-radius: var(--r); }
 .campo textarea { min-height: 128px; field-sizing: content; resize: none; }
-.campo input:hover, .campo textarea:hover { border-color: var(--tinta); }
+.campo input, .campo textarea { transition: border-color 150ms ease-out; }
+@media (hover: hover) and (pointer: fine) { .campo input:hover, .campo textarea:hover { border-color: var(--tinta); } }
 .campo input:focus, .campo textarea:focus { border-color: var(--oliva); }
 .campo [aria-invalid="true"] { border-color: var(--error); }
 .fila-2 { display: grid; gap: 0 var(--s4); }
@@ -434,7 +438,8 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 
 /* ---- direccion B: componentes nuevos ---- */
 .hero .etiqueta { margin-bottom: var(--s4); }
-.hero-cta .enlace-texto { font-weight: 600; white-space: nowrap; }
+.hero-cta .enlace-texto { font-weight: 600; }
+@media (min-width: 768px) { .hero-cta .enlace-texto { white-space: nowrap; } }
 .cabecera.cta-oculto .btn { visibility: hidden; }
 
 /* problema: tres tarjetas pastel */
