@@ -114,10 +114,22 @@ const fuentes = `
         <div class="contenedor">
           <h2 id="t-hago">También para</h2>
           <p class="lead">Lo construyo según lo que necesites.</p>
-          <ul class="sv-filas">
-            <li class="sv-fila"><h3>Pedidos</h3><p>Ves en qué va cada uno.</p></li>
-            <li class="sv-fila"><h3>Stock</h3><p>Te avisa antes de quedarte sin.</p></li>
-            <li class="sv-fila"><h3>Boletas</h3><p>El borrador se arma solo. Tú lo emites en el SII.</p></li>
+          <ul class="sv-tarjetas">
+            <li class="sv-tarjeta">
+              <span class="caja sal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></span>
+              <h3>Pedidos</h3>
+              <p>Ves en qué va cada uno.</p>
+            </li>
+            <li class="sv-tarjeta">
+              <span class="caja are"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.5h18"/><rect x="4.5" y="13" width="6" height="7.5" rx="1"/><rect x="13.5" y="8" width="6" height="12.5" rx="1"/><path d="M13.5 4.5h6"/></svg></span>
+              <h3>Stock</h3>
+              <p>Te avisa antes de quedarte sin.</p>
+            </li>
+            <li class="sv-tarjeta">
+              <span class="caja ros"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>
+              <h3>Boletas</h3>
+              <p>El borrador se arma solo. Tú lo emites en el SII.</p>
+            </li>
           </ul>
         </div>
       </section>
@@ -126,18 +138,22 @@ const fuentes = `
           <h2 id="t-trabajo">Cómo trabajo</h2>
           <ol class="pasos">
             <li>
+              <span class="caja sal paso-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H10l-4 4v-4H4z"/></svg></span>
               <h3>Conversamos</h3>
               <p>La primera conversación es sin costo.</p>
             </li>
             <li>
+              <span class="caja sal paso-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/></svg></span>
               <h3>Elegimos qué automatizar</h3>
               <p>Partimos por una parte chica: lo que más tiempo te quita.</p>
             </li>
             <li>
+              <span class="caja sal paso-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/><rect x="8.5" y="4" width="7" height="7" rx="1"/></svg></span>
               <h3>Lo construyo</h3>
               <p>Lo pruebas con tus datos reales y apruebas lo importante.</p>
             </li>
             <li>
+              <span class="caja sal paso-ic"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12.2 2.4 2.4 4.6-5"/></svg></span>
               <h3>Queda andando</h3>
               <p>Yo lo mantengo, por una mensualidad que conoces antes de empezar.</p>
             </li>
@@ -145,26 +161,33 @@ const fuentes = `
           <div class="no-hago">
             <h3>Qué no hago</h3>
             <ul>
-              <li>No vendo software ni licencias.</li>
-              <li>No te pido las claves de tu banco.</li>
-              <li>No uso sistemas que te dejen sin acceso a tus datos.</li>
+              <li><svg class="ic no-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/></svg><span>No vendo software ni licencias.</span></li>
+              <li><svg class="ic no-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/></svg><span>No te pido las claves de tu banco.</span></li>
+              <li><svg class="ic no-ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/></svg><span>No uso sistemas que te dejen sin acceso a tus datos.</span></li>
             </ul>
           </div>
         </div>
       </section>
       <section class="seccion quien" aria-labelledby="t-quien">
-        <div class="contenedor">
-          <h2 id="t-quien">Quién soy</h2>
-          {/* TODO(Carlos): agregar "datos con respaldo y avisos cuando algo falla" solo cuando el respaldo nocturno de Railway esté funcionando */}
-          <p class="lead">
-            Soy Carlos Maldonado, desarrollador en Santiago. 5 años en sistemas de bancos y empresas de
-            pagos. Trabajo solo: hablas directo conmigo.
-          </p>
+        <div class="contenedor quien-grid">
+          <div>
+            <h2 id="t-quien">Quién soy</h2>
+            {/* TODO(Carlos): agregar "datos con respaldo y avisos cuando algo falla" solo cuando el respaldo nocturno de Railway esté funcionando */}
+            <p class="lead">Soy Carlos Maldonado, desarrollador. Traigo a tu pyme el mismo cuidado que exige un sistema bancario.</p>
+          </div>
+          <ul class="ficha">
+            <li><span class="caja sal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span>Santiago</span></li>
+            <li><span class="caja are"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5"/><path d="M5.5 10.5v7M9.5 10.5v7M14.5 10.5v7M18.5 10.5v7M3 20h18"/></svg></span><span>5 años en bancos y empresas de pagos</span></li>
+            <li><span class="caja ros"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H10l-4 4v-4H4z"/></svg></span><span>Trabajo solo, hablas directo conmigo</span></li>
+          </ul>
         </div>
       </section>
       <section class="seccion" aria-labelledby="t-faq">
-        <div class="contenedor">
-          <h2 id="t-faq">Antes de escribirme</h2>
+        <div class="contenedor faq-grid">
+          <div class="faq-intro">
+            <h2 id="t-faq">Antes de escribirme</h2>
+            <p class="lead">¿Dudas? Aquí las más comunes.</p>
+          </div>
           <div class="faq">
             <div>
               <h3>¿Necesito saber de computación?</h3>

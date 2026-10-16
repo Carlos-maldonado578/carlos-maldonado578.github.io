@@ -2,18 +2,32 @@ import { test, expect } from '@playwright/test';
 import { abrir } from './comun';
 
 test.describe('Estructura y texto de la pagina', () => {
-  test('secciones en orden; servicios son tres filas sin demos, sin numeros ni estado', async ({ page }) => {
+  test('secciones en orden; servicios son tres tarjetas sin demos, sin numeros ni estado', async ({ page }) => {
     await abrir(page);
     const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
     expect(ids).toEqual(['t-hero', 't-caso', 't-hago', 't-trabajo', 't-quien', 't-faq', 't-contacto']);
     await expect(page.locator('#t-hago')).toHaveText('También para');
     await expect(page.locator('.servicios .lead')).toHaveText('Lo construyo según lo que necesites.');
-    const filas = page.locator('.sv-fila');
+    const filas = page.locator('.sv-tarjeta');
     await expect(filas).toHaveCount(3);
     await expect(filas.locator('h3')).toHaveText(['Pedidos', 'Stock', 'Boletas']);
     await expect(filas.nth(2)).toContainText('Tú lo emites en el SII.');
     await expect(page.locator('.servicios')).not.toContainText('Lo construyo para ti');
     await expect(page.locator('.servicios table, .servicios .num')).toHaveCount(0);
+  });
+
+  test('iconos: uno por item, decorativos (aria-hidden) y las 3 tarjetas alinean ícono, título y texto', async ({ page }) => {
+    await abrir(page);
+    const svgs = await page.locator('main svg.ic').evaluateAll((l) => l.map((e) => ({ aria: e.getAttribute('aria-hidden'), role: e.getAttribute('role'), padre: e.closest('li')?.textContent?.trim().slice(0, 20) })));
+    expect(svgs.length).toBe(3 + 3 + 4 + 3);
+    expect(svgs.every((x) => x.aria === 'true' && !x.role)).toBe(true);
+    for (const li of await page.locator('.sv-tarjeta, .ficha li, .pasos > li, .no-hago li').all()) expect(await li.locator('svg.ic').count()).toBe(1);
+    const t = page.locator('.sv-tarjeta');
+    if ((await page.viewportSize())!.width >= 768) {
+      const y = await t.evaluateAll((l) => l.map((e) => ['.caja', 'h3', 'p'].map((q) => Math.round(e.querySelector(q)!.getBoundingClientRect().top - e.getBoundingClientRect().top))));
+      expect(y[1]).toEqual(y[0]);
+      expect(y[2]).toEqual(y[0]);
+    }
   });
 
   test('problema y caso son una sola seccion: titulo, chip, linea de tiempo y un boton', async ({ page }) => {

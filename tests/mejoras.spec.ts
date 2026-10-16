@@ -13,12 +13,11 @@ test.describe('Segunda ronda de mejoras', () => {
     expect(await page.locator('.faq').textContent()).not.toMatch(/\$|CLP|UF/);
   });
 
-  test('Quien soy: primera persona, sin foto, en dos frases', async ({ page }) => {
+  test('Quien soy: texto en primera persona y ficha con tres datos, sin foto', async ({ page }) => {
     await abrir(page);
     const q = page.locator('.quien');
-    await expect(q).toContainText('desarrollador en Santiago');
-    await expect(q).toContainText('5 años en sistemas de bancos y empresas de pagos');
-    await expect(q).toContainText('Trabajo solo: hablas directo conmigo');
+    await expect(q.locator('.lead')).toHaveText('Soy Carlos Maldonado, desarrollador. Traigo a tu pyme el mismo cuidado que exige un sistema bancario.');
+    await expect(q.locator('.ficha li')).toHaveText(['Santiago', '5 años en bancos y empresas de pagos', 'Trabajo solo, hablas directo conmigo']);
     await expect(page.locator('img')).toHaveCount(0);
   });
 
