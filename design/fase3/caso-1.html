@@ -1,0 +1,93 @@
+<!doctype html><html lang="es-CL"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caso real 1 · fondo claro, el contraste lo da la línea</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bitter:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../src/styles/global.css"><style>
+.chip-real{display:inline-block;margin-top:var(--s3);font:500 .8125rem/1.3 var(--f-mono);border:1px solid currentColor;border-radius:var(--r-chico);padding:2px 8px}
+
+.banda-azul{background:var(--salvia);color:var(--tinta)}
+.banda-azul a{color:var(--oliva)}
+.banda-azul .btn-claro{background:var(--oliva);color:var(--crema)}
+.chip-real{color:var(--oliva)}
+.escala{color:var(--tinta-2)}
+.antes h3{color:var(--tinta-2)}
+.antes .hora{color:var(--tinta-2)}
+.antes .tramo span{color:var(--tinta-2)}
+.pista::before{background:var(--linea-campo);height:1.5px}
+.antes .pista::before{background:var(--linea-campo)}
+.hito::before{background:var(--oliva)}
+.antes .hito::before{background:var(--linea-campo)}
+.tramo.lleno::after{background:var(--oliva)}
+.hora{color:var(--oliva)}
+.eje.armada .hito .hora,.eje.armada .hito p{background:none}
+@media (max-width:899px){.antes .hito .hora{color:var(--tinta-2)}}
+</style></head><body>
+<header class="cabecera"><div class="contenedor"><p class="marca">Carlos Maldonado</p><a class="btn btn-chico" href="#">Cuéntame tu caso</a></div></header><main>      <section class="hero banda-tinte" aria-labelledby="t-hero">
+        <div class="contenedor hero-grid">
+          <div class="hero-texto">
+            <p class="etiqueta">Automatización para pymes · Santiago</p>
+            <h1 id="t-hero">Tu planilla se llena <em>sola</em>.</h1>
+            <p class="lead">
+              Tu equipo manda un mensaje y el dato queda en la planilla. Al final del día te llega el
+              resumen. Yo lo armo todo.
+            </p>
+            <div class="hero-cta">
+              <a class="btn" href="#contacto">Cuéntame tu caso</a>
+              <a class="enlace-texto" href="#t-hago">Mira cómo funciona</a>
+              <p class="nota">Primera conversación sin costo. Te respondo dentro de 1&nbsp;día&nbsp;hábil.</p>
+            </div>
+          </div>
+
+          <div class="hero-ilus">
+            <svg class="ilus ilus-v" viewBox="0 0 340 470" role="img" aria-label="Mensajes de Telegram, WhatsApp o correo llegan a una planilla de Google, y de la planilla salen un resumen y un aviso."><g fill="none" stroke="var(--oliva)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g class="cx" stroke-dasharray="1 7" stroke-width="2.5"><path d="M56 108C56 146 170 142 170 180"/><path d="M170 108V180"/><path d="M284 108C284 146 170 142 170 180"/><path d="M170 304C170 334 100 330 100 360"/><path d="M170 304C170 334 240 330 240 360"/></g><rect x="8" y="8" width="96" height="72" rx="8" fill="var(--salvia)"/><g transform="translate(36.0 24.0) scale(1.667)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z"/><path d="M9 12.7 21 3M11.3 19l.5-4.8"/></g><text class="et" x="56.0" y="100" text-anchor="middle">Telegram</text><rect x="122" y="8" width="96" height="72" rx="8" fill="var(--arena)"/><g transform="translate(150.0 24.0) scale(1.667)"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M9.2 8.4c.3 2.3 2.6 4.6 5 5l1.3-1.3-1.8-1-.8.7c-.8-.3-1.5-1.1-1.9-1.9l.7-.8-1-1.8z"/></g><text class="et" x="170.0" y="100" text-anchor="middle">WhatsApp</text><rect x="236" y="8" width="96" height="72" rx="8" fill="var(--rosa)"/><g transform="translate(264.0 24.0) scale(1.667)"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3.5 7.5 12 14l8.5-6.5"/></g><text class="et" x="284.0" y="100" text-anchor="middle">Correo</text><rect x="95" y="180" width="150" height="96" rx="8" fill="var(--hoja)" stroke-width="2.25"/><path d="M95 212.0H245M95 244.0H245M145.0 180V276M195.0 180V276"/><rect x="195.0" y="244.0" width="50.0" height="32.0" fill="var(--oliva)" fill-opacity=".2" stroke="none"/><text class="et" x="170.0" y="296" text-anchor="middle">Planilla de Google</text><rect x="40" y="360" width="120" height="72" rx="8" fill="var(--salvia)"/><g transform="translate(80.0 376.0) scale(1.667)"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 17v-3M12 17v-6M15 17v-4"/></g><text class="et" x="100.0" y="452" text-anchor="middle">Resumen</text><rect x="180" y="360" width="120" height="72" rx="8" fill="var(--rosa)"/><g transform="translate(220.0 376.0) scale(1.667)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0"/></g><text class="et" x="240.0" y="452" text-anchor="middle">Aviso</text></g></svg><svg class="ilus ilus-h" viewBox="0 0 560 440" role="img" aria-label="Mensajes de Telegram, WhatsApp o correo llegan a una planilla de Google, y de la planilla salen un resumen y un aviso."><g fill="none" stroke="var(--oliva)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g class="cx" stroke-dasharray="1 7" stroke-width="2.5"><path d="M148 50C178 50 178 190 205 190"/><path d="M148 190H205"/><path d="M148 330C178 330 178 190 205 190"/><path d="M355 190C386 190 386 110 420 110"/><path d="M355 190C386 190 386 270 420 270"/></g><rect x="8" y="8" width="140" height="84" rx="8" fill="var(--salvia)"/><g transform="translate(54.0 26.0) scale(2.000)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z"/><path d="M9 12.7 21 3M11.3 19l.5-4.8"/></g><text class="et" x="78.0" y="114" text-anchor="middle">Telegram</text><rect x="8" y="148" width="140" height="84" rx="8" fill="var(--arena)"/><g transform="translate(54.0 166.0) scale(2.000)"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M9.2 8.4c.3 2.3 2.6 4.6 5 5l1.3-1.3-1.8-1-.8.7c-.8-.3-1.5-1.1-1.9-1.9l.7-.8-1-1.8z"/></g><text class="et" x="78.0" y="254" text-anchor="middle">WhatsApp</text><rect x="8" y="288" width="140" height="84" rx="8" fill="var(--rosa)"/><g transform="translate(54.0 306.0) scale(2.000)"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3.5 7.5 12 14l8.5-6.5"/></g><text class="et" x="78.0" y="394" text-anchor="middle">Correo</text><rect x="205" y="130" width="150" height="120" rx="8" fill="var(--hoja)" stroke-width="2.25"/><path d="M205 170.0H355M205 210.0H355M255.0 130V250M305.0 130V250"/><rect x="305.0" y="210.0" width="50.0" height="40.0" fill="var(--oliva)" fill-opacity=".2" stroke="none"/><text class="et" x="280.0" y="272" text-anchor="middle">Planilla de Google</text><rect x="420" y="68" width="132" height="84" rx="8" fill="var(--salvia)"/><g transform="translate(462.0 86.0) scale(2.000)"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 17v-3M12 17v-6M15 17v-4"/></g><text class="et" x="486.0" y="174" text-anchor="middle">Resumen</text><rect x="420" y="228" width="132" height="84" rx="8" fill="var(--rosa)"/><g transform="translate(462.0 246.0) scale(2.000)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0"/></g><text class="et" x="486.0" y="334" text-anchor="middle">Aviso</text></g></svg>
+          </div>
+        </div>
+      </section>
+      <section class="seccion problema" aria-labelledby="t-problema">
+        <div class="contenedor">
+          <h2 class="frase" id="t-problema">Hay una tarea que en tu pyme se hace a mano todos los días.</h2>
+          <p class="lead">
+            Anotar la producción en una hoja, pasar pedidos del WhatsApp a una planilla, revisar qué
+            falta despachar.
+          </p>
+        </div>
+      </section>
+      <section class="seccion banda-azul" aria-labelledby="t-caso">
+        <div class="contenedor">
+          <h2 id="t-caso">Un caso real: el mismo día, antes y ahora</h2>
+          <p class="chip-real">Cliente real, datos anonimizados</p>
+                    <ul class="caso-datos"></ul>
+          <div class="eje" id="caso-eje">
+            <div class="reloj" aria-hidden="true"><span class="cursor"></span></div>
+            <p class="lectura" id="caso-hora" aria-hidden="true">08:00</p>
+            <ol class="escala" aria-hidden="true">
+              <li style="--h:8">08:00</li>
+              <li style="--h:10">10:00</li>
+              <li style="--h:12">12:00</li>
+              <li style="--h:14">14:00</li>
+              <li style="--h:16">16:00</li>
+              <li style="--h:18">18:00</li>
+              <li style="--h:20">20:00</li>
+            </ol>
+            <div class="carril antes">
+              <h3>Antes</h3>
+              <ol class="pista">
+                <li class="hito" style="--h:8"><span class="hora">08:00</span><p>Cada uno anota en su hoja.</p></li>
+                <li class="tramo vacio" style="--a:8;--b:17.5"><span>Sin saber cuánto se produjo.</span></li>
+                <li class="hito der" style="--h:17.5"><span class="hora">17:30</span><p>Alguien junta las hojas.</p></li>
+                <li class="hito der t2" style="--h:20"><span class="hora">20:00</span><p>Recién ahí sabes el total.</p></li>
+              </ol>
+            </div>
+            <div class="carril ahora">
+              <h3>Ahora</h3>
+              <ol class="pista">
+                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda “120 cajas” y la planilla se llena.</p></li>
+                <li class="tramo lleno" style="--a:8.233;--b:18"><span>Ya está en la planilla.</span></li>
+                <li class="hito der" style="--h:18"><span class="hora">18:00</span><p>Te llega el resumen del día.</p></li>
+              </ol>
+            </div>
+          </div>
+          <div class="caso-ctl"><button type="button" class="btn-icono" id="caso-pausa" aria-label="Pausar" title="Pausar" hidden></button></div>
+          <a class="btn btn-claro" href="#contacto">Cuéntame tu caso</a>
+        </div>
+      </section>
+</main></body></html>
