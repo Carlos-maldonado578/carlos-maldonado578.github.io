@@ -1,0 +1,80 @@
+<!doctype html><html lang="es-CL"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Servicios A · 4 tarjetas compactas, antes del caso</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bitter:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../src/styles/global.css"><style>
+.sv-grid,.sv-chicas{display:grid;gap:12px;margin-top:var(--s6)}
+.sv-t{border:1px solid var(--linea);border-radius:var(--r);background:var(--hoja);padding:16px 18px;display:grid;gap:8px;align-content:start}
+.sv-t.sv-real{background:var(--salvia);border-color:var(--oliva)}
+.sv-linea{font:700 1.25rem/1.2 var(--f-display);letter-spacing:-.005em}
+.sv-estado{font:500 .8125rem/1.3 var(--f-mono);color:var(--tinta-2)}
+.sv-estado.ok{color:var(--oliva);font-weight:600}
+.sv-ver{font-weight:600;font-size:.9375rem}
+.sv-cta{margin-top:var(--s6)}
+.sv-nota{margin-top:var(--s3)}
+.sv-filas{list-style:none;padding:0;margin:var(--s6) 0 0;border-top:1px solid var(--linea)}
+.sv-fila{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--linea)}
+.sv-fila h3{font:700 1.125rem/1.3 var(--f-titulo)}
+.sv-fila p{max-width:none}
+.sv-fila .sv-estado{grid-column:2}
+.sv-grande{display:grid;gap:16px;margin-top:var(--s6);border:1px solid var(--oliva);border-radius:var(--r);background:var(--salvia);padding:20px}
+.sv-grande .ficha{margin:0;background:var(--hoja)}
+.sv-grande .sv-linea{font-size:1.5rem;margin:8px 0 12px}
+@media (min-width:768px){.sv-grid{grid-template-columns:1fr 1fr}.sv-chicas{grid-template-columns:repeat(3,1fr)}.sv-fila{grid-template-columns:2.5rem 1.2fr 1.4fr auto;align-items:baseline}.sv-fila .sv-estado{grid-column:auto}.sv-grande{grid-template-columns:1.1fr 1fr;align-items:center;padding:28px}}
+</style></head><body>
+<header class="cabecera"><div class="contenedor"><p class="marca">Carlos Maldonado</p><a class="btn btn-chico" href="#">Cuéntame tu caso</a></div></header><main>      <section class="seccion problema" aria-labelledby="t-problema">
+        <div class="contenedor">
+          <h2 class="frase" id="t-problema">Hay una tarea que en tu pyme se hace a mano todos los días.</h2>
+          <p class="lead">
+            Anotar la producción en una hoja, pasar pedidos del WhatsApp a una planilla, revisar qué
+            falta despachar.
+          </p>
+          <ul class="tarjetas">
+            <li class="tarj t-salvia">Se anota a mano</li>
+            <li class="tarj t-arena">Se tipea dos veces</li>
+            <li class="tarj t-rosa">Te enteras tarde</li>
+          </ul>
+        </div>
+      </section>
+<section class="seccion pegas-sec" aria-labelledby="t-hago"><div class="contenedor">
+<h2 id="t-hago">Qué dejo andando solo</h2>
+<div class="sv-grid"><article class="sv-t sv-real"><p class="etiqueta">01 · Registros</p><p class="sv-linea">Llega el mensaje. La planilla se llena sola.</p><a class="sv-ver" href="#t-caso">Mira el caso ↓</a><p class="sv-estado ok">Funcionando en un cliente</p></article><article class="sv-t"><p class="etiqueta">02 · Pedidos</p><p class="sv-linea">Entra el pedido. Ves en qué va cada uno.</p><p class="sv-estado">Lo construyo para ti</p></article><article class="sv-t"><p class="etiqueta">03 · Avisos</p><p class="sv-linea">Baja el stock. Te avisan antes de quedarte sin.</p><p class="sv-estado">Lo construyo para ti</p></article><article class="sv-t"><p class="etiqueta">04 · Boletas y facturas</p><p class="sv-linea">Está en tu planilla. El borrador se arma solo.</p><p class="sv-estado">Lo construyo para ti</p></article></div>
+<a class="btn sv-cta" href="#contacto">Cuéntame tu caso</a>
+<p class="nota sv-nota">Lo que no está en un cliente todavía, lo construyo para ti.</p></div></section>      <section class="seccion banda-azul" aria-labelledby="t-caso">
+        <div class="contenedor">
+          <h2 id="t-caso">Un caso real: el mismo día, antes y ahora</h2>
+                    <ul class="caso-datos"></ul>
+          <div class="eje" id="caso-eje">
+            <div class="reloj" aria-hidden="true"><span class="cursor"></span></div>
+            <p class="lectura" id="caso-hora" aria-hidden="true">08:00</p>
+            <ol class="escala" aria-hidden="true">
+              <li style="--h:8">08:00</li>
+              <li style="--h:10">10:00</li>
+              <li style="--h:12">12:00</li>
+              <li style="--h:14">14:00</li>
+              <li style="--h:16">16:00</li>
+              <li style="--h:18">18:00</li>
+              <li style="--h:20">20:00</li>
+            </ol>
+            <div class="carril antes">
+              <h3>Antes</h3>
+              <ol class="pista">
+                <li class="hito" style="--h:8"><span class="hora">08:00</span><p>Cada uno anota en su hoja.</p></li>
+                <li class="tramo vacio" style="--a:8;--b:17.5"><span>Sin saber cuánto se produjo.</span></li>
+                <li class="hito der" style="--h:17.5"><span class="hora">17:30</span><p>Alguien junta las hojas.</p></li>
+                <li class="hito der t2" style="--h:20"><span class="hora">20:00</span><p>Recién ahí sabes el total.</p></li>
+              </ol>
+            </div>
+            <div class="carril ahora">
+              <h3>Ahora</h3>
+              <ol class="pista">
+                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda “120 cajas” y la planilla se llena.</p></li>
+                <li class="tramo lleno" style="--a:8.233;--b:18"><span>Ya está en la planilla.</span></li>
+                <li class="hito der" style="--h:18"><span class="hora">18:00</span><p>Te llega el resumen del día.</p></li>
+              </ol>
+            </div>
+          </div>
+          <div class="caso-ctl"><button type="button" class="btn-icono" id="caso-pausa" aria-label="Pausar" title="Pausar" hidden></button></div>
+          <a class="btn btn-claro" href="#contacto">Cuéntame tu caso</a>
+        </div>
+      </section>
+</main></body></html>
