@@ -169,7 +169,7 @@ if (pegas) {
   lista.hidden = false;
   q(pegas, '.pegas-guia').hidden = false;
   lista.setAttribute('role', 'tablist');
-  lista.setAttribute('aria-label', 'Pegas que puedo automatizar');
+  lista.setAttribute('aria-label', 'Tareas que puedo automatizar');
   lista.setAttribute('aria-orientation', 'vertical');
   tabs.forEach((t) => t.setAttribute('role', 'tab'));
   paneles.forEach((p) => { p.setAttribute('role', 'tabpanel'); p.tabIndex = 0; });
@@ -446,6 +446,13 @@ form.addEventListener('submit', async (ev) => {
     enviando = false;
   }
 });
+
+/* ---- Cabecera: el boton aparece cuando el CTA del hero sale de pantalla ---- */
+const cabecera = document.querySelector('.cabecera');
+const ctaHero = document.querySelector('.hero-cta .btn');
+if (cabecera && ctaHero) {
+  new IntersectionObserver(([e]) => cabecera.classList.toggle('cta-oculto', e.isIntersecting)).observe(ctaHero);
+}
 
 /* ---- Cabecera y volver arriba ---- */
 const subir = document.querySelector('.subir');
