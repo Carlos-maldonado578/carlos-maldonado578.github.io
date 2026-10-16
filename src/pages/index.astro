@@ -53,7 +53,7 @@ const fuentes = `
             <div class="hero-cta">
               <a class="btn" href="#contacto">Cuéntame tu caso</a>
               
-              <p class="nota">La primera conversación es sin costo. Te contacto a la brevedad posible.</p>
+              <p class="nota">Primera conversación sin costo. Te respondo dentro de 1 día hábil.</p>
             </div>
           </div>
 
@@ -122,7 +122,6 @@ const fuentes = `
       <section class="seccion pegas-sec" aria-labelledby="t-hago">
         <div class="contenedor">
           <h2 id="t-hago">Qué puedo dejar andando solo</h2>
-          {/* TODO(Carlos): solo el registro por Telegram a planilla está construido para un cliente; si ya armaste pedidos, avisos o boletas, cambia el estado y la nota de honestidad de esa pega */}
           <p class="lead">
             Tomo esa parte manual y la dejo andando sola, con herramientas que ya conoces: Telegram,
             planillas, correo.
@@ -139,19 +138,19 @@ const fuentes = `
               <button type="button" class="pega-tab" id="tab-pedidos" aria-controls="pega-pedidos">
                 <span class="num">2</span>
                 <span class="pega-nombre">Pedidos</span>
-                <span class="pega-estado">Lo puedo armar</span>
+                <span class="pega-estado">Lo construyo para ti</span>
                 <span class="pega-barra" aria-hidden="true"></span>
               </button>
               <button type="button" class="pega-tab" id="tab-avisos" aria-controls="pega-avisos">
                 <span class="num">3</span>
                 <span class="pega-nombre">Avisos</span>
-                <span class="pega-estado">Lo puedo armar</span>
+                <span class="pega-estado">Lo construyo para ti</span>
                 <span class="pega-barra" aria-hidden="true"></span>
               </button>
               <button type="button" class="pega-tab" id="tab-boletas" aria-controls="pega-boletas">
                 <span class="num">4</span>
                 <span class="pega-nombre">Boletas y facturas</span>
-                <span class="pega-estado">Lo puedo armar</span>
+                <span class="pega-estado">Lo construyo para ti</span>
                 <span class="pega-barra" aria-hidden="true"></span>
               </button>
             </div>
@@ -287,11 +286,10 @@ const fuentes = `
       <section class="seccion trabajo" aria-labelledby="t-trabajo">
         <div class="contenedor">
           <h2 id="t-trabajo">Cómo trabajo</h2>
-          {/* TODO(Carlos): confirmar que la primera conversación puede ser por llamada o en el local del cliente */}
           <ol class="pasos">
             <li>
               <h3>Conversamos</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve. Sin costo.</p></div>
+              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve, por llamada o videollamada. Sin costo.</p></div>
               <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo trabajas hoy.</p></div>
             </li>
             <li>
@@ -310,14 +308,13 @@ const fuentes = `
               <div class="tu"><p class="lado">Tú haces</p><p>La usas y me avisas si algo no calza.</p></div>
             </li>
           </ol>
-          <p class="lead trabajo-cierre">Cada parte toma semanas, no meses: ves resultados antes de gastar todo.</p>
-
-          {/* TODO(Carlos): confirmar que estos límites son verdad para ti */}
+          <p class="lead trabajo-cierre">El plazo depende de lo que necesites. Parto por una parte chica para que veas resultados pronto, antes de seguir con lo demás.</p>
           <div class="no-hago">
             <h3>Qué no hago</h3>
             <ul>
               <li>Vender software ni licencias.</li>
-              <li>Tocar tu contabilidad ni tus claves del banco.</li>
+              <li>Pedirte las claves de tu banco.</li>
+              <li>Conectarme a sistemas que no te dejan sacar tus datos.</li>
             </ul>
           </div>
         </div>
@@ -326,6 +323,7 @@ const fuentes = `
       <section class="seccion banda-azul" aria-labelledby="t-caso">
         <div class="contenedor">
           <h2 id="t-caso">Un caso real: el mismo día, antes y ahora</h2>
+          {/* TODO(Carlos): agregar un dato real del caso (cuántas personas registran y cuánto tomaba juntar las hojas); dejar espacio en el diseño sin romperlo */}
           <div class="eje" id="caso-eje">
             <div class="reloj" aria-hidden="true"><span class="cursor"></span></div>
             <p class="lectura" id="caso-hora" aria-hidden="true">08:00</p>
@@ -364,19 +362,18 @@ const fuentes = `
       <section class="seccion" aria-labelledby="t-faq">
         <div class="contenedor">
           <h2 id="t-faq">Antes de escribirme</h2>
-          {/* TODO(Carlos): confirmar cada respuesta (qué pasa si algo se cae, qué explicas al entregar, que el cliente se lleva sus datos si se va) */}
           <div class="faq">
             <div>
               <h3>¿Tengo que saber de computación?</h3>
-              <p>No. Si sabes mandar un mensaje desde el celular, basta. Yo armo todo y te explico cómo usarlo.</p>
+              <p>No. Si sabes mandar un mensaje desde el celular, basta. Yo armo todo y, al entregar, te explico cómo usarlo y te dejo la documentación por escrito.</p>
             </div>
             <div>
               <h3>¿Qué pasa si algo se cae?</h3>
-              <p>Me escribes y lo reviso. Tus datos siguen siendo tuyos, así que puedes seguir anotando a mano mientras tanto.</p>
+              <p>Lo reviso apenas me avisas. Tus datos siguen en tu planilla, así que mientras tanto puedes anotar a mano.</p>
             </div>
             <div>
               <h3>¿Mis datos, de quién son?</h3>
-              <p>Tuyos: tu planilla, tu correo y tus registros. Las automatizaciones corren en mi servidor en la nube. Si un día no quieres seguir conmigo, te llevas tus datos.</p>
+              <p>La planilla es tuya. Si un día dejamos de trabajar juntos, te la quedas con todos tus datos. Las automatizaciones corren en mi servidor en la nube.</p>
             </div>
             <div>
               <h3>¿Y si ya uso Excel o WhatsApp?</h3>
@@ -441,7 +438,7 @@ const fuentes = `
             </div>
 
             <div class="exito" id="exito" role="status" hidden>
-              <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Te contactaré a <span id="x-contacto"></span> a la brevedad posible.</h3>
+              <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Te escribo a <span id="x-contacto"></span> dentro de 1 día hábil.</h3>
               <p>Así quedó tu mensaje en mi planilla:</p>
               <table class="mini-planilla">
                 <thead><tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Estado</th></tr></thead>

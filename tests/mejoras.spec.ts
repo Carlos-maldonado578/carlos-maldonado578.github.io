@@ -121,12 +121,12 @@ test.describe('Segunda ronda de mejoras', () => {
     await expect(page.locator('.promesas p').last()).toContainText('se cotiza aparte');
   });
 
-  test('Como trabajo: carriles Yo hago / Tu haces; Que no hago tiene 2 limites', async ({ page }) => {
+  test('Como trabajo: carriles Yo hago / Tu haces; Que no hago tiene 3 limites', async ({ page }) => {
     await abrir(page);
     await expect(page.locator('.pasos > li')).toHaveCount(4);
     await expect(page.locator('.pasos .yo')).toHaveCount(4);
     await expect(page.locator('.pasos .tu')).toHaveCount(4);
-    await expect(page.locator('.no-hago li')).toHaveCount(2);
+    await expect(page.locator('.no-hago li')).toHaveCount(3);
   });
 
   test('bandas de fondo: solo 3 cortes de color de arriba a abajo', async ({ page }) => {
