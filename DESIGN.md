@@ -161,9 +161,9 @@ La demo (mensaje, fila nueva, aviso) sigue siendo la pieza central. Cada servici
 ## Layout
 
 Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Orden de la página:
-1. **Hero** (crema 2, hero partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" a la izquierda (columnas 1-6); hoja de demo con borde de 2px de tinta a la derecha (8-12).
+1. **Hero** (crema 2, hero partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" a la izquierda (columnas 1-6); ilustración de línea fina a la derecha (7-12), con grilla de puntos muy tenue detrás (solo ahí). En 375 la ilustración va en vertical, debajo del CTA.
 2. **Problema**: la frase y tres tarjetas pastel (salvia, arena, rosa).
-3. **Qué dejo andando solo**: diagrama de línea fina (mensaje, planilla, aviso), pestañas 01-04 con estado y panel con ficha, escena y nota de honestidad.
+3. **Qué dejo andando solo**: pestañas 01-04 con estado y panel con ficha, escena y nota de honestidad. La única demo concreta (tabla) vive en 01 · Registros.
 4. **Caso real** (noche): eje horario Antes / Ahora, con espacio reservado para un dato (TODO).
 5. **Principios**: tres columnas con regla superior de 1px.
 6. **Cómo trabajo + Qué no hago**: cuatro pasos Yo hago / Tú haces.
@@ -200,10 +200,13 @@ Tres tarjetas (salvia, arena, rosa) con borde 1px línea y texto de 1.0625rem 50
 Tarjeta hoja, borde 1px línea, radio 8px, sobre crema 2. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título personalizado, mini-planilla con la fila "Recibido" y los tres pasos siguientes. Valores insertados siempre con `textContent`.
 
 ### Demo (hoja de la planilla)
-Hoja `#FFFDF6`. **Solo la del hero** lleva borde de 2px en tinta; las demás hojas (escenas de servicios, mini-planilla) llevan 1px línea. Tres pasos con rótulos mono, burbuja salvia, tabla de 5 filas con fila nueva en destello, aviso con borde oliva. Rotulada EJEMPLO. En bucle con botón Pausar/Reanudar; con `prefers-reduced-motion` o sin JS muestra el estado final.
+Hoja `#FFFDF6` con borde 1px línea, solo en las escenas de servicios (01 · Registros es la demo concreta). Rótulos mono, burbuja salvia, tabla de máximo 3 filas con un solo dato destacado, aviso con borde oliva. Rotulada EJEMPLO; la nota de datos inventados va una vez por sección.
 
-### Diagrama de flujo
-SVG propio de línea fina (oliva, trazo 1.5-2px): íconos de Telegram, correo y formulario, una planilla con una celda resaltada y una campana. Decorativo con descripción en texto.
+### Ilustración del hero
+SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones punteadas): Telegram, WhatsApp y Correo (cajas salvia, arena y rosa, con el nombre debajo) llegan a la planilla de Google (hoja, borde 2.25px, una celda resaltada) y de ahí a Resumen y Aviso. Íconos genéricos de trazo, no logos de marca a color; n8n no aparece en el hero. Horizontal desde 768px, vertical en móvil. Los nombres llevan un contorno del color del fondo para no chocar con los puntos.
+
+### Grilla de puntos
+Solo CSS (`radial-gradient`, puntos de oliva al 16%, paso de 22px), solo detrás de la ilustración del hero y difuminada en los bordes con una máscara. Texto secundario sobre el punto más oscuro: 5.2:1. El resto de la página no lleva fondo decorativo.
 
 ### Movimiento
 Se mantiene: demo del hero en bucle (arranca en el estado final), servicios en rotación con barra de 9 s, reloj del Caso real (`DUR_CASO`, `ESPERA_CASO`) y botón volver arriba. Todo se pausa o queda estático con `prefers-reduced-motion`. La Fase 5 revisa cuáles se quedan.
@@ -216,7 +219,7 @@ Se mantiene: demo del hero en bucle (arranca en el estado final), servicios en r
 - **Do** mantener objetivos de 44px y contorno de foco de 3px; bordes de campo ≥3:1.
 
 ### Don't:
-- **Don't** usar sombras, degradados, blur, emoji ni glassmorphism.
+- **Don't** usar sombras, degradados, blur, emoji ni glassmorphism; el único fondo decorativo es la grilla de puntos del hero.
 - **Don't** usar azul frío ni blanco puro.
 - **Don't** usar el color de error como relleno o acción.
 - **Don't** mostrar números sin cifras tabulares.

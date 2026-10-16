@@ -1,47 +1,15 @@
 import { test, expect } from '@playwright/test';
 import { abrir } from './comun';
 
-test.describe('Demo del hero', () => {
-  test('el boton Pausar/Reanudar existe y alterna', async ({ page }) => {
-    await abrir(page);
-    const b = page.locator('#demo-pausa');
-    await expect(b).toBeVisible();
-    await expect(b).toHaveText('Pausar');
-    await b.click();
-    await expect(b).toHaveText('Reanudar');
-    await b.click();
-    await expect(b).toHaveText('Pausar');
-  });
-
-  test('pausada, la demo deja de cambiar', async ({ page }) => {
-    await abrir(page);
-    await page.locator('#demo-pausa').click();
-    const foto = () => page.locator('#demo').evaluate((e) => e.innerHTML);
-    const a = await foto();
-    await page.waitForTimeout(4500);
-    expect(await foto()).toBe(a);
-  });
-});
-
 test.describe('Movimiento reducido', () => {
   test.use({ reducedMotion: 'reduce' });
 
-  test('la demo se ve completa y sin animaciones en curso', async ({ page }) => {
+  test('la ilustracion del hero se ve completa y no tiene animaciones en curso', async ({ page }) => {
     await abrir(page);
-    await expect(page.locator('#demo-pausa')).toBeHidden();
-    await expect(page.locator('#demo .fila-nueva')).toHaveCount(3);
-    for (const f of await page.locator('#demo .fila-nueva').all()) {
-      await expect(f).toHaveClass(/\bon\b/);
-      await expect(f).toBeVisible();
-      expect(await f.evaluate((e) => getComputedStyle(e).opacity)).toBe('1');
-    }
-    await expect(page.locator('#demo .aviso')).toHaveClass(/\bon\b/);
+    await expect(page.locator('.hero-ilus .ilus:visible')).toHaveCount(1);
     await page.waitForTimeout(500);
     const enCurso = await page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running' && a.effect?.getTiming().iterations === Infinity).length);
     expect(enCurso).toBe(0);
-    const html1 = await page.locator('#demo').innerHTML();
-    await page.waitForTimeout(3000);
-    expect(await page.locator('#demo').innerHTML()).toBe(html1);
   });
 
   test('las 4 escenas de "Elige tu pega" se ven completas y estaticas', async ({ page }) => {
@@ -58,7 +26,7 @@ test.describe('Movimiento reducido', () => {
       expect(apagados, `pestana ${i}`).toEqual([]);
       // el boton "volver arriba" puede estar desvaneciendose por el scroll: solo cuenta lo de la demo/escenas
       await expect.poll(() => page.evaluate(() => document.getAnimations()
-        .filter((a) => a.playState === 'running' && (a.effect as KeyframeEffect).target?.closest('#pegas, #demo')).length),
+        .filter((a) => a.playState === 'running' && (a.effect as KeyframeEffect).target?.closest('#pegas')).length),
         { message: `animaciones corriendo en pestana ${i}` }).toBe(0);
     }
   });
@@ -81,7 +49,6 @@ test.describe('Sin JavaScript', () => {
     for (let i = 1; i < 4; i++) expect(cajas[i].y, 'escenas apiladas, sin solaparse').toBeGreaterThanOrEqual(cajas[i - 1].y + cajas[i - 1].height - 1);
     await expect(page.locator('.sin-js')).toBeVisible();
     await expect(page.locator('.sin-js a')).toHaveAttribute('href', /mailto:carlos\.automatiza\.tupyme@gmail\.com/);
-    await expect(page.locator('#demo .fila-nueva.on')).toHaveCount(3);
-    await expect(page.locator('#demo-pausa')).toBeHidden();
+    await expect(page.locator('.hero-ilus .ilus:visible')).toHaveCount(1);
   });
 });

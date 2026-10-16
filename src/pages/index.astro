@@ -53,55 +53,18 @@ const fuentes = `
             <p class="etiqueta">Automatización para pymes · Santiago</p>
             <h1 id="t-hero">Tu planilla se llena <em>sola</em>.</h1>
             <p class="lead">
-              Tu equipo manda un mensaje por Telegram y el dato queda en la planilla. Al final del día te
-              llega el resumen. Yo lo armo todo.
+              Tu equipo manda un mensaje y el dato queda en la planilla. Al final del día te llega el
+              resumen. Yo lo armo todo.
             </p>
             <div class="hero-cta">
               <a class="btn" href="#contacto">Cuéntame tu caso</a>
-              <a class="enlace-texto" href="#demo">Mira cómo funciona</a>
+              <a class="enlace-texto" href="#t-hago">Mira cómo funciona</a>
               <p class="nota">Primera conversación sin costo. Te respondo dentro de 1&nbsp;día&nbsp;hábil.</p>
             </div>
           </div>
 
-          <div class="hero-demo">
-            <figure class="hoja" id="demo">
-              <div class="hoja-cab">
-                <span class="rotulo">Hoja de registro · Producción</span>
-                <span class="ejemplo">EJEMPLO</span>
-              </div>
-
-              <div class="paso">
-                <span class="rotulo"><span class="num">1</span> Llega el mensaje</span>
-                <div class="m">
-                  <p class="meta" id="demo-meta">Telegram · Luis · 08:47</p>
-                  <p class="mensaje on" id="demo-msg">Producción: 134&nbsp;cajas</p>
-                </div>
-              </div>
-
-              <div class="paso">
-                <span class="rotulo"><span class="num">2</span> Se anota en la planilla</span>
-                <table>
-                  <thead>
-                    <tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Cajas</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr class="fila-nueva on"><td>08:14</td><td>Juan</td><td>120</td></tr>
-                    <tr class="fila-nueva on"><td>08:31</td><td>Marta</td><td>98</td></tr>
-                    <tr class="fila-nueva on"><td>08:47</td><td>Luis</td><td>134</td></tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="paso">
-                <span class="rotulo"><span class="num">3</span> Te llega el aviso</span>
-                <p class="aviso on">Aviso · 18:00: Total del día: <b>1.240&nbsp;cajas</b></p>
-              </div>
-
-              <div class="hoja-pie">
-                <figcaption>Ejemplo con datos inventados.</figcaption>
-                <button type="button" class="btn-texto" id="demo-pausa" hidden>Pausar</button>
-              </div>
-            </figure>
+          <div class="hero-ilus">
+            <svg class="ilus ilus-v" viewBox="0 0 340 470" role="img" aria-label="Mensajes de Telegram, WhatsApp o correo llegan a una planilla de Google, y de la planilla salen un resumen y un aviso."><g fill="none" stroke="var(--oliva)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g class="cx" stroke-dasharray="1 7" stroke-width="2.5"><path d="M56 108C56 146 170 142 170 180"/><path d="M170 108V180"/><path d="M284 108C284 146 170 142 170 180"/><path d="M170 304C170 334 100 330 100 360"/><path d="M170 304C170 334 240 330 240 360"/></g><rect x="8" y="8" width="96" height="72" rx="8" fill="var(--salvia)"/><g transform="translate(36.0 24.0) scale(1.667)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z"/><path d="M9 12.7 21 3M11.3 19l.5-4.8"/></g><text class="et" x="56.0" y="100" text-anchor="middle">Telegram</text><rect x="122" y="8" width="96" height="72" rx="8" fill="var(--arena)"/><g transform="translate(150.0 24.0) scale(1.667)"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M9.2 8.4c.3 2.3 2.6 4.6 5 5l1.3-1.3-1.8-1-.8.7c-.8-.3-1.5-1.1-1.9-1.9l.7-.8-1-1.8z"/></g><text class="et" x="170.0" y="100" text-anchor="middle">WhatsApp</text><rect x="236" y="8" width="96" height="72" rx="8" fill="var(--rosa)"/><g transform="translate(264.0 24.0) scale(1.667)"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3.5 7.5 12 14l8.5-6.5"/></g><text class="et" x="284.0" y="100" text-anchor="middle">Correo</text><rect x="95" y="180" width="150" height="96" rx="8" fill="var(--hoja)" stroke-width="2.25"/><path d="M95 212.0H245M95 244.0H245M145.0 180V276M195.0 180V276"/><rect x="195.0" y="244.0" width="50.0" height="32.0" fill="var(--oliva)" fill-opacity=".2" stroke="none"/><text class="et" x="170.0" y="296" text-anchor="middle">Planilla de Google</text><rect x="40" y="360" width="120" height="72" rx="8" fill="var(--salvia)"/><g transform="translate(80.0 376.0) scale(1.667)"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 17v-3M12 17v-6M15 17v-4"/></g><text class="et" x="100.0" y="452" text-anchor="middle">Resumen</text><rect x="180" y="360" width="120" height="72" rx="8" fill="var(--rosa)"/><g transform="translate(220.0 376.0) scale(1.667)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0"/></g><text class="et" x="240.0" y="452" text-anchor="middle">Aviso</text></g></svg><svg class="ilus ilus-h" viewBox="0 0 560 440" role="img" aria-label="Mensajes de Telegram, WhatsApp o correo llegan a una planilla de Google, y de la planilla salen un resumen y un aviso."><g fill="none" stroke="var(--oliva)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><g class="cx" stroke-dasharray="1 7" stroke-width="2.5"><path d="M148 50C178 50 178 190 205 190"/><path d="M148 190H205"/><path d="M148 330C178 330 178 190 205 190"/><path d="M355 190C386 190 386 110 420 110"/><path d="M355 190C386 190 386 270 420 270"/></g><rect x="8" y="8" width="140" height="84" rx="8" fill="var(--salvia)"/><g transform="translate(54.0 26.0) scale(2.000)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z"/><path d="M9 12.7 21 3M11.3 19l.5-4.8"/></g><text class="et" x="78.0" y="114" text-anchor="middle">Telegram</text><rect x="8" y="148" width="140" height="84" rx="8" fill="var(--arena)"/><g transform="translate(54.0 166.0) scale(2.000)"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M9.2 8.4c.3 2.3 2.6 4.6 5 5l1.3-1.3-1.8-1-.8.7c-.8-.3-1.5-1.1-1.9-1.9l.7-.8-1-1.8z"/></g><text class="et" x="78.0" y="254" text-anchor="middle">WhatsApp</text><rect x="8" y="288" width="140" height="84" rx="8" fill="var(--rosa)"/><g transform="translate(54.0 306.0) scale(2.000)"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3.5 7.5 12 14l8.5-6.5"/></g><text class="et" x="78.0" y="394" text-anchor="middle">Correo</text><rect x="205" y="130" width="150" height="120" rx="8" fill="var(--hoja)" stroke-width="2.25"/><path d="M205 170.0H355M205 210.0H355M255.0 130V250M305.0 130V250"/><rect x="305.0" y="210.0" width="50.0" height="40.0" fill="var(--oliva)" fill-opacity=".2" stroke="none"/><text class="et" x="280.0" y="272" text-anchor="middle">Planilla de Google</text><rect x="420" y="68" width="132" height="84" rx="8" fill="var(--salvia)"/><g transform="translate(462.0 86.0) scale(2.000)"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 17v-3M12 17v-6M15 17v-4"/></g><text class="et" x="486.0" y="174" text-anchor="middle">Resumen</text><rect x="420" y="228" width="132" height="84" rx="8" fill="var(--rosa)"/><g transform="translate(462.0 246.0) scale(2.000)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0"/></g><text class="et" x="486.0" y="334" text-anchor="middle">Aviso</text></g></svg>
           </div>
         </div>
       </section>
@@ -122,21 +85,6 @@ const fuentes = `
       <section class="seccion pegas-sec" aria-labelledby="t-hago">
         <div class="contenedor">
           <h2 id="t-hago">Qué dejo andando solo</h2>
-          <div class="flujo" role="img" aria-label="Un mensaje por Telegram, correo o formulario llega a una planilla, y de la planilla sale un aviso.">
-            <svg viewBox="0 0 760 130" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-              <rect x="8" y="15" width="204" height="100" rx="8" />
-              <g transform="translate(24 41) scale(2)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z" /><path d="M9 12.7 21 3M11.3 19l.5-4.8" /></g>
-              <g transform="translate(88 41) scale(2)"><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3.5 7.5 12 14l8.5-6.5" /></g>
-              <g transform="translate(152 41) scale(2)"><path d="M4 5h16v11h-9.5L6 19.5V16H4z" /><path d="M8 9h8M8 12h5" /></g>
-              <path d="M230 65h66m-10-8 10 8-10 8" />
-              <rect x="316" y="10" width="170" height="110" rx="8" />
-              <path d="M316 47h170M316 83h170M373 10v110M430 10v110" />
-              <rect x="431" y="84" width="54" height="35" fill="currentColor" fill-opacity=".18" stroke="none" />
-              <path d="M504 65h66m-10-8 10 8-10 8" />
-              <rect x="594" y="25" width="158" height="80" rx="8" />
-              <g transform="translate(649 41) scale(2)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0" /></g>
-            </svg>
-          </div>
           <div class="pegas" id="pegas">
             <p class="pegas-guia" hidden>Elige un servicio y mira cómo quedaría andando.</p>
             <div class="pegas-lista" hidden>

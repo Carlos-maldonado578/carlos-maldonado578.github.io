@@ -2,7 +2,7 @@ const $ = (id) => document.getElementById(id);
 const t0 = Date.now();
 const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ---- Motor de presentaciones: pasos [espera antes del paso en ms, paso]; lo usan la demo y las pegas ---- */
+/* ---- Motor de presentaciones: pasos [espera antes del paso en ms, paso]; lo usan las pegas ---- */
 function bucle(pasos, { repetir = true, alTerminar } = {}) {
   let i = 0;
   let timer = 0;
@@ -37,51 +37,6 @@ function bucle(pasos, { repetir = true, alTerminar } = {}) {
       pausado = false;
     },
   };
-}
-
-/* ---- Demo: bucle de presentacion con pausa (WCAG 2.2.2); el estado final completo esta en el HTML ---- */
-const demo = $('demo');
-const pausa = $('demo-pausa');
-if (demo && pausa && !reducido) {
-  const filas = demo.querySelectorAll('.fila-nueva');
-  const aviso = demo.querySelector('.aviso');
-  const msg = $('demo-msg');
-  const meta = $('demo-meta');
-  const mensajes = [
-    ['Telegram · Juan · 08:14', 'Producción: 120 cajas'],
-    ['Telegram · Marta · 08:31', 'Producción: 98 cajas'],
-    ['Telegram · Luis · 08:47', 'Producción: 134 cajas'],
-  ];
-  const mostrarMsg = (i) => {
-    meta.textContent = mensajes[i][0];
-    msg.textContent = mensajes[i][1];
-    msg.classList.remove('on');
-    void msg.offsetWidth;
-    msg.classList.add('on');
-  };
-  const fila = (i) => () => filas[i].classList.add('on');
-  const pasos = [
-    [0, () => {}], // arranca en el estado final del HTML: la tabla nunca carga vacia
-    [5000, () => { filas.forEach((f) => f.classList.remove('on')); aviso.classList.remove('on'); mostrarMsg(0); }],
-    [1400, fila(0)],
-    [1500, () => mostrarMsg(1)],
-    [1400, fila(1)],
-    [1500, () => mostrarMsg(2)],
-    [1400, fila(2)],
-    [1500, () => aviso.classList.add('on')],
-  ];
-  demo.classList.add('armada');
-  pausa.hidden = false;
-  const b = bucle(pasos);
-  pausa.addEventListener('click', () => {
-    if (b.pausado) {
-      b.reanudar();
-      pausa.textContent = 'Pausar';
-    } else {
-      b.pausar();
-      pausa.textContent = 'Reanudar';
-    }
-  });
 }
 
 /* ---- Elige tu pega: pestanas con escenas; rotacion continua mientras la seccion es visible ---- */

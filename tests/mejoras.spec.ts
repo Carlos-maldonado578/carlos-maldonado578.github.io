@@ -124,13 +124,22 @@ test.describe('Segunda ronda de mejoras', () => {
     expect(cortes, fondos.join(' | ')).toBe(4);
   });
 
-  test('la tabla de la demo del hero nunca carga vacia (primeros 3 segundos)', async ({ page }) => {
+  test('hero: ilustracion con 6 cajas con nombre, sin n8n; "Mira cómo funciona" visible', async ({ page }) => {
     await abrir(page);
-    for (let i = 0; i < 6; i++) {
-      const visibles = await page.locator('#demo tbody tr').evaluateAll((trs) => trs.filter((t) => getComputedStyle(t.querySelector('td')!).opacity === '1').length);
-      expect(visibles).toBe(3);
-      await page.waitForTimeout(500);
-    }
+    const svg = page.locator('.hero-ilus .ilus:visible');
+    await expect(svg).toHaveCount(1);
+    await expect(svg).toHaveAttribute('role', 'img');
+    const nombres = await svg.locator('text').allTextContents();
+    expect(nombres).toEqual(['Telegram', 'WhatsApp', 'Correo', 'Planilla de Google', 'Resumen', 'Aviso']);
+    expect(await page.locator('.hero').textContent()).not.toMatch(/n8n/i);
+    await expect(page.locator('.hero-cta .enlace-texto')).toBeVisible();
+    await expect(page.locator('.hero-demo, #demo')).toHaveCount(0);
+  });
+
+  test('la grilla de puntos solo existe en el hero', async ({ page }) => {
+    await abrir(page);
+    const fondos = await page.evaluate(() => [...document.querySelectorAll('main *, main')].filter((e) => getComputedStyle(e).backgroundImage !== 'none' || getComputedStyle(e, '::before').backgroundImage !== 'none').map((e) => e.className));
+    expect(fondos).toEqual(['hero-ilus']);
   });
 
   test.describe('movimiento reducido', () => {

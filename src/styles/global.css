@@ -112,7 +112,7 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
   .hero { padding-block: var(--s8) var(--s9); }
   .hero-grid { grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: center; }
   .hero-texto { grid-column: 1 / 7; }
-  .hero-demo { grid-column: 7 / 13; justify-self: end; width: 100%; max-width: 520px; }
+  .hero-ilus { grid-column: 7 / 13; justify-self: end; width: 100%; max-width: 560px; }
 }
 
 /* el problema: una frase grande */
@@ -345,19 +345,6 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 .hoja-pie figcaption { margin-top: 0; flex: 1 1 18rem; }
 .hoja-pie .btn-texto { margin-right: calc(-1 * var(--s3)); }
 
-/* demo del hero compacta; es la unica hoja con borde de 2px en tinta */
-#demo { padding: var(--s4); border: 2px solid var(--tinta); }
-@media (min-width: 768px) { #demo { padding: var(--s5); } }
-#demo .hoja-cab { padding-bottom: var(--s2); }
-#demo .paso { margin-top: var(--s3); }
-#demo .paso + .paso::before { top: calc(-1 * var(--s3)); height: var(--s3); }
-#demo .paso > .rotulo { margin-bottom: var(--s1); }
-#demo .meta { margin-bottom: 0; }
-#demo .mensaje { padding: var(--s1) var(--s3); font-size: 1.125rem; }
-#demo th, #demo td { padding: 3px var(--s3); }
-#demo .aviso { padding: var(--s2) var(--s3); font-size: 1rem; }
-#demo .hoja-pie { margin-top: var(--s3); }
-
 /* demo animada: solo si el script la arma; las filas ocupan su lugar siempre */
 .armada .fila-nueva:not(.on) td, .armada .aviso:not(.on), .armada .mensaje:not(.on), .armada .p214:not(.on), .armada .boleta dd:not(.on), .armada .pega-resultado:not(.on) { opacity: 0; }
 .armada .fila-nueva td, .armada .aviso, .armada .mensaje, .armada .p214, .armada .boleta dd, .armada .pega-resultado { transition: opacity 250ms ease-out; }
@@ -441,8 +428,6 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
 @media (min-width: 768px) { .tarjetas { grid-template-columns: repeat(3, 1fr); gap: var(--s4); } }
 
 /* servicios: diagrama de flujo y ficha */
-.flujo { margin-top: var(--s6); color: var(--oliva); }
-.flujo svg { display: block; width: 100%; max-width: 760px; height: auto; }
 .pega-titular { font: 700 clamp(1.375rem, 1.1rem + 1vw, 1.625rem)/1.15 var(--f-display); margin-top: var(--s4); letter-spacing: -0.005em; }
 .ficha { display: grid; margin: var(--s4) 0 0; border: 1px solid var(--linea); border-radius: var(--r); background: var(--crema); }
 .ficha > div { padding: var(--s3) var(--s4); border-bottom: 1px solid var(--linea); }
@@ -502,4 +487,15 @@ footer a { display: inline-flex; align-items: center; min-height: 44px; overflow
   .faq { gap: var(--s4); margin-top: var(--s5); }
   .principios-lista { gap: var(--s4); margin-top: var(--s5); }
 }
-@media (max-width: 767px) { .hero-cta .enlace-texto { display: none; } .pegas { margin-top: var(--s5); } .flujo { margin-top: var(--s5); } }
+@media (max-width: 767px) { .pegas { margin-top: var(--s5); } }
+
+/* hero: ilustracion de linea fina (mensajes -> planilla -> resumen y aviso) sobre una grilla de puntos muy tenue */
+.hero-ilus { position: relative; }
+.hero-ilus::before { content: ""; position: absolute; inset: -28px -20px; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(58, 74, 31, 0.16) 1.2px, transparent 1.6px); background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%); }
+.ilus { position: relative; z-index: 1; display: block; width: 100%; height: auto; color: var(--oliva); }
+.ilus .et { font: 500 14px var(--f-titulo); fill: var(--tinta); stroke: var(--crema-2); stroke-width: 5px; paint-order: stroke; stroke-linejoin: round; }
+.ilus-v { max-width: 340px; margin-inline: auto; }
+.ilus-h { display: none; }
+@media (min-width: 768px) { .ilus-v { display: none; } .ilus-h { display: block; } }
