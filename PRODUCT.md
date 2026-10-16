@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro (sitio estático) en GitHub Pages, user site `carlos-maldonado578.github.io`, sin subpath. Tailwind o CSS propio. Formulario hace POST a webhook de n8n local.
+Astro (sitio estático) en GitHub Pages, user site `carlos-maldonado578.github.io`, sin subpath. CSS propio. Formulario hace POST a un webhook de n8n en Railway (URL en `PUBLIC_WEBHOOK_URL`, inyectada en el build de Pages; el despliegue y la variable se configuran en la Fase 4).
 
 ## Users
 
@@ -24,13 +24,24 @@ Una persona, no una agencia: mira tu proceso, parte por lo que más duele, lo co
 
 ## Operating Context
 
-Sin inicio de actividades ni marca; identidad = nombre propio "Carlos Maldonado". Contacto solo por formulario → n8n local en `prodesk` → Postgres + aviso Telegram y correo. Correo de respaldo: carlos.automatiza.tupyme@gmail.com.
+Sin inicio de actividades ni marca; identidad = nombre propio "Carlos Maldonado". Santiago. 5 años como desarrollador backend en sistemas bancarios y fintech (no se nombran empleadores). Responde en 1 día hábil.
+
+Contacto solo por formulario → n8n en Railway → aviso Telegram y correo. Correo de respaldo: carlos.automatiza.tupyme@gmail.com.
+
+Decisiones de infraestructura (Railway):
+- n8n con volumen persistente y SQLite para partir (Postgres si crece). `N8N_ENCRYPTION_KEY` fija como variable de entorno.
+- Respaldo nocturno de la base y export de workflows en JSON hacia el servidor personal de Carlos.
+- Protección del formulario: rate limit + honeypot (`sitio_web`); Cloudflare Turnstile si aparece spam. CORS solo no es protección suficiente.
+- Prueba end-to-end del envío real en producción antes de publicar.
+
+El caso real del cliente sigue corriendo en `prodesk` por ahora (hay conversaciones en curso) y NO se migra en este proyecto. El copy de "Cómo trabajo" describe la forma de trabajar de Carlos (lo deja andando en un servidor en la nube); la sección del caso real habla solo de resultados y nunca de dónde corre.
 
 ## Capabilities and Constraints
 
 - Una sola página, 7 secciones (ver `copy.md`). Sin precios ("cada proyecto se cotiza aparte"). Sin foto de Carlos. Caso 100% anónimo (sin cliente, lugar ni rubro identificable).
-- Sin WhatsApp/teléfono públicos; único canal: formulario.
-- Si prodesk está apagado el formulario falla y muestra el correo de respaldo.
+- Sin WhatsApp/teléfono públicos; único canal: formulario (decisión de Carlos: sin WhatsApp por ahora).
+- Sin foto de Carlos: el bloque "Quién soy" debe funcionar sin foto.
+- Si el webhook falla el formulario muestra el correo de respaldo.
 - Sin analítica ni tracking.
 
 ## Brand Commitments
