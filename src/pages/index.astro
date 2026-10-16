@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
 import bitterUrl from '@fontsource-variable/bitter/files/bitter-latin-wght-normal.woff2?url';
+import bitterItalicUrl from '@fontsource-variable/bitter/files/bitter-latin-wght-italic.woff2?url';
 
 const titulo = 'Carlos Maldonado · Automatización para pymes';
 const descripcion =
@@ -11,6 +12,7 @@ const mailto = `mailto:${correo}?subject=${encodeURIComponent('Contacto desde la
 const fuentes = `
 @font-face{font-family:'Archivo';font-style:normal;font-weight:100 900;font-stretch:62% 125%;font-display:swap;src:url(${archivoUrl}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Bitter';font-style:normal;font-weight:100 900;font-display:swap;src:url(${bitterUrl}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Bitter';font-style:italic;font-weight:100 900;font-display:swap;src:url(${bitterItalicUrl}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Archivo Fallback';src:local('Arial');size-adjust:100%;ascent-override:88%;descent-override:22%;line-gap-override:0%}
 @font-face{font-family:'Bitter Fallback';src:local('Georgia');size-adjust:97%;ascent-override:94%;descent-override:25%;line-gap-override:0%}`;
 ---
@@ -28,7 +30,9 @@ const fuentes = `
     <meta property="og:title" content={titulo} />
     <meta property="og:description" content={descripcion} />
     <meta property="og:url" content="https://carlos-maldonado578.github.io/" />
+    <meta name="theme-color" content="#F4EEDC" />
     <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={bitterUrl} as="font" type="font/woff2" crossorigin />
     <style set:html={fuentes}></style>
   </head>
   <body id="inicio">
@@ -36,8 +40,8 @@ const fuentes = `
 
     <header class="cabecera">
       <div class="contenedor">
-        <p class="marca">Carlos Maldonado</p>
-        <a class="btn btn-chico" href="#contacto">Conversemos</a>
+        <p class="marca" translate="no">Carlos Maldonado</p>
+        <a class="btn btn-chico" href="#contacto">Cuéntame tu caso</a>
       </div>
     </header>
 
@@ -45,15 +49,16 @@ const fuentes = `
       <section class="hero banda-tinte" aria-labelledby="t-hero">
         <div class="contenedor hero-grid">
           <div class="hero-texto">
-            <h1 id="t-hero">Automatizo la pega repetitiva de tu pyme.</h1>
+            <p class="etiqueta">Automatización para pymes · Santiago</p>
+            <h1 id="t-hero">Tu planilla se llena <em>sola</em>.</h1>
             <p class="lead">
-              Registros que se llenan solos y avisos que llegan sin que los pidas. Con herramientas
-              simples y sin que cambies cómo trabajas.
+              Tu equipo manda un mensaje por Telegram, los datos caen en una planilla de Google y al
+              final del día te llega el resumen. Lo armo yo, con herramientas que ya conoces.
             </p>
             <div class="hero-cta">
               <a class="btn" href="#contacto">Cuéntame tu caso</a>
-              
-              <p class="nota">Primera conversación sin costo. Te respondo dentro de 1 día hábil.</p>
+              <a class="enlace-texto" href="#demo">Mira cómo funciona</a>
+              <p class="nota">Primera conversación sin costo. Te respondo dentro de 1&nbsp;día&nbsp;hábil.</p>
             </div>
           </div>
 
@@ -104,7 +109,6 @@ const fuentes = `
           </div>
         </div>
       </section>
-
       <section class="seccion problema" aria-labelledby="t-problema">
         <div class="contenedor">
           <h2 class="frase" id="t-problema">Hay una tarea que en tu pyme se hace a mano todos los días.</h2>
@@ -113,42 +117,60 @@ const fuentes = `
             qué falta despachar.
           </p>
           <p>
-            Funciona, pero se te va el tiempo, los datos llegan tarde o se pierden, y te enteras de los
+            Funciona, pero cuesta tiempo. Los datos llegan tarde o se pierden, y te enteras de los
             problemas cuando ya no hay cómo evitarlos.
           </p>
+          <ul class="tarjetas">
+            <li class="tarj t-salvia">Se anota en papel o en WhatsApp</li>
+            <li class="tarj t-arena">Se pasa a mano a una planilla</li>
+            <li class="tarj t-rosa">Te enteras tarde</li>
+          </ul>
         </div>
       </section>
-
       <section class="seccion pegas-sec" aria-labelledby="t-hago">
         <div class="contenedor">
-          <h2 id="t-hago">Qué puedo dejar andando solo</h2>
+          <h2 id="t-hago">Qué dejo andando solo</h2>
           <p class="lead">
-            Tomo esa parte manual y la dejo andando sola, con herramientas que ya conoces: Telegram,
-            planillas, correo.
+            Tomo la parte manual y la dejo funcionando con Telegram, planillas de Google y correo.
           </p>
+          <div class="flujo" role="img" aria-label="Un mensaje por Telegram, correo o formulario llega a una planilla, y de la planilla sale un aviso.">
+            <svg viewBox="0 0 760 130" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <rect x="8" y="15" width="204" height="100" rx="8" />
+              <g transform="translate(24 41) scale(2)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z" /><path d="M9 12.7 21 3M11.3 19l.5-4.8" /></g>
+              <g transform="translate(88 41) scale(2)"><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3.5 7.5 12 14l8.5-6.5" /></g>
+              <g transform="translate(152 41) scale(2)"><path d="M4 5h16v11h-9.5L6 19.5V16H4z" /><path d="M8 9h8M8 12h5" /></g>
+              <path d="M230 65h66m-10-8 10 8-10 8" />
+              <rect x="316" y="10" width="170" height="110" rx="8" />
+              <path d="M316 47h170M316 83h170M373 10v110M430 10v110" />
+              <rect x="431" y="84" width="54" height="35" fill="currentColor" fill-opacity=".18" stroke="none" />
+              <path d="M504 65h66m-10-8 10 8-10 8" />
+              <rect x="594" y="25" width="158" height="80" rx="8" />
+              <g transform="translate(649 41) scale(2)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0" /></g>
+            </svg>
+          </div>
           <div class="pegas" id="pegas">
-            <p class="pegas-guia" hidden>Elige una pega y mira cómo quedaría andando.</p>
+            <p class="pegas-guia" hidden>Elige un servicio y mira cómo quedaría andando.</p>
             <div class="pegas-lista" hidden>
               <button type="button" class="pega-tab" id="tab-registros" aria-controls="pega-registros">
-                <span class="num">1</span>
+                <span class="num">01</span>
                 <span class="pega-nombre">Registros</span>
-                <span class="pega-estado activo">Ya funcionando en un cliente</span>
+                <span class="pega-estado activo">Funcionando en un cliente</span>
                 <span class="pega-barra" aria-hidden="true"></span>
               </button>
               <button type="button" class="pega-tab" id="tab-pedidos" aria-controls="pega-pedidos">
-                <span class="num">2</span>
+                <span class="num">02</span>
                 <span class="pega-nombre">Pedidos</span>
                 <span class="pega-estado">Lo construyo para ti</span>
                 <span class="pega-barra" aria-hidden="true"></span>
               </button>
               <button type="button" class="pega-tab" id="tab-avisos" aria-controls="pega-avisos">
-                <span class="num">3</span>
+                <span class="num">03</span>
                 <span class="pega-nombre">Avisos</span>
                 <span class="pega-estado">Lo construyo para ti</span>
                 <span class="pega-barra" aria-hidden="true"></span>
               </button>
               <button type="button" class="pega-tab" id="tab-boletas" aria-controls="pega-boletas">
-                <span class="num">4</span>
+                <span class="num">04</span>
                 <span class="pega-nombre">Boletas y facturas</span>
                 <span class="pega-estado">Lo construyo para ti</span>
                 <span class="pega-barra" aria-hidden="true"></span>
@@ -162,8 +184,9 @@ const fuentes = `
 
             <div class="pegas-paneles">
               <article class="pega hoja" id="pega-registros" aria-labelledby="tab-registros">
-                <div class="hoja-cab"><h3 class="rotulo">Registros</h3><span class="ejemplo">EJEMPLO</span></div>
-                <p class="pega-frase">Tu equipo manda un mensaje corto por Telegram y los datos caen solos en la planilla.</p>
+                <div class="hoja-cab"><h3 class="rotulo">01 · Registros</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-titular">Llega el mensaje. La planilla se llena sola.</p>
+                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Telegram</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Planilla de Google</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Resumen diario</dd></div></dl>
                 <div class="pega-escena escena-registros">
                   <div class="paso">
                     <span class="rotulo"><span class="num">1</span> Llega el mensaje</span>
@@ -187,13 +210,14 @@ const fuentes = `
                   </div>
                   <p class="pega-resultado on">Anotado, sin que nadie tipee nada.</p>
                 </div>
-                <p class="pega-arma"><b>Cómo está armado:</b> un bot de Telegram, n8n (un programa que conecta tus apps) y una planilla de Google.</p>
+                <p class="pega-arma"><b>Cómo está armado:</b> un bot de Telegram, una planilla de Google y un programa que las conecta (se llama n8n).</p>
                 <p class="pega-honesto">Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.</p>
               </article>
 
               <article class="pega hoja" id="pega-pedidos" aria-labelledby="tab-pedidos">
-                <div class="hoja-cab"><h3 class="rotulo">Pedidos</h3><span class="ejemplo">EJEMPLO</span></div>
-                <p class="pega-frase">Los pedidos que entran por formulario o WhatsApp quedan ordenados por estado, y tú ves en qué va cada uno.</p>
+                <div class="hoja-cab"><h3 class="rotulo">02 · Pedidos</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-titular">Entra el pedido. Ves en qué va cada uno.</p>
+                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Formulario (WhatsApp si se puede conectar)</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Planilla ordenada por estado</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Correo al cliente</dd></div></dl>
                 <div class="pega-escena escena-pedidos">
                   <div class="tablero">
                     <div class="carril">
@@ -219,15 +243,16 @@ const fuentes = `
                       </div>
                     </div>
                   </div>
-                  <p class="aviso on">Aviso al cliente: "Tu pedido #214 va en camino."</p>
+                  <p class="aviso on">Aviso al cliente: “Tu pedido #214 va en camino.”</p>
                 </div>
-                <p class="pega-arma"><b>Con qué lo armaría:</b> formulario o WhatsApp (si se puede conectar) para recibir el pedido, una planilla de Google para ordenarlo y n8n para moverlo y avisar por correo.</p>
-                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
+                <p class="pega-arma"><b>Con qué lo armaría:</b> formulario o WhatsApp (si se puede conectar) para recibir el pedido, una planilla de Google para ordenarlo y un programa de conexión (n8n) para moverlo y avisar por correo.</p>
+                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo construiría para ti.</p>
               </article>
 
               <article class="pega hoja" id="pega-avisos" aria-labelledby="tab-avisos">
-                <div class="hoja-cab"><h3 class="rotulo">Avisos</h3><span class="ejemplo">EJEMPLO</span></div>
-                <p class="pega-frase">Te llega un aviso cuando el stock se está acabando o algo se atrasa, antes de que sea tarde.</p>
+                <div class="hoja-cab"><h3 class="rotulo">03 · Avisos</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-titular">Baja el stock. Te avisan antes de quedarte sin.</p>
+                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Tu planilla de stock</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Esa misma planilla</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Telegram o correo bajo el mínimo</dd></div></dl>
                 <div class="pega-escena escena-avisos">
                   <div class="paso">
                     <span class="rotulo"><span class="num">1</span> Va bajando el stock</span>
@@ -240,13 +265,14 @@ const fuentes = `
                     <p class="aviso on">Aviso · 11:20: Quedan <b>180</b> tapas de 38 mm. El mínimo que fijaste es 200.</p>
                   </div>
                 </div>
-                <p class="pega-arma"><b>Con qué lo armaría:</b> tu stock en una planilla de Google, n8n que la revisa y un aviso por Telegram o correo cuando baja del mínimo.</p>
-                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
+                <p class="pega-arma"><b>Con qué lo armaría:</b> tu stock en una planilla de Google, un programa de conexión (n8n) que la revisa y un aviso por Telegram o correo cuando baja del mínimo.</p>
+                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo construiría para ti.</p>
               </article>
 
               <article class="pega hoja" id="pega-boletas" aria-labelledby="tab-boletas">
-                <div class="hoja-cab"><h3 class="rotulo">Boletas y facturas</h3><span class="ejemplo">EJEMPLO</span></div>
-                <p class="pega-frase">Los datos del pedido pasan solos a la boleta o factura, sin tipear dos veces lo mismo.</p>
+                <div class="hoja-cab"><h3 class="rotulo">04 · Boletas y facturas</h3><span class="ejemplo">EJEMPLO</span></div>
+                <p class="pega-titular">Está en tu planilla. El borrador se arma solo.</p>
+                <dl class="ficha"><div><dt class="etiqueta">Entra por</dt><dd>Tu planilla</dd></div><div><dt class="etiqueta">Queda en</dt><dd>Un borrador listo</dd></div><div><dt class="etiqueta">Te avisa</dt><dd>Tú lo revisas y lo emites</dd></div></dl>
                 <div class="pega-escena escena-boletas">
                   <div class="paso">
                     <span class="rotulo"><span class="num">1</span> Ya está en tu planilla</span>
@@ -273,57 +299,20 @@ const fuentes = `
                   </div>
                   <p class="pega-resultado on">Lista para emitir. Tú la revisas y apruebas.</p>
                 </div>
-                <p class="pega-arma"><b>Con qué lo armaría:</b> n8n pasa los datos de tu planilla a un borrador de boleta; tú lo revisas y lo emites desde tu sistema de facturación.</p>
-                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.</p>
+                <p class="pega-arma"><b>Con qué lo armaría:</b> un programa de conexión (n8n) pasa los datos de tu planilla a un borrador de boleta; tú lo revisas y lo emites en el SII. No me integro con el SII.</p>
+                <p class="pega-honesto">Todavía no lo tengo andando en un cliente: es una muestra de cómo lo construiría para ti.</p>
               </article>
             </div>
 
-            <a class="btn btn-chico btn-borde pegas-cierre" href="#contacto">¿Tienes otra pega repetitiva? Cuéntamela</a>
+            <a class="btn pegas-cierre" href="#contacto">Cuéntame tu caso</a>
           </div>
         </div>
       </section>
-
-      <section class="seccion trabajo" aria-labelledby="t-trabajo">
-        <div class="contenedor">
-          <h2 id="t-trabajo">Cómo trabajo</h2>
-          <ol class="pasos">
-            <li>
-              <h3>Conversamos</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve, por llamada o videollamada. Sin costo.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo trabajas hoy.</p></div>
-            </li>
-            <li>
-              <h3>Te propongo por dónde partir</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Parto por lo que más te molesta.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Me dices si esa es la parte que quieres probar.</p></div>
-            </li>
-            <li>
-              <h3>Construyo la primera parte</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>La armo y la dejo andando en mi servidor en la nube.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>La pruebas con tus datos reales.</p></div>
-            </li>
-            <li>
-              <h3>Queda funcionando</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>La mantengo andando (mensualidad por servidor y mantención).</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>La usas y me avisas si algo no calza.</p></div>
-            </li>
-          </ol>
-          <p class="lead trabajo-cierre">El plazo depende de lo que necesites. Parto por una parte chica para que veas resultados pronto, antes de seguir con lo demás.</p>
-          <div class="no-hago">
-            <h3>Qué no hago</h3>
-            <ul>
-              <li>Vender software ni licencias.</li>
-              <li>Pedirte las claves de tu banco.</li>
-              <li>Conectarme a sistemas que no te dejan sacar tus datos.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       <section class="seccion banda-azul" aria-labelledby="t-caso">
         <div class="contenedor">
           <h2 id="t-caso">Un caso real: el mismo día, antes y ahora</h2>
-          {/* TODO(Carlos): agregar un dato real del caso (cuántas personas registran y cuánto tomaba juntar las hojas); dejar espacio en el diseño sin romperlo */}
+          {/* TODO(Carlos): agregar un dato real del caso (cuántas personas registran y cuánto tomaba juntar las hojas): un <li> dentro de .caso-datos; la lista se muestra sola cuando tiene contenido */}
+          <ul class="caso-datos"></ul>
           <div class="eje" id="caso-eje">
             <div class="reloj" aria-hidden="true"><span class="cursor"></span></div>
             <p class="lectura" id="caso-hora" aria-hidden="true">08:00</p>
@@ -348,7 +337,7 @@ const fuentes = `
             <div class="carril ahora">
               <h3>Ahora</h3>
               <ol class="pista">
-                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda "120 cajas" por Telegram y la planilla se llena sola.</p></li>
+                <li class="hito" style="--h:8.233"><span class="hora">08:14</span><p>Juan manda “120 cajas” por Telegram y la planilla se llena sola.</p></li>
                 <li class="tramo lleno" style="--a:8.233;--b:18"><span>Ya está en la planilla.</span></li>
                 <li class="hito der" style="--h:18"><span class="hora">18:00</span><p>El dueño recibe el resumen del día automáticamente.</p></li>
               </ol>
@@ -358,7 +347,78 @@ const fuentes = `
           <a class="btn btn-claro" href="#contacto">Cuéntame tu caso</a>
         </div>
       </section>
-
+      <section class="seccion principios" aria-labelledby="t-principios">
+        <div class="contenedor">
+          <h2 id="t-principios">Tres principios</h2>
+          <ul class="principios-lista">
+            <li>
+              <h3>Conectado a lo que ya usas</h3>
+              <p>Parto de tu planilla, tu Telegram y tu correo. No tienes que aprender un sistema nuevo.</p>
+            </li>
+            <li>
+              <h3>Hecho a tu forma de trabajar</h3>
+              <p>Miro cómo trabajas hoy y automatizo eso.</p>
+            </li>
+            <li>
+              <h3>Tú decides</h3>
+              <p>Tú eliges qué se automatiza y qué revisas tú antes de que salga. Las boletas, por ejemplo, las apruebas tú.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="seccion trabajo" aria-labelledby="t-trabajo">
+        <div class="contenedor">
+          <h2 id="t-trabajo">Cómo trabajo</h2>
+          <ol class="pasos">
+            <li>
+              <h3>Conversamos</h3>
+              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve, por llamada o videollamada. Sin costo.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo trabajas hoy.</p></div>
+            </li>
+            <li>
+              <h3>Te propongo por dónde partir</h3>
+              <div class="yo"><p class="lado">Yo hago</p><p>Parto por lo que más te molesta.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Me dices si esa es la parte que quieres probar.</p></div>
+            </li>
+            <li>
+              <h3>Construyo la primera parte</h3>
+              <div class="yo"><p class="lado">Yo hago</p><p>La armo y la dejo andando.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>La pruebas con tus datos reales.</p></div>
+            </li>
+            <li>
+              <h3>Queda funcionando</h3>
+              <div class="yo"><p class="lado">Yo hago</p><p>Lo dejo andando en un servidor en la nube y lo cuido.</p></div>
+              <div class="tu"><p class="lado">Tú haces</p><p>Lo usas y me avisas si algo no calza. Pagas una mensualidad; el valor te lo digo antes de empezar.</p></div>
+            </li>
+          </ol>
+          <p class="lead trabajo-cierre">El plazo depende de lo que necesites. Parto por una parte chica para que veas resultados pronto, antes de seguir con lo demás.</p>
+          <div class="no-hago">
+            <h3>Qué no hago</h3>
+            <ul>
+              <li>Vender software ni licencias.</li>
+              <li>Pedirte las claves de tu banco.</li>
+              <li>Conectarme a sistemas que no te dejan sacar tus datos.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="seccion quien" aria-labelledby="t-quien">
+        <div class="contenedor">
+          <h2 id="t-quien">Quién soy</h2>
+          {/* TODO(Carlos): agregar "datos con respaldo y avisos cuando algo falla" solo cuando el respaldo nocturno de Railway esté funcionando */}
+          <p class="lead">
+            Soy Carlos Maldonado, desarrollador en Santiago. Llevo 5 años como desarrollador backend, con
+            experiencia en sistemas bancarios y fintech, donde un dato mal guardado o un aviso que no
+            llega es un problema serio. Esa forma de trabajar la llevo a tu pyme.
+          </p>
+          <ul class="datos">
+            <li>5 años como desarrollador backend</li>
+            <li>Sistemas bancarios y fintech</li>
+            <li>Trabajo solo, sin agencia: hablas directo conmigo</li>
+            <li>Respondo en 1&nbsp;día&nbsp;hábil</li>
+          </ul>
+        </div>
+      </section>
       <section class="seccion" aria-labelledby="t-faq">
         <div class="contenedor">
           <h2 id="t-faq">Antes de escribirme</h2>
@@ -366,6 +426,10 @@ const fuentes = `
             <div>
               <h3>¿Tengo que saber de computación?</h3>
               <p>No. Si sabes mandar un mensaje desde el celular, basta. Yo armo todo y, al entregar, te explico cómo usarlo y te dejo la documentación por escrito.</p>
+            </div>
+            <div>
+              <h3>¿Cuánto cuesta?</h3>
+              <p>Depende de lo que necesites automatizar. En la primera conversación, que es sin costo, vemos tu caso y te doy el valor del proyecto y de la mensualidad antes de empezar. Sin sorpresas.</p>
             </div>
             <div>
               <h3>¿Qué pasa si algo se cae?</h3>
@@ -376,19 +440,22 @@ const fuentes = `
               <p>La planilla es tuya. Si un día dejamos de trabajar juntos, te la quedas con todos tus datos. Las automatizaciones corren en mi servidor en la nube.</p>
             </div>
             <div>
+              <h3>¿Cuánto demoras en responder?</h3>
+              <p>Te respondo dentro de 1&nbsp;día&nbsp;hábil.</p>
+            </div>
+            <div>
               <h3>¿Y si ya uso Excel o WhatsApp?</h3>
               <p>Parto de lo que ya usas, sin pedirte cambiar cómo trabajas. Si se puede conectar, lo hago; si no, te lo digo desde el principio.</p>
             </div>
           </div>
         </div>
       </section>
-
       <section class="seccion banda-tinte" id="contacto" aria-labelledby="t-contacto">
         <div class="contenedor contacto-grid">
           <div class="contacto-texto">
             <h2 id="t-contacto">Cuéntame qué te quita tiempo</h2>
-            <p class="prueba">Ya tengo funcionando el registro por Telegram a planilla en una pyme. <a href="#t-caso">Mira el caso</a>.</p>
-            <div class="promesas"><p>Soy Carlos Maldonado y trabajo solo, sin agencia: hablas directo conmigo, de la primera conversación a que quede andando.</p><p>Cada proyecto se cotiza aparte, según lo que necesites. Después hay una mensualidad por el servidor y la mantención; el valor te lo digo antes de empezar.</p></div>
+            <p class="lead">Escríbeme en dos líneas qué haces hoy a mano. Te respondo dentro de 1&nbsp;día&nbsp;hábil, con una idea de si te sirve.</p>
+            <div class="promesas"><p>La primera conversación es por llamada o videollamada, sin costo. Ahí vemos tu caso y te doy el valor del proyecto y de la mensualidad antes de empezar.</p></div>
           </div>
 
           <div class="contacto-form tarjeta" id="tarjeta">
@@ -402,7 +469,7 @@ const fuentes = `
 
               <form id="form" method="post" action="#contacto" novalidate>
                 <div class="campo">
-                  <label for="f-mensaje">¿Qué te gustaría sacarte de encima?</label>
+                  <label for="f-mensaje">¿Qué haces hoy a mano?</label>
                   <p class="ayuda" id="a-mensaje">Por ejemplo: anoto los pedidos a mano y después los paso a una planilla.</p>
                   <textarea id="f-mensaje" name="mensaje" rows="3" maxlength="2000" required aria-describedby="a-mensaje e-mensaje"></textarea>
                   <p class="err" id="e-mensaje" hidden></p>
@@ -416,8 +483,8 @@ const fuentes = `
                   </div>
 
                   <div class="campo">
-                    <label for="f-contacto">Correo o teléfono para responderte</label>
-                                        <input id="f-contacto" name="contacto" type="text" autocomplete="email" maxlength="120" required aria-describedby="e-contacto" />
+                    <label for="f-contacto">¿A qué correo o teléfono te respondo?</label>
+                    <input id="f-contacto" name="contacto" type="text" autocomplete="email" inputmode="email" spellcheck="false" maxlength="120" required aria-describedby="e-contacto" />
                     <p class="err" id="e-contacto" hidden></p>
                   </div>
                 </div>
@@ -429,21 +496,22 @@ const fuentes = `
 
                 <div class="fallo" id="fallo" role="alert" hidden>
                   <strong>No se pudo enviar.</strong>
-                  Escríbeme directo a <a href={mailto}>{correo}</a>
+                  Tu mensaje sigue en el formulario: reintenta o escríbeme a <a href={mailto}>{correo}</a>.
                 </div>
 
-                <button class="btn btn-ancho" type="submit" id="enviar">Enviar mensaje</button>
-                <p class="nota nota-datos">Uso tus datos solo para responderte.</p>
+                <button class="btn btn-ancho" type="submit" id="enviar">Cuéntame tu caso</button>
+                <p class="nota nota-datos">Respondo dentro de 1&nbsp;día&nbsp;hábil. Uso tus datos solo para responderte.</p>
               </form>
             </div>
 
             <div class="exito" id="exito" role="status" hidden>
-              <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Te escribo a <span id="x-contacto"></span> dentro de 1 día hábil.</h3>
+              <h3 id="exito-t" tabindex="-1">Listo, <span id="x-nombre"></span>. Recibí tu mensaje. Te escribo a <span id="x-contacto"></span> dentro de 1&nbsp;día&nbsp;hábil.</h3>
               <p>Así quedó tu mensaje en mi planilla:</p>
               <table class="mini-planilla">
                 <thead><tr><th scope="col">Hora</th><th scope="col">Quién</th><th scope="col">Estado</th></tr></thead>
                 <tbody><tr class="destello"><td id="x-hora"></td><td id="x-quien"></td><td>Recibido</td></tr></tbody>
               </table>
+              <p class="exito-sigue"><strong>Qué pasa ahora:</strong> leo tu mensaje, te respondo con preguntas o ideas y, si te sirve, agendamos una llamada o videollamada.</p>
             </div>
           </div>
         </div>
@@ -452,7 +520,7 @@ const fuentes = `
 
     <footer>
       <div class="contenedor">
-        <span>Carlos Maldonado</span>
+        <span translate="no">Carlos Maldonado · Automatización para pymes · Santiago, Chile</span>
         <a href={mailto}>{correo}</a>
         <a href="#inicio">Volver al inicio ↑</a>
       </div>
