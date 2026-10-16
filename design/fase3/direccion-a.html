@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es-CL"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fase 3 · Dirección A · Editorial (Instrument Serif)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bitter:ital,wght@0,600;0,700;0,800;1,600;1,700;1,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#F6F1E4; --crema2:#EDE6D3; --tinta:#1D2316; --tinta2:#4B5340; --oliva:#3A4A1F; --oliva-h:#2B3816;
+  --campo:#80796A; --linea:#CFC7AE; --salvia:#E3EAD0; --arena:#F0E2C8; --rosa:#F1DDD3; --noche:#26301A;
+  --r:4px; --borde:1px;
+  --f-display:'Instrument Serif',Georgia,serif; --f-texto:'Archivo',Arial,sans-serif; --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  --m:20px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--crema);color:var(--tinta);font:400 1.0625rem/1.6 var(--f-texto)}
+h1,h2,h3,p{margin:0} a{color:var(--oliva)}
+:focus-visible{outline:3px solid var(--oliva);outline-offset:2px}
+.c{max-width:1240px;margin-inline:auto;padding-inline:var(--m)}
+.mono{font:500 .8125rem/1.3 var(--f-mono);letter-spacing:.04em;text-transform:uppercase;color:var(--tinta2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;background:var(--oliva);color:var(--crema);border:0;border-radius:var(--r);font:600 1.0625rem var(--f-texto);text-decoration:none}
+.btn:hover{background:var(--oliva-h)}
+.lnk{color:var(--oliva);font-weight:600;text-underline-offset:.2em}
+header.top{border-bottom:var(--borde) solid var(--linea)}
+header.top .c{display:flex;justify-content:space-between;align-items:center;min-height:64px}
+.marca{font:600 1.125rem var(--f-texto)}
+.hero{padding:40px 0 56px}
+.hero .c{display:grid;gap:40px}
+.hero h1{font:400 clamp(2.75rem,2rem + 5vw,6.5rem)/.98 var(--f-display);letter-spacing:-.01em;margin-top:18px;text-wrap:balance}
+.hero h1 em{font-style:italic;}
+.hero .sub{font-size:1.25rem;line-height:1.5;max-width:46ch;margin-top:24px}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px 24px;margin-top:28px}
+.nota{font-size:.9375rem;color:var(--tinta2);margin-top:14px;max-width:46ch}
+.hoja{background:#FFFDF6;border:var(--borde) solid var(--linea);border-radius:var(--r);padding:20px}
+.hoja-cab{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--linea)}
+.ej{font:500 .75rem var(--f-mono);border:1px solid var(--tinta2);border-radius:calc(var(--r)/2);padding:2px 8px;color:var(--tinta2)}
+.paso{margin-top:16px}.paso .mono{display:block;margin-bottom:6px}
+.msg{background:var(--salvia);border-radius:calc(var(--r)/1.5);padding:10px 14px;font-size:1.0625rem}
+.meta{font-size:.9375rem;color:var(--tinta2);margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{font:500 .8125rem var(--f-mono);text-align:left;color:var(--tinta2);background:var(--crema2);padding:8px 10px}
+td{padding:8px 10px;border-bottom:1px solid var(--linea)}
+td:last-child,th:last-child{text-align:right}
+tr.nueva td{background:#F4EBB8}
+.aviso{border:var(--borde) solid var(--oliva);border-radius:calc(var(--r)/1.5);padding:10px 14px;font-weight:500}
+.pie-hoja{font-size:.875rem;color:var(--tinta2);margin-top:14px}
+.serv{border-top:var(--borde) solid var(--linea);padding:56px 0 72px}
+.serv h2{font:400 clamp(2rem,1.4rem + 2.6vw,3.25rem)/1.08 var(--f-display);letter-spacing:-.005em;margin-top:14px;max-width:18ch;text-wrap:balance}
+.serv h2 em{font-style:italic}
+.estado{display:inline-block;margin-left:12px;font:500 .8125rem var(--f-mono);color:var(--oliva);border:1px solid var(--oliva);border-radius:calc(var(--r)/2);padding:2px 8px;text-transform:none;letter-spacing:0}
+.ficha{display:grid;margin-top:36px;border:var(--borde) solid var(--linea);border-radius:var(--r);background:var(--crema)}
+.ficha div{padding:18px 20px;border-bottom:1px solid var(--linea)}
+.ficha div:last-child{border-bottom:0}
+.ficha p:last-child{font-weight:500;margin-top:6px}
+.flujo{margin-top:40px;color:var(--oliva)}
+.flujo svg{width:100%;height:auto;max-width:760px;display:block}
+.demo{margin-top:36px;display:grid;gap:20px}
+.pasos-demo{display:grid;gap:20px}
+.armado{font-size:.9375rem;color:var(--tinta2);margin-top:20px;max-width:64ch}
+.tarjetas{display:grid;gap:12px;margin-top:48px}
+.tarj{border-radius:var(--r);padding:18px 20px;font-weight:500;border:var(--borde) solid var(--linea)}
+.t1{background:var(--salvia)}.t2{background:var(--arena)}.t3{background:var(--rosa)}
+@media (min-width:900px){
+  :root{--m:40px}
+  .hero{padding:72px 0 88px}
+  .hero .c{grid-template-columns:repeat(12,1fr);gap:24px;align-items:center}
+  .hero .txt{grid-column:1/7}.hero .dm{grid-column:8/13}
+  .ficha{grid-template-columns:repeat(3,1fr)}
+  .ficha div{border-bottom:0;border-right:1px solid var(--linea)}.ficha div:last-child{border-right:0}
+  .pasos-demo{grid-template-columns:1fr 1.3fr 1fr;align-items:start}
+  .tarjetas{grid-template-columns:repeat(3,1fr)}
+}
+</style></head><body>
+<header class="top"><div class="c"><span class="marca">Carlos Maldonado</span><a class="lnk" href="#contacto">Cuéntame tu caso</a></div></header>
+<main>
+<section class="hero"><div class="c">
+ <div class="txt">
+  <p class="mono">Automatización para pymes · Santiago</p>
+  <h1>Tu planilla se llena <em>sola</em>.</h1>
+  <p class="sub">Tu equipo manda un mensaje por Telegram, los datos caen en una planilla de Google y al final del día te llega el resumen. Lo armo yo, con herramientas que ya conoces.</p>
+  <div class="cta"><a class="btn" href="#contacto">Cuéntame tu caso</a><a class="lnk" href="#demo">Mira cómo funciona</a></div>
+  <p class="nota">Primera conversación sin costo. Te respondo dentro de 1 día hábil.</p>
+ </div>
+ <div class="dm"><figure class="hoja" style="margin:0">
+  <div class="hoja-cab"><span class="mono">Hoja de registro · Producción</span><span class="ej">EJEMPLO</span></div>
+  <div class="paso"><span class="mono">1 · Llega el mensaje</span><p class="meta">Telegram · Luis · 08:47</p><p class="msg">Producción: 134&nbsp;cajas</p></div>
+  <div class="paso"><span class="mono">2 · Se anota en la planilla</span>
+   <table><thead><tr><th>Hora</th><th>Quién</th><th>Estado</th><th>Cajas</th></tr></thead><tbody>
+   <tr><td>08:03</td><td>Ana</td><td>Anotado</td><td>110</td></tr><tr><td>08:31</td><td>Marta</td><td>Anotado</td><td>98</td></tr><tr class="nueva"><td>08:47</td><td>Luis</td><td>Anotado</td><td>134</td></tr></tbody></table></div>
+  <div class="paso"><span class="mono">3 · Te llega el aviso</span><p class="aviso">Aviso · 18:00: Total del día: <b>1.240&nbsp;cajas</b></p></div>
+  <p class="pie-hoja">Ejemplo ilustrativo con datos inventados.</p>
+ </figure></div>
+</div></section>
+
+<section class="serv" id="demo"><div class="c">
+ <p class="mono">01 · Registros <span class="estado">Funcionando en un cliente</span></p>
+ <h2>Llega el mensaje. La planilla se llena <em>sola</em>.</h2>
+ <div class="ficha">
+  <div><p class="mono">Entra por</p><p>Telegram</p></div>
+  <div><p class="mono">Queda en</p><p>Planilla de Google</p></div>
+  <div><p class="mono">Te avisa</p><p>Resumen diario</p></div>
+ </div>
+ <div class="flujo" role="img" aria-label="Un mensaje de Telegram llega a una planilla y de ahí sale un aviso">
+ <svg viewBox="0 0 760 130" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <rect x="8" y="25" width="150" height="80" rx="4"/><path d="M52 66l62-24-14 46-20-14-14 10 2-16 36-28-52 26z"/>
+  <path d="M176 65h104m-10-8l10 8-10 8"/>
+  <rect x="300" y="15" width="160" height="100" rx="4"/><path d="M300 45h160M300 75h160M353 15v100M407 15v100"/><rect x="408" y="76" width="52" height="39" fill="currentColor" fill-opacity=".18" stroke="none"/>
+  <path d="M478 65h104m-10-8l10 8-10 8"/>
+  <rect x="600" y="25" width="150" height="80" rx="4"/><path d="M675 45c-14 0-20 10-20 22v10l-6 8h52l-6-8V67c0-12-6-22-20-22zM667 90a8 8 0 0016 0"/>
+ </svg></div>
+ <div class="demo"><div class="hoja pasos-demo" style="padding:24px">
+   <div><span class="mono">1 · Llega el mensaje</span><p class="meta" style="margin-top:8px">Telegram · Rosa · 16:05</p><p class="msg">Turno tarde: <b>86</b> cajas, <b>2</b> rechazadas</p></div>
+   <div><span class="mono">2 · Cada dato a su columna</span><table style="margin-top:8px"><thead><tr><th>Hora</th><th>Quién</th><th>Cajas</th><th>Rechazo</th></tr></thead><tbody><tr><td>15:40</td><td>Pedro</td><td>92</td><td>1</td></tr><tr><td>15:52</td><td>Ana</td><td>104</td><td>0</td></tr><tr class="nueva"><td>16:05</td><td>Rosa</td><td>86</td><td>2</td></tr></tbody></table></div>
+   <div><span class="mono">3 · Anotado</span><p class="aviso" style="margin-top:8px">Anotado, sin que nadie tipee nada.</p></div>
+ </div></div>
+ <p class="armado">Cómo está armado: un bot de Telegram, una planilla de Google y un programa que las conecta (se llama n8n). Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.</p>
+ <div class="tarjetas"><p class="tarj t1">Se anota en papel o en WhatsApp</p><p class="tarj t2">Se pasa a mano a una planilla</p><p class="tarj t3">Te enteras tarde</p></div>
+</div></section>
+</main></body></html>
