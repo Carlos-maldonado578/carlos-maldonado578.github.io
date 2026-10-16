@@ -1,6 +1,6 @@
 ---
 name: Carlos Maldonado · Automatización para pymes
-description: Dirección B "Oficio": crema y oliva, Bitter 800 con cursiva oliva, fichas con borde fino, demo del hero con borde de tinta. La planilla que se llena sola sigue siendo la pieza central.
+description: Dirección B "Oficio": crema y oliva, Bitter 800 con cursiva oliva, bordes finos y una ilustración de línea fina en el hero. El caso real (Antes / Ahora) es la única prueba visual.
 colors:
   crema: "#F4EEDC"
   crema-2: "#EDE6D3"
@@ -17,9 +17,6 @@ colors:
   destello: "#F4EBB8"
   error: "#9A2A1B"
   error-fondo: "#F3DCD6"
-  noche: "#26301A"
-  noche-texto: "#D9E1C2"
-  noche-regla: "#9FB07F"
 typography:
   display:
     fontFamily: "Bitter, Bitter Fallback, Georgia, serif"
@@ -59,7 +56,6 @@ rounded:
   chico: "4px"
 borders:
   fino: "1px solid {colors.linea}"
-  hoja-hero: "2px solid {colors.tinta}"
 spacing:
   s1: "4px"
   s2: "8px"
@@ -79,20 +75,6 @@ components:
     height: "52px"
   button-primary-hover:
     backgroundColor: "{colors.oliva-hover}"
-  ficha:
-    backgroundColor: "{colors.crema}"
-    border: "{borders.fino}"
-    rounded: "{rounded.base}"
-  tarjeta-pastel:
-    textColor: "{colors.tinta}"
-    border: "{borders.fino}"
-    rounded: "{rounded.base}"
-    padding: "18px 20px"
-  hoja-registro:
-    backgroundColor: "{colors.hoja}"
-    textColor: "{colors.tinta}"
-    rounded: "{rounded.base}"
-    padding: "24px"
   input-campo:
     backgroundColor: "{colors.hoja}"
     textColor: "{colors.tinta}"
@@ -107,15 +89,16 @@ components:
 
 **Creative North Star: "La planilla que se llena sola" (Oficio)**
 
-Una ficha de trabajo bien hecha: crema cálido, titulares serif robustos con un remate en cursiva oliva, bordes finos que ordenan como una planilla y una demo real en lugar de ilustraciones. Calma y confianza, no lujo ni SaaS. Se descarta el azul frío y el blanco puro.
+Una ficha de trabajo bien hecha: crema cálido, titulares serif robustos con un remate en cursiva oliva, bordes finos que ordenan como una planilla y una ilustración de línea fina en vez de capturas o demos. Calma y confianza, no lujo ni SaaS. Se descarta el azul frío y el blanco puro.
 
-La demo (mensaje, fila nueva, aviso) sigue siendo la pieza central. Cada servicio se presenta como una ficha: etiqueta mono, titular causa → efecto, tres columnas ENTRA POR / QUEDA EN / TE AVISA y la demo debajo.
+La prueba es una sola: el caso real, con su eje horario Antes / Ahora. El resto explica con texto corto y sin demos que compitan con él.
 
 **Key Characteristics:**
-- Crema `#F4EEDC` de base, una banda oliva oscura (Caso real) y bandas crema-2 en hero y contacto. Sin degradados, sombras ni blur.
+- Crema `#F4EEDC` de base, crema 2 en hero y contacto y salvia suave (`#E3EAD0`) en el caso real. Sin degradados, sombras ni blur.
 - Bitter 800 / 700 con la palabra remate en cursiva oliva; Archivo para cuerpo y UI; mono del sistema solo para etiquetas y datos.
-- Bordes de 1px en `linea` para tarjetas, ficha, tablas y hojas; **2px en tinta solo en la hoja de demo del hero**. Radio 8px (4px en sellos y chips).
+- Bordes de 1px en `linea`; radio 8px (4px en sellos y chips).
 - Un único CTA en toda la página: **Cuéntame tu caso**.
+- El único fondo decorativo es la grilla de puntos tras la ilustración del hero.
 
 ## Colors
 
@@ -127,20 +110,20 @@ La demo (mensaje, fila nueva, aviso) sigue siendo la pieza central. Cada servici
 - **Tinta** (#1D2316; 13.89:1 sobre crema), **Tinta secundaria** (#4B5340; 6.94:1 sobre crema, 6.46:1 sobre crema 2, 6.49:1 sobre salvia).
 - **Línea** (#CFC7AE): bordes de 1px (decorativos). **Línea de campo** (#80796A): borde de campos (4.24:1 sobre hoja, ≥3:1 requerido para controles).
 
-### Pasteles (tarjetas de problema y burbuja)
-- **Salvia** (#E3EAD0), **Arena** (#F0E2C8), **Rosa** (#F1DDD3). Tinta sobre ellos ≥12:1.
+### Pasteles (cajas de la ilustración)
+- **Salvia**, **Arena** (#F0E2C8) y **Rosa** (#F1DDD3). Tinta sobre ellos ≥12:1.
 
 ### Estado
-- **Destello** (#F4EBB8): solo el destello de la fila nueva y del campo que se llena. No es superficie.
+- **Destello** (#F4EBB8): solo el destello de la fila de confirmación del formulario y el aviso del caso. No es superficie.
 - **Error** (#9A2A1B; 7.58:1 sobre hoja, 5.89:1 sobre error-fondo) y **Fondo de error** (#F3DCD6).
 
-### Banda de marca
-- **Noche** (#26301A): fondo de UNA sola sección, el Caso real. Blanco 13.81:1; **Texto sobre noche** (#D9E1C2, 10.2:1); **Regla sobre noche** (#9FB07F, 5.91:1).
+### Superficie del caso real
+- **Salvia** (#E3EAD0): fondo de UNA sección, el Caso real. Tinta 12.99:1, tinta secundaria 6.49:1, oliva 7.78:1. Antes va en gris delgado (`#80796A`, 3.49:1 para gráficos) y Ahora en oliva grueso.
 
 ### Named Rules
 **The Una Tinta Rule.** El oliva es el único color de acción y énfasis; el error es solo error. Un elemento nuevo que pida atención usa peso o escala, no un tercer color.
 
-**The Superficie Rule.** El color extra viene de superficies (crema 2, noche, pasteles), nunca de acentos nuevos.
+**The Superficie Rule.** El color extra viene de superficies (crema 2, salvia, pasteles), nunca de acentos nuevos.
 
 ## Typography
 
@@ -151,7 +134,7 @@ La demo (mensaje, fila nueva, aviso) sigue siendo la pieza central. Cada servici
 - **Headline** (Bitter 700, clamp 2-3.25rem, 1.08): h2 de sección.
 - **Title** (Archivo 600, 1.25rem): h3 de pasos y bloques.
 - **Body** (400, 1.0625rem, 1.6) y **Lead** (clamp 1.1875-1.375rem).
-- **Label** (mono 500, 0.8125rem, mayúsculas, 0.04em): `01 · REGISTROS`, ENTRA POR / QUEDA EN / TE AVISA, rótulos de paso de la demo, EJEMPLO. Solo para datos y fichas; los títulos y botones van en mayúscula normal.
+- **Label** (mono 500, 0.8125rem, mayúsculas, 0.04em): etiqueta del hero, números y estados de las filas de servicio y chips. Solo para datos; los títulos y botones van en mayúscula normal.
 
 ### Named Rules
 **The Tabular Rule.** Todo número que se lee como dato usa cifras tabulares.
@@ -161,17 +144,16 @@ La demo (mensaje, fila nueva, aviso) sigue siendo la pieza central. Cada servici
 ## Layout
 
 Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Orden de la página:
-1. **Hero** (crema 2, hero partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" a la izquierda (columnas 1-6); ilustración de línea fina a la derecha (7-12), con grilla de puntos muy tenue detrás (solo ahí). En 375 la ilustración va en vertical, debajo del CTA.
-2. **Problema**: la frase y tres tarjetas pastel (salvia, arena, rosa).
-3. **Qué dejo andando solo**: pestañas 01-04 con estado y panel con ficha, escena y nota de honestidad. La única demo concreta (tabla) vive en 01 · Registros.
-4. **Caso real** (noche): eje horario Antes / Ahora, con espacio reservado para un dato (TODO).
-5. **Principios**: tres columnas con regla superior de 1px.
-6. **Cómo trabajo + Qué no hago**: cuatro pasos Yo hago / Tú haces.
-7. **Quién soy**: texto y cuatro datos en fila, sin foto.
-8. **Preguntas**: seis, siempre visibles.
-9. **Contacto** (crema 2): texto y formulario en tarjeta hoja.
+1. **Hero** (crema 2, hero partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
+2. **Problema**: la frase y una línea de ejemplos, sin tarjetas.
+3. **Caso real** (salvia, con el chip "Cliente real, datos anonimizados"): eje horario 08:00-20:00 con Antes (línea gris delgada) y Ahora (barra oliva gruesa); en móvil, dos listas apiladas con la hora a la izquierda. Bajo el eje, la línea "Armado con…" que traduce n8n. Espacio reservado para un dato real (`.caso-datos`).
+4. **Servicios**: "Lo mismo, para tus pedidos, avisos y boletas": tres filas (Pedidos, Avisos, Boletas y facturas) con estado "Lo construyo para ti" y una nota de honestidad. Sin demos.
+5. **Cómo trabajo + Qué no hago**: cuatro pasos Yo hago / Tú haces (paso 3 incluye "Tú decides: apruebas lo importante, como las boletas"; paso 4, la mensualidad).
+6. **Quién soy**: párrafo, sin foto ni cajas.
+7. **Preguntas**: cinco, siempre visibles.
+8. **Contacto** (crema 2): texto y formulario en tarjeta.
 
-Padding vertical 48px (96px desde 1024px).
+Padding vertical 40px arriba y 48px abajo (80px y 96px desde 1024px).
 
 ## Elevation & Depth
 
@@ -179,37 +161,31 @@ Plano: ningún `box-shadow`, degradado ni blur. La profundidad la dan la superfi
 
 ## Shapes
 
-Radio 8px en botones, campos, tarjetas, hojas y fichas; 4px en sellos EJEMPLO y chips; 0 en tablas. Sin círculos. Sin `border-left/right` ≥3px.
+Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculos. Sin `border-left/right` ≥3px.
 
 ## Components
 
 ### Buttons
 - **Primario:** oliva, texto crema, 52px (56px el de enviar, ancho completo), radio 8px, Archivo 600. Hover oliva profundo, active `translateY(1px)`. El texto es siempre "Cuéntame tu caso".
-- **Primario claro:** crema con texto noche, solo sobre la banda noche.
+- **Sin variante clara: el botón del caso es el primario.
 - **Texto:** oliva subrayado, 44px ("Mira cómo funciona", "Pausar/Reanudar").
 - **Foco:** contorno 3px oliva con 2px de separación en todo.
 - **Cabecera:** el botón aparece solo cuando el CTA del hero sale de pantalla.
 
-### Ficha de servicio
-Caja con borde 1px línea y radio 8px, tres columnas desde 768px separadas por reglas de 1px (ENTRA POR / QUEDA EN / TE AVISA); apiladas en móvil. Etiqueta mono arriba, dato en Archivo 500 abajo.
-
-### Tarjetas pastel
-Tres tarjetas (salvia, arena, rosa) con borde 1px línea y texto de 1.0625rem 500. Una columna en móvil, tres desde 768px.
+### Filas de servicio
+Lista con regla superior e inferior de 1px por fila: número mono, nombre (Archivo 700), una línea de resultado y el estado en mono ("Lo construyo para ti"). En 375, una columna; desde 768px, cuatro columnas alineadas por la línea base.
 
 ### Formulario
-Tarjeta hoja, borde 1px línea, radio 8px, sobre crema 2. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título personalizado, mini-planilla con la fila "Recibido" y los tres pasos siguientes. Valores insertados siempre con `textContent`.
-
-### Demo (hoja de la planilla)
-Hoja `#FFFDF6` con borde 1px línea, solo en las escenas de servicios (01 · Registros es la demo concreta). Rótulos mono, burbuja salvia, tabla de máximo 3 filas con un solo dato destacado, aviso con borde oliva. Rotulada EJEMPLO; la nota de datos inventados va una vez por sección.
+Tarjeta hoja (`#FFFDF6`), borde 1px línea, radio 8px, sobre crema 2. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título personalizado, mini-planilla con la fila "Recibido" y los tres pasos siguientes. Valores insertados siempre con `textContent`.
 
 ### Ilustración del hero
-SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones punteadas): Telegram, WhatsApp y Correo (cajas salvia, arena y rosa, con el nombre debajo) llegan a la planilla de Google (hoja, borde 2.25px, una celda resaltada) y de ahí a Resumen y Aviso. Íconos genéricos de trazo, no logos de marca a color; n8n no aparece en el hero. Horizontal desde 768px, vertical en móvil. Los nombres llevan un contorno del color del fondo para no chocar con los puntos.
+SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones punteadas): Telegram, Formulario y Correo (cajas salvia, arena y rosa, con el nombre debajo) llegan a la planilla de Google (hoja, borde 2.25px, una celda resaltada) y de ahí a Resumen y Aviso. Íconos genéricos de trazo, no logos de marca a color; n8n no aparece en el hero. Horizontal desde 768px, vertical en móvil. Los nombres llevan un contorno del color del fondo para no chocar con los puntos.
 
 ### Grilla de puntos
 Solo CSS (`radial-gradient`, puntos de oliva al 16%, paso de 22px), solo detrás de la ilustración del hero y difuminada en los bordes con una máscara. Texto secundario sobre el punto más oscuro: 5.2:1. El resto de la página no lleva fondo decorativo.
 
 ### Movimiento
-Se mantiene: demo del hero en bucle (arranca en el estado final), servicios en rotación con barra de 9 s, reloj del Caso real (`DUR_CASO`, `ESPERA_CASO`) y botón volver arriba. Todo se pausa o queda estático con `prefers-reduced-motion`. La Fase 5 revisa cuáles se quedan.
+Solo el reloj del Caso real en escritorio (`DUR_CASO`, `ESPERA_CASO` en `main.js`): al entrar en pantalla recorre 08:00-20:00 una vez; los hitos aparecen al ser alcanzados, hay botón de pausa de 44px y, con `prefers-reduced-motion`, sin JS o en móvil, queda el estado final estático. La cabecera muestra su botón al salir del CTA del hero. Nada más se mueve solo. La Fase 5 revisa si algo suma.
 
 ## Do's and Don'ts
 

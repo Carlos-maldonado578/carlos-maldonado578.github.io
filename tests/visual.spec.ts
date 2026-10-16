@@ -17,15 +17,15 @@ test.describe('Regresion visual', () => {
     await expect(page.locator('.hero')).toHaveScreenshot('hero.png', opciones);
   });
 
-  for (const [i, nombre] of ['registros', 'pedidos', 'avisos', 'boletas'].entries()) {
-    test(`elige-tu-pega: ${nombre}`, async ({ page }) => {
-      await preparar(page);
-      await page.locator('.pega-tab').nth(i).click();
-      await page.mouse.move(0, 0);
-      await page.locator('#pegas').scrollIntoViewIfNeeded();
-      await expect(page.locator('#pegas')).toHaveScreenshot(`pega-${nombre}.png`, opciones);
-    });
-  }
+  test('servicios', async ({ page }) => {
+    await preparar(page);
+    await expect(page.locator('.servicios')).toHaveScreenshot('servicios.png', opciones);
+  });
+
+  test('quien soy', async ({ page }) => {
+    await preparar(page);
+    await expect(page.locator('.quien')).toHaveScreenshot('quien.png', opciones);
+  });
 
   test('como trabajo', async ({ page }) => {
     await preparar(page);
@@ -34,14 +34,12 @@ test.describe('Regresion visual', () => {
 
   test('preguntas', async ({ page }) => {
     await preparar(page);
-    await page.locator('.faq details').first().locator('summary').click();
-    await page.mouse.move(0, 0);
-    await expect(page.locator('main > section').nth(5)).toHaveScreenshot('faq.png', opciones);
+    await expect(page.locator('main > section').nth(6)).toHaveScreenshot('faq.png', opciones);
   });
 
   test('caso real', async ({ page }) => {
     await preparar(page);
-    await expect(page.locator('.banda-azul')).toHaveScreenshot('caso.png', opciones);
+    await expect(page.locator('.banda-caso')).toHaveScreenshot('caso.png', opciones);
   });
 
   test('formulario', async ({ page }) => {

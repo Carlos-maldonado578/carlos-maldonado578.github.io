@@ -20,15 +20,4 @@ test.describe('Accesibilidad (axe)', () => {
     await expect(page.locator('#e-mensaje')).toBeVisible();
     expect(await axe(page)).toEqual([]);
   });
-
-  // movimiento reducido = estado final estatico; en plena animacion axe ve textos a medio desvanecer (falsos positivos)
-  test('cada pestana de "Elige tu pega" (estado final): 0 violaciones', async ({ page }) => {
-    await page.emulateMedia({ reducedMotion: 'reduce' });
-    await abrir(page);
-    for (let i = 0; i < 4; i++) {
-      await page.locator('.pega-tab').nth(i).click();
-      await page.waitForTimeout(300);
-      expect(await axe(page), `pestana ${i}`).toEqual([]);
-    }
-  });
 });

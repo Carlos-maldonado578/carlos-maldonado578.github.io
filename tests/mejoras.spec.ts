@@ -130,7 +130,7 @@ test.describe('Segunda ronda de mejoras', () => {
     await expect(svg).toHaveCount(1);
     await expect(svg).toHaveAttribute('role', 'img');
     const nombres = await svg.locator('text').allTextContents();
-    expect(nombres).toEqual(['Telegram', 'WhatsApp', 'Correo', 'Planilla de Google', 'Resumen', 'Aviso']);
+    expect(nombres).toEqual(['Telegram', 'Formulario', 'Correo', 'Planilla de Google', 'Resumen', 'Aviso']);
     expect(await page.locator('.hero').textContent()).not.toMatch(/n8n/i);
     await expect(page.locator('.hero-cta .enlace-texto')).toBeVisible();
     await expect(page.locator('.hero-demo, #demo')).toHaveCount(0);
