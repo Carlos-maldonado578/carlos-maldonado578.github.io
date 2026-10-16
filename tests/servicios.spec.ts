@@ -7,7 +7,7 @@ test.describe('Estructura y texto de la pagina', () => {
     const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
     expect(ids).toEqual(['t-hero', 't-caso', 't-hago', 't-trabajo', 't-quien', 't-faq', 't-contacto']);
     await expect(page.locator('#t-hago')).toHaveText('También para');
-    await expect(page.locator('.servicios .lead')).toHaveText('Lo construyo a la medida de tu pyme.');
+    await expect(page.locator('.servicios .lead')).toHaveText('Lo construyo según lo que necesites.');
     const filas = page.locator('.sv-fila');
     await expect(filas).toHaveCount(3);
     await expect(filas.locator('h3')).toHaveText(['Pedidos', 'Stock', 'Boletas']);
