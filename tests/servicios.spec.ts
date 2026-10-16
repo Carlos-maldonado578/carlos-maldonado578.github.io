@@ -9,7 +9,7 @@ test.describe('Servicios y orden de la pagina', () => {
     await expect(filas).toHaveCount(3);
     expect(await filas.locator('h3').allTextContents()).toEqual(['Pedidos', 'Avisos', 'Boletas y facturas']);
     for (const e of await filas.locator('.sv-estado').allTextContents()) expect(e).toBe('Lo construyo para ti');
-    await expect(page.locator('.servicios')).toContainText('Aún no los tengo andando en un cliente');
+    await expect(page.locator('.servicios')).not.toContainText('Aún no los tengo andando');
     await expect(page.locator('.servicios')).toContainText('SII');
     await expect(page.locator('.servicios table, .hoja, .pega')).toHaveCount(0);
     const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
@@ -29,7 +29,7 @@ test.describe('Servicios y orden de la pagina', () => {
     await expect(page.locator('.principios')).toHaveCount(0);
     await expect(page.locator('.pasos > li').nth(2)).toContainText('apruebas lo importante, como las boletas');
     await expect(page.locator('.pasos > li').nth(3)).toContainText('servicio en internet que yo mantengo');
-    await expect(page.locator('.pasos > li').nth(3)).toContainText('Pagas una mensualidad por mantenerlo');
+    await expect(page.locator('.pasos > li').nth(3)).toContainText('mensualidad cuyo valor conoces antes de empezar');
     await expect(page.locator('.quien')).toContainText('bancos y empresas de pagos');
     await expect(page.locator('.quien')).toContainText('Trabajo solo, sin agencia: hablas directo conmigo');
     await expect(page.locator('.quien .datos')).toHaveCount(0);
@@ -43,5 +43,17 @@ test.describe('Servicios y orden de la pagina', () => {
     expect(nombres).toEqual(['Telegram', 'Formulario', 'Correo', 'Planilla de Google', 'Resumen', 'Aviso']);
     await expect(page.locator('#t-problema ~ .lead')).toContainText('WhatsApp');
     expect(await page.locator('.hero').textContent()).not.toMatch(/WhatsApp/);
+  });
+});
+
+test.describe('Separacion entre secciones y pie', () => {
+  test('una sola regla: linea de 1px entre secciones; el pie no repite Volver al inicio', async ({ page }) => {
+    await abrir(page);
+    const reglas = await page.locator('main > section').evaluateAll((s) => s.map((e, i) => i === 0 ? null : getComputedStyle(e).borderTopWidth + ' ' + getComputedStyle(e).borderTopStyle));
+    expect(reglas.slice(1).every((r) => r === '1px solid')).toBe(true);
+    await expect(page.locator('footer')).not.toContainText('Volver al inicio');
+    await expect(page.locator('.subir')).toHaveCount(1);
+    await expect(page.locator('footer .pie-nombre')).toHaveText('Carlos Maldonado');
+    await expect(page.locator('footer a')).toHaveAttribute('href', /^mailto:carlos\.automatiza\.tupyme@gmail\.com/);
   });
 });

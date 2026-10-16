@@ -109,11 +109,12 @@ test.describe('Segunda ronda de mejoras', () => {
     await expect(page.locator('.promesas')).toContainText('sin costo');
   });
 
-  test('Como trabajo: carriles Yo hago / Tu haces; Que no hago tiene 3 limites', async ({ page }) => {
+  test('Como trabajo: 4 pasos con titulo y una frase; Que no hago tiene 3 limites', async ({ page }) => {
     await abrir(page);
     await expect(page.locator('.pasos > li')).toHaveCount(4);
-    await expect(page.locator('.pasos .yo')).toHaveCount(4);
-    await expect(page.locator('.pasos .tu')).toHaveCount(4);
+    await expect(page.locator('.pasos h3')).toHaveText(['Conversamos', 'Definimos por dónde partir', 'Construyo la primera parte', 'Queda funcionando']);
+    await expect(page.locator('.pasos p')).toHaveCount(4);
+    await expect(page.locator('.pasos .lado')).toHaveCount(0);
     await expect(page.locator('.no-hago li')).toHaveCount(3);
   });
 

@@ -6,12 +6,6 @@ test.describe('Boton volver arriba', () => {
     await abrir(page);
     const subir = page.locator('.subir');
     await expect(subir).toHaveAttribute('href', '#inicio');
-    if (page.viewportSize()!.width < 768) {
-      // En móvil se oculta: tapaba texto y ya hay cabecera fija y "Volver al inicio" en el pie.
-      await page.evaluate(() => scrollTo(0, innerHeight * 1.5));
-      await expect(subir).toBeHidden();
-      return;
-    }
     await expect(subir).not.toHaveClass(/visible/);
     await page.evaluate(() => scrollTo(0, innerHeight * 0.5));
     await expect(subir).not.toHaveClass(/visible/);

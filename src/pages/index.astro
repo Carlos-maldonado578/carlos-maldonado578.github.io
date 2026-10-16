@@ -126,7 +126,6 @@ const fuentes = `
             <li class="sv-fila"><span class="num">02</span><div><h3>Avisos</h3><p>Baja el stock. Te avisan antes de quedarte sin.</p></div><span class="sv-estado">Lo construyo para ti</span></li>
             <li class="sv-fila"><span class="num">03</span><div><h3>Boletas y facturas</h3><p>Está en tu planilla. El borrador se arma solo; tú lo revisas y lo emites en el SII.</p></div><span class="sv-estado">Lo construyo para ti</span></li>
           </ol>
-          <p class="nota sv-nota">Aún no los tengo andando en un cliente.</p>
           <a class="btn sv-cta" href="#contacto">Cuéntame tu caso</a>
         </div>
       </section>
@@ -136,23 +135,19 @@ const fuentes = `
           <ol class="pasos">
             <li>
               <h3>Conversamos</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Miro tu proceso y te digo si te sirve.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Me cuentas cómo trabajas hoy.</p></div>
+              <p>Me cuentas cómo trabajas hoy y te digo con honestidad si esto te sirve.</p>
             </li>
             <li>
-              <h3>Te propongo por dónde partir</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Parto por lo que más te molesta.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Eliges si la probamos.</p></div>
+              <h3>Definimos por dónde partir</h3>
+              <p>Te propongo empezar por lo que más tiempo te quita, y tú decides si lo probamos.</p>
             </li>
             <li>
               <h3>Construyo la primera parte</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>La armo y la dejo andando.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>La pruebas con tus datos reales. Tú decides: apruebas lo importante, como las boletas.</p></div>
+              <p>La armo y la pruebas con tus datos reales. Tú apruebas lo importante, como las boletas.</p>
             </li>
             <li>
               <h3>Queda funcionando</h3>
-              <div class="yo"><p class="lado">Yo hago</p><p>Lo dejo andando en un servicio en internet que yo mantengo.</p></div>
-              <div class="tu"><p class="lado">Tú haces</p><p>Pagas una mensualidad por mantenerlo; el valor te lo digo antes de empezar.</p></div>
+              <p>La dejo andando en un servicio en internet que yo mantengo, por una mensualidad cuyo valor conoces antes de empezar.</p>
             </li>
           </ol>
           <p class="lead trabajo-cierre">El plazo depende de lo que necesites; parto por una parte chica para que veas resultados pronto.</p>
@@ -273,10 +268,10 @@ const fuentes = `
     </main>
 
     <footer>
-      <div class="contenedor">
-        <span translate="no">Carlos Maldonado · Automatización para pymes · Santiago, Chile</span>
-        <a href={mailto}>{correo}</a>
-        <a href="#inicio">Volver al inicio ↑</a>
+      <div class="contenedor pie">
+        <p class="pie-nombre" translate="no">Carlos Maldonado</p>
+        <p class="pie-linea">Automatización para pymes · Santiago, Chile</p>
+        <a class="pie-correo" href={mailto}>{correo}</a>
       </div>
     </footer>
 
