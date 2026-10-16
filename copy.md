@@ -17,7 +17,7 @@ de vivir en cuadernos y grupos de WhatsApp. Con herramientas simples y sin que
 cambies cómo trabajas.
 
 [Cuéntame tu caso →]  *(baja al formulario)*
-La primera conversación es sin costo. Te respondo en uno o dos días.
+La primera conversación es sin costo. Te contacto a la brevedad posible.
 
 ---
 
@@ -56,8 +56,8 @@ lo más vistoso. Vamos por partes.
 
 **3. Construyo esa primera parte y la probamos con tus datos reales**, no con ejemplos.
 
-**4. Queda funcionando.** Si quieres, sigo con las siguientes partes y con mantención
-mensual.
+**4. Queda funcionando.** La mantengo andando. Tiene una mensualidad por el servidor y la mantención;
+si quieres, sigo con las siguientes partes.
 
 Cada parte toma semanas, no meses. Vas viendo resultados antes de gastar todo.
 
@@ -72,26 +72,22 @@ alguien juntaba todo en la tarde, y recién ahí el dueño sabía el total del d
 —cuando le llegaba el papel—.
 
 Hoy cada persona manda un mensaje de Telegram con dos datos. La planilla se llena
-sola y el dueño recibe el resumen del día sin pedirlo. Cero cuadernos, cero doble
+sola y el dueño recibe el resumen del día automáticamente. Cero cuadernos, cero doble
 tipeo, el número está al minuto.
 
 ---
 
-## 6. Qué esperar
-
-- **Cada proyecto se cotiza aparte**, según lo que necesites. No hay un plan cerrado con precio de lista.
-- **Empiezo por lo que te duele hoy**, no por armarte un sistema gigante que no pediste.
-- **Lo dejo simple.** Si no lo puedes usar sin mí, algo hice mal.
-- **Todo queda en tus cuentas** —tu planilla, tu bot, tu correo—. Si un día no quieres seguir conmigo, te llevas lo tuyo sin quedar pegado.
-
----
-
-## 7. Formulario
+## 6. Contacto
 
 ### Conversemos
 
-Cuéntame qué parte de tu trabajo te gustaría sacarte de encima. Te respondo en uno o
-dos días.
+Cuéntame qué parte de tu trabajo te gustaría sacarte de encima. Te contacto a la
+brevedad posible.
+
+Soy Carlos Maldonado y trabajo solo, sin agencia: hablas directo conmigo, de la primera
+conversación a que quede andando.
+
+Cada proyecto se cotiza aparte, según lo que necesites. Después hay una mensualidad por el servidor y la mantención; el valor te lo digo antes de empezar.
 
 - **Nombre**
 - **Correo o teléfono**
@@ -104,7 +100,7 @@ dos días.
 
 ---
 
-## 8. Pie
+## 7. Pie
 
 Carlos Maldonado · Automatización para pymes
 CORREO · Hecho en Chile · 2026

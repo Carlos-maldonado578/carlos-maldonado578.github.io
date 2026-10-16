@@ -32,12 +32,11 @@ test.describe('Regresion visual', () => {
     await expect(page.locator('.trabajo')).toHaveScreenshot('trabajo.png', opciones);
   });
 
-  test('quien soy y preguntas', async ({ page }) => {
+  test('preguntas', async ({ page }) => {
     await preparar(page);
     await page.locator('.faq details').first().locator('summary').click();
     await page.mouse.move(0, 0);
     await expect(page.locator('main > section').nth(5)).toHaveScreenshot('faq.png', opciones);
-    await expect(page.locator('.quien')).toHaveScreenshot('quien.png', opciones);
   });
 
   test('caso real', async ({ page }) => {

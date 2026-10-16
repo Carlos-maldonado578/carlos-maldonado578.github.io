@@ -22,12 +22,13 @@ test.describe('Segunda ronda de mejoras', () => {
     expect(await page.locator('.faq').textContent()).not.toMatch(/\$|\bCLP\b|\bUF\b/);
   });
 
-  test('Quien soy: bloque corto, primera persona, sin foto', async ({ page }) => {
+  test('Contacto: dice quien soy (primera persona, sin foto) y que se cotiza aparte', async ({ page }) => {
     await abrir(page);
-    const q = page.locator('.quien');
-    await expect(q.getByRole('heading', { level: 2, name: 'Quién soy' })).toBeVisible();
-    await expect(q.locator('.quien-texto p')).toHaveCount(3);
-    await expect(q).toContainText('Soy Carlos Maldonado');
+    const c = page.locator('.promesas');
+    await expect(c.locator('p')).toHaveCount(2);
+    await expect(c).toContainText('Soy Carlos Maldonado');
+    await expect(c).toContainText('se cotiza aparte');
+    await expect(page.locator('.quien')).toHaveCount(0);
     await expect(page.locator('img')).toHaveCount(0);
   });
 
@@ -109,7 +110,7 @@ test.describe('Segunda ronda de mejoras', () => {
     [0, 9.5 / 12, 1].forEach((f, i) => expect(Math.abs(r.hs[i] - f * r.alto)).toBeLessThan(2));
   });
 
-  test('Que pasa despues de enviar: 3 pasos bajo el boton; el precio va al final de las promesas', async ({ page }) => {
+  test('Que pasa despues de enviar: 3 pasos bajo el boton; el precio va en el texto de contacto', async ({ page }) => {
     await abrir(page);
     await expect(page.locator('.despues li')).toHaveCount(3);
     const y = await page.evaluate(() => ({
@@ -117,18 +118,15 @@ test.describe('Segunda ronda de mejoras', () => {
       pasos: document.querySelector('.despues')!.getBoundingClientRect().top,
     }));
     expect(y.pasos).toBeGreaterThan(y.boton);
-    await expect(page.locator('.despues a')).toHaveAttribute('href', /^mailto:/);
-    const prom = await page.locator('.promesas strong').allTextContents();
-    expect(prom).toHaveLength(4);
-    expect(prom[prom.length - 1]).toContain('se cotiza aparte');
+    await expect(page.locator('.promesas p').last()).toContainText('se cotiza aparte');
   });
 
-  test('Como trabajo: carriles Yo hago / Tu haces; Que no hago tiene 4 limites', async ({ page }) => {
+  test('Como trabajo: carriles Yo hago / Tu haces; Que no hago tiene 2 limites', async ({ page }) => {
     await abrir(page);
     await expect(page.locator('.pasos > li')).toHaveCount(4);
     await expect(page.locator('.pasos .yo')).toHaveCount(4);
     await expect(page.locator('.pasos .tu')).toHaveCount(4);
-    await expect(page.locator('.no-hago li')).toHaveCount(4);
+    await expect(page.locator('.no-hago li')).toHaveCount(2);
   });
 
   test('bandas de fondo: solo 3 cortes de color de arriba a abajo', async ({ page }) => {

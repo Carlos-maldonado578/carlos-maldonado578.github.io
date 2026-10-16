@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { abrir, indiceActivo, verPegas } from './comun';
 
+const PEGA = 9000; // DUR_PEGA en main.js
 const tab = (page: any, i: number) => page.locator('.pega-tab').nth(i);
 
 test.describe('Elige tu pega', () => {
@@ -130,49 +131,106 @@ test.describe('Elige tu pega', () => {
     });
   }
 
-  test('Pausar/Reanudar detiene el auto-avance', async ({ page }) => {
+  // Reloj simulado: cada pega dura 9 s (DUR_PEGA en main.js); no se esperan minutos reales.
+  const abrirConReloj = async (page: any) => {
+    await page.clock.install();
     await abrir(page);
     await verPegas(page);
+    await expect(page.locator('#pegas-pausa')).toBeVisible();
+    await page.clock.runFor(100);
+  };
+
+  test('rotacion continua: 0,1,2,3 y vuelve a 0, una pega cada ~9 s, en bucle', async ({ page }) => {
+    await abrirConReloj(page);
+    const seq = [await indiceActivo(page)];
+    for (let k = 0; k < 6; k++) {
+      await page.clock.runFor(PEGA);
+      seq.push(await indiceActivo(page));
+    }
+    // cada ~9 s avanza una; tras la 4a vuelve a la 1a y sigue
+    expect(seq).toEqual([0, 1, 2, 3, 0, 1, 2]);
+    await expect(page.locator('#pegas-pausa')).toBeVisible();
+    await expect(page.locator('#pegas-pausa')).toHaveText('Pausar');
+  });
+
+  test('cada pega permanece ~9 s antes de pasar a la siguiente', async ({ page }) => {
+    await abrirConReloj(page);
+    await page.clock.runFor(PEGA - 1500);
+    expect(await indiceActivo(page)).toBe(0);
+    await page.clock.runFor(2000);
+    expect(await indiceActivo(page)).toBe(1);
+  });
+
+  test('la barra azul se llena durante lo que dura la pega', async ({ page }) => {
+    await abrirConReloj(page);
+    const dur = await page.locator('.pega-tab').first().evaluate((e) => e.style.getPropertyValue('--dur'));
+    expect(dur).toBe(PEGA + 'ms');
+    await expect(page.locator("#pegas")).toHaveClass(/ auto|^auto| auto$/);
+  });
+
+  test('Pausar/Reanudar detiene y retoma la rotacion', async ({ page }) => {
+    await abrirConReloj(page);
     const pausa = page.locator('#pegas-pausa');
-    await expect(pausa).toBeVisible({ timeout: 5000 });
     await expect(pausa).toHaveText('Pausar');
     await pausa.click();
     await expect(pausa).toHaveText('Reanudar');
     await expect(page.locator('#pegas')).toHaveClass(/pausado/);
     const i = await indiceActivo(page);
-    await page.waitForTimeout(9000); // mas que la escena mas larga
+    await page.clock.runFor(PEGA * 3);
     expect(await indiceActivo(page)).toBe(i);
     await pausa.click();
     await expect(pausa).toHaveText('Pausar');
     await expect(page.locator('#pegas')).not.toHaveClass(/pausado/);
+    await page.clock.runFor(PEGA + 500);
+    expect(await indiceActivo(page)).toBe((i + 1) % 4);
   });
 
-  test('el auto-avance da una sola vuelta y termina quieto', async ({ page }) => {
-    test.setTimeout(90_000);
-    await abrir(page);
-    await verPegas(page);
-    const seq: number[] = [];
-    const t0 = Date.now();
-    let quietoDesde = 0;
-    while (Date.now() - t0 < 60_000) {
-      const i = await indiceActivo(page);
-      if (seq[seq.length - 1] !== i) seq.push(i);
-      if (seq.length >= 5 && !quietoDesde) quietoDesde = Date.now();
-      if (quietoDesde && Date.now() - quietoDesde > 10_000) break;
-      await page.waitForTimeout(200);
-    }
-    expect(seq, 'secuencia de pestanas activas').toEqual([0, 1, 2, 3, 0]);
-    await expect(page.locator('#pegas-pausa')).toBeHidden(); // el control desaparece al terminar la vuelta
-  });
-
-  test('una interaccion corta el auto-avance', async ({ page }) => {
-    test.setTimeout(60_000);
-    await abrir(page);
-    await verPegas(page);
-    await expect(page.locator('#pegas-pausa')).toBeVisible({ timeout: 5000 });
+  test('una interaccion corta el auto-avance y queda pausado hasta Reanudar', async ({ page }) => {
+    await abrirConReloj(page);
     await tab(page, 2).click();
-    await expect(page.locator('#pegas-pausa')).toBeHidden();
-    await page.waitForTimeout(10_000);
+    const pausa = page.locator('#pegas-pausa');
+    await expect(pausa).toBeVisible();
+    await expect(pausa).toHaveText('Reanudar');
+    await page.clock.runFor(PEGA * 3);
     expect(await indiceActivo(page)).toBe(2);
+    await pausa.click();
+    await expect(pausa).toHaveText('Pausar');
+    await page.clock.runFor(PEGA + 500);
+    expect(await indiceActivo(page)).toBe(3);
+  });
+
+  test('el teclado en una pega tambien corta el auto-avance', async ({ page }) => {
+    await abrirConReloj(page);
+    await tab(page, 0).focus();
+    await page.keyboard.press('ArrowDown');
+    expect(await indiceActivo(page)).toBe(1);
+    await page.clock.runFor(PEGA * 3);
+    expect(await indiceActivo(page)).toBe(1);
+    await expect(page.locator('#pegas-pausa')).toHaveText('Reanudar');
+  });
+
+  test('fuera de pantalla la rotacion se pausa y al volver sigue', async ({ page }) => {
+    await abrirConReloj(page);
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.waitForFunction(() => document.getElementById('pegas')!.classList.contains('pausado'));
+    const i = await indiceActivo(page);
+    await page.clock.runFor(PEGA * 3);
+    expect(await indiceActivo(page)).toBe(i);
+    await verPegas(page);
+    await page.waitForFunction(() => !document.getElementById('pegas')!.classList.contains('pausado'));
+    await page.clock.runFor(PEGA + 500);
+    expect(await indiceActivo(page)).toBe((i + 1) % 4);
+  });
+});
+
+test.describe('Elige tu pega con movimiento reducido', () => {
+  test.use({ reducedMotion: 'reduce' });
+  test('sin auto-avance ni Pausar: la pega no cambia sola', async ({ page }) => {
+    await page.clock.install();
+    await abrir(page);
+    await verPegas(page);
+    await page.clock.runFor(PEGA * 3);
+    expect(await indiceActivo(page)).toBe(0);
+    await expect(page.locator('#pegas-pausa')).toBeHidden();
   });
 });

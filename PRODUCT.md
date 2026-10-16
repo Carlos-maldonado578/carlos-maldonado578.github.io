@@ -20,7 +20,7 @@ Carlos Maldonado, proveedor individual de automatización de procesos para pymes
 
 ## Positioning
 
-Una persona, no una agencia: mira tu proceso, parte por lo que más duele, lo construye por partes con herramientas estándar y todo queda en las cuentas del cliente (sin quedar rehén).
+Una persona, no una agencia: mira tu proceso, parte por lo que más duele, lo construye por partes con herramientas estándar y lo deja andando en un servidor en la nube que administra él (mensualidad por servidor y mantención, valor claro desde antes de empezar); los datos siguen siendo del cliente.
 
 ## Operating Context
 
@@ -28,7 +28,7 @@ Sin inicio de actividades ni marca; identidad = nombre propio "Carlos Maldonado"
 
 ## Capabilities and Constraints
 
-- Una sola página, 8 secciones (ver `copy.md`). Sin precios ("cada proyecto se cotiza aparte"). Sin foto de Carlos. Caso 100% anónimo (sin cliente, lugar ni rubro identificable).
+- Una sola página, 7 secciones (ver `copy.md`). Sin precios ("cada proyecto se cotiza aparte"). Sin foto de Carlos. Caso 100% anónimo (sin cliente, lugar ni rubro identificable).
 - Sin WhatsApp/teléfono públicos; único canal: formulario.
 - Si prodesk está apagado el formulario falla y muestra el correo de respaldo.
 - Sin analítica ni tracking.

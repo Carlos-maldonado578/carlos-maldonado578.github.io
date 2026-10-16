@@ -84,7 +84,7 @@ if (demo && pausa && !reducido) {
   });
 }
 
-/* ---- Elige tu pega: pestanas con escenas; una vuelta automatica y luego quieta ---- */
+/* ---- Elige tu pega: pestanas con escenas; rotacion continua mientras la seccion es visible ---- */
 const pegas = $('pegas');
 if (pegas) {
   const lista = pegas.querySelector('.pegas-lista');
@@ -176,10 +176,14 @@ if (pegas) {
 
   let actual = -1;
   let b = null;
-  let fase = 'espera'; // espera | andando | fin
+  let iniciado = false;
   let visible = false;
-  let manual = false;
+  let congelado = false; // Pausar: escena y barra quietas a medias
+  let manual = false; // el usuario interactuo o pulso Pausar: sin auto-avance hasta Reanudar
   const movil = matchMedia('(max-width: 1023px)');
+
+  // cada pega se ve DUR_PEGA ms: la escena se arma y el ultimo paso se alarga hasta completar el tiempo (la barra azul sigue ese tiempo)
+  const DUR_PEGA = 9000;
 
   const activar = (i, { jugar = true } = {}) => {
     if (b) b.detener();
@@ -192,40 +196,40 @@ if (pegas) {
     paneles.forEach((p, k) => p.classList.toggle('activa', k === i));
     b = null;
     if (!reducido && jugar) {
-      const pasos = escenas[i].pasos;
-      tabs[i].style.setProperty('--dur', pasos.reduce((s, x) => s + x[0], 0) + 'ms');
-      b = bucle(pasos, { repetir: false, alTerminar: () => fase === 'andando' && avanzar() });
+      const pasos = escenas[i].pasos.map((x) => [...x]);
+      const resto = pasos.slice(0, -1).reduce((s, x) => s + x[0], 0);
+      pasos[pasos.length - 1][0] = Math.max(500, DUR_PEGA - resto);
+      tabs[i].style.setProperty('--dur', resto + pasos[pasos.length - 1][0] + 'ms');
+      pegas.classList.remove('auto'); // reinicia la barra
+      void pegas.offsetWidth;
+      pegas.classList.toggle('auto', !manual);
+      b = bucle(pasos, { repetir: false, alTerminar: () => !manual && activar((actual + 1) % tabs.length) });
+      if (!manual && !(visible && !document.hidden)) b.pausar();
     }
   };
 
   const sincronizar = () => {
     const corre = visible && !document.hidden;
-    if (fase === 'espera' && corre) {
-      fase = 'andando';
-      pegas.classList.add('auto');
+    if (!iniciado && corre && !manual) {
+      iniciado = true;
       pausaP.hidden = false;
       activar(0);
     }
-    if (fase === 'andando' && b) {
-      const parar = !corre || manual;
-      parar ? b.pausar() : b.reanudar();
-      pegas.classList.toggle('pausado', parar);
-    }
+    if (iniciado && !manual && b) corre ? b.reanudar() : b.pausar();
+    pegas.classList.toggle('pausado', manual || !corre);
   };
 
-  const avanzar = () => {
-    if (actual < tabs.length - 1) return activar(actual + 1);
-    cortar();
-    activar(0, { jugar: false });
-  };
-
-  // cualquier interaccion o el fin de la vuelta: la escena en curso termina sola y no se avanza mas
+  // cualquier interaccion: el auto-avance se corta y queda en pausa hasta pulsar Reanudar
   const cortar = () => {
-    if (fase === 'fin') return;
-    fase = 'fin';
-    pegas.classList.remove('auto', 'pausado');
-    pausaP.hidden = true;
-    if (b) b.reanudar();
+    if (manual && !congelado) return;
+    congelado = false;
+    manual = true;
+    iniciado = true;
+    pausaP.hidden = false;
+    pausaP.textContent = 'Reanudar';
+    pegas.classList.remove('auto');
+    pegas.classList.add('pausado');
+    if (b) b.reanudar(); // la escena en curso termina sola
   };
 
   const elegir = (i, enfocar) => {
@@ -253,6 +257,17 @@ if (pegas) {
   pausaP.addEventListener('click', () => {
     manual = !manual;
     pausaP.textContent = manual ? 'Reanudar' : 'Pausar';
+    if (manual) {
+      congelado = true;
+      if (b) b.pausar();
+    } else if (congelado && b) {
+      congelado = false;
+      b.reanudar();
+    } else {
+      congelado = false;
+      iniciado = true;
+      activar(actual); // reanuda la rotacion desde la pega actual
+    }
     sincronizar();
   });
 
@@ -262,6 +277,87 @@ if (pegas) {
     new IntersectionObserver(([e]) => { visible = e.intersectionRect.height >= Math.min(e.boundingClientRect.height * 0.4, innerHeight / 3); sincronizar(); }, { threshold: Array.from({ length: 21 }, (_, i) => i / 20) }).observe(pegas);
     document.addEventListener('visibilitychange', sincronizar);
   }
+}
+
+/* ---- Caso real: un reloj recorre el eje de 08:00 a 20:00 una vez al entrar en pantalla; el HTML ya es el estado final ---- */
+const DUR_CASO = 9500; // ms que tarda el cursor de 08:00 a 20:00 (unica duracion)
+const ESPERA_CASO = 500; // ms quieto en 08:00 antes de partir
+const eje = $('caso-eje');
+const pausaC = $('caso-pausa');
+const ICONOS_C = {
+  'Pausar': '<path d="M8 5v14M16 5v14"/>',
+  'Reanudar': '<path d="M7 4l13 8-13 8z"/>',
+  'Ver de nuevo': '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>',
+};
+// Botón solo con símbolo: el nombre accesible cambia con el estado
+function estadoC(nombre) {
+  pausaC.setAttribute('aria-label', nombre);
+  pausaC.title = nombre;
+  pausaC.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">' + ICONOS_C[nombre] + '</svg>';
+}
+if (eje && pausaC && !reducido) {
+  const lectura = $('caso-hora');
+  const vertical = matchMedia('(max-width: 899px)');
+  const lleno = eje.querySelector('.tramo.lleno');
+  const num = (el, k) => parseFloat(el.style.getPropertyValue(k));
+  const [ia, ib] = [num(lleno, '--a'), num(lleno, '--b')];
+  const hitos = [...eje.querySelectorAll('.hito, .tramo.lleno')].map((el) => [el, num(el, '--h') || num(el, '--a')]);
+  const dos = (n) => String(n).padStart(2, '0');
+  let t = 0;
+  let last = 0;
+  let raf = 0;
+
+  const pintar = () => {
+    const p = Math.min(1, Math.max(0, (t - ESPERA_CASO) / DUR_CASO));
+    const h = 8 + 12 * p;
+    const min = Math.floor(h * 60 + 1e-6);
+    lectura.textContent = `${dos(Math.floor(min / 60))}:${dos(min % 60)}`;
+    const pista = vertical.matches ? eje.querySelector('.reloj').clientHeight : eje.querySelector('.reloj').clientWidth;
+    eje.style.setProperty('--c', p * pista + 'px');
+    lleno.style.setProperty('--r', Math.min(1, Math.max(0, (h - ia) / (ib - ia))));
+    hitos.forEach(([el, x]) => el.classList.toggle('on', h >= x));
+  };
+  const correr = () => {
+    last = performance.now();
+    raf = requestAnimationFrame(function paso(now) {
+      t += Math.min(now - last, 100); // tras una pestana en segundo plano no salta
+      last = now;
+      pintar();
+      if (t < ESPERA_CASO + DUR_CASO) return (raf = requestAnimationFrame(paso));
+      raf = 0;
+      eje.classList.replace('corre', 'fin');
+      estadoC('Ver de nuevo');
+    });
+  };
+  const empezar = () => {
+    t = 0;
+    eje.classList.remove('fin');
+    eje.classList.add('corre');
+    estadoC('Pausar');
+    pintar();
+    correr();
+  };
+
+  eje.classList.add('armada');
+  pintar();
+  pausaC.addEventListener('click', () => {
+    if (eje.classList.contains('fin')) return empezar();
+    if (raf) {
+      cancelAnimationFrame(raf);
+      raf = 0;
+      estadoC('Reanudar');
+    } else {
+      estadoC('Pausar');
+      correr();
+    }
+  });
+  const ver = new IntersectionObserver(([e]) => {
+    if (e.intersectionRect.height < Math.min(e.boundingClientRect.height * 0.4, innerHeight / 3)) return;
+    ver.disconnect();
+    pausaC.hidden = false;
+    empezar();
+  }, { threshold: Array.from({ length: 21 }, (_, i) => i / 20) });
+  ver.observe(eje);
 }
 
 /* ---- Formulario ---- */
