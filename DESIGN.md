@@ -175,8 +175,20 @@ Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculo
 - **Cabecera:** el botón aparece solo cuando ni el CTA del hero ni el formulario están en pantalla, y se oculta tras enviar.
 - **Volver arriba:** botón flotante único (el pie ya no lo repite); aparece al subir, no mientras se baja leyendo.
 
-### Filas de servicio
-Lista con regla de 1px por fila: nombre (Archivo 700) y una línea. En 375, una columna; desde 768px, nombre a la izquierda (12rem) y línea a la derecha, alineados por la línea base. Sin números ni estado: los números solo van donde la secuencia importa (Cómo trabajo).
+### Íconos y cajas pastel
+Íconos de línea (rejilla 24, trazo oliva 1.75, puntas redondas), el mismo trazo de la ilustración del hero, dentro de una caja pastel (salvia, arena o rosa) con borde 1px `linea` y radio 8px. Máximo un ícono por ítem, siempre decorativo (`aria-hidden="true"`). Tamaños: caja 52px (tarjetas), 44px (ficha, pasos), 40px (pasos en móvil); ícono 28/24px. Sin fotos, logos de color ni ilustraciones nuevas.
+
+### Tarjetas de servicio
+Tres tarjetas `hoja` con borde 1px (Pedidos, Stock, Boletas): ícono, título y una línea. Apiladas en 375, en fila desde 768px, alineadas arriba (ícono, título y texto a la misma altura aunque el texto ocupe 2 líneas).
+
+### Ficha de Quién soy
+Dos columnas desde 1024px (7/5): texto a la izquierda y ficha `hoja` a la derecha con tres filas ícono + dato (Santiago, 5 años en bancos y empresas de pagos, Trabajo solo y hablas directo conmigo). En 375 la ficha va bajo el texto.
+
+### Cómo trabajo y Qué no hago
+Cuatro pasos con número, ícono pequeño a la derecha, título y una línea (sin flechas ni línea punteada: se eligió el ícono). Tres límites con ícono discreto de "no" (trazo 1.5 en `tinta-2`, sin caja).
+
+### Preguntas
+Dos columnas desde 1024px (5/7): título y "¿Dudas? Aquí las más comunes." a la izquierda, cinco preguntas a la derecha.
 
 ### Formulario
 Tarjeta hoja (`#FFFDF6`), borde 1px línea, radio 8px, sobre crema. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título corto ("Listo, {nombre}. Recibí tu mensaje."), mini-planilla con la hora y "Recibido", y una línea con el contacto, el plazo, la llamada y la forma de corregirse por correo. Valores insertados siempre con `textContent`.
