@@ -2,10 +2,10 @@ import { test, expect } from '@playwright/test';
 import { abrir, llenar } from './comun';
 
 test.describe('Segunda ronda de mejoras', () => {
-  test('FAQ: 5 preguntas siempre visibles, respuestas cortas y sin cifras de precio', async ({ page }) => {
+  test('FAQ: 6 preguntas siempre visibles, respuestas cortas y sin cifras de precio', async ({ page }) => {
     await abrir(page);
     const q = page.locator('.faq > div');
-    await expect(q).toHaveCount(5);
+    await expect(q).toHaveCount(6);
     for (const t of await q.all()) {
       await expect(t.locator('h3')).toBeVisible();
       await expect(t.locator('p')).toBeVisible();

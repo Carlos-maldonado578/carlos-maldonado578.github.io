@@ -6,25 +6,29 @@ test.describe('Estructura y texto de la pagina', () => {
     await abrir(page);
     const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
     expect(ids).toEqual(['t-hero', 't-caso', 't-hago', 't-trabajo', 't-quien', 't-faq', 't-contacto']);
-    await expect(page.locator('#t-hago')).toHaveText('También para');
-    await expect(page.locator('.servicios .lead')).toHaveText('Lo construyo según lo que necesites.');
+    await expect(page.locator('#t-hago')).toHaveText('Lo mismo sirve para…');
+    await expect(page.locator('.servicios .lead')).toHaveCount(0);
+    await expect(page.locator('.servicios .chip-real')).toHaveText('Ejemplo');
     const filas = page.locator('.sv-tarjeta');
     await expect(filas).toHaveCount(3);
     await expect(filas.locator('h3')).toHaveText(['Pedidos', 'Stock', 'Boletas']);
-    await expect(filas.nth(2)).toContainText('Tú lo emites en el SII.');
+    await expect(filas.nth(2)).toContainText('Listo para emitir en el SII');
     await expect(page.locator('.servicios')).not.toContainText('Lo construyo para ti');
     await expect(page.locator('.servicios table, .servicios .num')).toHaveCount(0);
   });
 
-  test('iconos: uno por item, decorativos (aria-hidden) y las 3 tarjetas alinean ícono, título y texto', async ({ page }) => {
+  test('iconos y mini-UI: decorativos (aria-hidden); las 3 tarjetas alinean mini-UI, título y texto', async ({ page }) => {
     await abrir(page);
     const svgs = await page.locator('main svg.ic').evaluateAll((l) => l.map((e) => ({ aria: e.getAttribute('aria-hidden'), role: e.getAttribute('role'), padre: e.closest('li')?.textContent?.trim().slice(0, 20) })));
-    expect(svgs.length).toBe(3 + 3 + 4 + 3);
+    expect(svgs.length).toBe(3 + 4 + 3);
     expect(svgs.every((x) => x.aria === 'true' && !x.role)).toBe(true);
-    for (const li of await page.locator('.sv-tarjeta, .ficha li, .pasos > li, .no-hago li').all()) expect(await li.locator('svg.ic').count()).toBe(1);
+    for (const li of await page.locator('.ficha li, .pasos > li, .no-hago li').all()) expect(await li.locator('svg.ic').count()).toBe(1);
     const t = page.locator('.sv-tarjeta');
+    await expect(t.locator('svg')).toHaveCount(0);
+    expect(await t.locator('.mini').evaluateAll((l) => l.every((e) => e.getAttribute('aria-hidden') === 'true'))).toBe(true);
+    expect(await t.locator('p').evaluateAll((l) => l.every((e) => e.getClientRects()[0].height < 30))).toBe(true);
     if ((await page.viewportSize())!.width >= 768) {
-      const y = await t.evaluateAll((l) => l.map((e) => ['.caja', 'h3', 'p'].map((q) => Math.round(e.querySelector(q)!.getBoundingClientRect().top - e.getBoundingClientRect().top))));
+      const y = await t.evaluateAll((l) => l.map((e) => ['.mini', 'h3', 'p'].map((q) => Math.round(e.querySelector(q)!.getBoundingClientRect().top - e.getBoundingClientRect().top))));
       expect(y[1]).toEqual(y[0]);
       expect(y[2]).toEqual(y[0]);
     }
@@ -33,7 +37,7 @@ test.describe('Estructura y texto de la pagina', () => {
   test('problema y caso son una sola seccion: titulo, chip, linea de tiempo y un boton', async ({ page }) => {
     await abrir(page);
     await expect(page.locator('#t-caso')).toHaveText('Hoy se anota a mano. Podría anotarse solo.');
-    await expect(page.locator('.chip-real')).toHaveText('Cliente real, datos anonimizados');
+    await expect(page.locator('.banda-caso .chip-real')).toHaveText('Cliente real, datos anonimizados');
     await expect(page.locator('.caso-sec .btn')).toHaveText('Cuéntame tu caso');
     await expect(page.locator('#t-problema')).toHaveCount(0);
     expect(await page.locator('body').textContent()).not.toMatch(/n8n/i);
@@ -42,12 +46,14 @@ test.describe('Estructura y texto de la pagina', () => {
   test('textos aprobados: quien soy, FAQ y contacto', async ({ page }) => {
     await abrir(page);
     expect(await page.locator('.quien').textContent()).not.toMatch(/fintech/i);
-    await expect(page.locator('.faq > div h3')).toHaveText(['¿Necesito saber de computación?', '¿Cuánto cuesta?', '¿Y si algo falla?', '¿De quién son los datos?', '¿Sirve si uso Excel o WhatsApp?']);
-    await expect(page.locator('.faq > div').nth(1)).toContainText('Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.');
+    await expect(page.locator('.faq > div h3')).toHaveText(['¿Cuánto cuesta?', '¿De quién son los datos?', '¿Necesito saber de computación?', '¿Y si algo falla?', '¿Sirve si uso Excel o WhatsApp?', '¿Cuánto demora?']);
+    await expect(page.locator('.faq > div').nth(0)).toContainText('Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.');
     await expect(page.locator('#t-contacto')).toHaveText('Cuéntame qué te quita tiempo');
     await expect(page.locator('.contacto-texto .lead')).toHaveText('Dos líneas bastan. Te respondo en 1 día hábil.');
     await expect(page.locator('.nota-datos')).toHaveText('Uso tus datos solo para responderte.');
-    await expect(page.locator('.promesas')).toHaveCount(0);
+    await expect(page.locator('.promesas li')).toHaveText(['No tienes que preparar nada.', 'Te digo con honestidad si te sirve.', 'La primera conversación es sin costo.']);
+    await expect(page.locator('.faq-intro .lead')).toHaveCount(0);
+    await expect(page.locator('.faq-duda')).toHaveAttribute('href', '#contacto');
   });
 
   test('hero: Formulario en la ilustracion; WhatsApp solo aparece en el FAQ', async ({ page }) => {

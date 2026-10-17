@@ -51,31 +51,13 @@ cuando ya no hay cómo evitarlos.
 
 Tres tarjetas (tonos pastel): Se anota en papel o en WhatsApp · Se pasa a mano a una planilla · Te enteras tarde.
 
-## 3. Qué dejo andando solo
+## 3. Lo mismo sirve para… (Fase 4)
 
-Tomo la parte manual y la dejo funcionando con Telegram, planillas de Google y correo.
-
-**01 · REGISTROS** · Funcionando en un cliente
-*Llega el mensaje. La planilla se llena sola.*
-ENTRA POR Telegram · QUEDA EN planilla de Google · TE AVISA resumen diario
-Cómo está armado: un bot de Telegram, una planilla de Google y un programa que las conecta (se llama n8n).
-Esto ya funciona en un cliente real. Los nombres y números de este ejemplo son inventados.
-
-**02 · PEDIDOS** · Lo construyo para ti
-*Entra el pedido. Ves en qué va cada uno.*
-ENTRA POR formulario (WhatsApp si se puede conectar) · QUEDA EN planilla ordenada por estado · TE AVISA correo al cliente
-Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.
-
-**03 · AVISOS** · Lo construyo para ti
-*Baja el stock. Te avisan antes de quedarte sin.*
-ENTRA POR tu planilla de stock · QUEDA EN esa misma planilla · TE AVISA Telegram o correo bajo el mínimo
-Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.
-
-**04 · BOLETAS Y FACTURAS** · Lo construyo para ti
-*Está en tu planilla. El borrador se arma solo.*
-ENTRA POR tu planilla · QUEDA EN un borrador listo · TE AVISA "Tú lo revisas y lo emites"
-Tú emites la boleta o factura en el SII; no hay integración con el SII.
-Todavía no lo tengo andando en un cliente: es una muestra de cómo lo armaría para ti.
+Título: **Lo mismo sirve para…** (sin subtítulo). Rótulo visible: `Ejemplo` (aún no corren en un cliente).
+Tres tarjetas con mini-UI decorativa (lo que haces → lo que pasa solo):
+- **Pedidos** · burbuja "Pedido 45 despachado" → fila "Pedido 45 · En camino". Texto: Ves en qué va cada uno.
+- **Stock** · fila "Harina · 3 sacos" → aviso "Te quedan 3 sacos de harina". Texto: Te avisa antes de quedarte sin.
+- **Boletas** · borrador (Monto $ 00.000, RUT 00.000.000-0) → "Listo para emitir en el SII". Texto: El borrador se arma solo.
 
 [Cuéntame tu caso]
 
@@ -117,20 +99,26 @@ Esa forma de trabajar la llevo a tu pyme: datos con respaldo y avisos cuando alg
 Cuatro datos en fila: 5 años en sistemas bancarios y fintech · Trabajo solo: hablas directo conmigo ·
 Respondo en 1 día hábil · Tus datos son tuyos.
 
-## 8. Antes de escribirme
+## 8. Antes de escribirme (Fase 4)
 
-- **¿Tengo que saber de computación?** No. Si sabes mandar un mensaje desde el celular, basta. Yo armo todo y, al entregar, te explico cómo usarlo y te dejo la documentación por escrito.
-- **¿Cuánto cuesta?** Depende de lo que necesites automatizar. En la primera conversación, que es sin costo, vemos tu caso y te doy el valor del proyecto y de la mensualidad antes de empezar. Sin sorpresas.
-- **¿Qué pasa si algo se cae?** Lo reviso apenas me avisas. Tus datos siguen en tu planilla, así que mientras tanto puedes anotar a mano.
-- **¿Mis datos, de quién son?** La planilla es tuya. Si un día dejamos de trabajar juntos, te la quedas con todos tus datos. Las automatizaciones corren en mi servidor en la nube.
-- **¿Y si ya uso Excel o WhatsApp?** Parto de lo que ya usas, sin pedirte cambiar cómo trabajas. Si se puede conectar, lo hago; si no, te lo digo desde el principio.
-- **¿Cuánto demoras en responder?** Te respondo dentro de 1 día hábil.
+Sin subtítulo. Bajo el título, enlace a #contacto: "¿Tu duda no está? Escríbeme".
+
+- **¿Cuánto cuesta?** Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.
+- **¿De quién son los datos?** Tuyos. La planilla es tuya, sigamos trabajando juntos o no.
+- **¿Necesito saber de computación?** No. Si mandas un mensaje por el celular, basta. Al entregar te dejo todo explicado por escrito.
+- **¿Y si algo falla?** Lo reviso apenas me avisas. Tus datos siguen en tu planilla.
+- **¿Sirve si uso Excel o WhatsApp?** Parto de lo que usas. Si no se puede conectar, te lo digo de inmediato.
+- **¿Cuánto demora?** Depende de lo que necesites. Parto por una parte chica para que veas resultados pronto.
 
 ## 9. Contacto
 
 ## Cuéntame qué te quita tiempo
 
-Escríbeme en dos líneas qué haces hoy a mano. Te respondo dentro de 1 día hábil, con una idea de si te sirve.
+Dos líneas bastan. Te respondo en 1 día hábil.
+
+- No tienes que preparar nada.
+- Te digo con honestidad si te sirve.
+- La primera conversación es sin costo.
 
 - **¿Qué haces hoy a mano?** (ayuda: "Por ejemplo: anoto los pedidos a mano y después los paso a una planilla.")
 - **Tu nombre**

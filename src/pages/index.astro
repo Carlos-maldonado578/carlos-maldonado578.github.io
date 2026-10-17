@@ -112,23 +112,35 @@ const fuentes = `
       </section>
       <section class="seccion servicios" aria-labelledby="t-hago">
         <div class="contenedor">
-          <h2 id="t-hago">También para</h2>
-          <p class="lead">Lo construyo según lo que necesites.</p>
+          <h2 id="t-hago">Lo mismo sirve para…</h2>
+          <p class="chip-real">Ejemplo</p>
           <ul class="sv-tarjetas">
             <li class="sv-tarjeta">
-              <span class="caja sal"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></span>
+              <div class="mini" aria-hidden="true">
+                <div class="mi-in"><span class="burbuja">Pedido 45 despachado</span></div>
+                <span class="mi-paso"></span>
+                <div class="mi-out"><span class="fila"><span>Pedido 45</span><span class="chip-est">En camino</span></span></div>
+              </div>
               <h3>Pedidos</h3>
               <p>Ves en qué va cada uno.</p>
             </li>
             <li class="sv-tarjeta">
-              <span class="caja are"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20.5h18"/><rect x="4.5" y="13" width="6" height="7.5" rx="1"/><rect x="13.5" y="8" width="6" height="12.5" rx="1"/><path d="M13.5 4.5h6"/></svg></span>
+              <div class="mini" aria-hidden="true">
+                <div class="mi-in"><span class="fila marcada"><span>Harina · 3 sacos</span></span></div>
+                <span class="mi-paso"></span>
+                <div class="mi-out"><span class="burbuja aviso">Te quedan 3 sacos de harina</span></div>
+              </div>
               <h3>Stock</h3>
               <p>Te avisa antes de quedarte sin.</p>
             </li>
             <li class="sv-tarjeta">
-              <span class="caja ros"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>
+              <div class="mini" aria-hidden="true">
+                <div class="mi-in"><span class="fila borrador"><span>Monto $ 00.000</span><span>RUT 00.000.000-0</span></span></div>
+                <span class="mi-paso"></span>
+                <div class="mi-out"><span class="chip-est">Listo para emitir en el SII</span></div>
+              </div>
               <h3>Boletas</h3>
-              <p>El borrador se arma solo. Tú lo emites en el SII.</p>
+              <p>El borrador se arma solo.</p>
             </li>
           </ul>
         </div>
@@ -186,28 +198,32 @@ const fuentes = `
         <div class="contenedor faq-grid">
           <div class="faq-intro">
             <h2 id="t-faq">Antes de escribirme</h2>
-            <p class="lead">¿Dudas? Aquí las más comunes.</p>
+            <a class="faq-duda" href="#contacto">¿Tu duda no está? Escríbeme</a>
           </div>
           <div class="faq">
             <div>
-              <h3>¿Necesito saber de computación?</h3>
-              <p>No. Si mandas un mensaje por el celular, basta. Al entregar te dejo todo explicado por escrito.</p>
-            </div>
-            <div>
               <h3>¿Cuánto cuesta?</h3>
               <p>Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.</p>
-            </div>
-            <div>
-              <h3>¿Y si algo falla?</h3>
-              <p>Lo reviso apenas me avisas. Tus datos siguen en tu planilla.</p>
             </div>
             <div>
               <h3>¿De quién son los datos?</h3>
               <p>Tuyos. La planilla es tuya, sigamos trabajando juntos o no.</p>
             </div>
             <div>
+              <h3>¿Necesito saber de computación?</h3>
+              <p>No. Si mandas un mensaje por el celular, basta. Al entregar te dejo todo explicado por escrito.</p>
+            </div>
+            <div>
+              <h3>¿Y si algo falla?</h3>
+              <p>Lo reviso apenas me avisas. Tus datos siguen en tu planilla.</p>
+            </div>
+            <div>
               <h3>¿Sirve si uso Excel o WhatsApp?</h3>
               <p>Parto de lo que usas. Si no se puede conectar, te lo digo de inmediato.</p>
+            </div>
+            <div>
+              <h3>¿Cuánto demora?</h3>
+              <p>Depende de lo que necesites. Parto por una parte chica para que veas resultados pronto.</p>
             </div>
           </div>
         </div>
@@ -217,6 +233,11 @@ const fuentes = `
           <div class="contacto-texto">
             <h2 id="t-contacto">Cuéntame qué te quita tiempo</h2>
             <p class="lead">Dos líneas bastan. Te respondo en 1&nbsp;día&nbsp;hábil.</p>
+            <ul class="promesas">
+              <li>No tienes que preparar nada.</li>
+              <li>Te digo con honestidad si te sirve.</li>
+              <li>La primera conversación es sin costo.</li>
+            </ul>
           </div>
 
           <div class="contacto-form tarjeta" id="tarjeta">
