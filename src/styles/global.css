@@ -342,6 +342,11 @@ main > section + section { border-top: 1px solid var(--linea); }
   -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%); }
 .ilus { position: relative; z-index: 1; display: block; width: 100%; height: auto; color: var(--oliva); }
 .ilus .et { font: 500 14px var(--f-titulo); fill: var(--tinta); stroke: var(--crema-2); stroke-width: 5px; paint-order: stroke; stroke-linejoin: round; }
+/* movimiento (Fase 5): los puntos de los conectores avanzan hacia la planilla y hacia el resumen y el aviso; 3 pasadas y se detienen */
+@media (prefers-reduced-motion: no-preference) {
+  .ilus .cx { animation: fluir 1.6s linear 3 both; }
+}
+@keyframes fluir { to { stroke-dashoffset: -16; } }
 .ilus-v { max-width: 340px; margin-inline: auto; }
 .ilus-h { display: none; }
 @media (min-width: 768px) { .ilus-v { display: none; } .ilus-h { display: block; } }

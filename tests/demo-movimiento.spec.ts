@@ -21,6 +21,15 @@ test.describe('Movimiento reducido', () => {
   });
 });
 
+test.describe('Movimiento normal', () => {
+  test('los conectores del hero se animan unas pasadas y se detienen (no es infinito)', async ({ page }) => {
+    await abrir(page);
+    const it = await page.evaluate(() => document.getAnimations().filter((a) => (a as CSSAnimation).animationName === 'fluir').map((a) => a.effect!.getTiming().iterations));
+    expect(it.length).toBeGreaterThan(0);
+    expect(it.every((n) => n === 3)).toBe(true);
+  });
+});
+
 test.describe('Sin JavaScript', () => {
   test.use({ javaScriptEnabled: false });
 
