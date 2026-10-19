@@ -148,7 +148,7 @@ Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Regla únic
 Orden de la página:
 1. **Hero** (crema 2, partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
 2. **Caso real** (problema y caso fundidos): título "Hoy se anota a mano. Podría anotarse solo.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
-3. **Lo mismo sirve para…**: tres tarjetas (Pedidos, Stock, Boletas) con mini-UI de ejemplo, nombre y una línea, sin números ni estado.
+3. **Lo mismo sirve para…**: dos tarjetas (Pedidos, Stock) con mini-UI de ejemplo, nombre y una línea, sin números ni estado.
 4. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
 5. **Quién soy**: dos frases, sin foto ni cajas.
 6. **Preguntas**: cinco, respuestas de una línea.
@@ -179,7 +179,7 @@ Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculo
 Íconos de línea (rejilla 24, trazo oliva 1.75, puntas redondas), el mismo trazo de la ilustración del hero, dentro de una caja pastel (salvia, arena o rosa) con borde 1px `linea` y radio 8px. Máximo un ícono por ítem, siempre decorativo (`aria-hidden="true"`). Tamaños: caja 52px (tarjetas), 44px (ficha, pasos), 40px (pasos en móvil); ícono 28/24px. Sin fotos, logos de color ni ilustraciones nuevas.
 
 ### Tarjetas de servicio
-Tres tarjetas `hoja` con borde 1px (Pedidos, Stock, Boletas): mini-UI HTML/CSS decorativa (`aria-hidden`; lo que haces → lo que pasa solo, sobre `crema-2`, con rótulo "Ejemplo" en la sección), título y una línea. Apiladas en 375, en fila desde 768px, alineadas arriba (mini-UI, título y texto a la misma altura aunque el texto ocupe 2 líneas).
+Dos tarjetas `hoja` con borde 1px (Pedidos, Stock): mini-UI HTML/CSS decorativa (`aria-hidden`; lo que haces → lo que pasa solo, sobre `crema-2`, con rótulo "Ejemplo" en la sección), título y una línea. Apiladas en 375, en dos columnas de ancho completo desde 768px, alineadas arriba (mini-UI, título y texto a la misma altura aunque el texto ocupe 2 líneas).
 
 ### Ficha de Quién soy
 Dos columnas desde 1024px (7/5): texto a la izquierda y ficha `hoja` a la derecha con tres filas ícono + dato (Santiago, 5 años en bancos y empresas de pagos, Trabajo solo y hablas directo conmigo). En 375 la ficha va bajo el texto.

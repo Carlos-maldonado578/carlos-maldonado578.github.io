@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { abrir } from './comun';
 
 test.describe('Estructura y texto de la pagina', () => {
-  test('secciones en orden; servicios son tres tarjetas sin demos, sin numeros ni estado', async ({ page }) => {
+  test('secciones en orden; servicios son dos tarjetas sin demos, sin numeros ni estado', async ({ page }) => {
     await abrir(page);
     const ids = await page.locator('main > section').evaluateAll((s) => s.map((e) => e.getAttribute('aria-labelledby') || e.id));
     expect(ids).toEqual(['t-hero', 't-caso', 't-hago', 't-trabajo', 't-quien', 't-faq', 't-contacto']);
@@ -10,14 +10,14 @@ test.describe('Estructura y texto de la pagina', () => {
     await expect(page.locator('.servicios .lead')).toHaveCount(0);
     await expect(page.locator('.servicios .chip-real')).toHaveText('Ejemplo');
     const filas = page.locator('.sv-tarjeta');
-    await expect(filas).toHaveCount(3);
-    await expect(filas.locator('h3')).toHaveText(['Pedidos', 'Stock', 'Boletas']);
-    await expect(filas.nth(2)).toContainText('Listo para emitir en el SII');
+    await expect(filas).toHaveCount(2);
+    await expect(filas.locator('h3')).toHaveText(['Pedidos', 'Stock']);
+    await expect(page.locator('.servicios')).not.toContainText(/boleta/i);
     await expect(page.locator('.servicios')).not.toContainText('Lo construyo para ti');
     await expect(page.locator('.servicios table, .servicios .num')).toHaveCount(0);
   });
 
-  test('iconos y mini-UI: decorativos (aria-hidden); las 3 tarjetas alinean mini-UI, título y texto', async ({ page }) => {
+  test('iconos y mini-UI: decorativos (aria-hidden); las 2 tarjetas alinean mini-UI, título y texto', async ({ page }) => {
     await abrir(page);
     const svgs = await page.locator('main svg.ic').evaluateAll((l) => l.map((e) => ({ aria: e.getAttribute('aria-hidden'), role: e.getAttribute('role'), padre: e.closest('li')?.textContent?.trim().slice(0, 20) })));
     expect(svgs.length).toBe(3 + 4 + 3);
@@ -30,7 +30,6 @@ test.describe('Estructura y texto de la pagina', () => {
     if ((await page.viewportSize())!.width >= 768) {
       const y = await t.evaluateAll((l) => l.map((e) => ['.mini', 'h3', 'p'].map((q) => Math.round(e.querySelector(q)!.getBoundingClientRect().top - e.getBoundingClientRect().top))));
       expect(y[1]).toEqual(y[0]);
-      expect(y[2]).toEqual(y[0]);
     }
   });
 

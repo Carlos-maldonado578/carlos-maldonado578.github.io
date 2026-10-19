@@ -8,7 +8,7 @@ const url = process.argv[2] ?? 'http://localhost:4321/';
 const out = process.argv[3] ?? 'design/fase4/capturas';
 mkdirSync(out, { recursive: true });
 
-const secciones = { faq: '#t-faq', contacto: '#contacto', lomismo: '.servicios' };
+const secciones = { faq: '#t-faq', contacto: '#contacto', lomismo: '.servicios', caso: '.banda-caso' };
 const browser = await chromium.launch({ channel: 'msedge' });
 for (const ancho of [375, 1440]) {
   const ctx = await browser.newContext({ viewport: { width: ancho, height: 900 }, reducedMotion: 'reduce', locale: 'es-CL' });

@@ -155,7 +155,6 @@ main > section + section { border-top: 1px solid var(--linea); }
 .eje .carril h3 { font: 700 1.5rem/1.2 var(--f-titulo); padding-top: 1.35rem; }
 .antes h3 { color: var(--tinta-2); }
 .pista { --alto: 8.75rem; height: var(--alto); }
-.antes .pista { --alto: 13rem; }
 .pista::before { content: ""; position: absolute; left: 0; right: 0; top: 2.25rem; height: 1.5px; background: var(--linea-campo); }
 .tramo { position: absolute; top: 0; height: 2.25rem; left: calc((var(--a) - 8) / 12 * 100%); width: calc((var(--b) - var(--a)) / 12 * 100%); }
 .tramo span { position: absolute; left: 0; right: 0; bottom: 0.5rem; text-align: center; font: 400 1.25rem/1.3 var(--f-titulo); }
@@ -166,12 +165,15 @@ main > section + section { border-top: 1px solid var(--linea); }
 .antes .hito::before { background: var(--linea-campo); }
 .hito.der { left: auto; right: calc((20 - var(--h)) / 12 * 100%); text-align: right; }
 .hito.der::before { left: auto; right: 0; }
-.hito.t2 { padding-top: 6.5rem; }
-.hito.t2::before { height: 6.375rem; }
 .hito p { font: 400 1.25rem/1.35 var(--f-titulo); max-width: none; }
-.hito.t2 p { width: 14rem; }
 .hora { display: block; color: var(--oliva); font: 600 1.125rem/1.5 var(--f-titulo); font-variant-numeric: tabular-nums; }
 .antes .hora { color: var(--tinta-2); }
+/* 20:00: etiqueta en una linea sobre la linea de Antes, a la derecha; la marca mide lo mismo que las otras */
+@media (min-width: 900px) {
+  .hito.t2 { top: 0; width: max-content; padding: 0; display: flex; align-items: baseline; gap: 0.4em; }
+  .hito.t2::before { top: 1.775rem; }
+  .hito.t2 .hora::after { content: " ·"; }
+}
 .aprox { margin-top: var(--s6); color: var(--tinta-2); }
 
 /* caso animado: un reloj recorre el eje; solo si el script lo arma (.armada). Sin JS o con movimiento reducido queda el estado final */
@@ -349,14 +351,14 @@ main > section + section { border-top: 1px solid var(--linea); }
 .caja { width: 52px; height: 52px; border: 1px solid var(--linea); border-radius: var(--r); display: grid; place-items: center; flex: none; }
 .caja.sal { background: var(--salvia); } .caja.are { background: var(--arena); } .caja.ros { background: var(--rosa); }
 
-/* servicios: tres tarjetas con mini-UI (lo que haces -> lo que pasa solo) */
+/* servicios: dos tarjetas con mini-UI (lo que haces -> lo que pasa solo) */
 .sv-tarjetas { list-style: none; padding: 0; margin: var(--s5) 0 0; display: grid; gap: var(--s3); }
 .sv-tarjeta { background: var(--hoja); border: 1px solid var(--linea); border-radius: var(--r-tarjeta); padding: var(--s4); display: grid; gap: var(--s2); align-content: start; }
 .sv-tarjeta .mini { margin-bottom: var(--s2); }
 .sv-tarjeta h3 { font: 700 1.125rem/1.3 var(--f-titulo); }
 .sv-tarjeta p { max-width: none; }
 @media (min-width: 768px) {
-  .sv-tarjetas { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s5); }
+  .sv-tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s5); }
   .sv-tarjeta { padding: var(--s5); }
 }
 .servicios .chip-real { margin-top: var(--s3); border-style: dashed; }
@@ -367,9 +369,7 @@ main > section + section { border-top: 1px solid var(--linea); }
 .burbuja.aviso { background: var(--rosa); }
 .fila { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--s1) var(--s3); width: 100%; background: var(--hoja); border: 1px solid var(--linea-campo); border-radius: var(--r-chico); padding: var(--s2) var(--s3); font-variant-numeric: tabular-nums; }
 .fila.marcada { background: var(--destello); border-color: var(--oliva); }
-.fila.borrador { border-style: dashed; }
 .chip-est { background: var(--salvia); color: var(--oliva); border: 1px solid var(--oliva); border-radius: var(--r-chico); padding: 2px var(--s2); font-weight: 600; }
-.mi-out > .chip-est { padding: var(--s2) var(--s3); }
 .chip-real { display: inline-block; margin-top: var(--s3); font: 500 0.8125rem/1.3 var(--f-mono); color: var(--oliva); border: 1px solid currentColor; border-radius: var(--r-chico); padding: 2px var(--s2); }
 
 /* contacto: promesas */

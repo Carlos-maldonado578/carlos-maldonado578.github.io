@@ -4,8 +4,7 @@ Voz: Carlos en primera persona, chileno profesional, "tú" (sin voseo). Tono: cl
 Evitar: jerga sin traducir (n8n, servidor, API), frases de plantilla, exclamaciones, cifras inventadas,
 tono de agencia o de lujo. "Pega" no va en titulares, etiquetas ni botones (se usa "tarea").
 
-Propuesta de valor: dejo andando solas las tareas repetitivas de tu pyme (registros, pedidos, avisos,
-boletas) con las herramientas que ya usas, para que te enteres a tiempo sin anotar a mano.
+Propuesta de valor: dejo andando solas las tareas repetitivas de tu pyme (registros, pedidos, avisos) con las herramientas que ya usas, para que te enteres a tiempo sin anotar a mano.
 
 Beneficios: (1) el dato llega al minuto; (2) nadie vuelve a pasar datos de un lado a otro; (3) te avisan
 antes del problema.
@@ -54,10 +53,9 @@ Tres tarjetas (tonos pastel): Se anota en papel o en WhatsApp · Se pasa a mano 
 ## 3. Lo mismo sirve para… (Fase 4)
 
 Título: **Lo mismo sirve para…** (sin subtítulo). Rótulo visible: `Ejemplo` (aún no corren en un cliente).
-Tres tarjetas con mini-UI decorativa (lo que haces → lo que pasa solo):
+Dos tarjetas con mini-UI decorativa (lo que haces → lo que pasa solo):
 - **Pedidos** · burbuja "Pedido 45 despachado" → fila "Pedido 45 · En camino". Texto: Ves en qué va cada uno.
 - **Stock** · fila "Harina · 3 sacos" → aviso "Te quedan 3 sacos de harina". Texto: Te avisa antes de quedarte sin.
-- **Boletas** · borrador (Monto $ 00.000, RUT 00.000.000-0) → "Listo para emitir en el SII". Texto: El borrador se arma solo.
 
 [Cuéntame tu caso]
 
@@ -73,7 +71,7 @@ TODO(Carlos): cuántas personas registran y cuánto tomaba juntar las hojas.
 
 - **Conectado a lo que ya usas.** Parto de tu planilla, tu Telegram y tu correo. No tienes que aprender un sistema nuevo.
 - **Hecho a tu forma de trabajar.** Miro cómo trabajas hoy y automatizo eso.
-- **Tú decides.** Tú eliges qué se automatiza y qué revisas tú antes de que salga. Las boletas, por ejemplo, las apruebas tú.
+- **Tú decides.** Tú eliges qué se automatiza y qué revisas tú antes de que salga.
 
 ## 6. Cómo trabajo
 
