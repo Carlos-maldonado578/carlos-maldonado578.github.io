@@ -172,7 +172,7 @@ Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculo
 - **Sin variante clara: el botón del caso es el primario.
 - **Texto:** oliva subrayado, 44px ("Mira cómo funciona", "Pausar/Reanudar").
 - **Foco:** contorno 3px oliva con 2px de separación en todo.
-- **Cabecera:** el botón aparece solo cuando ni el CTA del hero ni el formulario están en pantalla, y se oculta tras enviar.
+- **Cabecera (sticky, línea inferior 1px):** un solo enlace a `#inicio` (`aria-label="Carlos Maldonado, inicio"`) con tres partes: símbolo de mini planilla (SVG en línea 22px, 3×3 celdas, trazo `tinta` 1.75 como la ilustración del hero, una celda abajo a la derecha rellena `oliva`, `aria-hidden`; misma familia que `favicon.svg`), nombre en Bitter 800 (1.0625rem en móvil, 1.1875rem desde 768px) con "Maldonado" en cursiva `oliva` (`translate="no"`) y, desde 768px, descriptor "Automatización para pymes" en Archivo 0.875rem `tinta-2` tras un filete vertical fino. Sin envolver: símbolo + nombre + botón caben en 375. El botón aparece solo cuando ni el CTA del hero ni el formulario están en pantalla, y se oculta tras enviar.
 - **Volver arriba:** botón flotante único (el pie ya no lo repite); aparece al subir, no mientras se baja leyendo.
 
 ### Íconos y cajas pastel

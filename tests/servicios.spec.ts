@@ -77,6 +77,18 @@ test.describe('Estructura y texto de la pagina', () => {
       await expect(page.locator('footer .pie-nombre')).toHaveText('Carlos Maldonado');
     });
 
+    test('cabecera: un enlace a inicio con simbolo decorativo, nombre y descriptor solo en escritorio', async ({ page }) => {
+      await abrir(page);
+      const a = page.locator('.cabecera a.marca-enlace');
+      await expect(a).toHaveAttribute('href', '#inicio');
+      await expect(a).toHaveAttribute('aria-label', 'Carlos Maldonado, inicio');
+      await expect(a.locator('svg')).toHaveAttribute('aria-hidden', 'true');
+      await expect(a.locator('.marca')).toHaveText('Carlos Maldonado');
+      await expect(a.locator('.marca em')).toHaveText('Maldonado');
+      if ((await page.viewportSize())!.width >= 768) await expect(a.locator('.marca-desc')).toBeVisible();
+      else await expect(a.locator('.marca-desc')).toBeHidden();
+    });
+
     test('la cabecera oculta su boton sobre el hero y sobre el formulario', async ({ page }) => {
       await abrir(page);
       await expect(page.locator('.cabecera .btn')).toBeHidden();
