@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<title>og</title>
+<!-- Plantilla de la imagen para compartir (1200x630). Tokens de DESIGN.md. Se renderiza con `npm run og` -> public/og.png -->
+<style>
+@font-face{font-family:'Archivo';font-weight:100 900;src:url(../../node_modules/@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Bitter';font-weight:100 900;font-style:normal;src:url(../../node_modules/@fontsource-variable/bitter/files/bitter-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Bitter';font-weight:100 900;font-style:italic;src:url(../../node_modules/@fontsource-variable/bitter/files/bitter-latin-wght-italic.woff2) format('woff2')}
+:root{--crema-2:#EDE6D3;--hoja:#FFFDF6;--tinta:#1D2316;--tinta-2:#4B5340;--oliva:#3A4A1F;--salvia:#E3EAD0;--arena:#F0E2C8;--rosa:#F1DDD3}
+*{box-sizing:border-box;margin:0}
+body{width:1200px;height:630px;background:var(--crema-2);color:var(--tinta);font-family:'Archivo',Arial,sans-serif;position:relative;overflow:hidden}
+.marca{position:absolute;left:72px;top:60px;display:flex;align-items:center;gap:14px;font:800 36px/1 'Bitter',Georgia,serif}
+.marca svg{width:44px;height:44px}
+.marca em{font-style:italic;color:var(--oliva)}
+h1{position:absolute;left:72px;top:176px;width:600px;font:800 104px/1.02 'Bitter',Georgia,serif;letter-spacing:-.015em}
+h1 em{font-style:italic;color:var(--oliva)}
+.linea{position:absolute;left:72px;bottom:64px;font:600 30px/1.2 'Archivo',Arial,sans-serif;color:var(--tinta-2)}
+.ilus{position:absolute;left:668px;top:200px;width:480px;height:250px}
+.et{font:600 27px 'Archivo',Arial,sans-serif;fill:var(--tinta)}
+</style>
+</head>
+<body>
+<div class="marca">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3.75h16A1.25 1.25 0 0 1 21.25 5v11A1.25 1.25 0 0 1 20 17.25h-10l-4.5 3.5v-3.5H4A1.25 1.25 0 0 1 2.75 16V5A1.25 1.25 0 0 1 4 3.75z" fill="none" stroke="#1D2316" stroke-width="1.5" stroke-linejoin="round"/><path d="M2.75 10.5h18.5M12 3.75v13.5" stroke="#1D2316" stroke-width="1.5"/><rect x="14" y="12.5" width="5.25" height="2.75" rx=".6" fill="#3A4A1F"/></svg>
+  <span>Carlos <em>Maldonado</em></span>
+</div>
+<h1>Tu planilla se llena <em>sola</em>.</h1>
+<p class="linea">Automatización para pymes · Santiago</p>
+
+<!-- ilustracion simplificada del hero: mensaje (Telegram) -> planilla -> aviso -->
+<svg class="ilus" viewBox="0 0 500 260" role="img" aria-label="Un mensaje de Telegram llena una planilla y de ella sale un aviso">
+  <g fill="none" stroke="#3A4A1F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke-dasharray="1 10" stroke-width="5"><path d="M142 90H182"/><path d="M318 90H358"/></g>
+    <rect x="4" y="30" width="138" height="120" rx="10" fill="#E3EAD0"/>
+    <g transform="translate(28 55) scale(3.5)"><path d="M21 3 3 10.5l6 2.2 2.3 6.3 3.3-4 5 3.5L21 3z"/><path d="M9 12.7 21 3M11.3 19l.5-4.8"/></g>
+    <rect x="182" y="26" width="136" height="128" rx="10" fill="#FFFDF6" stroke-width="4"/>
+    <path d="M182 68.7H318M182 111.3H318M227.3 26V154M272.7 26V154"/>
+    <rect x="272.7" y="111.3" width="45.3" height="42.7" fill="#3A4A1F" fill-opacity=".22" stroke="none"/>
+    <rect x="358" y="30" width="138" height="120" rx="10" fill="#F1DDD3"/>
+    <g transform="translate(385 52) scale(3.5)"><path d="M12 3C8.7 3 6.5 5.4 6.5 8.8V13l-2 3.5h15l-2-3.5V8.8C17.5 5.4 15.3 3 12 3zM9.5 19.5a2.5 2.5 0 0 0 5 0"/></g>
+  </g>
+  <text class="et" x="73" y="200" text-anchor="middle">Telegram</text>
+  <text class="et" x="250" y="200" text-anchor="middle">Planilla</text>
+  <text class="et" x="427" y="200" text-anchor="middle">Aviso</text>
+</svg>
+</body>
+</html>

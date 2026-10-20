@@ -120,6 +120,10 @@ La prueba es una sola: el caso real, con su eje horario Antes / Ahora. El resto 
 ### Superficie del caso real
 - **Salvia** (#E3EAD0): fondo de UNA sección, el Caso real. Tinta 12.99:1, tinta secundaria 6.49:1, oliva 7.78:1. Antes va en gris delgado (`#80796A`, 3.49:1 para gráficos) y Ahora en oliva grueso.
 
+### Escala tipográfica (variables `--fs-*` en `:root`)
+Todo tamaño de texto fuera de los `clamp` de titulares sale de estas variables (no hay `font-size` suelto en `global.css`):
+`--fs-label` 0.8125rem (mono: etiquetas, números, chips) · `--fs-chico` 0.875rem (descriptor de cabecera, botón chico bajo 360px) · `--fs-nota` 0.9375rem (notas, ayudas, errores, botón chico, escala horaria) · `--fs-ui` 1rem (botones, etiquetas de campo, enlaces) · `--fs-cuerpo` 1.0625rem (cuerpo) · `--fs-medio` 1.125rem (botón primario, preguntas, títulos de tarjeta, horas) · `--fs-lead` 1.1875rem (nombre en cabecera desde 768px) · `--fs-titulo` 1.25rem (h3, texto del eje) · `--fs-grande` 1.5rem (Antes / Ahora, reloj) · `--fs-numero` 2rem (numeral de los pasos). Display, Headline, Lead y el título de éxito siguen con su propio `clamp`. El texto dentro de la ilustración del hero (14px) es del SVG. Los pasos 0.875, 0.9375, 1.1875, 1.5 y 2rem se nombran aquí porque ya existían en uso: no hay valores nuevos.
+
 ### Named Rules
 **The Una Tinta Rule.** El oliva es el único color de acción y énfasis; el error es solo error. Un elemento nuevo que pida atención usa peso o escala, no un tercer color.
 
