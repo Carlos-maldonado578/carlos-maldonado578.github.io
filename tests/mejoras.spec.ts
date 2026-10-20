@@ -119,7 +119,7 @@ test.describe('Segunda ronda de mejoras', () => {
   });
 
   test('Exito: confirma, dice cuando y como sigue; el sitio dice "sin costo" en el paso 1', async ({ page }) => {
-    await page.route('**/__webhook', (r) => r.fulfill({ status: 200, body: 'ok' }));
+    await page.route('**/__webhook', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
     await abrir(page);
     await expect(page.locator('.pasos > li').first()).toContainText('La primera conversación es sin costo.');
     await llenar(page);

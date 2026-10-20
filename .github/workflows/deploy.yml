@@ -1,7 +1,7 @@
 name: Deploy a GitHub Pages
 
 # Solo manual: no se publica nada al hacer push. Se ejecuta desde Actions > Deploy > Run workflow,
-# una vez que el webhook de Railway exista y se haya probado con un envio real.
+# una vez que el script de Google (Apps Script) exista y se haya probado con un envio real.
 on:
   workflow_dispatch:
 
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Variable del repositorio (Settings > Secrets and variables > Actions > Variables).
-      # Es publica: queda dentro del JS del sitio. Debe ser la URL HTTPS del webhook de n8n en Railway.
+      # Es publica: queda dentro del JS del sitio. Debe ser la URL /exec de la aplicacion web de Google Apps Script (ver integraciones/formulario/README.md).
       PUBLIC_WEBHOOK_URL: ${{ vars.PUBLIC_WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v4

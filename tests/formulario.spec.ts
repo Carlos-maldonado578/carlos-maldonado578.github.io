@@ -24,20 +24,20 @@ test.describe('Formulario', () => {
     await expect(page.locator('#f-contacto')).not.toHaveAttribute('aria-invalid', 'true');
   });
 
-  test('POST con JSON exacto {nombre, contacto, mensaje, hp, t}', async ({ page }) => {
+  test('POST text/plain (sin verificacion CORS previa) con cuerpo JSON exacto {nombre, contacto, mensaje, hp, t}', async ({ page }) => {
     let cuerpo: any, ct: string | undefined, n = 0;
     await page.route(HOOK, (r) => {
       n++;
-      cuerpo = r.request().postDataJSON();
+      cuerpo = JSON.parse(r.request().postData()!);
       ct = r.request().headers()['content-type'];
-      return r.fulfill({ status: 200, body: 'ok' });
+      return r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
     });
     await abrir(page);
     await llenar(page, { nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Anotamos los pedidos a mano.' });
     await page.locator('#enviar').click();
     await expect(page.locator('#exito')).toBeVisible();
     expect(n).toBe(1);
-    expect(ct).toContain('application/json');
+    expect(ct).toBe('text/plain;charset=utf-8');
     expect(Object.keys(cuerpo).sort()).toEqual(['contacto', 'hp', 'mensaje', 'nombre', 't']);
     expect(cuerpo).toMatchObject({ nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Anotamos los pedidos a mano.', hp: '' });
     expect(typeof cuerpo.t).toBe('number');
@@ -45,7 +45,7 @@ test.describe('Formulario', () => {
   });
 
   test('exito: mini-planilla con la hora y el nombre', async ({ page }) => {
-    await page.route(HOOK, (r) => r.fulfill({ status: 200, body: 'ok' }));
+    await page.route(HOOK, (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
     await abrir(page);
     await llenar(page);
     await page.locator('#enviar').click();
@@ -61,7 +61,7 @@ test.describe('Formulario', () => {
   });
 
   test('XSS: lo escrito se muestra como texto, no se ejecuta ni inyecta HTML', async ({ page }) => {
-    await page.route(HOOK, (r) => r.fulfill({ status: 200, body: 'ok' }));
+    await page.route(HOOK, (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
     await abrir(page);
     const veneno = '<img src=x onerror=window.__xss=1>';
     await llenar(page, { nombre: veneno, contacto: '<b>x</b>@ejemplo.cl' });
@@ -88,6 +88,27 @@ test.describe('Formulario', () => {
     await expect(page.locator('#f-nombre')).toBeEditable(); // se desbloquea para reintentar
   });
 
+  test('el receptor responde {ok:false}, otro JSON, texto o HTML: es fallo, no exito', async ({ page }) => {
+    const respuestas = [
+      { contentType: 'application/json', body: '{"ok":false}' },
+      { contentType: 'application/json', body: '{"ok":"true"}' },
+      { contentType: 'application/json', body: '{}' },
+      { contentType: 'text/plain', body: 'ok' },
+      { contentType: 'text/html', body: '<html>Error de Google</html>' },
+    ];
+    for (const r of respuestas) {
+      await page.unroute(HOOK).catch(() => {});
+      await page.route(HOOK, (ruta) => ruta.fulfill({ status: 200, ...r }));
+      await abrir(page);
+      await llenar(page);
+      await page.locator('#enviar').click();
+      await expect(page.locator('#fallo'), JSON.stringify(r)).toBeVisible();
+      await expect(page.locator('#fallo a')).toHaveAttribute('href', /^mailto:carlos\.automatiza\.tupyme@gmail\.com/);
+      await expect(page.locator('#exito')).toBeHidden();
+      await expect(page.locator('#f-mensaje')).toHaveValue(/Anotamos/);
+    }
+  });
+
   test('timeout (peticion colgada): muestra respaldo y conserva lo escrito', async ({ page }) => {
     test.setTimeout(60_000);
     await page.route(HOOK, () => new Promise(() => {})); // nunca responde
@@ -95,7 +116,7 @@ test.describe('Formulario', () => {
     await llenar(page);
     await page.locator('#enviar').click();
     await expect(page.locator('#enviar')).toHaveText('Enviando…');
-    await expect(page.locator('#fallo')).toBeVisible({ timeout: 15_000 });
+    await expect(page.locator('#fallo')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('#exito')).toBeHidden();
     await expect(page.locator('#f-mensaje')).toHaveValue(/Anotamos/);
   });

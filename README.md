@@ -14,7 +14,7 @@ En construcción. El plan, las decisiones de diseño y las specs viven en el cha
 Decisiones cerradas:
 
 - Nombre propio, sin marca de fantasía. Identificador tipográfico, sin logo.
-- Contacto: solo formulario → webhook n8n en Railway → Postgres + aviso Telegram y correo.
+- Contacto: solo formulario → Google Apps Script → fila en planilla de Google + aviso Telegram y correo (US$0; ver `integraciones/formulario/`).
 - Caso de referencia 100% anónimo. Sin foto de Carlos.
 - Sin precios en el sitio ("cada proyecto se cotiza aparte").
 - Diseño: profesional y sobrio, cercano, **que no parezca hecho con IA**

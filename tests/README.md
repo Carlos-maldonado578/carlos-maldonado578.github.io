@@ -27,7 +27,7 @@ npx playwright show-report                    # informe HTML
 | `teclado.spec.ts` | enlace "saltar", Tab alcanza todo lo interactivo, outline visible al enfocar, honeypot fuera del Tab |
 | `pegas.spec.ts` | roles ARIA, flechas/Inicio/Fin, clic, hover NO cambia (B1 cerrado), Pausar bajo la lista, herramientas reales en "Lo puedo armar", Pausar/Reanudar, una sola vuelta, se corta con interacción, alto estable entre pestañas, nombre en una línea a 1024/1100/1280 |
 | `demo-movimiento.spec.ts` | Pausar/Reanudar de la demo; `reducedMotion` (demo y 4 escenas completas y quietas); sin JavaScript (contenido, 4 escenas apiladas, `<noscript>` con correo) |
-| `formulario.spec.ts` | validación (Falta/Revisa, `aria-invalid`, foco), JSON exacto del POST, éxito con `textContent` (XSS), fallo 500, timeout, variable vacía |
+| `formulario.spec.ts` | validación (Falta/Revisa, `aria-invalid`, foco), POST `text/plain` con cuerpo JSON exacto, éxito solo con `{ok:true}` (`{ok:false}`, otro JSON, texto o HTML son fallo), éxito con `textContent` (XSS), fallo 500, timeout, variable vacía |
 | `subir.spec.ts` | botón volver arriba: aparece tras el primer viewport, ancla `#inicio`, ≥44x44, no tapa Enviar |
 | `mejoras.spec.ts` | FAQ `<details>` con teclado, bloque "Quién soy", eje del caso (posiciones proporcionales, orden, sin solapes; vertical en móvil), "Qué pasa después de enviar", carriles de Cómo trabajo, 3 cortes de fondo, demo nunca vacía al cargar, volver arriba sin animación con `reducedMotion` (B2) |
 | `visual.spec.ts` | capturas por sección (hero, 4 estados de "Elige tu pega", Cómo trabajo, FAQ, Quién soy, caso, formulario) en ambos proyectos, con movimiento reducido |
@@ -35,7 +35,7 @@ npx playwright show-report                    # informe HTML
 ## Qué NO cubre
 
 - Otros navegadores (Firefox, Safari/WebKit) ni dispositivos reales; "móvil" es emulación de Chromium/Edge.
-- El webhook real de n8n (siempre se simula); entrega real del formulario y el antispam del lado servidor (`hp`, `t`).
+- El script de Google real (el POST siempre se simula); entrega real del formulario. El antispam y los límites del lado servidor se prueban aparte, en Node con simulacros de Google: `npm run test:gs` (`integraciones/formulario/Code.test.mjs`).
 - Lector de pantalla real (NVDA, VoiceOver): axe y roles ARIA no sustituyen una prueba manual.
 - Contraste durante las animaciones (axe se corre en estado final) y la sensación del movimiento (solo se comprueba que exista/pare).
 - Rendimiento (Lighthouse/CLS/LCP), SEO avanzado (og:image, sitemap, robots), enlaces externos.

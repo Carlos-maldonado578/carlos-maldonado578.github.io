@@ -30,10 +30,10 @@ Detalle por área (todo en verde):
 - B3 (info, falso positivo de axe en plena animación de "Pedidos" y "Registros"): sin cambios; en estado final hay 0 violaciones.
 - Contraste: no se añadieron colores nuevos. Los pares usados son los medidos: tinta sobre blanco, azul (#1f3a8a) sobre azul pálido 8.81:1, blanco 14.60:1 y texto sobre noche 10.03:1, regla sobre noche 5.83:1.
 - Los textos nuevos (quién soy, plazos, duraciones, respuestas de la FAQ, límites de "Qué no hago", herramientas) son redacción provisional con `TODO(Carlos)`: los tests solo verifican estructura, no la verdad del texto.
-- No cubierto: otros navegadores, dispositivos reales, lector de pantalla real (conviene probar las preguntas y las pestañas con NVDA/VoiceOver), webhook real de n8n, rendimiento.
+- No cubierto: otros navegadores, dispositivos reales, lector de pantalla real (conviene probar las preguntas y las pestañas con NVDA/VoiceOver), script de Google real, rendimiento.
 
 ## Recomendaciones
 1. Que Carlos confirme o ajuste los `TODO(Carlos)` antes de publicar.
 2. Correr `npm run test:e2e` antes de cada merge; regenerar capturas con `npm run test:e2e:update` solo tras revisar los cambios visuales. Tarda ~2 minutos.
-3. Probar el webhook real de n8n en staging (hp y t del lado servidor).
+3. Probar el script de Google real en staging (hp y t del lado servidor).
 4. En CI, instalar el navegador con `npx playwright install --with-deps chromium` y regenerar las capturas en ese mismo entorno (las actuales son de Edge/Windows).

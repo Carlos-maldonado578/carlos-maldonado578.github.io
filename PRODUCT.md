@@ -8,7 +8,7 @@ web
 
 ## Stack
 
-Astro (sitio estático) en GitHub Pages, user site `carlos-maldonado578.github.io`, sin subpath. CSS propio. Formulario hace POST a un webhook de n8n en Railway (URL en `PUBLIC_WEBHOOK_URL`, inyectada en el build de Pages; el despliegue y la variable se configuran en la Fase 4).
+Astro (sitio estático) en GitHub Pages, user site `carlos-maldonado578.github.io`, sin subpath. CSS propio. El formulario hace POST a una aplicación web de Google Apps Script (URL `/exec` en `PUBLIC_WEBHOOK_URL`, inyectada en el build de Pages; ver `integraciones/formulario/`).
 
 ## Users
 
@@ -26,12 +26,12 @@ Una persona, no una agencia: mira tu proceso, parte por lo que más duele, lo co
 
 Sin inicio de actividades ni marca; identidad = nombre propio "Carlos Maldonado". Santiago. 5 años como desarrollador backend en sistemas bancarios y fintech (no se nombran empleadores). Responde en 1 día hábil.
 
-Contacto solo por formulario → n8n en Railway → aviso Telegram y correo. Correo de respaldo: carlos.automatiza.tupyme@gmail.com.
+Contacto solo por formulario → Google Apps Script → fila en una planilla de Google + aviso a Telegram + correo. Correo de respaldo: carlos.automatiza.tupyme@gmail.com.
 
-Decisiones de infraestructura (Railway):
-- n8n con volumen persistente y SQLite para partir (Postgres si crece). `N8N_ENCRYPTION_KEY` fija como variable de entorno.
-- Respaldo nocturno de la base y export de workflows en JSON hacia el servidor personal de Carlos.
-- Protección del formulario: rate limit + honeypot (`sitio_web`); Cloudflare Turnstile si aparece spam. CORS solo no es protección suficiente.
+Decisión de infraestructura del formulario (2026-10-20): **costo US$0** y el formulario **solo recibe contactos**.
+- Receptor: Apps Script publicado como aplicación web (ejecuta como Carlos, acceso "Cualquier usuario"); "base de datos" = planilla de Google "Contactos web". Código y guía en `integraciones/formulario/`. Los secretos (token del bot, chat_id, ID de planilla, correo de aviso) viven en las Propiedades del script, nunca en el repo.
+- Protección: campo trampa `sitio_web` + mínimo de 3 s antes de enviar + límites por contacto (1 por minuto, 5 por hora) y global (30 por hora) con `CacheService`; los descartados responden `{ok:true}` sin guardar. Valores que empiezan con `= + - @` se guardan como texto (sin inyección de fórmulas).
+- Se descartó n8n en Railway para el formulario y también el servidor personal (si se cae se pierden contactos, habría que exponerlo a internet y ahí corre el sistema del cliente real). La copia nocturna de la planilla al servidor personal queda como idea futura.
 - Prueba end-to-end del envío real en producción antes de publicar.
 
 El caso real del cliente sigue corriendo en `prodesk` por ahora (hay conversaciones en curso) y NO se migra en este proyecto. El copy de "Cómo trabajo" describe la forma de trabajar de Carlos (lo deja andando en un servidor en la nube); la sección del caso real habla solo de resultados y nunca de dónde corre.
@@ -41,7 +41,7 @@ El caso real del cliente sigue corriendo en `prodesk` por ahora (hay conversacio
 - Una sola página, 7 secciones (ver `copy.md`). Sin precios ("cada proyecto se cotiza aparte"). Sin foto de Carlos. Caso 100% anónimo (sin cliente, lugar ni rubro identificable).
 - Sin WhatsApp/teléfono públicos; único canal: formulario (decisión de Carlos: sin WhatsApp por ahora).
 - Sin foto de Carlos: el bloque "Quién soy" debe funcionar sin foto.
-- Si el webhook falla el formulario muestra el correo de respaldo.
+- Si el receptor falla o no responde `{ok:true}`, el formulario muestra el correo de respaldo y conserva lo escrito.
 - Sin analítica ni tracking.
 
 ## Brand Commitments

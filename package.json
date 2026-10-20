@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "capturas": "node scripts/capturas.mjs",
     "og": "node scripts/og.mjs",
+    "test:gs": "node --test integraciones/formulario/Code.test.mjs",
     "test:e2e": "playwright test",
     "test:e2e:update": "playwright test --update-snapshots"
   },

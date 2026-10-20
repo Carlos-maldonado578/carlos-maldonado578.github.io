@@ -139,17 +139,22 @@ form.addEventListener('submit', async (ev) => {
   bloquear(true);
   boton.textContent = 'Enviando…';
   const ctl = new AbortController();
-  const corte = setTimeout(() => ctl.abort(), 10000);
+  const corte = setTimeout(() => ctl.abort(), 15000); // Apps Script puede tardar unos segundos en arrancar
   try {
     if (!URL_WEBHOOK) throw new Error('sin endpoint');
+    // text/plain: Apps Script no responde la verificacion previa de CORS que dispara application/json. El cuerpo sigue siendo JSON.
+    // La redireccion de Apps Script (302 a googleusercontent.com) se sigue sola (redirect: 'follow' es el valor por defecto).
     const r = await fetch(URL_WEBHOOK, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ ...v, hp: form.elements.sitio_web.value, t: Date.now() - t0 }),
       credentials: 'omit',
       signal: ctl.signal,
     });
     if (!r.ok) throw new Error('http ' + r.status);
+    // exito solo si el receptor responde exactamente {ok:true}; cualquier otra cosa (ok:false, HTML, texto) es fallo
+    const resp = await r.json();
+    if (resp?.ok !== true) throw new Error('respuesta sin ok');
     const d = new Date();
     const p = (n) => String(n).padStart(2, '0');
     // solo textContent: nunca innerHTML con lo que escribe el visitante

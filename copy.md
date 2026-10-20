@@ -16,8 +16,9 @@ Reglas fijas:
   No se ofrece presencial en la página.
 - WhatsApp: no se ofrece como canal. Solo aparece en un ejemplo y en la FAQ.
 - El caso real no dice dónde corre ni nombra herramientas (sin "n8n").
-- **"Datos con respaldo" no se publica** hasta que el respaldo nocturno de Railway esté funcionando. Hoy no aparece
-  en la página (solo hay un `TODO(Carlos)` en `index.astro`, en Quién soy).
+- **"Datos con respaldo" no se publica** hasta que haya un respaldo nocturno funcionando de los sistemas que dejo a
+  clientes (la frase habla de esos sistemas, no del formulario de contacto, que guarda en una planilla de Google).
+  Hoy no aparece en la página (solo hay un `TODO(Carlos)` en `index.astro`, en Quién soy).
 - Sin cifras, precios, reseñas ni clientes inventados. El caso real tiene un `TODO(Carlos)` abierto: cuántas personas
   registran y cuánto tomaba juntar las hojas.
 
@@ -83,7 +84,7 @@ Soy Carlos Maldonado, desarrollador. Traigo a tu pyme el mismo cuidado que exige
 
 Ficha: Santiago · 5 años en bancos y empresas de pagos · Trabajo solo, hablas directo conmigo.
 
-(La frase "datos con respaldo y avisos cuando algo falla" se agrega solo cuando el respaldo nocturno esté funcionando.)
+(La frase "datos con respaldo y avisos cuando algo falla" se agrega solo cuando exista ese respaldo nocturno de los sistemas de clientes.)
 
 ## 5. Antes de escribirme
 
