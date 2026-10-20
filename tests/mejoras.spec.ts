@@ -2,15 +2,34 @@ import { test, expect } from '@playwright/test';
 import { abrir, llenar } from './comun';
 
 test.describe('Segunda ronda de mejoras', () => {
-  test('FAQ: 6 preguntas siempre visibles, respuestas cortas y sin cifras de precio', async ({ page }) => {
+  test('FAQ: 2 tarjetas destacadas parejas y 4 preguntas visibles, titular sin palabra huerfana y sin cifras de precio', async ({ page }) => {
     await abrir(page);
-    const q = page.locator('.faq > div');
-    await expect(q).toHaveCount(6);
-    for (const t of await q.all()) {
+    const sec = page.locator('section:has(#t-faq)');
+    const grandes = sec.locator('.faq-grandes li');
+    await expect(grandes).toHaveCount(2);
+    await expect(sec.locator('.faq > div')).toHaveCount(4);
+    for (const t of await sec.locator('.faq-grandes li, .faq > div').all()) {
       await expect(t.locator('h3')).toBeVisible();
-      await expect(t.locator('p')).toBeVisible();
+      await expect(t.locator('p').last()).toBeVisible();
     }
-    expect(await page.locator('.faq').textContent()).not.toMatch(/\$|CLP|UF/);
+    const alto = await grandes.evaluateAll((l) => l.map((e) => Math.round(e.getBoundingClientRect().height)));
+    // lado a lado desde 1200px: alturas parejas y sin aire sobrante (respuesta termina al pie de la tarjeta)
+    if ((await page.viewportSize())!.width >= 1200) {
+      expect(alto[0]).toBe(alto[1]);
+      const sobra = await grandes.evaluateAll((l) => l.map((e) => Math.round(e.getBoundingClientRect().bottom - e.lastElementChild!.getBoundingClientRect().bottom)));
+      expect(Math.max(...sobra) - Math.min(...sobra)).toBeLessThanOrEqual(2);
+    }
+    // el titular no termina con una sola palabra en la ultima linea
+    const huerfano = await page.locator('.faq-titular').evaluateAll((l) => l.map((e) => {
+      const r = document.createRange();
+      r.selectNodeContents(e);
+      const lineas = new Map<number, number>();
+      for (const c of r.getClientRects()) lineas.set(Math.round(c.top), (lineas.get(Math.round(c.top)) ?? 0) + c.width);
+      const w = [...lineas.values()];
+      return w.length > 1 && w[w.length - 1] < w[0] * 0.3;
+    }));
+    expect(huerfano).toEqual([false, false]);
+    expect(await sec.textContent()).not.toMatch(/\$|CLP|UF/);
   });
 
   test('Quien soy: texto en primera persona y ficha con tres datos, sin foto', async ({ page }) => {

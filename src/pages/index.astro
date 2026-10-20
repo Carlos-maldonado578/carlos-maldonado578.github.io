@@ -110,34 +110,23 @@ const fuentes = `
             </div>
           </div>
           <div class="caso-ctl"><button type="button" class="btn-icono" id="caso-pausa" aria-label="Pausar" title="Pausar" hidden></button></div>
+          <div class="ejemplos">
+            <h3 class="rotulo-ej">Ejemplo · Así se vería en tu negocio</h3>
+            <ul class="ej-lista">
+              <li>
+                <h4>Pedidos</h4>
+                <p><span>Antes</span> Te preguntan por WhatsApp en qué va el pedido.</p>
+                <p class="ej-ahora"><span>Ahora</span> Lo ves en la planilla, con su estado.</p>
+              </li>
+              <li>
+                <h4>Stock</h4>
+                <p><span>Antes</span> Te enteras de que falta harina cuando ya no queda.</p>
+                <p class="ej-ahora"><span>Ahora</span> Te avisan cuando quedan 3 sacos.</p>
+              </li>
+            </ul>
+          </div>
           <a class="btn" href="#contacto">Cuéntame tu caso</a>
           </div>
-        </div>
-      </section>
-      <section class="seccion servicios" aria-labelledby="t-hago">
-        <div class="contenedor">
-          <h2 id="t-hago">Lo mismo sirve para…</h2>
-          <p class="chip-real">Ejemplo</p>
-          <ul class="sv-tarjetas">
-            <li class="sv-tarjeta">
-              <div class="mini" aria-hidden="true">
-                <div class="mi-in"><span class="burbuja">Pedido 45 despachado</span></div>
-                <span class="mi-paso"></span>
-                <div class="mi-out"><span class="fila"><span>Pedido 45</span><span class="chip-est">En camino</span></span></div>
-              </div>
-              <h3>Pedidos</h3>
-              <p>Ves en qué va cada uno.</p>
-            </li>
-            <li class="sv-tarjeta">
-              <div class="mini" aria-hidden="true">
-                <div class="mi-in"><span class="fila marcada"><span>Harina · 3 sacos</span></span></div>
-                <span class="mi-paso"></span>
-                <div class="mi-out"><span class="burbuja aviso">Te quedan 3 sacos de harina</span></div>
-              </div>
-              <h3>Stock</h3>
-              <p>Te avisa antes de quedarte sin.</p>
-            </li>
-          </ul>
         </div>
       </section>
       <section class="seccion trabajo" aria-labelledby="t-trabajo">
@@ -190,20 +179,21 @@ const fuentes = `
         </div>
       </section>
       <section class="seccion" aria-labelledby="t-faq">
-        <div class="contenedor faq-grid">
-          <div class="faq-intro">
-            <h2 id="t-faq">Antes de escribirme</h2>
-            <a class="faq-duda" href="#contacto">¿Tu duda no está? Escríbeme</a>
-          </div>
-          <div class="faq">
-            <div>
+        <div class="contenedor">
+          <h2 id="t-faq">Antes de escribirme</h2>
+          <ul class="faq-grandes">
+            <li>
               <h3>¿Cuánto cuesta?</h3>
-              <p>Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.</p>
-            </div>
-            <div>
+              <p class="faq-titular">Sabes el valor antes de empezar</p>
+              <p>Un pago por armarlo y una mensualidad. Te digo los dos en la primera conversación.</p>
+            </li>
+            <li>
               <h3>¿De quién son los datos?</h3>
-              <p>Tuyos. La planilla es tuya, sigamos trabajando juntos o no.</p>
-            </div>
+              <p class="faq-titular">La planilla es tuya</p>
+              <p>Si un día dejamos de trabajar juntos, te la quedas con todos tus datos.</p>
+            </li>
+          </ul>
+          <div class="faq">
             <div>
               <h3>¿Necesito saber de computación?</h3>
               <p>No. Si mandas un mensaje por el celular, basta. Al entregar te dejo todo explicado por escrito.</p>
@@ -221,6 +211,7 @@ const fuentes = `
               <p>Depende de lo que necesites. Parto por una parte chica para que veas resultados pronto.</p>
             </div>
           </div>
+          <a class="faq-duda" href="#contacto">¿Tu duda no está? Escríbeme</a>
         </div>
       </section>
       <section class="seccion" id="contacto" aria-labelledby="t-contacto">

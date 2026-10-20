@@ -17,11 +17,6 @@ test.describe('Regresion visual', () => {
     await expect(page.locator('.hero')).toHaveScreenshot('hero.png', opciones);
   });
 
-  test('servicios', async ({ page }) => {
-    await preparar(page);
-    await expect(page.locator('.servicios')).toHaveScreenshot('servicios.png', opciones);
-  });
-
   test('quien soy', async ({ page }) => {
     await preparar(page);
     await expect(page.locator('.quien')).toHaveScreenshot('quien.png', opciones);
@@ -34,7 +29,7 @@ test.describe('Regresion visual', () => {
 
   test('preguntas', async ({ page }) => {
     await preparar(page);
-    await expect(page.locator('main > section').nth(6)).toHaveScreenshot('faq.png', opciones);
+    await expect(page.locator('main > section').nth(4)).toHaveScreenshot('faq.png', opciones);
   });
 
   test('caso real', async ({ page }) => {

@@ -134,7 +134,7 @@ La prueba es una sola: el caso real, con su eje horario Antes / Ahora. El resto 
 - **Headline** (Bitter 700, clamp 2-3.25rem, 1.08): h2 de sección.
 - **Title** (Archivo 600, 1.25rem): h3 de pasos y bloques.
 - **Body** (400, 1.0625rem, 1.6) y **Lead** (clamp 1.1875-1.375rem).
-- **Label** (mono 500, 0.8125rem, mayúsculas, 0.04em): etiqueta del hero, números y estados de las filas de servicio y chips. Solo para datos; los títulos y botones van en mayúscula normal.
+- **Label** (mono 500, 0.8125rem, mayúsculas, 0.04em): etiqueta del hero, números y estados de las etiquetas Antes / Ahora de los ejemplos y chips. Solo para datos; los títulos y botones van en mayúscula normal.
 
 ### Named Rules
 **The Tabular Rule.** Todo número que se lee como dato usa cifras tabulares.
@@ -148,12 +148,12 @@ Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Regla únic
 Orden de la página:
 1. **Hero** (crema 2, partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
 2. **Caso real** (problema y caso fundidos): título "Hoy se anota a mano. Podría anotarse solo.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
-3. **Lo mismo sirve para…**: dos tarjetas (Pedidos, Stock) con mini-UI de ejemplo, nombre y una línea, sin números ni estado.
-4. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
-5. **Quién soy**: dos frases, sin foto ni cajas.
-6. **Preguntas**: cinco, respuestas de una línea.
-7. **Contacto**: texto corto y formulario en tarjeta hoja. Tras enviar, el texto de invitación y el botón de la cabecera se ocultan y la confirmación ocupa el centro.
-8. **Pie**: nombre, línea de contexto y correo, separado por la misma línea de 1px.
+   Dentro del mismo bloque, tras un filete, el rótulo "Ejemplo · Así se vería en tu negocio" y dos tarjetas `hoja` (Pedidos, Stock) con filas Antes / Ahora; un solo CTA al final. No hay sección aparte de servicios.
+3. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
+4. **Quién soy**: dos frases, sin foto ni cajas.
+5. **Preguntas**: dos tarjetas destacadas (precio y datos) y cuatro preguntas en 2×2.
+6. **Contacto**: texto corto y formulario en tarjeta hoja. Tras enviar, el texto de invitación y el botón de la cabecera se ocultan y la confirmación ocupa el centro.
+7. **Pie**: nombre, línea de contexto y correo, separado por la misma línea de 1px.
 
 Padding vertical 40px arriba y 48px abajo (80px y 96px desde 1024px).
 
@@ -178,8 +178,8 @@ Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculo
 ### Íconos y cajas pastel
 Íconos de línea (rejilla 24, trazo oliva 1.75, puntas redondas), el mismo trazo de la ilustración del hero, dentro de una caja pastel (salvia, arena o rosa) con borde 1px `linea` y radio 8px. Máximo un ícono por ítem, siempre decorativo (`aria-hidden="true"`). Tamaños: caja 52px (tarjetas), 44px (ficha, pasos), 40px (pasos en móvil); ícono 28/24px. Sin fotos, logos de color ni ilustraciones nuevas.
 
-### Tarjetas de servicio
-Dos tarjetas `hoja` con borde 1px (Pedidos, Stock): mini-UI HTML/CSS decorativa (`aria-hidden`; lo que haces → lo que pasa solo, sobre `crema-2`, con rótulo "Ejemplo" en la sección), título y una línea. Apiladas en 375, en dos columnas de ancho completo desde 768px, alineadas arriba (mini-UI, título y texto a la misma altura aunque el texto ocupe 2 líneas).
+### Ejemplos (dentro del caso)
+Bajo la línea de tiempo y tras un filete (1px `linea-campo`): rótulo mono "Ejemplo · Así se vería en tu negocio" y dos tarjetas `hoja` con borde 1px, título y dos filas con etiqueta mono Antes (`tinta-2`) y Ahora (`oliva`). Apiladas en 375, en dos columnas desde 768px. Solo texto: sin íconos, mini-UI ni cifras del cliente; las cifras (3 sacos) son de ejemplo y van bajo el rótulo.
 
 ### Ficha de Quién soy
 Dos columnas desde 1024px (7/5): texto a la izquierda y ficha `hoja` a la derecha con tres filas ícono + dato (Santiago, 5 años en bancos y empresas de pagos, Trabajo solo y hablas directo conmigo). En 375 la ficha va bajo el texto.
@@ -188,7 +188,7 @@ Dos columnas desde 1024px (7/5): texto a la izquierda y ficha `hoja` a la derech
 Cuatro pasos con número, ícono pequeño a la derecha, título y una línea (sin flechas ni línea punteada: se eligió el ícono). Tres límites con ícono discreto de "no" (trazo 1.5 en `tinta-2`, sin caja).
 
 ### Preguntas
-Dos columnas desde 1024px (5/7): título y enlace "¿Tu duda no está? Escríbeme" (→ #contacto) a la izquierda, seis preguntas a la derecha (pregunta 1.25rem/600 en tinta, respuesta en `tinta-2`). Sin subtítulo. Contacto: bajo "Dos líneas bastan…", lista de tres promesas con filas finas, sin íconos.
+Título y, debajo, dos tarjetas destacadas (salvia y arena, borde 1px, subgrid para alinear etiqueta, titular y respuesta; dos columnas desde 768px): etiqueta mono con la pregunta, titular Bitter 700 con `text-wrap: balance` ("Sabes el valor antes de empezar", "La planilla es tuya") y la respuesta sin repetir el titular. Luego cuatro preguntas en 2×2 (pregunta 1.125rem/600 en tinta, respuesta en `tinta-2`) y el enlace "¿Tu duda no está? Escríbeme" (→ #contacto). Sin subtítulo. Contacto: bajo "Dos líneas bastan…", lista de tres promesas con filas finas, sin íconos.
 
 ### Formulario
 Tarjeta hoja (`#FFFDF6`), borde 1px línea, radio 8px, sobre crema. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título corto ("Listo, {nombre}. Recibí tu mensaje."), mini-planilla con la hora y "Recibido", y una línea con el contacto, el plazo, la llamada y la forma de corregirse por correo. Valores insertados siempre con `textContent`.

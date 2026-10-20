@@ -10,7 +10,7 @@ Beneficios: (1) el dato llega al minuto; (2) nadie vuelve a pasar datos de un la
 antes del problema.
 
 Reglas fijas:
-- CTA único en toda la página: **Cuéntame tu caso** (hero, tras servicios, tras caso, formulario).
+- CTA único en toda la página: **Cuéntame tu caso** (hero, final del caso real tras los ejemplos, formulario).
   Cabecera: el botón aparece solo cuando el CTA del hero sale de pantalla.
 - Plazo de respuesta: 1 día hábil. Primera conversación: llamada agendada o videollamada, sin costo.
   No se ofrece presencial en la página.
@@ -50,14 +50,14 @@ cuando ya no hay cómo evitarlos.
 
 Tres tarjetas (tonos pastel): Se anota en papel o en WhatsApp · Se pasa a mano a una planilla · Te enteras tarde.
 
-## 3. Lo mismo sirve para… (Fase 4)
+## 3. Ejemplos (Fase 4, dentro del caso real)
 
-Título: **Lo mismo sirve para…** (sin subtítulo). Rótulo visible: `Ejemplo` (aún no corren en un cliente).
-Dos tarjetas con mini-UI decorativa (lo que haces → lo que pasa solo):
-- **Pedidos** · burbuja "Pedido 45 despachado" → fila "Pedido 45 · En camino". Texto: Ves en qué va cada uno.
-- **Stock** · fila "Harina · 3 sacos" → aviso "Te quedan 3 sacos de harina". Texto: Te avisa antes de quedarte sin.
+Ya no hay sección "Lo mismo sirve para…". Bajo la línea de tiempo del caso, tras un filete:
+Rótulo: `Ejemplo · Así se vería en tu negocio` (aún no corren en un cliente).
+- **Pedidos** · Antes: Te preguntan por WhatsApp en qué va el pedido. · Ahora: Lo ves en la planilla, con su estado.
+- **Stock** · Antes: Te enteras de que falta harina cuando ya no queda. · Ahora: Te avisan cuando quedan 3 sacos.
 
-[Cuéntame tu caso]
+Un solo CTA, al final del bloque del caso: [Cuéntame tu caso].
 
 ## 4. Un caso real: el mismo día, antes y ahora
 
@@ -99,14 +99,17 @@ Respondo en 1 día hábil · Tus datos son tuyos.
 
 ## 8. Antes de escribirme (Fase 4)
 
-Sin subtítulo. Bajo el título, enlace a #contacto: "¿Tu duda no está? Escríbeme".
+Sin subtítulo. Dos tarjetas destacadas:
+- **¿Cuánto cuesta?** · *Sabes el valor antes de empezar* · Un pago por armarlo y una mensualidad. Te digo los dos en la primera conversación.
+- **¿De quién son los datos?** · *La planilla es tuya* · Si un día dejamos de trabajar juntos, te la quedas con todos tus datos.
 
-- **¿Cuánto cuesta?** Un pago por armarlo y una mensualidad. Te doy ambos valores antes de empezar.
-- **¿De quién son los datos?** Tuyos. La planilla es tuya, sigamos trabajando juntos o no.
+Cuatro preguntas en 2×2:
 - **¿Necesito saber de computación?** No. Si mandas un mensaje por el celular, basta. Al entregar te dejo todo explicado por escrito.
 - **¿Y si algo falla?** Lo reviso apenas me avisas. Tus datos siguen en tu planilla.
 - **¿Sirve si uso Excel o WhatsApp?** Parto de lo que usas. Si no se puede conectar, te lo digo de inmediato.
 - **¿Cuánto demora?** Depende de lo que necesites. Parto por una parte chica para que veas resultados pronto.
+
+Cierre: enlace a #contacto, "¿Tu duda no está? Escríbeme".
 
 ## 9. Contacto
 

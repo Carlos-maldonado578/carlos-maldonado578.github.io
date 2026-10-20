@@ -38,7 +38,7 @@ test.describe('Sin JavaScript', () => {
     await expect(page.locator('h1')).toBeVisible();
     for (const h of await page.locator('h2').all()) await expect(h).toBeVisible();
     await expect(page.locator('.hero-ilus .ilus:visible')).toHaveCount(1);
-    await expect(page.locator('.sv-tarjeta')).toHaveCount(2);
+    await expect(page.locator('.ej-lista li')).toHaveCount(2);
     await expect(page.locator('.sin-js')).toBeVisible();
     await expect(page.locator('.sin-js a')).toHaveAttribute('href', /mailto:carlos\.automatiza\.tupyme@gmail\.com/);
   });
