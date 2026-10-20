@@ -1,0 +1,21 @@
+---
+// Variante 2 · Acordeon en ficha (eje: densidad). Una tarjeta hoja con preguntas numeradas en details nativos, la primera abierta.
+import { preguntas } from './datos';
+---
+<section class="seccion" aria-labelledby="f2-t">
+  <div class="contenedor faq-grid">
+    <div class="faq-intro">
+      <h2 id="f2-t">Antes de escribirme</h2>
+      <p class="f2-nota">¿Tu duda no está? <a href="/#contacto">Escríbeme</a> y te respondo en 1&nbsp;día&nbsp;hábil.</p>
+      <p class="f2-firma" translate="no">Carlos</p>
+    </div>
+    <div class="f2-ficha">
+      {preguntas.map((p, i) => (
+        <details class="f2-item" open={i === 0}>
+          <summary><span class="num">{String(i + 1).padStart(2, '0')}</span><span class="f2-q">{p.q}</span><span class="f2-marca" aria-hidden="true"></span></summary>
+          <p>{p.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+// Variante 3 · Respuestas que tranquilizan (eje: jerarquia). Dos objeciones grandes como tarjetas, las otras cuatro en lista compacta.
+import { preguntas } from './datos';
+const grandes = preguntas.slice(0, 2);
+const resto = preguntas.slice(2);
+---
+<section class="seccion" aria-labelledby="f3-t">
+  <div class="contenedor">
+    <h2 id="f3-t">Antes de escribirme</h2>
+    <ul class="f3-grandes">
+      {grandes.map((p) => (
+        <li class="f3-gran">
+          <h3 class="f3-q">{p.q}</h3>
+          <p class="f3-titular">{p.titular}</p>
+          <p>{p.a}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="f3-resto">
+      {resto.map((p) => (
+        <div>
+          <h3>{p.q}</h3>
+          <p>{p.a}</p>
+        </div>
+      ))}
+    </div>
+    <a class="faq-duda" href="/#contacto">¿Tu duda no está? Escríbeme</a>
+  </div>
+</section>

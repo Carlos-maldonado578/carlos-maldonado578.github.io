@@ -1,0 +1,49 @@
+---
+// Variante 2 · Un escenario, tres casos (eje: interaccion). Pestanas ARIA sobre la misma linea de tiempo.
+import Eje from './Eje.astro';
+import { produccion, pedidos, stock } from './datos';
+const casos = [
+  { clave: 'produccion', nombre: 'Producción', datos: produccion, rotulo: 'Cliente real, datos anonimizados', real: true },
+  { clave: 'pedidos', nombre: 'Pedidos', datos: pedidos, rotulo: 'Ejemplo: así se vería en tu negocio', real: false },
+  { clave: 'stock', nombre: 'Stock', datos: stock, rotulo: 'Ejemplo: así se vería en tu negocio', real: false },
+];
+---
+<section class="seccion caso-sec" aria-labelledby="v2-t">
+  <div class="contenedor">
+    <div class="banda-caso v2">
+      <h2 id="v2-t">Hoy se anota a mano. Podría anotarse solo.</h2>
+      <div class="v2-tabs" role="tablist" aria-label="Elige un caso">
+        {casos.map((c, i) => <button class="v2-tab" role="tab" id={`v2-tab-${c.clave}`} aria-controls={`v2-panel-${c.clave}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{c.nombre}</button>)}
+      </div>
+      {casos.map((c, i) => (
+        <div class="v2-panel" role="tabpanel" tabindex="0" id={`v2-panel-${c.clave}`} aria-labelledby={`v2-tab-${c.clave}`} hidden={i !== 0}>
+          <p class={`chip-real${c.real ? '' : ' chip-ej'}`}>{c.rotulo}</p>
+          <Eje id={`v2-eje-${c.clave}`} antes={c.datos.antes} ahora={c.datos.ahora} />
+        </div>
+      ))}
+      <a class="btn" href="/#contacto">Cuéntame tu caso</a>
+    </div>
+  </div>
+</section>
+<script is:inline>
+  document.querySelectorAll('.v2-tabs').forEach((lista) => {
+    const tabs = [...lista.querySelectorAll('[role=tab]')];
+    const seleccionar = (i, foco) => {
+      tabs.forEach((t, j) => {
+        t.setAttribute('aria-selected', String(i === j));
+        t.tabIndex = i === j ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = i !== j;
+      });
+      if (foco) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => seleccionar(i));
+      t.addEventListener('keydown', (e) => {
+        const k = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i - 1 + tabs.length) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+        if (k === undefined) return;
+        e.preventDefault();
+        seleccionar(k, true);
+      });
+    });
+  });
+</script>

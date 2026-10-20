@@ -1,0 +1,20 @@
+---
+// Linea de tiempo Antes / Ahora con el mismo marcado y CSS que el caso real de produccion (estado final, sin reloj).
+const { antes, ahora, id } = Astro.props;
+const escala = [8, 10, 12, 14, 16, 18, 20];
+const fmt = (h: number) => String(h).padStart(2, '0') + ':00';
+const carriles = [['antes', 'Antes', antes], ['ahora', 'Ahora', ahora]];
+---
+<div class="eje" id={id}>
+  <ol class="escala" aria-hidden="true">{escala.map((h) => <li style={`--h:${h}`}>{fmt(h)}</li>)}</ol>
+  {carriles.map(([clase, titulo, items]: any) => (
+    <div class={`carril ${clase}`}>
+      <h3>{titulo}</h3>
+      <ol class="pista">
+        {items.map((it: any) => it.a !== undefined
+          ? <li class={`tramo ${it.lleno ? 'lleno on' : 'vacio'}`} style={`--a:${it.a};--b:${it.b}`}><span>{it.txt}</span></li>
+          : <li class={`hito${it.der ? ' der' : ''}${it.t2 ? ' t2' : ''}`} style={`--h:${it.h}`}><span class="hora">{it.hora}</span><p>{it.txt}</p></li>)}
+      </ol>
+    </div>
+  ))}
+</div>
