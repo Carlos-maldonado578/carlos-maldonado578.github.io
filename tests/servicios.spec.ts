@@ -84,7 +84,7 @@ test.describe('Estructura y texto de la pagina', () => {
       await abrir(page);
       const a = page.locator('.cabecera a.marca-enlace');
       await expect(a).toHaveAttribute('href', '#inicio');
-      await expect(a).toHaveAttribute('aria-label', 'Carlos Maldonado, inicio');
+      await expect(a).toHaveAttribute('aria-label', 'Carlos Maldonado, automatización para pymes: inicio');
       await expect(a.locator('svg')).toHaveAttribute('aria-hidden', 'true');
       await expect(a.locator('svg')).toHaveAttribute('viewBox', '0 0 24 24');
       await expect(a.locator('svg rect')).toHaveCount(1); // la celda llena, separada del trazo del mensaje

@@ -19,12 +19,12 @@ await previa.screenshot({ path: 'design/og/previa-600x315.png', type: 'png' });
 await ctxPrevia.close();
 await og.close();
 
-// apple-touch-icon: cuadrado completo (iOS redondea solo), fondo oliva y icono crema, sin la linea vertical (igual que el favicon)
+// apple-touch-icon: cuadrado completo (iOS redondea solo), fondo oliva y icono crema, con el icono completo de la cabecera (a 180px la linea vertical hace falta: sin ella se lee como una tarjeta de credito; el favicon de 16px si la omite)
 const ico = await browser.newPage({ viewport: { width: 180, height: 180 } });
 await ico.setContent(`<body style="margin:0;width:180px;height:180px;background:#3A4A1F;display:grid;place-items:center">
 <svg width="132" height="132" viewBox="2 2 20 20"><g stroke="#F4EEDC" stroke-width="1.5" fill="none" stroke-linejoin="round">
 <path d="M4 3.75h16A1.25 1.25 0 0 1 21.25 5v11A1.25 1.25 0 0 1 20 17.25h-10l-4.5 3.5v-3.5H4A1.25 1.25 0 0 1 2.75 16V5A1.25 1.25 0 0 1 4 3.75z"/>
-<path d="M2.75 10.5h18.5"/></g><rect x="14" y="12.5" width="5.25" height="2.75" rx=".6" fill="#F4EEDC"/></svg></body>`);
+<path d="M2.75 10.5h18.5M12 3.75v13.5"/></g><rect x="14" y="12.5" width="5.25" height="2.75" rx=".6" fill="#F4EEDC"/></svg></body>`);
 await ico.screenshot({ path: 'public/apple-touch-icon.png', type: 'png' });
 await browser.close();
 

@@ -34,7 +34,7 @@ Desglose del peso (móvil): documento 7.7 KiB; Archivo 88.3 KiB, Bitter 33.6 KiB
 ## Lo que queda (no bloquea, ninguna categoría baja de 99)
 
 1. **Móvil, Performance 99:** el LCP de 2.0 s (simulado) es el texto del título esperando la fuente. Lighthouse señala solo un recurso que bloquea el render: la hoja de la fuente cursiva de Bitter (155 ms). Las fuentes ya se precargan y tienen `font-display: swap` con fallback de métricas ajustadas; no se tocó por no valer el riesgo de cambiar la carga de fuentes. Opción futura: insertar esa hoja en línea.
-2. **Escritorio, aviso informativo `label-content-name-mismatch`** (no afecta el puntaje): el enlace del inicio tiene `aria-label="Carlos Maldonado, inicio"` (decisión de la revisión de la cabecera) y a ≥768px su texto visible incluye también el descriptor "Automatización para pymes", así que el nombre accesible no contiene todo el texto visible (WCAG 2.5.3). Si se quiere cerrar, cambiar el `aria-label` a "Carlos Maldonado, Automatización para pymes: inicio"; hay un test que fija el valor actual.
+2. **Escritorio, aviso informativo `label-content-name-mismatch`:** corregido en el cierre de la Fase 6. El `aria-label` del enlace de inicio pasó a "Carlos Maldonado, automatización para pymes: inicio", que contiene el texto visible (WCAG 2.5.3); el test lo fija. Esta auditoría se hizo antes del cambio y no se repitió.
 
 ## Cómo repetirla
 
