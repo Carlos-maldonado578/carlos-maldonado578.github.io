@@ -200,7 +200,7 @@ SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones pun
 Solo CSS (`radial-gradient`, puntos de oliva al 16%, paso de 22px), solo detrás de la ilustración del hero y difuminada en los bordes con una máscara. Texto secundario sobre el punto más oscuro: 5.2:1. El resto de la página no lleva fondo decorativo.
 
 ### Movimiento
-Solo el reloj del Caso real en escritorio (`DUR_CASO`, `ESPERA_CASO` en `main.js`): al entrar en pantalla recorre 08:00-20:00 una vez; los hitos aparecen al ser alcanzados, hay botón de pausa de 44px y, con `prefers-reduced-motion`, sin JS o en móvil, queda el estado final estático. La cabecera muestra su botón al salir del CTA del hero. Nada más se mueve solo. La Fase 5 revisa si algo suma.
+Solo el reloj del Caso real en escritorio (`DUR_CASO`, `ESPERA_CASO` en `main.js`): al entrar en pantalla recorre 08:00-20:00 una vez; los hitos aparecen al ser alcanzados, hay botón de pausa de 44px y, con `prefers-reduced-motion`, sin JS o en móvil, queda el estado final estático. La cabecera muestra su botón al salir del CTA del hero. Segundo y último movimiento (Fase 5): los puntos de los conectores de la ilustración del hero avanzan hacia la planilla y hacia el resumen y el aviso (`fluir`, 1.6s lineal, 3 pasadas y se detienen), solo con `prefers-reduced-motion: no-preference`. Nada más se mueve solo; no se agrega decoración.
 
 ## Do's and Don'ts
 
