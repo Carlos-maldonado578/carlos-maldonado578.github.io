@@ -134,7 +134,7 @@ La prueba es una sola: el caso real, con su eje horario Antes / Ahora. El resto 
 - **Headline** (Bitter 700, clamp 2-3.25rem, 1.08): h2 de sección.
 - **Title** (Archivo 600, 1.25rem): h3 de pasos y bloques.
 - **Body** (400, 1.0625rem, 1.6) y **Lead** (clamp 1.1875-1.375rem).
-- **Label** (mono 500, 0.8125rem, mayúsculas, 0.04em): etiqueta del hero, números y estados de las etiquetas Antes / Ahora de los ejemplos y chips. Solo para datos; los títulos y botones van en mayúscula normal.
+- **Label** (mono 500, 0.8125rem, mayúsculas, 0.04em): números y estados de las etiquetas Antes / Ahora de los ejemplos y chips. Solo para datos; los títulos y botones van en mayúscula normal.
 
 ### Named Rules
 **The Tabular Rule.** Todo número que se lee como dato usa cifras tabulares.
@@ -146,7 +146,7 @@ La prueba es una sola: el caso real, con su eje horario Antes / Ahora. El resto 
 Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Regla única de separación: **línea de 1px en color `linea` a todo el ancho entre una sección y la siguiente** (`main > section + section`). Fondo crema en todas las secciones; solo el hero conserva su tono (crema 2). Contacto y pie sin bandas propias. Regla general de contenido: cada sección lleva título y como máximo una línea; lo visual explica el resto.
 
 Orden de la página:
-1. **Hero** (crema 2, partido): etiqueta mono, h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
+1. **Hero** (crema 2, partido, sin etiqueta: "Automatización para pymes" ya está en la cabecera): h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
 2. **Caso real** (problema y caso fundidos): título "Hoy se anota a mano. Podría anotarse solo.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
    Dentro del mismo bloque, tras un filete, el rótulo "Ejemplo · Así se vería en tu negocio" y dos tarjetas `hoja` (Pedidos, Stock) con filas Antes / Ahora; un solo CTA al final. No hay sección aparte de servicios.
 3. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
@@ -172,7 +172,7 @@ Radio 8px en botones, campos y tarjetas; 4px en chips; 0 en tablas. Sin círculo
 - **Sin variante clara: el botón del caso es el primario.
 - **Texto:** oliva subrayado, 44px ("Mira cómo funciona", "Pausar/Reanudar").
 - **Foco:** contorno 3px oliva con 2px de separación en todo.
-- **Cabecera (sticky, línea inferior 1px):** un solo enlace a `#inicio` (`aria-label="Carlos Maldonado, inicio"`) con tres partes: símbolo de mini planilla (SVG en línea 22px, 3×3 celdas, trazo `tinta` 1.75 como la ilustración del hero, una celda abajo a la derecha rellena `oliva`, `aria-hidden`; misma familia que `favicon.svg`), nombre en Bitter 800 (1.0625rem en móvil, 1.1875rem desde 768px) con "Maldonado" en cursiva `oliva` (`translate="no"`) y, desde 768px, descriptor "Automatización para pymes" en Archivo 0.875rem `tinta-2` tras un filete vertical fino. Sin envolver: símbolo + nombre + botón caben en 375. El botón aparece solo cuando ni el CTA del hero ni el formulario están en pantalla, y se oculta tras enviar.
+- **Cabecera (sticky, línea inferior 1px):** un solo enlace a `#inicio` (`aria-label="Carlos Maldonado, inicio"`) con tres partes: ícono propio "mensaje-celda" (SVG en línea 22px, viewBox 24: un mensaje que se vuelve planilla; trazo `tinta` 1.5, línea horizontal y vertical dentro del globo y una celda llena `oliva` separada de las líneas, `aria-hidden`; mismo dibujo en `favicon.svg`, en `crema` sobre `oliva` con trazo 1.75 y sin la línea vertical interior, que se empastaba a 16px; bajo 360px el ícono se oculta para que quepan nombre y botón), nombre en Bitter 800 (1.0625rem en móvil, 1.1875rem desde 768px) con "Maldonado" en cursiva `oliva` (`translate="no"`) y, desde 768px, descriptor "Automatización para pymes" en Archivo 0.875rem `tinta-2` tras un filete vertical fino. Sin envolver: símbolo + nombre + botón caben en 375. El botón aparece solo cuando ni el CTA del hero ni el formulario están en pantalla, y se oculta tras enviar.
 - **Volver arriba:** botón flotante único (el pie ya no lo repite); aparece al subir, no mientras se baja leyendo.
 
 ### Íconos y cajas pastel

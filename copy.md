@@ -26,7 +26,7 @@ Carlos Maldonado · [Cuéntame tu caso] (visible solo tras salir del hero)
 
 ## 1. Hero (partido: texto + CTA a la izquierda, demo a la derecha)
 
-Etiqueta: `AUTOMATIZACIÓN PARA PYMES · SANTIAGO`
+Sin etiqueta sobre el h1 (la cabecera ya dice "Automatización para pymes"; "Santiago" queda en Quién soy y en el pie).
 
 # Tu planilla se llena *sola*.
 

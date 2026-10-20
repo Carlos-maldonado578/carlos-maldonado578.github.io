@@ -86,6 +86,10 @@ test.describe('Estructura y texto de la pagina', () => {
       await expect(a).toHaveAttribute('href', '#inicio');
       await expect(a).toHaveAttribute('aria-label', 'Carlos Maldonado, inicio');
       await expect(a.locator('svg')).toHaveAttribute('aria-hidden', 'true');
+      await expect(a.locator('svg')).toHaveAttribute('viewBox', '0 0 24 24');
+      await expect(a.locator('svg rect')).toHaveCount(1); // la celda llena, separada del trazo del mensaje
+      await expect(page.locator('.hero .etiqueta')).toHaveCount(0);
+      await expect(page.locator('.hero')).not.toContainText('Santiago');
       await expect(a.locator('.marca')).toHaveText('Carlos Maldonado');
       await expect(a.locator('.marca em')).toHaveText('Maldonado');
       if ((await page.viewportSize())!.width >= 768) await expect(a.locator('.marca-desc')).toBeVisible();

@@ -8,7 +8,7 @@ const url = process.argv[2] ?? 'http://localhost:4321/';
 const out = process.argv[3] ?? 'design/fase4/capturas';
 mkdirSync(out, { recursive: true });
 
-const secciones = { faq: '#t-faq', contacto: '#contacto', caso: '.banda-caso' };
+const secciones = { faq: '#t-faq', contacto: '#contacto', caso: '.banda-caso', hero: '.hero' };
 const browser = await chromium.launch({ channel: 'msedge' });
 for (const ancho of [375, 768, 1440]) {
   const ctx = await browser.newContext({ viewport: { width: ancho, height: 900 }, reducedMotion: 'reduce', locale: 'es-CL' });
@@ -28,6 +28,23 @@ for (const ancho of [375, 768, 1440]) {
     const el = sel.startsWith('#t-') ? page.locator(`section:has(${sel})`) : page.locator(sel);
     await el.screenshot({ path: `${out}/${nombre}-${ancho}.png`, animations: 'disabled' });
   }
+  await ctx.close();
+}
+// favicon a 16 y 32px: se rasteriza a tamano real y se amplia x10 sin suavizar para ver si las lineas se empastan
+{
+  const ctx = await browser.newContext({ viewport: { width: 700, height: 360 } });
+  const page = await ctx.newPage();
+  await page.goto(url);
+  const fav = new URL('/favicon.svg', url).href;
+  const reales = {};
+  for (const n of [16, 32]) {
+    await page.setContent(`<body style="margin:0;background:#F4EEDC"><img id="fav" src="${fav}" width="${n}" height="${n}"></body>`);
+    await page.waitForFunction(() => document.getElementById('fav').complete);
+    reales[n] = (await page.locator('#fav').screenshot()).toString('base64');
+  }
+  await page.setContent('<body style="margin:0;background:#F4EEDC;display:flex;gap:32px;padding:16px;align-items:flex-start">' +
+    [16, 32].map((n) => `<div style="font:12px sans-serif">${n}px real <img src="data:image/png;base64,${reales[n]}" width="${n}" height="${n}"><br><br><img src="data:image/png;base64,${reales[n]}" width="${n * 10}" height="${n * 10}" style="image-rendering:pixelated"></div>`).join('') + '</body>');
+  await page.screenshot({ path: `${out}/favicon-16-32.png` });
   await ctx.close();
 }
 await browser.close();
