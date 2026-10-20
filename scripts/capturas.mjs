@@ -10,7 +10,7 @@ mkdirSync(out, { recursive: true });
 
 const secciones = { faq: '#t-faq', contacto: '#contacto', caso: '.banda-caso', hero: '.hero' };
 const browser = await chromium.launch({ channel: 'msedge' });
-for (const ancho of [375, 768, 1440]) {
+for (const ancho of [375, 768, 1024, 1280, 1440]) {
   const ctx = await browser.newContext({ viewport: { width: ancho, height: 900 }, reducedMotion: 'reduce', locale: 'es-CL' });
   const page = await ctx.newPage();
   await page.goto(url);
@@ -21,7 +21,13 @@ for (const ancho of [375, 768, 1440]) {
   await page.waitForTimeout(300);
   await page.locator('.cabecera').screenshot({ path: `${out}/cabecera-scroll-${ancho}.png` });
   await page.evaluate(() => scrollTo(0, 0));
-  if (ancho === 768) { await ctx.close(); continue; }
+  if (![375, 1440].includes(ancho)) {
+    // anchos intermedios: solo cabecera y hero (el hero cambia de layout entre 1024 y 1279)
+    await page.addStyleTag({ content: 'astro-dev-toolbar{display:none!important}' });
+    await page.locator('.hero').screenshot({ path: `${out}/hero-${ancho}.png`, animations: 'disabled' });
+    await ctx.close();
+    continue;
+  }
   await page.addStyleTag({ content: '.subir{display:none!important}.cabecera{position:static!important}*{caret-color:transparent!important}astro-dev-toolbar{display:none!important}' });
   await page.screenshot({ path: `${out}/pagina-${ancho}.png`, fullPage: true, animations: 'disabled' });
   for (const [nombre, sel] of Object.entries(secciones)) {

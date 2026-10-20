@@ -25,3 +25,23 @@ test.describe('Objetivos tactiles', () => {
     expect(chicos, 'elementos con alto < 44px').toEqual([]);
   });
 });
+
+test.describe('Hero: nota bajo los botones cuando la columna de texto no alcanza', () => {
+  for (const [w, debajo] of [[768, false], [1024, true], [1279, true], [1280, false], [1440, false]] as const) {
+    test(`a ${w}px la nota ${debajo ? 'va debajo' : 'va al lado'} y no invade la ilustracion`, async ({ page }, info) => {
+      test.skip(info.project.name !== 'desktop', 'se fija el ancho a mano');
+      await page.setViewportSize({ width: w, height: 900 });
+      await abrir(page);
+      const r = await page.evaluate(() => {
+        const box = (q: string) => document.querySelector(q)!.getBoundingClientRect();
+        const btn = box('.hero-cta .btn'), nota = box('.hero-cta .nota'), ilus = box('.hero-ilus');
+        const visible = [...document.querySelectorAll('.hero-ilus .ilus')].find((e) => getComputedStyle(e).display !== 'none')!.getBoundingClientRect();
+        return { notaY: nota.top, btnBottom: btn.bottom, notaRight: nota.right, ilusLeft: visible.left, notaH: nota.height };
+      });
+      if (debajo) expect(r.notaY, JSON.stringify(r)).toBeGreaterThanOrEqual(r.btnBottom);
+      else expect(r.notaY, JSON.stringify(r)).toBeLessThan(r.btnBottom);
+      if (w >= 1024) expect(r.notaRight, JSON.stringify(r)).toBeLessThanOrEqual(r.ilusLeft);
+      expect(r.notaH, JSON.stringify(r)).toBeLessThan(80); // nunca una columna angosta de 5-6 lineas
+    });
+  }
+});

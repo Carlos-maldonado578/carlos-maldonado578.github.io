@@ -120,6 +120,8 @@ main > section + section { border-top: 1px solid var(--linea); }
 .hero-cta .btn { width: 100%; text-align: center; }
 .hero-grid > * { min-width: 0; }
 @media (min-width: 768px) { .hero-cta { flex-direction: row; align-items: center; gap: var(--s5); } .hero-cta .btn { width: auto; white-space: nowrap; } }
+/* entre 1024 y 1279px el hero es de dos columnas pero la de texto (<590px) no alcanza para boton + enlace + nota en una fila: la nota baja a todo el ancho */
+@media (min-width: 1024px) and (max-width: 1279px) { .hero-cta { flex-wrap: wrap; row-gap: var(--s3); } .hero-cta .nota { flex-basis: 100%; } }
 @media (min-width: 1024px) {
   .hero { padding-block: var(--s8) var(--s9); }
   .hero-grid { grid-template-columns: repeat(12, 1fr); gap: 24px; align-items: center; }
