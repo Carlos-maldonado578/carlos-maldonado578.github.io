@@ -1,22 +1,24 @@
 # Lista de publicación
 
-Pasos que hace Carlos (no Claude Code), en orden. El deploy es siempre manual: el workflow `Deploy a GitHub Pages` (`.github/workflows/deploy.yml`) solo corre con `workflow_dispatch`.
+Registro de la publicación. El deploy es siempre manual: el workflow `Deploy a GitHub Pages` (`.github/workflows/deploy.yml`) solo corre con `workflow_dispatch`.
 
 Estado actual: sin dominio propio. URL `https://carlos-maldonado578.github.io/` y correo `carlos.automatiza.tupyme@gmail.com`. El formulario cuesta US$0: Google Apps Script + planilla de Google + Telegram + correo (ya no se usa n8n en Railway para esto).
 
-1. **Formulario: planilla, bot y script de Google.** Sigue la guía `integraciones/formulario/README.md`, pasos 1 a 6: crear la planilla "Contactos web", crear el bot de Telegram con @BotFather, abrir Apps Script **desde la planilla** (Extensiones → Apps Script: el script queda vinculado y solo puede tocar esa planilla), pegar `Code.gs` y `appsscript.json`, cargar las tres propiedades (`TELEGRAM_TOKEN`, `TELEGRAM_CHAT_ID`, `EMAIL_AVISO`), ejecutar `probar()` y publicar como aplicación web (ejecutar como "Yo", acceso "Cualquier usuario"). Al terminar tienes una URL que termina en `/exec`. Prueba la URL sin la página con el comando de PowerShell del paso 6 de la guía.
-2. **Probar el formulario en local** (paso 7 de la guía): `PUBLIC_WEBHOOK_URL` en un `.env`, `npm run dev`, un envío de prueba (debe llegar fila, Telegram y correo) y una prueba con URL falsa (debe mostrar el correo de respaldo).
-3. **Variable `PUBLIC_WEBHOOK_URL`** en GitHub: Settings → Secrets and variables → Actions → Variables. Valor: la URL `/exec` del paso 1. Es pública (queda dentro del JS del sitio). El workflow falla si falta. Los secretos del bot **no** van a GitHub: viven solo en las propiedades del script de Google.
-4. **Merge de `conversion-v2` a `main`.**
-5. **Ejecutar el workflow Deploy** (Actions → Deploy a GitHub Pages → Run workflow) y hacer **un envío real de prueba** en producción: debe llegar la fila a la planilla, el aviso a Telegram y el correo, y el formulario debe mostrar la confirmación. Después borra la fila de prueba.
-6. **Verificar la imagen para compartir** (`og.png`): depurador de compartir de Facebook y de LinkedIn (Post Inspector), y enviando el enlace por WhatsApp. Si cambias la imagen, los cachés de esas plataformas la refrescan solo desde su depurador. La plantilla es `design/og/og.html`; se regenera con `npm run og`.
-7. **Google Search Console:** propiedad "Prefijo de la URL" `https://carlos-maldonado578.github.io/`, verificada con el **archivo HTML** `public/google4f9eab580a5fb8ee.html` (se publica en `/google4f9eab580a5fb8ee.html`). **No borres ese archivo nunca**: Google lo revisa de vez en cuando para mantener la verificación (un test del repo comprueba que está en el build con su texto exacto). No va en el `sitemap.xml`. Después de verificar, en **Sitemaps** envía `sitemap.xml`. Con dominio propio habrá que verificar de nuevo la propiedad nueva.
-8. **Futuro: dominio propio.** Cambiar en un solo repaso: `site` en `astro.config.mjs`; `canonical`, `og:url`, `og:image`, `twitter:image` y el JSON-LD en `src/pages/index.astro` (constante `sitio`); `public/sitemap.xml`; `Sitemap:` en `public/robots.txt`; el correo (`correo` en `index.astro`, `copy.md`, `docs/`, el `EMAIL_AVISO` del script) y los tests de `tests/carga-seo.spec.ts` que fijan esas URLs. Después repetir los pasos 6 y 7.
+## Hecho (2026-10-21)
+
+1. **Formulario: planilla, bot y script de Google.** Hecho: planilla "Contactos web" con el script vinculado, bot de Telegram y aplicación web publicada. Guía: `integraciones/formulario/README.md`.
+2. **Probar el formulario en local.** Hecho: fila, Telegram y correo confirmados por Carlos.
+3. **Variable `PUBLIC_WEBHOOK_URL`** en GitHub (variable del repositorio con la URL `/exec`). Hecho.
+4. **Merge de `conversion-v2` a `main`.** Hecho (PR #1, fast-forward). Las ramas `conversion-v2` y `rediseno-talonario` se borraron al cerrar el proyecto.
+5. **Deploy y envío real de prueba en producción.** Hecho: el workflow `Deploy a GitHub Pages` corre en verde (acciones en Node 24, build con Node 22) y el envío de prueba llegó a la planilla, a Telegram y al correo.
+6. **Imagen para compartir (`og.png`).** Publicada y respondiendo 200. **Falta que Carlos confirme cómo se ve al compartir** (depurador de Facebook, Post Inspector de LinkedIn y WhatsApp; si ve otra imagen, añadir `?v=1` al enlace). La plantilla es `design/og/og.html`; se regenera con `npm run og`. Si la cambias, las plataformas la refrescan solo desde su depurador.
+7. **Google Search Console.** Hecho: propiedad "Prefijo de la URL" `https://carlos-maldonado578.github.io/`, verificada con el archivo HTML `public/google4f9eab580a5fb8ee.html` (**no borrar nunca**: Google lo revisa; un test del repo lo comprueba) y `sitemap.xml` enviado. Falta solo mirar en unos días que el estado del sitemap pase a "Correcto".
 
 ## Ideas futuras
 
-- **Copia nocturna de la planilla "Contactos web" al servidor personal.** No se hace por ahora (decisión de Carlos). Mientras tanto, haz una copia manual de vez en cuando (Archivo → Hacer una copia).
-- **Frase "datos con respaldo y avisos cuando algo falla"** en Quién soy: se publica solo cuando exista un respaldo nocturno funcionando de los sistemas que dejas a clientes (no depende del formulario). Hay un test que comprueba que hoy no aparece.
+- **Dominio propio.** No por ahora (sin clientes aún). Cuando se haga, cambiar en un solo repaso: `site` en `astro.config.mjs`; `canonical`, `og:url`, `og:image`, `twitter:image` y el JSON-LD en `src/pages/index.astro` (constante `sitio`); `public/sitemap.xml`; `Sitemap:` en `public/robots.txt`; el correo (`correo` en `index.astro`, `copy.md`, `docs/`, y `EMAIL_AVISO` del script de Google); los tests de `tests/carga-seo.spec.ts` que fijan esas URLs. Después, verificar de nuevo la propiedad en Search Console y repetir el depurador de compartir.
+- **Copia nocturna de la planilla "Contactos web" al servidor personal.** No se hace por ahora. Mientras tanto, copia manual de vez en cuando (Archivo → Hacer una copia).
+- **Frase "datos con respaldo y avisos cuando algo falla"** en Quién soy: se publica solo cuando exista un respaldo nocturno funcionando de los sistemas que dejas a clientes (no depende del formulario). Hay un test que comprueba que hoy no aparece y un `TODO(Carlos)` en `index.astro`.
 
 ## Antes de cada publicación
 
