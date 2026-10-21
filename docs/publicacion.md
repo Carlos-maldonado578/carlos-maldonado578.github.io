@@ -11,7 +11,7 @@ Estado actual: sin dominio propio. URL `https://carlos-maldonado578.github.io/` 
 3. **Variable `PUBLIC_WEBHOOK_URL`** en GitHub (variable del repositorio con la URL `/exec`). Hecho.
 4. **Merge de `conversion-v2` a `main`.** Hecho (PR #1, fast-forward). Las ramas `conversion-v2` y `rediseno-talonario` se borraron al cerrar el proyecto.
 5. **Deploy y envío real de prueba en producción.** Hecho: el workflow `Deploy a GitHub Pages` corre en verde (acciones en Node 24, build con Node 22) y el envío de prueba llegó a la planilla, a Telegram y al correo.
-6. **Imagen para compartir (`og.png`).** Publicada y respondiendo 200. **Falta que Carlos confirme cómo se ve al compartir** (depurador de Facebook, Post Inspector de LinkedIn y WhatsApp; si ve otra imagen, añadir `?v=1` al enlace). La plantilla es `design/og/og.html`; se regenera con `npm run og`. Si la cambias, las plataformas la refrescan solo desde su depurador.
+6. **Imagen para compartir (`og.png`).** Hecho: Carlos confirmó cómo se ve el enlace en WhatsApp y en LinkedIn (Post Inspector). Facebook no se usa, así que no se revisa. La plantilla es `design/og/og.html`; se regenera con `npm run og`. Si la cambias, las plataformas guardan la anterior en caché: en LinkedIn se refresca con el Post Inspector y en WhatsApp añadiendo `?v=1` al enlace.
 7. **Google Search Console.** Hecho: propiedad "Prefijo de la URL" `https://carlos-maldonado578.github.io/`, verificada con el archivo HTML `public/google4f9eab580a5fb8ee.html` (**no borrar nunca**: Google lo revisa; un test del repo lo comprueba) y `sitemap.xml` enviado. Falta solo mirar en unos días que el estado del sitemap pase a "Correcto".
 
 ## Ideas futuras
