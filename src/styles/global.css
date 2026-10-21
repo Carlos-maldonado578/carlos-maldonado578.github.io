@@ -67,6 +67,8 @@ a:hover { color: var(--oliva-h); text-decoration-thickness: 2px; }
 h1, h2 { font-family: var(--f-display); font-weight: 700; text-wrap: balance; }
 h1 em, h2 em { font-style: italic; color: var(--oliva); }
 h1 { font-weight: 800; font-size: clamp(2.75rem, 2rem + 5vw, 5rem); line-height: 1.02; letter-spacing: -0.015em; max-width: 16ch; }
+/* con el hero en dos columnas, "automatizada." (~6,5 veces el tamano de letra) debe caber en la columna de texto (~0,5vw - 52px): el tamano se limita entre 1024 y 1279px y desde ahi vuelve al maximo de 5rem */
+@media (min-width: 1024px) { h1 { font-size: min(clamp(2.75rem, 2rem + 5vw, 5rem), calc(7.4vw - 9px)); } }
 h2 { font-size: clamp(2rem, 1.4rem + 2.6vw, 3.25rem); line-height: 1.08; letter-spacing: -0.01em; max-width: 22ch; overflow-wrap: anywhere; }
 h3 { font: 600 var(--fs-titulo)/1.3 var(--f-titulo); }
 .rotulo { font: 500 var(--fs-label)/1.3 var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; color: var(--tinta-2); }
@@ -354,14 +356,14 @@ main > section + section { border-top: 1px solid var(--linea); }
   .campo textarea { min-height: 96px; }
 }
 
-/* hero: ilustracion de linea fina (mensajes -> planilla -> resumen y aviso) sobre una grilla de puntos muy tenue */
+/* hero: ilustracion de linea fina (mensajes -> planilla -> reporte y aviso) sobre una grilla de puntos muy tenue */
 .hero-ilus { position: relative; }
 .hero-ilus::before { content: ""; position: absolute; inset: -28px -20px; z-index: 0; pointer-events: none;
   background-image: radial-gradient(circle, rgba(58, 74, 31, 0.16) 1.2px, transparent 1.6px); background-size: 22px 22px;
   -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%); mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%); }
 .ilus { position: relative; z-index: 1; display: block; width: 100%; height: auto; color: var(--oliva); }
 .ilus .et { font: 500 14px var(--f-titulo); fill: var(--tinta); stroke: var(--crema-2); stroke-width: 5px; paint-order: stroke; stroke-linejoin: round; }
-/* movimiento (Fase 5): los puntos de los conectores avanzan hacia la planilla y hacia el resumen y el aviso; 3 pasadas y se detienen */
+/* movimiento (Fase 5): los puntos de los conectores avanzan hacia la planilla y hacia el reporte y el aviso; 3 pasadas y se detienen */
 @media (prefers-reduced-motion: no-preference) {
   .ilus .cx { animation: fluir 1.6s linear 3 both; }
 }

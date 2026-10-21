@@ -6,7 +6,7 @@ Costo: **US$0**. El formulario de la página (GitHub Pages) envía el contacto a
 2. te manda un mensaje por **Telegram**,
 3. te manda un **correo** a `carlos.automatiza.tupyme@gmail.com`.
 
-Si Telegram o el correo fallan, la fila igual queda guardada y el error se anota en la hoja `Errores`. Si el script entero falla, la página muestra tu correo de respaldo para que el visitante te escriba directo.
+Si Telegram o el correo fallan, la fila igual queda guardada y el error se registra en la hoja `Errores`. Si el script entero falla, la página muestra tu correo de respaldo para que el visitante te escriba directo.
 
 Archivos de esta carpeta: `Code.gs` (el script), `appsscript.json` (permisos y zona horaria), `Code.test.mjs` (prueba que se corre en tu computador con `npm run test:gs`; no toca Google).
 
@@ -65,7 +65,7 @@ No hace falta escribir nada en la planilla: el script crea las hojas `Contactos`
    - en la planilla, hoja `Contactos`: una fila "Prueba desde el editor" con estado `Nuevo`;
    - en Telegram: un mensaje "Nuevo contacto web";
    - en tu correo: "Nuevo contacto web: Prueba desde el editor" (revisa spam la primera vez).
-5. Si falta algo, mira la hoja `Errores` de la planilla (se crea sola): ahí queda anotado qué falló y por qué. Para Telegram:
+5. Si falta algo, mira la hoja `Errores` de la planilla (se crea sola): ahí queda registrado qué falló y por qué. Para Telegram:
 
 | Dice en `Errores` | Significa |
 |---|---|

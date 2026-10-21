@@ -12,7 +12,7 @@ Astro (sitio estático) en GitHub Pages, user site `carlos-maldonado578.github.i
 
 ## Users
 
-Dueños y encargados de pymes chilenas (producción, comercio, servicios), a menudo sin perfil técnico, que hoy llevan registros a mano (cuadernos, hojas, WhatsApp). Llegan por referido o búsqueda, deciden si Carlos les sirve y si es de confianza. Leen en celular y escritorio.
+Dueños y encargados de pymes chilenas (producción, comercio, servicios), a menudo sin perfil técnico, que hoy llevan registros manuales (cuadernos, hojas, WhatsApp). Llegan por referido o búsqueda, deciden si Carlos les sirve y si es de confianza. Leen en celular y escritorio.
 
 ## Product Purpose
 

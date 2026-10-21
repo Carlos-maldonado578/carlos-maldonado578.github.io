@@ -45,3 +45,26 @@ test.describe('Hero: nota bajo los botones cuando la columna de texto no alcanza
     });
   }
 });
+
+test.describe('Hero: "automatizada." cabe en la columna de texto y no toca la ilustracion', () => {
+  for (const w of [375, 768, 1023, 1024, 1100, 1200, 1279, 1280, 1440]) {
+    test(`a ${w}px`, async ({ page }, info) => {
+      test.skip(info.project.name !== 'desktop', 'se fija el ancho a mano');
+      await page.setViewportSize({ width: w, height: 900 });
+      await abrir(page);
+      const r = await page.evaluate(() => {
+        const em = document.querySelector('h1 em')!;
+        const rango = document.createRange();
+        rango.selectNodeContents(em);
+        const t = rango.getBoundingClientRect();
+        const col = document.querySelector('.hero-texto')!.getBoundingClientRect();
+        const ilus = [...document.querySelectorAll('.hero-ilus .ilus')].find((e) => getComputedStyle(e).display !== 'none')!.getBoundingClientRect();
+        const lineas = new Set([...rango.getClientRects()].map((c) => Math.round(c.top))).size;
+        return { derecha: t.right, columna: col.right, ilusIzq: ilus.left, ilusTop: ilus.top, textoBottom: t.bottom, lineas };
+      });
+      expect(r.lineas, JSON.stringify(r)).toBe(1); // "automatizada." no se parte
+      expect(r.derecha, JSON.stringify(r)).toBeLessThanOrEqual(r.columna);
+      if (w >= 1024) expect(r.derecha, JSON.stringify(r)).toBeLessThan(r.ilusIzq);
+    });
+  }
+});

@@ -3,11 +3,13 @@
 Fuente de verdad del texto. Todo cambio de texto en la página se refleja aquí.
 
 Voz: Carlos en primera persona, chileno profesional, "tú" (sin voseo). Tono: claro, cercano, sobrio.
-Evitar: jerga sin traducir (n8n, servidor, API), frases de plantilla, exclamaciones, cifras inventadas,
+Evitar: jerga sin traducir (n8n, servidor, API, webhook), frases de plantilla, exclamaciones, cifras inventadas,
 tono de agencia o de lujo. "Pega" no va en titulares, etiquetas ni botones (se usa "tarea").
+Lenguaje de negocio conocido (automatizar, registro, reporte, alerta, consolidar, seguimiento); evitar lo coloquial
+("a mano", "se llena sola") y la jerga técnica.
 
-Propuesta de valor: dejo andando solas las tareas repetitivas de tu pyme (registros, pedidos, avisos)
-con las herramientas que ya usas, para que te enteres a tiempo sin anotar a mano.
+Propuesta de valor: automatizo las tareas repetitivas de tu pyme (registros, pedidos, avisos)
+con las herramientas que ya usas, para que te enteres a tiempo sin registrar de forma manual.
 
 Reglas fijas:
 - CTA único en toda la página: **Cuéntame tu caso** (hero, final del caso real tras los ejemplos, formulario).
@@ -28,7 +30,7 @@ Reglas fijas:
 
 - **Título:** Carlos Maldonado · Automatización para pymes en Santiago
 - **Descripción (≤155):** Tu equipo manda un mensaje y el dato queda en tu planilla. Automatizo registros y avisos para pymes en Santiago. Primera conversación sin costo.
-- **Open Graph / Twitter:** mismo título y descripción; `og:site_name` "Carlos Maldonado"; imagen `og.png` 1200×630 (texto alternativo: "Carlos Maldonado. Tu planilla se llena sola. Automatización para pymes en Santiago.").
+- **Open Graph / Twitter:** mismo título y descripción; `og:site_name` "Carlos Maldonado"; imagen `og.png` 1200×630 (texto alternativo: "Carlos Maldonado. Tu planilla, automatizada. Automatización para pymes en Santiago.").
 - **JSON-LD** `ProfessionalService`: nombre "Carlos Maldonado · Automatización para pymes"; Santiago, Chile; fundador Carlos Maldonado, "Desarrollador"; sin teléfono, precios ni reseñas.
 - **404:** "Esta página no existe." + enlace "Volver al inicio".
 
@@ -39,30 +41,30 @@ Un solo enlace al inicio (ícono mensaje-celda + **Carlos *Maldonado*** + descri
 
 ## 1. Hero
 
-# Tu planilla se llena *sola*.
+# Tu planilla, *automatizada*.
 
-Tu equipo manda un mensaje y el dato queda en la planilla. Al final del día te llega el resumen. Yo lo armo todo.
+Tu equipo envía un mensaje y el dato queda registrado en la planilla. Al final del día recibes un reporte. Yo lo implemento y lo mantengo.
 
 [Cuéntame tu caso]  ·  Mira cómo funciona (enlace al caso real)
 Primera conversación sin costo. Te respondo dentro de 1 día hábil.
 
-Sin etiqueta sobre el título. Ilustración: Telegram, Formulario y Correo → Planilla de Google → Resumen y Aviso
+Sin etiqueta sobre el título. Ilustración: Telegram, Formulario y Correo → Planilla de Google → Reporte y Aviso
 (texto alternativo: "Mensajes de Telegram, un formulario o el correo llegan a una planilla de Google, y de la planilla
-salen un resumen y un aviso.").
+salen un reporte y un aviso.").
 
 ## 2. Caso real y ejemplos
 
-## Hoy se anota a mano. Podría anotarse solo.
+## Hoy el registro es manual. Podría ser automático.
 
 Chip: `Cliente real, datos anonimizados`
 
 Línea de tiempo 08:00–20:00.
-- **Antes:** 08:00 Cada uno anota en su hoja. · Sin saber cuánto se produjo. · 17:30 Alguien junta las hojas. · 20:00 Recién ahí sabes el total.
-- **Ahora:** 08:14 Juan manda “120 cajas” y la planilla se llena. · Ya está en la planilla. · 18:00 Te llega el resumen del día.
+- **Antes:** 08:00 Cada uno registra en papel. · Sin saber cuánto se produjo. · 17:30 Alguien consolida las hojas. · 20:00 Recién ahí sabes el total.
+- **Ahora:** 08:14 Juan envía “120 cajas” y queda registrado. · Registrado automáticamente. · 18:00 Recibes el reporte del día.
 
 Tras un filete, rótulo `Ejemplo · Así se vería en tu negocio` (aún no corren en un cliente):
-- **Pedidos** · Antes: Te preguntan por WhatsApp en qué va el pedido. · Ahora: Lo ves en la planilla, con su estado.
-- **Stock** · Antes: Te enteras de que falta harina cuando ya no queda. · Ahora: Te avisan cuando quedan 3 sacos.
+- **Pedidos** · Antes: Te preguntan por WhatsApp en qué va el pedido. · Ahora: Seguimiento en la planilla, con su estado.
+- **Stock** · Antes: Te enteras de que falta harina cuando ya no queda. · Ahora: Recibes una alerta cuando quedan 3 sacos.
 
 [Cuéntame tu caso]
 
@@ -111,7 +113,7 @@ Dos líneas bastan. Te respondo en 1 día hábil.
 - La primera conversación es sin costo.
 
 Campos:
-- **¿Qué haces hoy a mano?** (ayuda: "Por ejemplo: anoto los pedidos a mano y después los paso a una planilla.")
+- **¿Qué tarea haces hoy de forma manual?** (ayuda: "Por ejemplo: registro los pedidos en papel y después los paso a una planilla.")
 - **Tu nombre**
 - **¿A qué correo o teléfono te respondo?**
 

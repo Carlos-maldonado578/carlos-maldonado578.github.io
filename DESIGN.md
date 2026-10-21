@@ -87,7 +87,7 @@ components:
 
 ## Overview
 
-**Creative North Star: "La planilla que se llena sola" (Oficio)**
+**Creative North Star: "La planilla automatizada" (Oficio)**
 
 Una ficha de trabajo bien hecha: crema cálido, titulares serif robustos con un remate en cursiva oliva, bordes finos que ordenan como una planilla y una ilustración de línea fina en vez de capturas o demos. Calma y confianza, no lujo ni SaaS. Se descarta el azul frío y el blanco puro.
 
@@ -131,10 +131,10 @@ Todo tamaño de texto fuera de los `clamp` de titulares sale de estas variables 
 
 ## Typography
 
-**Titulares:** Bitter variable (con Georgia), 800 en el h1 y 700 en los h2, cursiva oliva en la palabra remate (*sola*). **Cuerpo y UI:** Archivo variable (con Arial). **Etiquetas y datos:** mono del sistema (`ui-monospace`, sin fuente descargada).
+**Titulares:** Bitter variable (con Georgia), 800 en el h1 y 700 en los h2, cursiva oliva en la palabra remate (*automatizada*). **Cuerpo y UI:** Archivo variable (con Arial). **Etiquetas y datos:** mono del sistema (`ui-monospace`, sin fuente descargada).
 
 ### Hierarchy
-- **Display** (Bitter 800, clamp 2.75-5rem, 1.02): solo el h1, máx. 16ch (80px a 1440).
+- **Display** (Bitter 800, clamp 2.75-5rem, 1.02): solo el h1, máx. 16ch (80px a 1440). Entre 1024 y 1279px el hero es de dos columnas y "automatizada." (~6,5 veces el tamaño de letra) debe caber en la columna de texto: ahí el h1 se limita a `7.4vw - 9px` (67px a 1024); desde 1280px vuelve a 5rem.
 - **Headline** (Bitter 700, clamp 2-3.25rem, 1.08): h2 de sección.
 - **Title** (Archivo 600, 1.25rem): h3 de pasos y bloques.
 - **Body** (400, 1.0625rem, 1.6) y **Lead** (clamp 1.1875-1.375rem).
@@ -143,7 +143,7 @@ Todo tamaño de texto fuera de los `clamp` de titulares sale de estas variables 
 ### Named Rules
 **The Tabular Rule.** Todo número que se lee como dato usa cifras tabulares.
 
-**The Remate Rule.** Una sola palabra en cursiva oliva por titular y solo donde cierra la idea (*sola*). No se usa en h3.
+**The Remate Rule.** Una sola palabra en cursiva oliva por titular y solo donde cierra la idea (*automatizada*). No se usa en h3.
 
 ## Layout
 
@@ -151,7 +151,7 @@ Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Regla únic
 
 Orden de la página:
 1. **Hero** (crema 2, partido, sin etiqueta: "Automatización para pymes" ya está en la cabecera): h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
-2. **Caso real** (problema y caso fundidos): título "Hoy se anota a mano. Podría anotarse solo.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
+2. **Caso real** (problema y caso fundidos): título "Hoy el registro es manual. Podría ser automático.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
    Dentro del mismo bloque, tras un filete, el rótulo "Ejemplo · Así se vería en tu negocio" y dos tarjetas `hoja` (Pedidos, Stock) con filas Antes / Ahora; un solo CTA al final. No hay sección aparte de servicios.
 3. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
 4. **Quién soy**: dos frases, sin foto ni cajas.
@@ -198,13 +198,13 @@ Título y, debajo, dos tarjetas destacadas (salvia y arena, borde 1px, subgrid p
 Tarjeta hoja (`#FFFDF6`), borde 1px línea, radio 8px, sobre crema. Etiquetas arriba (Archivo 600), campos de 52px con borde 1.5px línea de campo y radio 8px; hover borde tinta; foco borde oliva más contorno 3px; inválido borde error con mensaje debajo. Fallo: caja error con el correo de respaldo; el mensaje escrito no se borra. Éxito: título corto ("Listo, {nombre}. Recibí tu mensaje."), mini-planilla con la hora y "Recibido", y una línea con el contacto, el plazo, la llamada y la forma de corregirse por correo. Valores insertados siempre con `textContent`.
 
 ### Ilustración del hero
-SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones punteadas): Telegram, Formulario y Correo (cajas salvia, arena y rosa, con el nombre debajo) llegan a la planilla de Google (hoja, borde 2.25px, una celda resaltada) y de ahí a Resumen y Aviso. Íconos genéricos de trazo, no logos de marca a color; n8n no aparece en el hero. Horizontal desde 768px, vertical en móvil. Los nombres llevan un contorno del color del fondo para no chocar con los puntos.
+SVG propio de línea fina en una sola tinta (oliva, trazo 1.75px, conexiones punteadas): Telegram, Formulario y Correo (cajas salvia, arena y rosa, con el nombre debajo) llegan a la planilla de Google (hoja, borde 2.25px, una celda resaltada) y de ahí a Reporte y Aviso. Íconos genéricos de trazo, no logos de marca a color; n8n no aparece en el hero. Horizontal desde 768px, vertical en móvil. Los nombres llevan un contorno del color del fondo para no chocar con los puntos.
 
 ### Grilla de puntos
 Solo CSS (`radial-gradient`, puntos de oliva al 16%, paso de 22px), solo detrás de la ilustración del hero y difuminada en los bordes con una máscara. Texto secundario sobre el punto más oscuro: 5.2:1. El resto de la página no lleva fondo decorativo.
 
 ### Movimiento
-Solo el reloj del Caso real en escritorio (`DUR_CASO`, `ESPERA_CASO` en `main.js`): al entrar en pantalla recorre 08:00-20:00 una vez; los hitos aparecen al ser alcanzados, hay botón de pausa de 44px y, con `prefers-reduced-motion`, sin JS o en móvil, queda el estado final estático. La cabecera muestra su botón al salir del CTA del hero. Segundo y último movimiento (Fase 5): los puntos de los conectores de la ilustración del hero avanzan hacia la planilla y hacia el resumen y el aviso (`fluir`, 1.6s lineal, 3 pasadas y se detienen), solo con `prefers-reduced-motion: no-preference`. Nada más se mueve solo; no se agrega decoración.
+Solo el reloj del Caso real en escritorio (`DUR_CASO`, `ESPERA_CASO` en `main.js`): al entrar en pantalla recorre 08:00-20:00 una vez; los hitos aparecen al ser alcanzados, hay botón de pausa de 44px y, con `prefers-reduced-motion`, sin JS o en móvil, queda el estado final estático. La cabecera muestra su botón al salir del CTA del hero. Segundo y último movimiento (Fase 5): los puntos de los conectores de la ilustración del hero avanzan hacia la planilla y hacia el reporte y el aviso (`fluir`, 1.6s lineal, 3 pasadas y se detienen), solo con `prefers-reduced-motion: no-preference`. Nada más se mueve solo; no se agrega decoración.
 
 ## Do's and Don'ts
 

@@ -33,13 +33,13 @@ test.describe('Formulario', () => {
       return r.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' });
     });
     await abrir(page);
-    await llenar(page, { nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Anotamos los pedidos a mano.' });
+    await llenar(page, { nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Registramos los pedidos en papel.' });
     await page.locator('#enviar').click();
     await expect(page.locator('#exito')).toBeVisible();
     expect(n).toBe(1);
     expect(ct).toBe('text/plain;charset=utf-8');
     expect(Object.keys(cuerpo).sort()).toEqual(['contacto', 'hp', 'mensaje', 'nombre', 't']);
-    expect(cuerpo).toMatchObject({ nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Anotamos los pedidos a mano.', hp: '' });
+    expect(cuerpo).toMatchObject({ nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Registramos los pedidos en papel.', hp: '' });
     expect(typeof cuerpo.t).toBe('number');
     expect(cuerpo.t).toBeGreaterThan(0);
   });
@@ -83,7 +83,7 @@ test.describe('Formulario', () => {
     await expect(page.locator('#exito')).toBeHidden();
     await expect(page.locator('#f-nombre')).toHaveValue('Ana Prueba');
     await expect(page.locator('#f-contacto')).toHaveValue('ana@ejemplo.cl');
-    await expect(page.locator('#f-mensaje')).toHaveValue(/Anotamos/);
+    await expect(page.locator('#f-mensaje')).toHaveValue(/Registramos/);
     await expect(page.locator('#enviar')).toHaveText('Reintentar');
     await expect(page.locator('#f-nombre')).toBeEditable(); // se desbloquea para reintentar
   });
@@ -105,7 +105,7 @@ test.describe('Formulario', () => {
       await expect(page.locator('#fallo'), JSON.stringify(r)).toBeVisible();
       await expect(page.locator('#fallo a')).toHaveAttribute('href', /^mailto:carlos\.automatiza\.tupyme@gmail\.com/);
       await expect(page.locator('#exito')).toBeHidden();
-      await expect(page.locator('#f-mensaje')).toHaveValue(/Anotamos/);
+      await expect(page.locator('#f-mensaje')).toHaveValue(/Registramos/);
     }
   });
 
@@ -118,7 +118,7 @@ test.describe('Formulario', () => {
     await expect(page.locator('#enviar')).toHaveText('Enviando…');
     await expect(page.locator('#fallo')).toBeVisible({ timeout: 20_000 });
     await expect(page.locator('#exito')).toBeHidden();
-    await expect(page.locator('#f-mensaje')).toHaveValue(/Anotamos/);
+    await expect(page.locator('#f-mensaje')).toHaveValue(/Registramos/);
   });
 
   test('sin PUBLIC_WEBHOOK_URL: falla con respaldo y NUNCA simula exito', async ({ page }) => {

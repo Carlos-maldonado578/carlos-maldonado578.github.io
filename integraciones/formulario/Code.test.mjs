@@ -59,7 +59,7 @@ function entorno({ telegram = 200, correoFalla = false, telegramLanza = false, h
   return { ctx, hojas, llamadas, post, sinEspera, props, arreglar: () => { falla = false; }, vaciaExistente: (n) => hoja(n) };
 }
 
-const bueno = (extra = {}) => ({ nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Anotamos los pedidos a mano y los pasamos a una planilla.', hp: '', t: 9000, ...extra });
+const bueno = (extra = {}) => ({ nombre: 'Ana Prueba', contacto: 'ana@ejemplo.cl', mensaje: 'Registramos los pedidos en papel y los pasamos a una planilla.', hp: '', t: 9000, ...extra });
 
 test('contacto valido: fila "Nuevo", aviso a Telegram con el token en la URL y correo', () => {
   const e = entorno();

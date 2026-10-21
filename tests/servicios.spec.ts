@@ -16,9 +16,9 @@ test.describe('Estructura y texto de la pagina', () => {
     await expect(e.locator('.rotulo-ej')).toHaveText('Ejemplo · Así se vería en tu negocio');
     await expect(e.locator('h4')).toHaveText(['Pedidos', 'Stock']);
     await expect(e.locator('li').nth(0)).toContainText('Te preguntan por WhatsApp en qué va el pedido.');
-    await expect(e.locator('li').nth(0)).toContainText('Lo ves en la planilla, con su estado.');
+    await expect(e.locator('li').nth(0)).toContainText('Seguimiento en la planilla, con su estado.');
     await expect(e.locator('li').nth(1)).toContainText('Te enteras de que falta harina cuando ya no queda.');
-    await expect(e.locator('li').nth(1)).toContainText('Te avisan cuando quedan 3 sacos.');
+    await expect(e.locator('li').nth(1)).toContainText('Recibes una alerta cuando quedan 3 sacos.');
     await expect(e.locator('svg, img')).toHaveCount(0);
     await expect(page.locator('.caso-sec .btn')).toHaveCount(1);
     const x = await e.locator('li').evaluateAll((l) => l.map((i) => Math.round(i.getBoundingClientRect().left)));
@@ -34,9 +34,25 @@ test.describe('Estructura y texto de la pagina', () => {
     for (const li of await page.locator('.ficha li, .pasos > li, .no-hago li').all()) expect(await li.locator('svg.ic').count()).toBe(1);
   });
 
+  test('lenguaje de negocio: automatizar, registro, reporte, alerta; nada de "a mano" ni "se llena sola"', async ({ page }) => {
+    await abrir(page);
+    await expect(page.locator('h1')).toHaveText('Tu planilla, automatizada.');
+    await expect(page.locator('h1 em')).toHaveText('automatizada');
+    await expect(page.locator('.hero .lead')).toHaveText('Tu equipo envía un mensaje y el dato queda registrado en la planilla. Al final del día recibes un reporte. Yo lo implemento y lo mantengo.');
+    const antes = page.locator('.antes .hito p, .antes .tramo span');
+    await expect(antes).toHaveText(['Cada uno registra en papel.', 'Sin saber cuánto se produjo.', 'Alguien consolida las hojas.', 'Recién ahí sabes el total.']);
+    const ahora = page.locator('.ahora .hito p, .ahora .tramo span');
+    await expect(ahora).toHaveText(['Juan envía “120 cajas” y queda registrado.', 'Registrado automáticamente.', 'Recibes el reporte del día.']);
+    await expect(page.locator('label[for=f-mensaje]')).toHaveText('¿Qué tarea haces hoy de forma manual?');
+    await expect(page.locator('#a-mensaje')).toHaveText('Por ejemplo: registro los pedidos en papel y después los paso a una planilla.');
+    const texto = (await page.locator('body').innerText()).toLowerCase();
+    for (const viejo of ['a mano', 'se llena sola', 'anota', 'podría anotarse solo']) expect(texto, viejo).not.toContain(viejo);
+    expect(await page.locator('meta[property="og:image:alt"]').getAttribute('content')).toBe('Carlos Maldonado. Tu planilla, automatizada. Automatización para pymes en Santiago.');
+  });
+
   test('problema y caso son una sola seccion: titulo, chip, linea de tiempo y un boton', async ({ page }) => {
     await abrir(page);
-    await expect(page.locator('#t-caso')).toHaveText('Hoy se anota a mano. Podría anotarse solo.');
+    await expect(page.locator('#t-caso')).toHaveText('Hoy el registro es manual. Podría ser automático.');
     await expect(page.locator('.banda-caso .chip-real')).toHaveText('Cliente real, datos anonimizados');
     await expect(page.locator('.caso-sec .btn')).toHaveText('Cuéntame tu caso');
     await expect(page.locator('#t-problema')).toHaveCount(0);
@@ -61,7 +77,7 @@ test.describe('Estructura y texto de la pagina', () => {
   test('hero: Formulario en la ilustracion; WhatsApp solo aparece en el FAQ', async ({ page }) => {
     await abrir(page);
     const nombres = await page.locator('.hero-ilus .ilus:visible text').allTextContents();
-    expect(nombres).toEqual(['Telegram', 'Formulario', 'Correo', 'Planilla de Google', 'Resumen', 'Aviso']);
+    expect(nombres).toEqual(['Telegram', 'Formulario', 'Correo', 'Planilla de Google', 'Reporte', 'Aviso']);
     expect(await page.locator('.hero').textContent()).not.toMatch(/WhatsApp/);
     await expect(page.locator('section:has(#t-faq)')).toContainText('WhatsApp');
   });
