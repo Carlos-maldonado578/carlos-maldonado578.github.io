@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { existsSync } from 'node:fs';
 import { abrir } from './comun';
 
 test.describe('Carga y SEO basico', () => {
@@ -105,5 +106,14 @@ test.describe('Carga y SEO basico', () => {
     await expect(page.locator('main a')).toHaveAttribute('href', '/');
     expect((await page.locator('main a').boundingBox())!.height).toBeGreaterThanOrEqual(44);
     await expect(page.locator('.cabecera')).toBeVisible();
+  });
+
+  test('verificacion de Google Search Console: el archivo esta en el build con su texto exacto y no entra al sitemap (no borrar nunca)', async ({ request }) => {
+    const archivo = 'google4f9eab580a5fb8ee.html';
+    expect(existsSync(`dist-test/${archivo}`), 'dist-test/' + archivo).toBe(true);
+    const r = await request.get('/' + archivo);
+    expect(r.status()).toBe(200);
+    expect(await r.text()).toBe('google-site-verification: ' + archivo);
+    expect(await (await request.get('/sitemap.xml')).text()).not.toMatch(/google/i);
   });
 });
