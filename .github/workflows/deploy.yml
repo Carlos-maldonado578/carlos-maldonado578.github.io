@@ -22,10 +22,10 @@ jobs:
       # Es publica: queda dentro del JS del sitio. Debe ser la URL /exec de la aplicacion web de Google Apps Script (ver integraciones/formulario/README.md).
       PUBLIC_WEBHOOK_URL: ${{ vars.PUBLIC_WEBHOOK_URL }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Falla si falta el webhook
         run: test -n "$PUBLIC_WEBHOOK_URL" || { echo "Falta la variable PUBLIC_WEBHOOK_URL"; exit 1; }
-      - uses: withastro/action@v3
+      - uses: withastro/action@v6
         with:
           node-version: 22 # Astro 7 exige Node >= 22.12 (con 20 el build falla)
 
@@ -37,4 +37,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

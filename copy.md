@@ -20,9 +20,9 @@ Reglas fijas:
 - El caso real no dice dónde corre ni nombra herramientas (sin "n8n").
 - **"Datos con respaldo" no se publica** hasta que haya un respaldo nocturno funcionando de los sistemas que dejo a
   clientes (la frase habla de esos sistemas, no del formulario de contacto, que guarda en una planilla de Google).
-  Hoy no aparece en la página (solo hay un `TODO(Carlos)` en `index.astro`, en Quién soy).
-- Sin cifras, precios, reseñas ni clientes inventados. El caso real tiene un `TODO(Carlos)` abierto: cuántas personas
-  registran y cuánto tomaba juntar las hojas.
+  Hoy no aparece en la página (solo hay un comentario `TODO(Carlos)` en `index.astro`, en Quién soy, para cuando exista ese respaldo).
+- Sin cifras, precios, reseñas ni clientes inventados. El caso real queda **sin cifras de forma definitiva** (decisión
+  de Carlos, 2026-10-21: no hay datos; no se agrega ninguna).
 
 ---
 

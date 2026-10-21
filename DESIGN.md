@@ -151,7 +151,7 @@ Una columna centrada, máx. 1200px más margen lateral (20/24/40px). Regla únic
 
 Orden de la página:
 1. **Hero** (crema 2, partido, sin etiqueta: "Automatización para pymes" ya está en la cabecera): h1, subtítulo, CTA y "Mira cómo funciona" (baja al caso) a la izquierda; ilustración de línea fina a la derecha con grilla de puntos tenue detrás. En 375 la ilustración va en vertical, debajo del CTA.
-2. **Caso real** (problema y caso fundidos): título "Hoy el registro es manual. Podría ser automático.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Espacio reservado para un dato real (`.caso-datos`).
+2. **Caso real** (problema y caso fundidos): título "Hoy el registro es manual. Podría ser automático.", chip "Cliente real, datos anonimizados" y el eje horario Antes / Ahora dentro de una **tarjeta salvia contenida** (margen lateral, radio 8px). En móvil, dos listas apiladas con la hora a la izquierda. Sin cifras del cliente, de forma definitiva (no hay datos).
    Dentro del mismo bloque, tras un filete, el rótulo "Ejemplo · Así se vería en tu negocio" y dos tarjetas `hoja` (Pedidos, Stock) con filas Antes / Ahora; un solo CTA al final. No hay sección aparte de servicios.
 3. **Cómo trabajo + Qué no hago**: cuatro pasos con número, título y una línea; tres límites.
 4. **Quién soy**: dos frases, sin foto ni cajas.

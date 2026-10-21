@@ -324,10 +324,6 @@ main > section + section { border-top: 1px solid var(--linea); }
 @media (min-width: 768px) { .hero-cta .enlace-texto { white-space: nowrap; } }
 .cabecera.cta-oculto .btn, .cabecera.cta-envio .btn { visibility: hidden; }
 
-/* caso: espacio reservado para un dato real (se muestra solo si tiene contenido) */
-.caso-datos { list-style: none; padding: 0; margin: var(--s5) 0 0; display: flex; flex-wrap: wrap; gap: var(--s3) var(--s6); }
-.caso-datos:empty { display: none; }
-.caso-datos li { font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* quien soy */
 .quien-grid { display: grid; gap: var(--s6); }
