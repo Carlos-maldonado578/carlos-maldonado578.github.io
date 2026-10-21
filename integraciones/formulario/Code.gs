@@ -5,8 +5,11 @@
  * Por cada contacto valido: fila en la planilla + aviso a Telegram + correo.
  * Guia de instalacion: README.md (en esta carpeta).
  *
+ * Este script esta VINCULADO a la planilla "Contactos web" (se crea desde la planilla: Extensiones > Apps Script).
+ * Solo puede tocar esa planilla (permiso spreadsheets.currentonly); no necesita ni guarda su ID.
+ *
  * Secretos: NO van en este archivo. Se leen de Propiedades del script (Configuracion del proyecto):
- *   TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, SHEET_ID, EMAIL_AVISO
+ *   TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, EMAIL_AVISO
  */
 
 var HOJA = 'Contactos';
@@ -37,8 +40,14 @@ function doPost(e) {
     try {
       var tope = excedeLimites(d.contacto);
       if (tope) {
-        if (tope === 'global') alertarTope();
-        return responder({ ok: true }); // mismo criterio que el spam
+        // Tope global: alerta unica por Telegram y {ok:false}, para que el visitante real vea el correo de respaldo
+        // y no se pierda su contacto en silencio. Limite por contacto: {ok:true}, es la misma persona reenviando
+        // y su primer mensaje ya quedo guardado.
+        if (tope === 'global') {
+          alertarTope();
+          return responder({ ok: false });
+        }
+        return responder({ ok: true });
       }
       guardarFila(d);
       registrarEnvio(d.contacto); // solo despues de guardar: si guardar falla, el reintento cuenta como primero
@@ -118,14 +127,14 @@ function horaActual() {
   return Utilities.formatDate(new Date(), ZONA, 'yyyyMMddHH');
 }
 
-// Al llegar al tope global se avisa UNA vez por hora (por Telegram y en la hoja Errores): puede ser abuso,
-// y mientras dura los contactos reales reciben ok sin guardarse.
+// Al llegar al tope global se avisa UNA vez por hora (por Telegram y en la hoja Errores): puede ser abuso.
+// Mientras dura, los envios responden {ok:false} y la pagina muestra el correo de respaldo.
 function alertarTope() {
   var cache = CacheService.getScriptCache();
   var marca = 'g:alerta:' + horaActual();
   if (cache.get(marca)) return;
   cache.put(marca, '1', 3600);
-  var msg = 'Tope de ' + MAX_POR_HORA_GLOBAL + ' contactos por hora alcanzado: posible abuso. Los envios siguientes de esta hora no se guardan.';
+  var msg = 'Tope de ' + MAX_POR_HORA_GLOBAL + ' contactos por hora alcanzado: posible abuso. Los envios siguientes de esta hora no se guardan (los visitantes ven el correo de respaldo).';
   registrarError('tope-global', msg);
   try {
     UrlFetchApp.fetch('https://api.telegram.org/bot' + prop('TELEGRAM_TOKEN') + '/sendMessage', {
@@ -167,7 +176,7 @@ function segura(v) {
 }
 
 function guardarFila(d) {
-  var libro = SpreadsheetApp.openById(prop('SHEET_ID'));
+  var libro = SpreadsheetApp.getActiveSpreadsheet(); // planilla contenedora del script vinculado
   var hoja = libro.getSheetByName(HOJA) || libro.insertSheet(HOJA);
   if (hoja.getLastRow() === 0) hoja.appendRow(['Fecha', 'Nombre', 'Contacto', 'Mensaje', 'Estado']); // tambien si la hoja ya existia vacia
   var fila = hoja.getLastRow() + 1;
@@ -231,7 +240,7 @@ function registrarError(origen, err) {
     var msg = String(err && err.message ? err.message : err);
     var token = PropertiesService.getScriptProperties().getProperty('TELEGRAM_TOKEN');
     if (token) msg = msg.split(token).join('***');
-    var libro = SpreadsheetApp.openById(prop('SHEET_ID'));
+    var libro = SpreadsheetApp.getActiveSpreadsheet();
     var hoja = libro.getSheetByName(HOJA_ERRORES) || libro.insertSheet(HOJA_ERRORES);
     if (hoja.getLastRow() === 0) hoja.appendRow(['Fecha', 'Origen', 'Error']);
     hoja.appendRow([Utilities.formatDate(new Date(), ZONA, 'yyyy-MM-dd HH:mm:ss'), origen, segura(msg.slice(0, 500))]); // appendRow es atomico: no pisa filas

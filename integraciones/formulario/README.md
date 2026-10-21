@@ -10,7 +10,9 @@ Si Telegram o el correo fallan, la fila igual queda guardada y el error se anota
 
 Archivos de esta carpeta: `Code.gs` (el script), `appsscript.json` (permisos y zona horaria), `Code.test.mjs` (prueba que se corre en tu computador con `npm run test:gs`; no toca Google).
 
-**Importante:** el token del bot, el chat_id, el ID de la planilla y el correo de aviso **no van en el código ni en GitHub**. Se cargan en el paso 4, dentro de Google.
+**El script vive dentro de la planilla** (script "vinculado"): solo puede leer y escribir **esa** planilla, no las demás de tu cuenta de Google (puede que tengas planillas de clientes). Por eso el permiso es `spreadsheets.currentonly` y no hay que copiar ningún ID.
+
+**Importante:** el token del bot, el chat_id y el correo de aviso **no van en el código ni en GitHub**. Se cargan en el paso 4, dentro de Google.
 
 Necesitas: tu cuenta de Google y la app de Telegram.
 
@@ -20,10 +22,10 @@ Necesitas: tu cuenta de Google y la app de Telegram.
 
 1. Entra a <https://sheets.google.com> y crea una planilla en blanco.
 2. Ponle de nombre **Contactos web** (arriba a la izquierda).
-3. Copia su **ID**: está en la dirección del navegador, entre `/d/` y `/edit`.
-   Ejemplo: `https://docs.google.com/spreadsheets/d/`**`1AbC...xyz`**`/edit` → el ID es la parte en negrita. Guárdalo en un bloc de notas.
 
 No hace falta escribir nada en la planilla: el script crea las hojas `Contactos` y `Errores` con sus encabezados la primera vez. Verás además una pestaña vacía llamada **Hoja 1** (o *Sheet1*): puedes **borrarla** o **renombrarla a `Contactos`** (el script le pone los encabezados si está vacía).
+
+**No borres ni muevas esta planilla**: el script vive dentro de ella y se iría con ella.
 
 ## 2. Crear el bot de Telegram
 
@@ -33,23 +35,23 @@ No hace falta escribir nada en la planilla: el script crea las hojas `Contactos`
 4. Abre tu bot (el enlace que te da BotFather) y escríbele cualquier cosa, por ejemplo `hola`. Sin este paso el bot no puede escribirte.
 5. Obtén tu **chat_id**: en el navegador abre `https://api.telegram.org/bot` + tu token + `/getUpdates` (todo junto, sin espacios). Busca `"chat":{"id":` y copia el número que sigue (puede ser negativo si es un grupo). Guárdalo. Si ves `"result":[]` (vacío), es que aún no le escribiste `hola` al bot (paso 4): escríbele y recarga la página.
 
-## 3. Crear el proyecto de Apps Script
+## 3. Crear el script dentro de la planilla
 
-1. Entra a <https://script.google.com> y pulsa **Nuevo proyecto**. Ponle de nombre **Formulario contacto**.
-2. En el editor verás un archivo `Código.gs` con una función vacía. Borra todo su contenido. Abre `integraciones/formulario/Code.gs` de este repositorio en tu computador, selecciónalo todo (Ctrl+A), cópialo (Ctrl+C) y pégalo en el editor (Ctrl+V).
-3. Ve a **Configuración del proyecto** (el engranaje, a la izquierda) y activa **Mostrar el archivo de manifiesto "appsscript.json" en el editor**.
-4. Vuelve a **Editor**, abre `appsscript.json`, borra su contenido y pega el de `integraciones/formulario/appsscript.json` de este repositorio.
-5. Pulsa **Guardar** (el disquete).
+1. Abre la planilla **Contactos web** y, en el menú de arriba, pulsa **Extensiones** → **Apps Script**. Se abre el editor en una pestaña nueva (no entres a script.google.com: el script tiene que nacer desde la planilla).
+2. Arriba a la izquierda pulsa el nombre "Proyecto sin título" y ponle **Formulario contacto**.
+3. En el editor verás un archivo `Código.gs` con una función vacía. Borra todo su contenido. Abre `integraciones/formulario/Code.gs` de este repositorio en tu computador, selecciónalo todo (Ctrl+A), cópialo (Ctrl+C) y pégalo en el editor (Ctrl+V).
+4. Ve a **Configuración del proyecto** (el engranaje, a la izquierda) y activa **Mostrar el archivo de manifiesto "appsscript.json" en el editor**.
+5. Vuelve a **Editor**, abre `appsscript.json`, borra su contenido y pega el de `integraciones/formulario/appsscript.json` de este repositorio.
+6. Pulsa **Guardar** (el disquete).
 
 ## 4. Cargar las claves en el script
 
-1. En **Configuración del proyecto**, baja hasta **Propiedades de la secuencia de comandos** (en inglés: *Script properties*) y pulsa **Agregar propiedad de secuencia de comandos** cuatro veces. Escribe exactamente estos nombres (mayúsculas y guion bajo) y sus valores:
+1. En **Configuración del proyecto**, baja hasta **Propiedades de la secuencia de comandos** (en inglés: *Script properties*) y pulsa **Agregar propiedad de secuencia de comandos** tres veces. Escribe exactamente estos nombres (mayúsculas y guion bajo) y sus valores:
 
 | Propiedad | Valor |
 |---|---|
 | `TELEGRAM_TOKEN` | el token del paso 2 |
 | `TELEGRAM_CHAT_ID` | el chat_id del paso 2 |
-| `SHEET_ID` | el ID de la planilla del paso 1 |
 | `EMAIL_AVISO` | `carlos.automatiza.tupyme@gmail.com` |
 
 2. Pulsa **Guardar propiedades de la secuencia de comandos**.
@@ -57,7 +59,7 @@ No hace falta escribir nada en la planilla: el script crea las hojas `Contactos`
 ## 5. Probar y autorizar
 
 1. En el **Editor**, arriba elige la función **`probar`** en el menú desplegable y pulsa **Ejecutar**.
-2. Google pide permisos. Pulsa **Revisar permisos**, elige tu cuenta y, cuando diga "Google no ha verificado esta app", pulsa **Configuración avanzada** → **Ir a Formulario contacto (no seguro)** → **Permitir**. Es tu propio script: pide acceso a tus planillas, a enviar correos y a conectarse a Telegram, que es justo lo que hace.
+2. Google pide permisos. Pulsa **Revisar permisos**, elige tu cuenta y, cuando diga "Google no ha verificado esta app", pulsa **Configuración avanzada** → **Ir a Formulario contacto (no seguro)** → **Permitir**. Es tu propio script: pide acceso a esta planilla (solo a esta), a enviar correos y a conectarse a Telegram, que es justo lo que hace.
 3. Al terminar, en el **Registro de ejecución** debe decir `Respuesta: {"ok":true}`.
 4. Comprueba las tres cosas:
    - en la planilla, hoja `Contactos`: una fila "Prueba desde el editor" con estado `Nuevo`;
@@ -85,13 +87,25 @@ Puedes borrar la fila de prueba.
    - **Quién tiene acceso:** la opción **sin** inicio de sesión: **Cualquier usuario** (en inglés *Anyone*; en algunas pantallas aparece como *Cualquier persona*). **No** elijas "Cualquier usuario con cuenta de Google" (*Anyone with Google account*): obligaría al visitante a iniciar sesión y el formulario fallaría.
 4. Pulsa **Implementar**. Copia la **URL de la aplicación web**: termina en `/exec`. Esa es tu `PUBLIC_WEBHOOK_URL`. Va dentro del código público de la página, así que **no es secreta**: cualquiera podría enviarte contactos falsos, y para eso están los límites del script (ver más abajo).
 5. Si abres esa URL en el navegador verás un error de Google ("No se encontró la función de secuencia de comandos: doGet"). **Es normal**: la dirección solo recibe envíos del formulario, no páginas.
-6. Pruébala sin la página (en una terminal; reemplaza `URL` por la tuya y espera: `t` va alto para que no lo tome por bot):
+6. Pruébala sin la página. Reemplaza `URL` por la tuya (entre comillas). El mensaje lleva `t` alto para que el script no lo tome por un bot.
+
+   **En Windows (PowerShell), recomendado:**
+
+   ```powershell
+   Invoke-RestMethod -Method Post -Uri "URL" -ContentType "text/plain" -Body '{"nombre":"Prueba PowerShell","contacto":"ps@ejemplo.cl","mensaje":"Prueba desde PowerShell, si llega todo funciona.","hp":"","t":10000}'
+   ```
+
+   Debe mostrar `ok : True`. (No uses `curl` en PowerShell: ahí `curl` es otro comando. Tampoco sirve en CMD por las comillas simples.)
+
+   **En Git Bash, macOS o Linux:**
 
    ```
    curl -L -X POST -H "Content-Type: text/plain" -d '{"nombre":"Prueba curl","contacto":"curl@ejemplo.cl","mensaje":"Prueba desde la terminal, si llega todo funciona.","hp":"","t":10000}' "URL"
    ```
 
-   Debe responder `{"ok":true}` y llegar la fila, el Telegram y el correo. Si responde HTML o un error de Google, revisa que el acceso sea "Cualquier usuario" y que la URL termine en `/exec`.
+   Debe responder `{"ok":true}`.
+
+   En ambos casos deben llegar la fila, el Telegram y el correo. Si responde HTML o un error de Google, revisa que el acceso sea "Cualquier usuario" y que la URL termine en `/exec`. Si repites la prueba con el mismo contacto en menos de un minuto, responde `{"ok":true}` pero no guarda otra fila (es el límite por contacto): usa otro contacto en cada prueba.
 
 ## 7. Probar desde la página en tu computador
 
@@ -123,8 +137,8 @@ La URL `/exec` sigue siendo la misma. **No** uses "Nueva implementación" para c
 ## Si algo falla
 
 - Primero mira la hoja `Errores` de la planilla y, en el editor de Apps Script, **Ejecuciones** (menú de la izquierda).
-- **Se filtró el token del bot:** en Telegram escríbele a @BotFather `/revoke`, elige el bot, y copia el token nuevo en la propiedad `TELEGRAM_TOKEN` (paso 4). Publica una nueva versión (paso 8).
-- **Llegan avisos de "Tope de 30 contactos por hora alcanzado":** alguien está enviando muchos formularios (posible abuso). Mientras dura esa hora, los envíos siguientes no se guardan.
+- **Se filtró el token del bot:** en Telegram escríbele a @BotFather `/revoke`, elige el bot, y copia el token nuevo en la propiedad `TELEGRAM_TOKEN` (paso 4). Las propiedades se leen en cada envío: no hace falta publicar de nuevo.
+- **Te llega por Telegram "Tope de 30 contactos por hora alcanzado":** alguien está enviando muchos formularios (posible abuso). Mientras dura esa hora, los envíos siguientes **no se guardan** y quien los hace ve "No se pudo enviar" con tu correo de respaldo, así que un visitante real puede escribirte directo. Revisa la hoja `Contactos` para ver si los envíos son reales y, si hace falta, espera a la hora siguiente (el contador se reinicia solo).
 
 ## Qué hace el script con cada envío
 
@@ -132,7 +146,8 @@ La URL `/exec` sigue siendo la misma. **No** uses "Nueva implementación" para c
 |---|---|---|
 | Campo trampa (`sitio_web`) con texto, o enviado en menos de 3 s | `{"ok":true}` | No (el bot no se entera) |
 | Datos inválidos (mismas reglas que la página; nombre ≤100, contacto ≤150, mensaje ≤2000) | `{"ok":false}` | No |
-| Más de 1 envío por minuto, o más de 5 por hora, del mismo contacto (mismo correo aunque cambien mayúsculas o `+etiqueta`; mismo teléfono aunque cambie el formato); o más de 30 por hora en total | `{"ok":true}` | No (el tope global avisa una vez por Telegram) |
+| Más de 1 envío por minuto, o más de 5 por hora, del **mismo contacto** (mismo correo aunque cambien mayúsculas o `+etiqueta`; mismo teléfono aunque cambie el formato): es la misma persona reenviando y su primer mensaje ya quedó guardado | `{"ok":true}` | No |
+| Más de **30 por hora en total** (tope global) | `{"ok":false}`: la página muestra "No se pudo enviar" con tu correo de respaldo | No. Avisa **una vez por hora** por Telegram y en la hoja `Errores` |
 | Válido | `{"ok":true}` | Fila + Telegram + correo |
 
 Las celdas se guardan como texto: un valor que empiece con `=`, `+`, `-` o `@` queda con un apóstrofo delante, para que nadie pueda meter fórmulas en tu planilla.
@@ -142,5 +157,5 @@ Las celdas se guardan como texto: un valor que empiece con `=`, `+`, `-` o `@` q
 - **Correo:** una cuenta gratuita de Google puede enviar unos 100 correos al día desde Apps Script. Con el tope de 30 contactos por hora no debería importar; si se acaba, la fila y el Telegram igual funcionan.
 - **Límites de envío:** usan la memoria temporal de Google (mejor esfuerzo): frenan el abuso normal, pero no son una garantía absoluta.
 - **Planilla = tu base de datos:** haz una copia de vez en cuando (Archivo → Hacer una copia). La copia automática hacia tu servidor personal queda como idea futura en `docs/publicacion.md`.
-- **Si cambias de cuenta de Google:** repite los pasos 1 a 6 (la planilla y el script pertenecen a la cuenta). Si solo cambias de planilla: pasos 1, 4 y 8.
+- **Si cambias de cuenta de Google o de planilla:** repite los pasos 1 a 6, porque el script vive dentro de la planilla y la planilla pertenece a la cuenta. Si copias la planilla (Archivo → Hacer una copia) el script se copia con ella, pero hay que cargar de nuevo las propiedades (paso 4) y publicarlo otra vez (paso 6): sale una URL `/exec` nueva que debes poner en `PUBLIC_WEBHOOK_URL`.
 - **Pruebas del script en tu computador:** `npm run test:gs` (simula los servicios de Google; no toca tu planilla ni Telegram).

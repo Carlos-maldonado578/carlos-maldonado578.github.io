@@ -10,7 +10,7 @@ const codigo = readFileSync(new URL('./Code.gs', import.meta.url), 'utf8');
 const TOKEN = '123456789:AAFakeTokenParaPruebasNoEsReal_abcdefghij';
 
 // Entorno nuevo por prueba: planilla, cache, Telegram y correo simulados
-function entorno({ telegram = 200, correoFalla = false, telegramLanza = false, hojaFalla = false } = {}) {
+function entorno({ telegram = 200, correoFalla = false, telegramLanza = false, hojaFalla = false, sinPlanilla = false } = {}) {
   const hojas = {};
   const llamadas = { fetch: [], correos: [] };
   const hoja = (nombre) => (hojas[nombre] ??= { filas: [], formatos: [] });
@@ -29,9 +29,10 @@ function entorno({ telegram = 200, correoFalla = false, telegramLanza = false, h
   });
   libro.getSheetByName = (n) => (hojas[n] ? wrap(n) : null);
   const cache = new Map();
-  const props = { TELEGRAM_TOKEN: TOKEN, TELEGRAM_CHAT_ID: '99', SHEET_ID: 'sheet-id', EMAIL_AVISO: 'aviso@ejemplo.cl' };
+  const props = { TELEGRAM_TOKEN: TOKEN, TELEGRAM_CHAT_ID: '99', EMAIL_AVISO: 'aviso@ejemplo.cl' };
   const ctx = {
-    SpreadsheetApp: { openById: () => libro },
+    // Script vinculado: solo getActiveSpreadsheet(). openById no existe a proposito: si el codigo lo usara, las pruebas fallan.
+    SpreadsheetApp: { getActiveSpreadsheet: () => { if (sinPlanilla) throw new Error('No hay planilla contenedora'); return libro; } },
     PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => props[k] ?? null }) },
     CacheService: { getScriptCache: () => ({ get: (k) => cache.get(k) ?? null, put: (k, v) => cache.set(k, v) }) },
     LockService: { getScriptLock: () => ({ waitLock() {}, releaseLock() {} }) },
@@ -118,10 +119,19 @@ test('limites: 1 por minuto y 5 por hora por contacto (aunque lo escriban distin
   assert.equal(e.llamadas.correos.length, 5);
 });
 
-test('limite global: 30 por hora entre todos los contactos', () => {
+test('limite global: 30 por hora; desde el 31 responde {ok:false} (el visitante ve el correo) y no guarda', () => {
   const e = entorno();
-  for (let i = 0; i < 40; i++) assert.deepEqual(e.post(bueno({ contacto: `c${i}@ejemplo.cl` })), { ok: true });
+  for (let i = 0; i < 30; i++) assert.deepEqual(e.post(bueno({ contacto: `c${i}@ejemplo.cl` })), { ok: true });
+  for (let i = 30; i < 40; i++) assert.deepEqual(e.post(bueno({ contacto: `c${i}@ejemplo.cl` })), { ok: false });
   assert.equal(e.hojas.Contactos.filas.length - 1, 30);
+});
+
+test('limites por contacto siguen respondiendo {ok:true} (misma persona reenviando; el primero ya se guardo)', () => {
+  const e = entorno();
+  assert.deepEqual(e.post(bueno()), { ok: true });
+  assert.deepEqual(e.post(bueno()), { ok: true }); // dentro de 60 s
+  for (let i = 0; i < 8; i++) { e.sinEspera(); assert.deepEqual(e.post(bueno()), { ok: true }); } // pasado el tope de 5 por hora
+  assert.equal(e.hojas.Contactos.filas.length - 1, 5);
 });
 
 test('inyeccion de formulas: = + - @ tabulacion se guardan con apostrofo delante', () => {
@@ -146,10 +156,34 @@ test('fallos de Telegram o correo: la fila queda guardada, ok:true y el error va
   }
 });
 
-test('sin propiedades del script: ok:false (la pagina muestra el correo de respaldo) y sin excepciones', () => {
+test('script vinculado: usa getActiveSpreadsheet (nunca openById) y no necesita SHEET_ID', () => {
   const e = entorno();
-  e.props.SHEET_ID = '';
+  assert.ok(!('SHEET_ID' in e.props));
+  assert.deepEqual(e.post(bueno()), { ok: true });
+  assert.equal(e.hojas.Contactos.filas.length, 2);
+  assert.ok(!/openById|SHEET_ID/.test(codigo), 'Code.gs no debe usar openById ni SHEET_ID');
+});
+
+test('sin planilla contenedora: ok:false (la pagina muestra el correo de respaldo) y sin excepciones', () => {
+  const e = entorno({ sinPlanilla: true });
   assert.deepEqual(e.post(bueno()), { ok: false });
+  assert.equal(e.llamadas.fetch.length + e.llamadas.correos.length, 0);
+});
+
+test('sin propiedades de Telegram o correo: la fila igual se guarda, ok:true y el error queda en Errores', () => {
+  const e = entorno();
+  e.props.TELEGRAM_TOKEN = '';
+  e.props.EMAIL_AVISO = '';
+  assert.deepEqual(e.post(bueno()), { ok: true });
+  assert.equal(e.hojas.Contactos.filas.length, 2);
+  assert.ok(e.hojas.Errores.filas.some((f) => /Falta la propiedad/.test(f[2])));
+});
+
+test('appsscript.json: permiso de planilla limitado a la planilla contenedora', () => {
+  const m = JSON.parse(readFileSync(new URL('./appsscript.json', import.meta.url), 'utf8'));
+  assert.ok(m.oauthScopes.includes('https://www.googleapis.com/auth/spreadsheets.currentonly'));
+  assert.ok(!m.oauthScopes.includes('https://www.googleapis.com/auth/spreadsheets'));
+  assert.deepEqual(m.webapp, { executeAs: 'USER_DEPLOYING', access: 'ANYONE_ANONYMOUS' });
 });
 
 test('probar(): simula un envio valido', () => {
@@ -169,7 +203,7 @@ test('si guardar falla, el reintento NO cuenta como repetido: se guarda al segun
   assert.equal(e.llamadas.correos.length, 1);
 });
 
-test('tope global: avisa UNA vez por hora por Telegram y en Errores; los demas se descartan con ok (A2)', () => {
+test('tope global: avisa UNA vez por hora por Telegram y en Errores; los demas se descartan', () => {
   const e = entorno();
   for (let i = 0; i < 40; i++) e.post(bueno({ contacto: `c${i}@ejemplo.cl` }));
   assert.equal(e.hojas.Contactos.filas.length - 1, 30);
